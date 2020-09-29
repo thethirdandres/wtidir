@@ -1,0 +1,17 @@
+body{
+    font-family: Roboto, sans-serif;
+}
+.bg-main{
+    background-color: #AF0700;
+}
+
+.main-title{
+
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 21px;
+letter-spacing: 0.1em;
+text-align: left;
+
+}
