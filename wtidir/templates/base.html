@@ -13,24 +13,23 @@
     <!-- Styles -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css\sidebar.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <!-- Scripts -->
     <script src="{% static 'js/sidebar.js' %}"></script>
 
 </head>
 
 <body>
-      <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% include "components/_navbar.html" %}
-    <div class="sidebar-collpased-menu  ">
-        <button class="openbtn" onclick="openNav()">☰</button> 
-    </div>
-    <div class="container-fluid">
-        <div class="content col-11">
+    <div class="main   container-fluid">
+        <div class="sidebar-collpased-menu">
+            <button class="openbtn" onclick="openNav()">☰</button> 
+            {% include "components/_sidebar.html" %}
+        </div>
+        <div class="content container-fluid">
             {% block content %}{% endblock %}
         </div>
     </div>
-    
-    {% include "components/_sidebar.html" %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
