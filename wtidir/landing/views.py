@@ -3,6 +3,3 @@ from django.shortcuts import render
 # Create your views here.
 def landing_view(request):
     return render(request, 'landing_templates/landing.html')
-
-def sidebar_view(request):
-    return render(request, 'components/_sidebar.html')

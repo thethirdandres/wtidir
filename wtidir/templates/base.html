@@ -21,17 +21,16 @@
 <body>
       <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% include "components/_navbar.html" %}
-    <div class="container">
-        {% comment %} {% block content %}{% endblock %} {% endcomment %}
+    <div class="sidebar-collpased-menu  ">
+        <button class="openbtn" onclick="openNav()">☰</button> 
     </div>
-    <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button> 
-    <div id="main">
-        <div id="mySidebar" class="sidebar">
-            {% block sidebar %}
-            {% endblock sidebar %}
+    <div class="container-fluid">
+        <div class="content col-11">
+            {% block content %}{% endblock %}
         </div>
     </div>
-
+    
+    {% include "components/_sidebar.html" %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

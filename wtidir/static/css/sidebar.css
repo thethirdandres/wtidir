@@ -1,14 +1,16 @@
 .sidebar {
     height: 100%;
-    width: 0;
+    width: 250px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #222222;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding: 20px;
+    margin-top: 65px;
+    color: white;
 }
 
 .sidebar a {
@@ -21,14 +23,14 @@
 }
 
 .sidebar a:hover {
-    color: #f1f1f1;
+    color: #da1818;
 }
 
 .sidebar .closebtn {
     position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
+    top: -15px;
+    right: 10px;
+    font-size: 40px;
     margin-left: 50px;
     color: white;
 }
@@ -46,11 +48,6 @@
     background-color: #444;
 }
 
-#main {
-    transition: margin-left .5s;
-    padding: 16px;
-}
-
-.wrapper {
-    min-height: 100vh;
+.sidebar hr {
+    color: white;
 }
