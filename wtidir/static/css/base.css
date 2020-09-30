@@ -1,7 +1,11 @@
 body,
-html,
-.main {
+html {
     height: 100%;
+    width: 100%;
+}
+
+.main {
+    height: 90%;
     width: 100%;
 }
 
@@ -29,6 +33,9 @@ body {
 .bg-main {
     background-color: #AF0700;
 }
+
+
+/* END OF OVERRIDES */
 
 .main-title {
     font-size: 18px;
