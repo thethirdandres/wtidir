@@ -38,7 +38,7 @@
 .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background-color: #222222;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -50,4 +50,6 @@
 
 .sidebar hr {
     color: white;
+    border-top: 1px solid white !important;
+    margin-top: .1rem !important;
 }

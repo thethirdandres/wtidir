@@ -16,9 +16,3 @@ function closeNav() {
 // $('#hide-menu').click(function(e) {
 //     e.stopPropagation();
 // });
-
-$('#mySidebar').click(function(e) {
-    if (document.getElementById("mySidebar").style.width != "250px") {
-        closeNav();
-    }
-});
