@@ -2,11 +2,13 @@ body,
 html {
     height: 100%;
     width: 100%;
+    overflow: hidden
 }
 
 .main {
-    height: 90%;
+    height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 body {
