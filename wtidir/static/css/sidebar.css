@@ -1,3 +1,19 @@
+/*Components*/
+.roboto-12 {
+    font: 12px normal  Roboto, sans-serif;
+}
+
+.roboto-14 {
+    font: 14px normal Roboto, sans-serif;
+}
+
+.roboto-16 {
+    font: 16px normal Roboto, sans-serif;
+}
+
+
+
+
 .sidebar {
     height: 100%;
     width: 250px;
@@ -13,26 +29,33 @@
     color: white;
 }
 
-.sidebar a {
-    padding: 8px 8px 8px 32px;
+.sidebar .closebtn {
+    position: absolute;
+    top: -5px;
+    right: 20px;
+    font-size: 40px;
+    margin-left: 50px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+    color: white;
+}   
+
+.sidebar hr {
+    color: white;
+    border-top: 1px solid white !important;
+    margin-top: .5rem !important;
 }
 
 .sidebar a:hover {
     color: #da1818;
 }
 
-.sidebar .closebtn {
-    position: absolute;
-    top: -15px;
-    right: 10px;
-    font-size: 40px;
-    margin-left: 50px;
-    color: white;
+.sidebar-dropdown-button {
+    cursor: pointer;
+}
+
+.sidebar-dropdown-container {
+    display: none;
+    padding-left: 2rem;
 }
 
 .openbtn {
@@ -48,8 +71,19 @@
     background-color: #444;
 }
 
-.sidebar hr {
-    color: white;
-    border-top: 1px solid white !important;
-    margin-top: .1rem !important;
+.sidebar-file-title, .sidebar-edit-title, .sidebar-footer {
+    color: gray;
+}
+
+.sidebar-file > div, .sidebar-edit > div {
+    margin-top: 1rem;
+}
+
+.sidebar-dropdown-container > div {
+    margin-bottom: .5rem;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 5rem;
 }

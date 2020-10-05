@@ -1,8 +1,14 @@
 body,
-html,
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden
+}
+
 .main {
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -29,6 +35,9 @@ body {
 .bg-main {
     background-color: #AF0700;
 }
+
+
+/* END OF OVERRIDES */
 
 .main-title {
     font-size: 18px;
