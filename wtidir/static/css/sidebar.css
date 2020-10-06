@@ -1,4 +1,12 @@
 /*Components*/
+.roboto {
+    font-family: Roboto, sans-serif;
+}
+
+.roboto-10 {
+    font: 10px normal  Roboto, sans-serif;
+}
+
 .roboto-12 {
     font: 12px normal  Roboto, sans-serif;
 }
@@ -20,7 +28,7 @@
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    left: -300px;
     background-color: #222222;
     overflow-x: hidden;
     transition: 0.5s;
