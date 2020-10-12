@@ -6,38 +6,146 @@
             <h2 class="text-left text-gray roboto">Create New</h2>
             <div class="landing-page-cards  mt-5 d-flex justify-content-between">
                 <button class="d-inline-flex flex-column landing-page-card">
-                    <img class="mx-auto" src="../../static/img/home-icons/inventorysheet.png">
+                    <img class="mx-auto" src="../../static/img/home-icons/createnew/inventorysheet.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Inventory Sheet</span>
                 </button>
                 <button class="d-inline-flex flex-column landing-page-card">
-                    <img class="mx-auto" src="../../static/img/home-icons/delivery.png">
+                    <img class="mx-auto" src="../../static/img/home-icons/createnew/delivery.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Delivery</span>
                 </button>
                 <button class="d-inline-flex flex-column landing-page-card">
-                    <img class="mx-auto" src="../../static/img/home-icons/transfer.png">
+                    <img class="mx-auto" src="../../static/img/home-icons/createnew/transfer.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Transfer</span>
                 </button>
                 <button class="d-inline-flex flex-column landing-page-card">
-                    <img class="mx-auto" src="../../static/img/home-icons/damagereturn.png">
+                    <img class="mx-auto" src="../../static/img/home-icons/createnew/damagereturn.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Damage Return</span>
                 </button>
                 <button class="d-inline-flex flex-column landing-page-card">
-                    <img class="mx-auto" src="../../static/img/home-icons/invoice.png">
+                    <img class="mx-auto" src="../../static/img/home-icons/createnew/invoice.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Invoice</span>
                 </button>
                 <button class="d-inline-flex flex-column landing-page-card">
-                    <img class="mx-auto" src="../../static/img/home-icons/pettycash.png">
+                    <img class="mx-auto" src="../../static/img/home-icons/createnew/pettycash.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Petty Cash</span>
                 </button>
                 <button class="d-inline-flex flex-column landing-page-card">
-                    <img class="mx-auto" src="../../static/img/home-icons/sales.png">
+                    <img class="mx-auto" src="../../static/img/home-icons/createnew/sales.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Sales</span>
                 </button>
             </div>
         </div>
         <div class="landing-page-repository">
             <h2 class="text-left text-gray roboto">Repository</h2>
-            
+            <div class="landing-page-repository-buttons d-flex ">
+                <div class="landing-page-repository-buttons-left d-flex flex-column mr-3">
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/user.png">
+                            User
+                        </a>
+                    </button>
+                    <button class="roboto-14" >
+                        <a href="{% url 'repository:main_view' %}">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/area.png">
+                            Area
+                        </a>
+                    </button>
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/branch.png">
+                            Branch
+                        </a>
+                    </button>
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/employee.png">
+                            Employee
+                        </a>
+                    </button>
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/device.png">
+                            Device
+                        </a>
+                    </button>
+                </div>
+                <div class="landing-page-repository-buttons-right d-flex flex-column">
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/paymenttype.png">
+                            Payment Type
+                        </a>
+                    </button>
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/discounttype.png">
+                            Discount Type
+                        </a>
+                    </button>
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/unitofmeasure.png">
+                            Unit of Measure
+                        </a>
+                    </button>
+                    <button class="roboto-14">
+                        <a href="">
+                            <img class="mr-2" src="../../static/img/home-icons/repository/item.png">
+                            Item
+                        </a>
+                    </button>
+                </div>
+            </div>
+            <div class="repository-foot d-flex ">
+                <hr/>
+                <div class="repository-foot-template mx-2">
+                    <div class="repository-foot-template-title roboto-14 d-flex justify-content-between">
+                        TEMPLATE
+                        <a><img class="repository-edit" src="../../static/img/home-icons/repository/edit.png"></a>
+                    </div>
+                    <hr/>
+                    
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        2019 Airport
+                    </button>
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        2019 Regular
+                    </button>
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        Airport
+                    </button>
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        Regular
+                    </button>
+                </div>
+                <div class="repository-foot-bom">
+                    <div class="repository-foot-template-title roboto-14 d-flex justify-content-between">
+                        BOM
+                        <a><img class="repository-edit" src="../../static/img/home-icons/repository/edit.png"></a>
+                    </div><hr/>
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        2019 Airport
+                    </button>
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        2019 Regular
+                    </button>
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        Airport
+                    </button>
+                    <button class="roboto-14">
+                        <img class="mr-2" src="../../static/img/home-icons/repository/templatebom.png">
+                        Regular
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock content %}
