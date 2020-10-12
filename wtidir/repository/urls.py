@@ -3,9 +3,9 @@ from django.urls import path
 
 from . import views
 
-app_name = 'landing'
+app_name = 'repository'
 
 urlpatterns = [
-    path('', views.landing_view, name='landing_view'),
+    path('', views.main_view, name='main_view'),
     
 ]

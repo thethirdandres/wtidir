@@ -1,9 +1,3 @@
-/* Components */
-
-.text-gray {
-    color: #4F4F4F
-}
-
 .landing-page {
     padding: 3rem;
     height: 100%;
@@ -81,6 +75,11 @@
     border: none;
     margin-top: .5rem;
     text-align: left;
+}
+
+.landing-page-repository a {
+    text-decoration: none;
+    color: black;
 }
 
 .repository-foot-template,

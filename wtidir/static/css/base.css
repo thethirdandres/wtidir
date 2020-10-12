@@ -36,6 +36,30 @@ body {
     background-color: #AF0700;
 }
 
+.text-gray {
+    color: #4F4F4F
+}
+
+.roboto {
+    font-family: Roboto, sans-serif;
+}
+
+.roboto-10 {
+    font: 10px normal Roboto, sans-serif;
+}
+
+.roboto-12 {
+    font: 12px normal Roboto, sans-serif;
+}
+
+.roboto-14 {
+    font: 14px normal Roboto, sans-serif;
+}
+
+.roboto-16 {
+    font: 16px normal Roboto, sans-serif;
+}
+
 
 /* END OF OVERRIDES */
 

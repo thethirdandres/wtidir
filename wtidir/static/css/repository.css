@@ -1,0 +1,35 @@
+.repository-menu {
+    width: 15%;
+    background-color: #EFEFEF;
+    padding: 1rem;
+    margin: 1rem;
+    float: left;
+}
+
+.repository-menu-title {
+    font-weight: bolder;
+}
+
+.repository-menu button {
+    height: 1rem;
+    width: 100%;
+    background-color: #EDEDED;
+    border: none;
+    margin-top: 1rem;
+    text-align: left;
+    margin-left: 1rem;
+}
+
+.repository-menu a {
+    text-decoration: none;
+    color: black;
+}
+
+.repository-content {
+    position: relative;
+    width: 80%;
+    background-color: grey;
+    float: right;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
