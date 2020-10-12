@@ -1,4 +1,5 @@
 /* Components */
+
 .text-gray {
     color: #4F4F4F
 }
@@ -8,7 +9,7 @@
     height: 100%;
 }
 
-.landing-page > h2 {
+.landing-page>h2 {
     font-weight: bolder;
 }
 
@@ -34,7 +35,6 @@
     padding: 2rem;
     margin-top: -2rem;
     background-color: #EDEDED;
-
 }
 
 .landing-page-repository-buttons-left,
@@ -43,7 +43,7 @@
 }
 
 .landing-page-repository-buttons-left button,
-.landing-page-repository-buttons-right button {   
+.landing-page-repository-buttons-right button {
     height: 1rem;
     width: 100%;
     background-color: #EDEDED;
@@ -55,20 +55,26 @@
 .landing-page-repository hr {
     /* color: black; */
     border-top: 1px solid grey !important;
-    margin-top: rem !important;
+    margin-top: .5rem !important;
 }
 
 .repository-foot {
-    margin-top: 5rem ;
+    margin-top: 5rem;
+    margin-left: -2.8rem;
     width: 120%;
 }
 
-.repository-edit {
-    margin-left: 2rem;
+.repository-foot-template-title {
+    display: inline-block;
 }
 
-.repository-foot-template button, 
-.repository-foot-bom button {   
+.repository-edit {
+    /* margin-left: 2rem; */
+    cursor: pointer;
+}
+
+.repository-foot-template button,
+.repository-foot-bom button {
     height: 1rem;
     /* width: 50%; */
     background-color: white;
@@ -84,4 +90,5 @@
     box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     padding: 1rem 1rem;
+    width: 45%;
 }
