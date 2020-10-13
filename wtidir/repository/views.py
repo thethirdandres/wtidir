@@ -6,3 +6,6 @@ def main_view(request):
 
 def area_view(request):
     return render(request, 'repository_templates/area.html')
+
+def branch_view(request):
+    return render(request, 'repository_templates/branch.html')
