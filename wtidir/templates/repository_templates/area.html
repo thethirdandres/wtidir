@@ -1,5 +1,53 @@
-{% include 'repository_templates/repository.html' %}
+{% extends "repository_templates/repository.html" %}
 
-{% block content %}
-    ex-page text
-{% endblock content %}
+{% block repository-content %}
+    <div class="area-title roboto-24 text-gray">Area</div> 
+    <hr/>
+    <form>
+        <div class="form-row mb-4">
+            <input type="text" class="form-control col ml-2" name="area"  placeholder="Area">
+            <select class="form-control col ml-2" id='select' name="commissary">
+                <option selected disabled>Commissary</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+            <input type="text" class="form-control col ml-2" name="server"  placeholder="Server">
+            <input type="text" class="form-control col ml-2" name="user"  placeholder="User">
+            <input type="text" class="form-control col ml-2" name="password"  placeholder="Password">
+            <input type="text" class="form-control col ml-2" name="database"  placeholder="Database">
+            <input type="text" class="form-control col ml-2" name="datasource"  placeholder="Data Source">
+            <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
+        </div>
+    </form>
+
+    <table class="table table-borderless  table-sm">
+        <thead class="table-active">
+            <tr>
+                <th>AREA</th>
+                <th>COMMI</th>
+                <th>SERVER</th>
+                <th>USER</th>
+                <th>PASSWORD</th>
+                <th>DATABASE</th>
+                <th>DATA SOURCE</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">Iloilo</td>
+                <td>Commissary</td>
+                <td>10.1.1.100</td>
+                <td>sa</td>
+                <td>mis119.93</td>
+                <td>GFC150109</td>
+                <td>ILODataSource</td>
+                <td>
+                    <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" ></a>
+                    <a><img src="../../static/img/repository-icons/delete.png" ></a>
+                </td>
+        </tbody>
+    </table>
+{% endblock repository-content %}

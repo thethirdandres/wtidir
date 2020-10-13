@@ -29,8 +29,13 @@
     margin-top: .5rem !important;
 }
 
+.sidebar .roboto-16 a {
+    text-decoration: none;
+    color: white;
+}
+
 .sidebar a:hover {
-    color: #da1818;
+    color: #e97e7e;
 }
 
 .sidebar-dropdown-button {

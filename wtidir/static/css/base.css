@@ -60,6 +60,10 @@ body {
     font: 16px normal Roboto, sans-serif;
 }
 
+.roboto-24 {
+    font: 24px bolder Roboto, sans-serif;
+}
+
 
 /* END OF OVERRIDES */
 

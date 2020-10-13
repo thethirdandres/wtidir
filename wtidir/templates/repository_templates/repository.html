@@ -1,65 +1,70 @@
-<div class="repository-page">
-    <div class="repository-menu d-flex flex-column pb-4">
-        <div class="repository-menu-title  roboto-14 text-gray">
-            REPOSITORY
-        </div>
-        <button class="roboto-14   mt-4">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/user.png">
-                User
-            </a>
-        </button>
-        <button class="roboto-14" >
-            <a href="{% url 'repository:main_view' %}">
-                <img class="mr-2" src="../../static/img/home-icons/repository/area.png">
-                Area
-            </a>
-        </button>
-        <button class="roboto-14">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/branch.png">
-                Branch
-            </a>
-        </button>
-        <button class="roboto-14">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/employee.png">
-                Employee
-            </a>
-        </button>
-        <button class="roboto-14">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/device.png">
-                Device
-            </a>
-        </button>
-        <button class="roboto-14">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/paymenttype.png">
-                Payment Type
-            </a>
-        </button>
-        <button class="roboto-14">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/discounttype.png">
-                Discount Type
-            </a>
-        </button>
-        <button class="roboto-14">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/unitofmeasure.png">
-                Unit of Measure
-            </a>
-        </button>
-        <button class="roboto-14">
-            <a href="">
-                <img class="mr-2" src="../../static/img/home-icons/repository/item.png">
-                Item
-            </a>
-        </button>
-    </div>
+{% extends "base.html" %}
 
-    <div class="repository-content">
-        in-page text
+{% block content %}
+    <div class="repository-page">
+        <div class="repository-menu d-flex flex-column pb-4">
+            <div class="repository-menu-title  roboto-14 text-gray">
+                REPOSITORY
+            </div>
+            <button class="roboto-14   mt-4">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/user.png">
+                    User
+                </a>
+            </button>
+            <button class="roboto-14" >
+                <a href="{% url 'repository:area_view' %}">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/area.png">
+                    Area
+                </a>
+            </button>
+            <button class="roboto-14">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/branch.png">
+                    Branch
+                </a>
+            </button>
+            <button class="roboto-14">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/employee.png">
+                    Employee
+                </a>
+            </button>
+            <button class="roboto-14">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/device.png">
+                    Device
+                </a>
+            </button>
+            <button class="roboto-14">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/paymenttype.png">
+                    Payment Type
+                </a>
+            </button>
+            <button class="roboto-14">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/discounttype.png">
+                    Discount Type
+                </a>
+            </button>
+            <button class="roboto-14">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/unitofmeasure.png">
+                    Unit of Measure
+                </a>
+            </button>
+            <button class="roboto-14">
+                <a href="">
+                    <img class="mr-2" src="../../static/img/home-icons/repository/item.png">
+                    Item
+                </a>
+            </button>
+        </div>
+
+        <div class="repository-content pt-3">
+            {% block repository-content %}
+            {% endblock repository-content %}
+        </div>
     </div>
-</div>
+{% endblock content %}

@@ -28,8 +28,26 @@
 .repository-content {
     position: relative;
     width: 80%;
-    background-color: grey;
     float: right;
     margin-right: 1rem;
     margin-top: 1rem;
+}
+
+
+/* AREA */
+
+.area-title {
+    font-weight: bolder;
+}
+
+.repository-content hr {
+    border-top: 0.5px grey solid;
+}
+
+.repository-content a {
+    cursor: pointer;
+}
+
+.repository content form button {
+    background-image: url('../img/repository-icons/add.png');
 }
