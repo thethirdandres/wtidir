@@ -38,14 +38,15 @@
     </div>
     <div class="sidebar-edit   mt-5">
         <div class="sidebar-edit-title   roboto-12">EDIT</div>
-        <div class="roboto-16">
-            <img src="../../static/img/sidebar-icons/repository.png" class="mr-2"
-            >
-            Respository
+        <div class="roboto-16" >
+            <a  href="{% url 'repository:main_view' %}">
+                <img src="../../static/img/sidebar-icons/repository.png" class="mr-2"
+                >
+                Respository
+            </a>
         </div>
         <div class="sidebar-dropdown-button    roboto-16">
-            <img src="../../static/img/sidebar-icons/Template.png" class="mr-2"
-            >
+            <img src="../../static/img/sidebar-icons/Template.png" class="mr-2">
             Template ▼
         </div>
         <div class="sidebar-dropdown-container">

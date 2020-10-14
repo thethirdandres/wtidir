@@ -1,0 +1,63 @@
+{% extends "repository_templates/repository.html" %}
+
+{% block repository-content %}
+    <div class="area-title roboto-24 text-gray">Branch</div> 
+    <hr/>
+    <form>
+        <div class="form-row mb-4">
+            <input type="text" class="form-control col ml-2" name="area"  placeholder="Branch">
+            <select class="form-control col ml-2"  name="area">
+                <option selected disabled>Area</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+            <select class="form-control col ml-2" name="template">
+                <option selected disabled>Template</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+            <input type="text" class="form-control col ml-2" name="sapcode"  placeholder="SAP Code">
+            <select class="form-control col ml-2" name="type">
+                <option selected disabled>Type</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+            <input type="text" class="form-control col ml-2" name="description"  placeholder="Description">
+            <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
+        </div>
+    </form>
+
+    <table class="table table-borderless  table-sm">
+        <thead class="table-active">
+            <tr>
+                <th>BRANCH</th>
+                <th>AREA</th>
+                <th>TEMPLATE</th>
+                <th>SAP CODE</th>
+                <th>TYPE</th>
+                <th>DESCRIPTION</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row" contenteditable="false">City Mall Tagbak</td>
+                <td contenteditable="false">Iloilo</td>
+                <td contenteditable="false">2019 Regular</td>
+                <td contenteditable="false"></td>
+                <td contenteditable="false">for development purpose</td>
+                <td contenteditable="false">Deactivate</td>
+                <td>
+                    <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                    <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
+                    <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Deactivate"></a>
+                </td>
+        </tbody>
+    </table>
+{% endblock repository-content %}
