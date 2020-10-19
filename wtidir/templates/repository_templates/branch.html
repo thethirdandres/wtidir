@@ -1,7 +1,7 @@
 {% extends "repository_templates/repository.html" %}
 
 {% block repository-content %}
-    <div class="area-title roboto-24 text-gray">Branch</div> 
+    <div class="repo-title roboto-24 text-gray">Branch</div> 
     <hr/>
     <form>
         <div class="form-row mb-4">
@@ -52,12 +52,13 @@
                 <td contenteditable="false">2019 Regular</td>
                 <td contenteditable="false"></td>
                 <td contenteditable="false">for development purpose</td>
-                <td contenteditable="false">Deactivate</td>
+                <td contenteditable="false">Deactivated</td>
                 <td>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
                     <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
                     <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Deactivate"></a>
                 </td>
+            </tr>
         </tbody>
     </table>
 {% endblock repository-content %}

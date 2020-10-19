@@ -40,6 +40,10 @@ body {
     color: #4F4F4F
 }
 
+.text-white {
+    color: #FFFFFF;
+}
+
 .roboto {
     font-family: Roboto, sans-serif;
 }
