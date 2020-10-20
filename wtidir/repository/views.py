@@ -12,3 +12,11 @@ def area_view(request):
 
 def branch_view(request):
     return render(request, 'repository_templates/branch.html')
+
+def employee_view(request):
+    return render(request, 'repository_templates/employee.html')
+
+
+
+def uom_view(request):
+    return render(request, 'repository_templates/uom.html')

@@ -76,3 +76,14 @@
 .modal-header {
     background-color: #AF0700;
 }
+
+
+/* UOM */
+
+.uom-unit-input {
+    width: 7rem;
+}
+
+.uom-table-td {
+    width: 7rem;
+}

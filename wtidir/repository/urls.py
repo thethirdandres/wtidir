@@ -10,4 +10,6 @@ urlpatterns = [
     path('user', views.user_view, name="user_view"),
     path('area', views.area_view, name="area_view"),
     path('branch', views.branch_view, name="branch_view"),
+    path('employee', views.employee_view, name="employee_view"),
+    path('uom', views.uom_view, name="uom_view"),
 ]

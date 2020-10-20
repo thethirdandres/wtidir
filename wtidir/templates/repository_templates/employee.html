@@ -2,21 +2,21 @@
 
 {% block repository-content %}
 <div class="user-head d-flex justify-content-between mb-3">
-    <div class="repo-title roboto-24 text-gray">User</div>
-    <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_createuser">
+    <div class="repo-title roboto-24 text-gray">Employee</div>
+    <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_createemployee">
         <img src="../../static/img/repository-icons/plus.png" class="">
         Add New
     </button>
-    <div class="modal fade" id="modal_createuser" tabindex="-1" role="dialog" aria-labelledby="modal_createuserlabel" aria-hidden="true">
+    <div class="modal fade" id="modal_createemployee" tabindex="-1" role="dialog" aria-labelledby="modal_createemployeelabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">    
-            {% include '../modals/modal_createuser.html' %}
+            {% include '../modals/modal_createemployee.html' %}
         </div>
     </div>
 </div>
 
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-user-tab" data-toggle="tab" href="#nav-user" role="tab" aria-controls="nav-user" aria-selected="true">User</a>
+    <a class="nav-item nav-link active" id="nav-user-tab" data-toggle="tab" href="#nav-user" role="tab" aria-controls="nav-user" aria-selected="true">Employee</a>
     <a class="nav-item nav-link" id="nav-group-tab" data-toggle="tab" href="#nav-group" role="tab" aria-controls="nav-group" aria-selected="false">Group</a>
   </div>
 </nav>
@@ -28,10 +28,9 @@
                 <th>LAST NAME</th>
                 <th>FIRST NAME</th>
                 <th>MIDDLE NAME</th>
-                <th>USERNAME</th>
-                <th>EMAIL</th>
-                <th>ACCOUNT GROUP</th>
-                <th>STATUS</th>
+                <th>ALIAS</th>
+                <th>EMPLOYEE NO.</th>
+                <th>GROUP</th>
                 <th></th>
             </tr>
         </thead>
@@ -41,16 +40,9 @@
                 <td contenteditable="false">Deona</td>
                 <td contenteditable="false">Delgado</td>
                 <td contenteditable="false">deona</td>
-                <td contenteditable="false">deona@waffletime.com</td>
-                <td contenteditable="false">Accounting</td>
-                <td contenteditable="false">Active</td>
+                <td contenteditable="false">WTI000003456</td>
+                <td contenteditable="false">Cashier</td>
                 <td>
-                    <a class="mr-2" data-toggle="modal" data-target="#modal_changepassword"><img src="../../static/img/repository-icons/changepassword.png" data-toggle="tooltip" data-placement="top" title="Change Password" ></a>
-                    <div class="modal fade" id="modal_changepassword" tabindex="-1" role="dialog" aria-labelledby="modal_changepasswordlabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">    
-                            {% include '../modals/modal_changepassword.html' %}
-                        </div>
-                    </div>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
                     <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
                 </td>
@@ -59,11 +51,18 @@
     </table>
   </div>
   <div class="tab-pane fade  pt-3" id="nav-group" role="tabpanel" aria-labelledby="nav-group-tab">
-    <form>
-        <div class="form-row mb-4">
-            <input type="text" class="form-control ml-2 w-25" name="area"  placeholder="Area">
-            <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
+    <form class="d-flex">
+        <div>
+            <input type="text" class="form-control ml-2" name="name"  placeholder="Name">
         </div>
+        <div>
+            <select class="form-control form-control ml-3" name="group" id="group">
+            <option selected disabled>Level</option>
+            <option>Test</option>
+            <option>Test</option>
+            </select>
+        </div>
+        <button type="submit" class="btn ml-3"><img src="../../static/img/repository-icons/add.png"/></button>
     </form>
     <table class="table table-borderless  table-sm  mt-3">
         <thead class="table-active">

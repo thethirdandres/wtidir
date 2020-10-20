@@ -1,14 +1,9 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title roboto-16 text-white mx-auto" id="modal_createusertitle">CREATE USER</h5>
+        <h5 class="modal-title roboto-16 text-white mx-auto" id="modal_createusertitle">CREATE EMPLOYEE</h5>
     </div>
     <div class="modal-body d-flex justify-content-around">
         <div>
-            <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text"
-                class="form-control form-control-sm" name="username" id="username">
-            </div>
             <div class="form-group">
             <label for="lastname">Last Name</label>
             <input type="text"
@@ -25,20 +20,17 @@
                 class="form-control form-control-sm" name="middlename" id="middlename" placeholder="">
             </div>
             <div class="form-group">
-            <label for="emailaddress">Email Address</label>
+            <label for="alias">Alias</label>
             <input type="text"
-                class="form-control form-control-sm" name="emailaddress" id="emailaddress" placeholder="">
+                class="form-control form-control-sm" name="alias" id="alias" placeholder="">
+            </div>
+            <div class="form-group">
+            <label for="employeeno">Employee No.</label>
+            <input type="text"
+                class="form-control form-control-sm" name="employeeno" id="employeeno" placeholder="">
             </div>
         </div>
         <div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="">
-            </div>
-            <div class="form-group">
-              <label for="verifypassword">Verify Password</label>
-              <input type="password" class="form-control form-control-sm" name="verifypassword" id="verifypassword" placeholder="">
-            </div>
             <div class="form-group">
               <label for="group">Group</label>
               <select class="form-control form-control-sm" name="group" id="group">
@@ -46,6 +38,14 @@
                 <option>Test</option>
                 <option>Test</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control form-control-sm" name="username" id="username" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="">
             </div>
             <div class="form-group">
               <label for="checkbox">Area</label>
