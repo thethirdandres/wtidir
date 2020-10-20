@@ -62,7 +62,6 @@
 .repository-user-add-button {
     height: 2rem;
     background-color: #F6DADA;
-    bottom: ;
     border: 0.5px solid #890F00;
     color: #890F00;
     border-radius: 3px;
@@ -75,6 +74,14 @@
 
 .modal-header {
     background-color: #AF0700;
+}
+
+
+/* BRANCH */
+
+.repo-edit-quota-button span {
+    color: #CE9300;
+    text-decoration-line: underline;
 }
 
 

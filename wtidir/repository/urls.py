@@ -12,4 +12,5 @@ urlpatterns = [
     path('branch', views.branch_view, name="branch_view"),
     path('employee', views.employee_view, name="employee_view"),
     path('uom', views.uom_view, name="uom_view"),
+    path('item', views.item_view, name="item_view"),
 ]

@@ -57,6 +57,16 @@
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
                     <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
                     <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Deactivate"></a>
+                    <a class="repo-edit-quota-button   d-non ml-3 roboto-14"><span>EDIT QUOTA</span></a>
+                    <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_createuser">
+                        <img src="../../static/img/repository-icons/plus.png" class="">
+                        Add New
+                    </button>
+                    <div class="modal fade" id="modal_createuser" tabindex="-1" role="dialog" aria-labelledby="modal_createuserlabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">    
+                            {% include '../modals/modal_createuser.html' %}
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
