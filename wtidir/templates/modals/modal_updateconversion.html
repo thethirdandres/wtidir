@@ -1,0 +1,93 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title roboto-16 text-white mx-auto" id="modal_createusertitle">UPDATE CONVERSION</h5>
+    </div>
+    <div class="modal-body d-flex">
+        <form id="repo-add-conversion-form">
+            <div class="form-group">
+                <label for="unit">Unit</label>
+                <select class="form-control form-control-sm" name="unit" id="unit">
+                <option selected disabled></option>
+                <option>Test</option>
+                <option>Test</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ratio">Ratio</label>
+                <input type="text" class="form-control form-control-sm" name="ratio" id="ratio" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="set">Set</label>
+                <select class="form-control form-control-sm" name="set" id="set">
+                <option selected disabled></option>
+                <option>Test</option>
+                <option>Test</option>
+                </select>
+            </div>
+            <input type="submit" id="repo-conversion-table-submit" class="btn btn-light roboto-10 mx-auto" value="ADD CONVERSION">
+        </form>
+        <div class="ml-4 repo-modal-updateconversion-table w-100">
+            <table id="repo-conversion-table" class="table table-borderless  table-sm  mt-3">
+                <thead class="table-active">
+                    <tr>
+                        <th>UNIT</th>
+                        <th>RATIO</th>
+                        <th>SET</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row" contenteditable="false">pc</td>
+                        <td contenteditable="false">1.000000</td>
+                        <td contenteditable="false">w</td>
+                        <td>
+                            <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Remove" ></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <button type="button" class="btn btn-danger mr-2">SAVE</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">CLOSE</button>
+    </div>
+</div>
+
+
+{% comment %} <script id="addConversionTmp" type="text/x-jquery-tmpl">
+    <tr>
+        <th>${Unit}</th>
+        <th>${Ratio}</th>
+        <th>${Set}</th>
+        <th></th>
+    </tr>
+</script> {% endcomment %}
+
+{% comment %} <script>
+    $(function() {
+        $('#repo-conversion-table-submit').click(function(e) {
+            var model = new Object();
+
+            // Here you need to get the values using $('#id').val() and fill the model
+            model.Unit = $(unit).value();
+            model.Ratio = $(ratio).value();
+            model.Set = $(set).value();
+
+            $("#addConversionTmp").tmpl(model).appendTo("#repo-conversion-table");
+        });
+    });
+</script> {% endcomment %}
+
+{% comment %} <script>
+    document.getElementById("#repo-add-conversion-form").submit(function() {
+        var fields = document.getElementById( "input" );
+        console.log(fields);
+        jQuery.each( fields, function( i, field ) {             
+            document.getElementById("repo-conversion-table")
+                .find('tbody tr:last') //this appends the data you want   to the table
+                .append("<td>" + field.value + "</td>");
+        });
+    });
+</script> {% endcomment %}

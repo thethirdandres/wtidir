@@ -4,17 +4,24 @@ $(document).ready(function() {
         if ($(this).attr('src') == "../../static/img/repository-icons/edit.png") {
             $.each(currentTD, function() {
                 $(this).prop('contentEditable', "true");
-                console.log($(this).prop('contenteditable'));
             });
-            // $(this).attr("src", "../../static/img/repository-icons/edit-gray.png");
         } else {
             $.each(currentTD, function() {
                 $(this).prop('contentEditable', "false");
-                console.log($(this).prop('contenteditable'));
             });
-            // $(this).attr("src", "../../static/img/repository-icons/edit.png");
         }
+
+        // var classList = document.getElementById('repo-edit-quota-button').className.split(/\s+/);
+        // for (var i = 0; i < classList.length; i++) {
+        //     console.log(classList[i]);
+        // }
+
+        if ($(this).hasClass('in-branch')) {
+            console.log(document.getElementById("repo-edit-quota-button").style.display);
+            document.getElementById("repo-edit-quota-button").style.display === "block" ? document.getElementById("repo-edit-quota-button").style.display = "none" : document.getElementById("repo-edit-quota-button").style.display = "block";
+            console.log("changed");
+        }
+
         $(this).attr("src") == "../../static/img/repository-icons/edit-gray.png" ? $(this).attr("src", "../../static/img/repository-icons/edit.png") : $(this).attr("src", "../../static/img/repository-icons/edit-gray.png");
-        console.log("now: " + $(this).attr("src"));
     });
 });

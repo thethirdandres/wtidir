@@ -11,18 +11,25 @@
 }
 
 .repository-menu button {
-    height: 1rem;
-    width: 100%;
-    background-color: #EDEDED;
+    height: 1.1rem;
+    /* max-width: 100%; */
+    background-color: #EFEFEF;
     border: none;
     margin-top: 1rem;
     text-align: left;
     margin-left: 1rem;
+    cursor: default;
+}
+
+.repository-menu button:focus,
+.repository-menu button:active {
+    border: none
 }
 
 .repository-menu a {
     text-decoration: none;
     color: black;
+    display: inline-block;
 }
 
 .repository-content {
@@ -82,6 +89,11 @@
 .repo-edit-quota-button span {
     color: #CE9300;
     text-decoration-line: underline;
+    vertical-align: middle;
+}
+
+.repo-edit-quota-button {
+    display: none;
 }
 
 
@@ -93,4 +105,21 @@
 
 .uom-table-td {
     width: 7rem;
+}
+
+
+/* MODAL_ADDPRODUCT */
+
+.repo-sapcode-input {
+    position: absolute;
+    width: 25.5rem;
+}
+
+
+/* MODAL_UPDATECONVERSION */
+
+.repo-modal-updateconversion-table {
+    -webkit-box-shadow: 0px 3px 11px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 3px 11px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 3px 11px -7px rgba(0, 0, 0, 0.75);
 }
