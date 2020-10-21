@@ -20,3 +20,6 @@ def employee_view(request):
 
 def uom_view(request):
     return render(request, 'repository_templates/uom.html')
+
+def item_view(request):
+    return render(request, 'repository_templates/item.html')

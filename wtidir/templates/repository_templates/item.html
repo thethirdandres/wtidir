@@ -1,0 +1,81 @@
+{% extends 'repository_templates/repository.html' %}
+
+{% block repository-content %}
+<div class="d-flex justify-content-between mb-3">
+    <div class="repo-title roboto-24 text-gray">Item</div>
+    <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_addproduct">
+        <img src="../../static/img/repository-icons/plus.png" class="">
+        Add New
+    </button>
+    <div class="modal fade" id="modal_addproduct" tabindex="-1" role="dialog" aria-labelledby="modal_addproductlabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">    
+            {% include '../modals/modal_addproduct.html' %}
+        </div>
+    </div>
+</div>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-item-tab" data-toggle="tab" href="#nav-item" role="tab" aria-controls="nav-item" aria-selected="true">Item</a>
+    <a class="nav-item nav-link" id="nav-group-tab" data-toggle="tab" href="#nav-group" role="tab" aria-controls="nav-group" aria-selected="false">Group</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-item" role="tabpanel" aria-labelledby="nav-item-tab">
+    <table class="table table-borderless  table-sm  mt-3">
+        <thead class="table-active">
+            <tr>
+                <th>ITEM NAME</th>
+                <th>UNIT</th>
+                <th>PIECE PER PACK</th>
+                <th>SAP CODE</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row" contenteditable="false">Baked Waffle American Hotdog</td>
+                <td contenteditable="false">pc</td>
+                <td contenteditable="false">1.00</td>
+                <td contenteditable="false">132548400218798428885</td>
+                <td>
+                    <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                    <a class="mr-2" data-toggle="modal" data-target="#modal_updateconversion"><img src="../../static/img/repository-icons/updateconversion.png" data-toggle="tooltip" data-placement="top" title="Change Password" ></a>
+                    <div class="modal fade" id="modal_updateconversion" tabindex="-1" role="dialog" aria-labelledby="modal_updateconversionlabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">    
+                            {% include '../modals/modal_updateconversion.html' %}
+                        </div>
+                    </div>
+                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="nav-group" role="tabpanel" aria-labelledby="nav-group-tab">
+    <table class="table table-borderless  table-sm  mt-3">
+        <thead class="table-active">
+            <tr>
+                <th>ITEM GROUP NAME</th>
+                <th>ITEM TYPE</th>
+                <th>SHORTAGE TYPE</th>
+                <th>PRIORITY</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row" contenteditable="false">Raw Condiments</td>
+                <td contenteditable="false">Rawmats</td>
+                <td contenteditable="false">Foods</td>
+                <td contenteditable="false">1</td>
+                <td>
+                    <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+{% endblock repository-content %}
