@@ -1,0 +1,26 @@
+.sheets-navpills-header {
+    background-color: #222222;
+}
+
+/* overrides */
+.sheets-navpills-header li {
+    width: 10% !important;
+    text-align: center;
+}
+
+.sheets-navpills-header li a{
+    border-radius: 0% !important;
+    color: white !important;
+}
+
+.nav-pills .nav-link.active {
+    color: #222222 !important;
+    background-color: white !important;
+}
+
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #222222 !important;
+}
+
+/* end of overrides */
