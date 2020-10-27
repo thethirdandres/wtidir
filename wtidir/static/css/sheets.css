@@ -1,9 +1,6 @@
-.sheets-navpills-header {
-    background-color: #222222;
-}
 
 /* overrides */
-.sheets-navpills-header li {
+.sheets-navpills-header li:not(.sheets-navpills-header li:first-child) {
     width: 10% !important;
     text-align: center;
 }
@@ -24,3 +21,12 @@
 }
 
 /* end of overrides */
+
+
+.sheets-navpills-header {
+    background-color: #222222;
+}
+
+.sheets-content {
+    padding: 
+}

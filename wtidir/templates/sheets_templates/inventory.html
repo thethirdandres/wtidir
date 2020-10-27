@@ -2,16 +2,28 @@
 
 {% block sheets-content %}
 
-    <div class="user-head d-flex justify-content-between mb-3">
-        <div class="repo-title roboto-14 text-gray p-3">City Mall Tagbak - 09398 <em>[October 30, 2019]</em></div>
-        <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_createuser">
-            <img src="../../static/img/repository-icons/plus.png" class="">
-            Edit
-        </button>
-        <div class="modal fade" id="modal_createuser" tabindex="-1" role="dialog" aria-labelledby="modal_createuserlabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">    
-                {% include '../modals/modal_createuser.html' %}
+    <div class="d-flex justify-content-between mb-3">
+        <div class="roboto-16 mt-2 ml-3 text-gray">City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></div>
+        <div class="">
+            <select class="" name="rawmats" id="rawmats">
+                <option selected disabled>Rawmats</option>
+                <option>Test</option>
+                <option>Test</option>
+                <option>Test</option>
+            </select>
+            <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_editnewsheet">
+                <img src="../../static/img/sheets-icons/edit.png" class="">
+                EDIT
+            </button>
+            <div class="modal fade" id="modal_editnewsheet" tabindex="-1" role="dialog" aria-labelledby="modal_editnewsheetlabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">    
+                    {% include '../modals/modal_editnewsheet.html' %}
+                </div>
             </div>
+            <button type="button" class="repository-user-add-button">
+                <img src="../../static/img/sheets-icons/save.png" class="mr-1">
+                SAVE
+            </button>
         </div>
     </div>
     <table class="table table-borderless  table-sm  mt-3">
@@ -33,6 +45,7 @@
             </tr>
         </thead>
         <tbody>
+            <tr><td class="font-weight-bold">Rice</td></tr>
             <tr>
                 <td scope="row" contenteditable="false">Repack - Rice 5kg </td>
                 <td contenteditable="false">0.000000</td>

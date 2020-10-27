@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def inventory_view(request):
     return render(request, 'sheets_templates/inventory.html')
+
+def delivery_view(request):
+    return render(request, 'sheets_templates/delivery.html')
