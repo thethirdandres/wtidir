@@ -30,3 +30,12 @@
 .sheets-content {
     padding: 
 }
+
+/* MODAL_ADDNEWDELIVERY */
+.sheets-addnewdelivery-modal-header {
+    background-color: white;
+}
+
+.sheets-select {
+    width: 15%;
+}
