@@ -1,11 +1,11 @@
-
 /* overrides */
+
 .sheets-navpills-header li:not(.sheets-navpills-header li:first-child) {
     width: 10% !important;
     text-align: center;
 }
 
-.sheets-navpills-header li a{
+.sheets-navpills-header li a {
     border-radius: 0% !important;
     color: white !important;
 }
@@ -20,22 +20,32 @@
     background-color: #222222 !important;
 }
 
-/* end of overrides */
 
+/* end of overrides */
 
 .sheets-navpills-header {
     background-color: #222222;
 }
 
 .sheets-content {
-    padding: 
+    padding:
 }
 
+
 /* MODAL_ADDNEWDELIVERY */
+
 .sheets-addnewdelivery-modal-header {
     background-color: white;
 }
 
 .sheets-select {
     width: 15%;
+}
+
+.sheets-addnewdelivery-description-input {
+    width: 20rem !important;
+}
+
+.sheets-addnewdelivery-description-input-siblings {
+    width: 5rem !important;
 }

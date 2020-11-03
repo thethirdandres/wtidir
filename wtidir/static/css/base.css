@@ -31,6 +31,8 @@ body {
     margin-right: 0px !important;
     margin-left: 0px !important;
 }
+
+
 /* END OF OVERRIDES */
 
 .bg-main {
@@ -71,7 +73,6 @@ body {
 
 .button-pale-red {
     height: 2rem;
-    
     background-color: #F6DADA;
     border: 0.5px solid #890F00;
     color: #890F00;
@@ -87,21 +88,22 @@ body {
     color: white;
     border-radius: 3px;
     text-align: center;
-    padding: 0rem 1rem;
+    padding: .25rem 1rem;
+}
 
+.button-red:hover {
+    color: white;
 }
 
 .button-white {
     height: 2rem;
-    background-color:white;
+    background-color: white;
     border: 0.5px solid #890F00;
     color: #890F00;
     border-radius: 3px;
-    text-align: center;    
+    text-align: center;
     padding: 0rem 1rem;
-
 }
-
 
 .main-title {
     font-size: 18px;
