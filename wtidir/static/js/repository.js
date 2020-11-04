@@ -5,7 +5,7 @@ $(document).ready(function() {
             $(this).prop('contentEditable', "true");
         });
         $(this).addClass('d-none');
-        $(this).parents('a').next().find('img').removeClass('d-none');
+        $(this).parents('a').next().removeClass('d-none');
         console.log("1");
     });
 
@@ -15,7 +15,7 @@ $(document).ready(function() {
             $(this).prop('contentEditable', "false");
         });
         $(this).addClass('d-none');
-        $(this).parents('a').prev().find('img').removeClass('d-none');
+        $(this).prev().find('img').removeClass('d-none');
         console.log("2");
     });
 
