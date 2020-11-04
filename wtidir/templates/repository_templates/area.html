@@ -36,17 +36,17 @@
             {% for areadata in all_areas %}
                 <tr> 
                     <form action="{% url 'repository:area_update' areadata.idArea %}" method="POST" autocomplete="off"></form>                
-                    <td scope="row" contenteditable="true" name="area">{{ areadata.AName }}</td>
-                    <td contenteditable="false">{{ areadata.unBranchCommi }}</td>
-                    <td contenteditable="false">{{ areadata.ASAPSvr }}</td>
-                    <td contenteditable="false">{{ areadata.ASAPUsr }}</td>
-                    <td contenteditable="false">{{ areadata.ASAPSvr }}</td>
-                    <td contenteditable="false">{{ areadata.ASAPPwd }}</td>
-                    <td contenteditable="false">{{ areadata.ASAPDataSource }}</td>
-                    <td>
-                        <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                        <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
-                    </td>
+                        <td scope="row" contenteditable="true" name="area"{{ areadata.AName }}</td>
+                        <td contenteditable="false">{{ areadata.unBranchCommi }}</td>
+                        <td contenteditable="false">{{ areadata.ASAPSvr }}</td>
+                        <td contenteditable="false">{{ areadata.ASAPUsr }}</td>
+                        <td contenteditable="false">{{ areadata.ASAPSvr }}</td>
+                        <td contenteditable="false">{{ areadata.ASAPPwd }}</td>
+                        <td contenteditable="false">{{ areadata.ASAPDataSource }}</td>
+                        <td>
+                            <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                            <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                        </td>
                     </form>
                 </tr>
             {% endfor %}          
