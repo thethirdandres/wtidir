@@ -5,8 +5,8 @@
         <li class="nav-item mx-3 pt-2" role="presentation">
             <img src="../../static/img/sheets-icons/unlock.png"/>
         </li>
-        <li class="nav-item sheets-nav-item sheets-first-nav-item" role="presentation">
-            <a class="nav-link sheets-nav-link" id="pills-inventory-tab" href="{% url 'sheets:inventory_view' %}" role="tab" aria-controls="pills-inventory" aria-selected="false">Inventory</a>
+        <li class="nav-item sheets-nav-item" role="presentation">
+            <a class="nav-link active sheets-nav-link" id="pills-inventory-tab" href="{% url 'sheets:inventory_view' %}" role="tab" aria-controls="pills-inventory" aria-selected="false">Inventory</a>
         </li>
         <li class="nav-item sheets-nav-item" role="presentation">
             <a class="nav-link sheets-nav-link" id="pills-delivery-tab" href="{% url 'sheets:delivery_view' %}" role="tab" aria-controls="pills-delivery" aria-selected="false">Delivery</a>
@@ -28,16 +28,9 @@
         </li>
     </ul>
     <div class="tab-content p-2" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills" role="tabpanel" aria-labelledby="pills-tab">
-                {% block sheets-content %}
-                {% endblock sheets-content %}
-            </div>
-        {% comment %} <div class="tab-pane fade show active" id="pills-inventory" role="tabpanel" aria-labelledby="pills-inventory-tab">{% block sheets-inventory %}yellow{% endblock sheets-inventory %}</div>
-        <div class="tab-pane fade" id="pills-delivery" role="tabpanel" aria-labelledby="pills-delivery-tab">delivery</div>
-        <div class="tab-pane fade" id="pills-transfer" role="tabpanel" aria-labelledby="pills-transfer-tab">transfer</div>
-        <div class="tab-pane fade" id="pills-damage" role="tabpanel" aria-labelledby="pills-damage-tab">damage</div>
-        <div class="tab-pane fade" id="pills-sold" role="tabpanel" aria-labelledby="pills-sold-tab">sold</div>
-        <div class="tab-pane fade" id="pills-pettycash" role="tabpanel" aria-labelledby="pills-pettycash-tab">pettycash</div>
-        <div class="tab-pane fade" id="pills-reports" role="tabpanel" aria-labelledby="pills-reports-tab">reports</div> {% endcomment %}
+        <div class="tab-pane fade show active" id="pills" role="tabpanel" aria-labelledby="pills-tab">
+            {% block sheets-content %}
+            {% endblock sheets-content %}
+        </div>
     </div>
 {% endblock content %}
