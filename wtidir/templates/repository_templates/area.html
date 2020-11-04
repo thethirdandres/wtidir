@@ -3,21 +3,18 @@
 {% block repository-content %}
     <div class="repo-title roboto-24 text-gray">Area</div> 
     <hr/>
-    <form>
+    <form action="{% url 'repository:area_add' %}" method="POST" autocomplete="off">
+        {% csrf_token %}
         <div class="form-row mb-4">
-            <input type="text" class="form-control col ml-2" name="area"  placeholder="Area">
+            <input type="text" class="form-control col ml-2" name="area"  placeholder="Area" required>
             <select class="form-control col ml-2" id='select' name="commissary">
-                <option selected disabled>Commissary</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+                <option selected>Commi Iloilo</option>
             </select>
-            <input type="text" class="form-control col ml-2" name="server"  placeholder="Server">
-            <input type="text" class="form-control col ml-2" name="user"  placeholder="User">
-            <input type="text" class="form-control col ml-2" name="password"  placeholder="Password">
-            <input type="text" class="form-control col ml-2" name="database"  placeholder="Database">
-            <input type="text" class="form-control col ml-2" name="datasource"  placeholder="Data Source">
+            <input type="text" class="form-control col ml-2" name="server"  placeholder="Server" required>
+            <input type="text" class="form-control col ml-2" name="user"  placeholder="User" required>
+            <input type="text" class="form-control col ml-2" name="password"  placeholder="Password" required>
+            <input type="text" class="form-control col ml-2" name="database"  placeholder="Database" required>
+            <input type="text" class="form-control col ml-2" name="datasource"  placeholder="Data Source" required>
             <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
         </div>
     </form>
@@ -36,19 +33,37 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            {% for areadata in all_areas %}
+                <tr> 
+                    <form action="{% url 'repository:area_update' areadata.idArea %}" method="POST" autocomplete="off"></form>                
+                    <td scope="row" contenteditable="true" name="area">{{ areadata.AName }}</td>
+                    <td contenteditable="false">{{ areadata.unBranchCommi }}</td>
+                    <td contenteditable="false">{{ areadata.ASAPSvr }}</td>
+                    <td contenteditable="false">{{ areadata.ASAPUsr }}</td>
+                    <td contenteditable="false">{{ areadata.ASAPSvr }}</td>
+                    <td contenteditable="false">{{ areadata.ASAPPwd }}</td>
+                    <td contenteditable="false">{{ areadata.ASAPDataSource }}</td>
+                    <td>
+                        <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                        <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                    </td>
+                    </form>
+                </tr>
+            {% endfor %}          
+
+            <!-- <tr>
                 <td scope="row" contenteditable="false">Iloilo</td>
                 <td contenteditable="false">Commissary</td>
-                <td contenteditable="false">10.1.1.100</td>
+                <td contenteditable="false">{{ Server }}</td>
                 <td contenteditable="false">sa</td>
                 <td contenteditable="false">mis119.93</td>
-                <td contenteditable="false">GFC150109</td>
+                <td contenteditable="false">{{ Database }}</td>
                 <td contenteditable="false">ILODataSource</td>
                 <td>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
                     <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 {% endblock repository-content %}
