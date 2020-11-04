@@ -2,20 +2,23 @@ $(document).ready(function() {
     $('.repository-edit-button').click(function() {
         var currentTD = $(this).parents('tr').find('td:not(:last-child)');
         $.each(currentTD, function() {
-            $(this).prop('contentEditable', "true");
+            $(this).children('input').attr('readonly', false);
+            console.log('hi');
         });
         $(this).addClass('d-none');
-        $(this).parents('a').next().removeClass('d-none');
+        $(this).parents('a').next().children('img').removeClass('d-none');
         console.log("1");
     });
 
     $('.repository-edit-gray-button').click(function() {
         var currentTD = $(this).parents('tr').find('td:not(:last-child)');
         $.each(currentTD, function() {
-            $(this).prop('contentEditable', "false");
+            $(this).children('input').attr('readonly', true);
+            console.log('lol');
+
         });
         $(this).addClass('d-none');
-        $(this).prev().find('img').removeClass('d-none');
+        $(this).parents('a').prev().children('img').removeClass('d-none');
         console.log("2");
     });
 
