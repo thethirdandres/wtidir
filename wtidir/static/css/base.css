@@ -32,6 +32,9 @@ body {
     margin-left: 0px !important;
 }
 
+
+/* END OF OVERRIDES */
+
 .bg-main {
     background-color: #AF0700;
 }
@@ -68,8 +71,39 @@ body {
     font: 24px bolder Roboto, sans-serif;
 }
 
+.button-pale-red {
+    height: 2rem;
+    background-color: #F6DADA;
+    border: 0.5px solid #890F00;
+    color: #890F00;
+    border-radius: 3px;
+    text-align: center;
+    padding: 0rem 1rem;
+}
 
-/* END OF OVERRIDES */
+.button-red {
+    height: 2rem;
+    background-color: #890F00;
+    border: 0.5px solid #890F00;
+    color: white;
+    border-radius: 3px;
+    text-align: center;
+    padding: .25rem 1rem;
+}
+
+.button-red:hover {
+    color: white;
+}
+
+.button-white {
+    height: 2rem;
+    background-color: white;
+    border: 0.5px solid #890F00;
+    color: #890F00;
+    border-radius: 3px;
+    text-align: center;
+    padding: 0rem 1rem;
+}
 
 .main-title {
     font-size: 18px;

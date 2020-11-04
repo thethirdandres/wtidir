@@ -5,34 +5,40 @@
         <div class="landing-page-createnew">
             <h2 class="text-left text-gray roboto">Create New</h2>
             <div class="landing-page-cards  mt-5 d-flex justify-content-between">
-                <button class="d-inline-flex flex-column landing-page-card">
+                <a class="d-inline-flex flex-column landing-page-card" data-toggle="modal" data-target="#modal_addnewsheet">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/inventorysheet.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Inventory Sheet</span>
-                </button>
-                <button class="d-inline-flex flex-column landing-page-card">
+                </a>
+                <div class="modal fade" id="modal_addnewsheet" tabindex="-1" role="dialog" aria-labelledby="modal_addnewsheetlabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">    
+                        {% include '../modals/modal_addnewsheet.html' %}
+                    </div>
+                </div>
+                
+                <a class="d-inline-flex flex-column landing-page-card">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/delivery.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Delivery</span>
-                </button>
-                <button class="d-inline-flex flex-column landing-page-card">
+                </a>
+                <a class="d-inline-flex flex-column landing-page-card">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/transfer.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Transfer</span>
-                </button>
-                <button class="d-inline-flex flex-column landing-page-card">
+                </a>
+                <a class="d-inline-flex flex-column landing-page-card">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/damagereturn.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Damage Return</span>
-                </button>
-                <button class="d-inline-flex flex-column landing-page-card">
+                </a>
+                <a class="d-inline-flex flex-column landing-page-card">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/invoice.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Invoice</span>
-                </button>
-                <button class="d-inline-flex flex-column landing-page-card">
+                </a>
+                <a class="d-inline-flex flex-column landing-page-card">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/pettycash.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Petty Cash</span>
-                </button>
-                <button class="d-inline-flex flex-column landing-page-card">
+                </a>
+                <a class="d-inline-flex flex-column landing-page-card">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/sales.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Sales</span>
-                </button>
+                </a>
             </div>
         </div>
         <div class="landing-page-repository">

@@ -1,0 +1,84 @@
+{% extends 'sheets_templates/sheets.html' %}
+
+{% block sheets-content %}
+
+    <div class="d-flex justify-content-between mb-3">
+        <div class="roboto-16 mt-2 ml-3 text-gray">City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></div>
+        <div class="">
+            <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_addnewdelivery">
+                <img src="../../static/img/repository-icons/plus.png" class="">
+                Add New
+            </button>
+            <div class="modal fade" id="modal_addnewdelivery" tabindex="-1" role="dialog" aria-labelledby="modal_addnewdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">    
+                    {% include '../modals/modal_addnewdelivery.html' %}
+                </div>
+            </div>
+            <button type="button" class="repository-user-add-button">
+                <img src="../../static/img/sheets-icons/save.png" class="">
+                SAVE
+            </button>
+        </div>
+    </div>
+    <div class="d-flex pt-3">
+        <table class="table table-borderless table-hover table-sm mr-2 flex-grow-1">
+            <thead class="table-active">
+                <tr>
+                    <th>DOC NUMBER</th>
+                    <th>DATE</th>
+                    <th>SHEET NUMBER</th>
+                    <th>BRANCH TO</th>
+                    <th>COMMENTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-toggle="modal" data-id="1" data-target="#modal_unmapdelivery">
+                    <td scope="row" contenteditable="false">54540</td>
+                    <td contenteditable="false">October 29, 2019</td>
+                    <td contenteditable="false">453565</td>
+                    <td contenteditable="false">Commissary</td>
+                    <td contenteditable="false">for delivery</td>
+                </tr>
+                <tr data-toggle="modal" data-id="2" data-target="#modal_unmapdelivery">
+                    <td scope="row" contenteditable="false">54540</td>
+                    <td contenteditable="false">October 29, 2019</td>
+                    <td contenteditable="false">453565</td>
+                    <td contenteditable="false">Commissary</td>
+                    <td contenteditable="false">for delivery</td>
+                </tr>
+                <tr data-toggle="modal" data-id="3" data-target="#modal_unmapdelivery">
+                    <td scope="row" contenteditable="false">54540</td>
+                    <td contenteditable="false">October 29, 2019</td>
+                    <td contenteditable="false">453565</td>
+                    <td contenteditable="false">Commissary</td>
+                    <td contenteditable="false">for delivery</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="table table-borderless  table-sm w-50">
+            <thead class="table-active">
+                <tr>
+                    <th>ITEM</th>
+                    <th>QUANTITY</th>
+                    <th>UNIT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row" contenteditable="false">Cheddar Cheese 20g</td>
+                    <td contenteditable="false">12</td>
+                    <td contenteditable="false">pack</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        {% comment %} MODAL {% endcomment %}
+        <div id="modal_unmapdelivery" class="modal hide fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">    
+                {% include '../modals/modal_unmapdelivery.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock sheets-content %}
