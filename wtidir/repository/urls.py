@@ -16,4 +16,5 @@ urlpatterns = [
     #Me, Myself and I
     path('area_add', views.area_add, name="area_add"),
     path('area_update/<int:id>', views.area_update, name="area_update"),
+    path('area_delete/<int:id>', views.area_delete, name="area_delete"),
 ]
