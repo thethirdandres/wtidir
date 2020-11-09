@@ -6,7 +6,7 @@ $(document).ready(function() {
             console.log('hi');
         });
         $(this).addClass('d-none');
-        $(this).parents('a').next().children('img').removeClass('d-none');
+        $(this).parents('a').next().removeClass('d-none');
         console.log("1");
     });
 
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
         });
         $(this).addClass('d-none');
-        $(this).parents('a').prev().children('img').removeClass('d-none');
+        $(this).prev().children('img').removeClass('d-none');
         console.log("2");
     });
 
