@@ -45,10 +45,15 @@
                         <td><input name="ASAPPwd" type="text" class="form-control" value="{{ areadata.ASAPPwd }}" readonly /></td>
                         <td><input name="ASAPDataSource" type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
 
-                        <td>
+                        <td class="d-flex">
                             <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
                             <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
-                            <a href="{% url 'repository:area_delete' areadata.idArea %}"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                            <a data-toggle="modal" data-target="#prompt_confirmdeactivate"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                            <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+                                <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                                    {% include '../prompts/prompt_confirmdeactivate.html' %}
+                                </div>
+                            </div>
                         </td>
                     </form>
                 </tr>

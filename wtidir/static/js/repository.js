@@ -7,19 +7,27 @@ $(document).ready(function() {
         });
         $(this).addClass('d-none');
         $(this).parents('a').next().removeClass('d-none');
-        console.log("1");
+
+        
+        // For Branch (Repository)
+        if ($(this).hasClass('in-branch')) {
+            $(".repo-edit-quota-button").removeClass('d-none');
+        }
     });
 
     $('.repository-edit-gray-button').click(function() {
         var currentTD = $(this).parents('tr').find('td:not(:last-child)');
         $.each(currentTD, function() {
             $(this).children('input').attr('readonly', true);
-            console.log('lol');
 
         });
         $(this).addClass('d-none');
         $(this).prev().children('img').removeClass('d-none');
-        console.log("2");
+    
+        // For Branch (Repository)
+        if ($(this).hasClass('in-branch')) {
+            $(".repo-edit-quota-button").addClass('d-none');
+        }
     });
 
 
