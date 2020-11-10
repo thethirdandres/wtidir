@@ -40,6 +40,10 @@
     margin-top: 1rem;
 }
 
+.repository-edit-gray-button {
+    height: 15px !important;
+    margin-top: 6px;
+}
 
 /* AREA */
 
