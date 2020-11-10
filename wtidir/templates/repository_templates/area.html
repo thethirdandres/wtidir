@@ -35,19 +35,20 @@
         <tbody>
             {% for areadata in all_areas %}
                 <tr> 
-                    <form action="{% url 'repository:area_update' areadata.idArea %}" method="POST" autocomplete="off"></form>
-                        <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
-                        <td><input type="text" class="form-control" value="{{ areadata.unBranchCommi }}" readonly /></td>
-                        <td><input type="text" class="form-control" value="{{ areadata.ASAPSvr }}" readonly /></td>
-                        <td><input type="text" class="form-control" value="{{ areadata.ASAPUsr }}" readonly /></td>
-                        <td><input type="text" class="form-control" value="{{ areadata.ASAPSvr }}" readonly /></td>
-                        <td><input type="text" class="form-control" value="{{ areadata.ASAPPwd }}" readonly /></td>
-                        <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                    <form action="{% url 'repository:area_update' areadata.idArea %}" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        <td><input name="AName" type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
+                        <td><input name="unBranchCommi" type="text" class="form-control" value="{{ areadata.unBranchCommi }}" readonly /></td>
+                        <td><input name="ASAPSvr" type="text" class="form-control" value="{{ areadata.ASAPSvr }}" readonly /></td>
+                        <td><input name="ASAPUsr" type="text" class="form-control" value="{{ areadata.ASAPUsr }}" readonly /></td>
+                        <td><input name="ASAPSvr" type="text" class="form-control" value="{{ areadata.ASAPSvr }}" readonly /></td>
+                        <td><input name="ASAPPwd" type="text" class="form-control" value="{{ areadata.ASAPPwd }}" readonly /></td>
+                        <td><input name="ASAPDataSource" type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
 
                         <td>
                             <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
                             <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
-                            <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                            <a href="{% url 'repository:area_delete' areadata.idArea %}"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
                         </td>
                     </form>
                 </tr>
