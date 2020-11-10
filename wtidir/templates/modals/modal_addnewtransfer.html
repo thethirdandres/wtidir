@@ -7,28 +7,80 @@
         </div>
     </div>
     <div class="modal-body">
-        <div class="d-flex">
-            <div class="form-group mx-1">
-                <label for="documentnumber">ITF Number</label>
-                <input type="text"
-                    class="form-control form-control-sm" name="documentnumber" id="documentnumber">
+        <div>
+            <div class="d-flex">
+                <div class="form-group mx-1">
+                    <label for="documentnumber">ITF Number</label>
+                    <input type="text"
+                        class="form-control form-control-sm" name="documentnumber" id="documentnumber">
+                </div>
+                <div class="form-group mx-1">
+                    <label for="date">Date</label>
+                    <input type="date"
+                        class="form-control form-control-sm" name="date" id="date">
+                </div>
+                <div class="form-group sheets-select mx-1">
+                    <label for="deliveredby">Delivered By</label>
+                    <select class="form-control form-control-sm" name="deliveredby" id="deliveredby">
+                        <option selected disabled></option>
+                        <option>Test</option>
+                        <option>Test</option>
+                        <option>Test</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group mx-1">
-                <label for="date">Date</label>
-                <input type="date"
-                    class="form-control form-control-sm" name="date" id="date">
-            </div>
-            <div class="form-group sheets-select">
-                <label for="deliveredby">Delivered By</label>
-                <select class="form-control form-control-sm" name="deliveredby" id="deliveredby">
-                    <option selected disabled></option>
-                    <option>Test</option>
-                    <option>Test</option>
-                    <option>Test</option>
-                </select>
+            <div class="d-flex">
+                <div class="form-group sheets-select mx-1">
+                    <label>FROM</label>
+                    <label for="crew">Crew</label>
+                    <select class="form-control form-control-sm" name="crew" id="crew">
+                        <option selected disabled></option>
+                        <option>Test</option>
+                        <option>Test</option>
+                        <option>Test</option>
+                    </select>
+                </div>
+                <div class="form-group sheets-select mx-1">
+                    <label for="branchfrom">Branch From</label>
+                    <select class="form-control form-control-sm" name="branchfrom" id="branchfrom">
+                        <option selected disabled></option>
+                        <option>Test</option>
+                        <option>Test</option>
+                        <option>Test</option>
+                    </select>
+                </div>
+                <div class="form-group sheets-select mx-1">
+                    <label>TO</label>
+                    <label for="crew2">Crew</label>
+                    <select class="form-control form-control-sm" name="crew2" id="crew2">
+                        <option selected disabled></option>
+                        <option>Test</option>
+                        <option>Test</option>
+                        <option>Test</option>
+                    </select>
+                </div>
+                <div class="form-group sheets-select mx-1">
+                    <label for="branchfrom2">Branch From</label>
+                    <select class="form-control form-control-sm" name="branchfrom2" id="branchfrom2">
+                        <option selected disabled></option>
+                        <option>Test</option>
+                        <option>Test</option>
+                        <option>Test</option>
+                    </select>
+                </div>
             </div>
         </div>
-
+        <div>
+            <label class="form-check-label text-weight-bold" for="form-check-radio">Reason for Stock Transfer (Please Select One)</label>
+            <div class="form-check form-check-radio">
+                <input type="radio" class="form-check-input" id="materialUnchecked" name="materialExampleRadios">
+                <label class="form-check-label" for="materialUnchecked">Shortage of Supply</label>
+            </div>
+            <div class="form-check form-check-radio">
+                <input type="radio" class="form-check-input" id="materialUnchecked" name="materialExampleRadios">
+                <label class="form-check-label" for="materialUnchecked">Others (Please Specify)</label>
+            </div>
+        </div>
     </div>
     <div class="d-flex p-3">
         {% comment %} <div class="pull-left"> {% endcomment %}
