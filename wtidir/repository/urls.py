@@ -20,4 +20,5 @@ urlpatterns = [
     path('area_delete/<int:id>', views.area_delete, name="area_delete"),
     #Branch
     path('branch_add', views.branch_add, name="branch_add"),
+    path('branch_delete/<int:id>', views.branch_delete, name="branch_delete"),
 ]

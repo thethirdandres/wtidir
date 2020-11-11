@@ -3,14 +3,16 @@ from datetime import datetime
 
 class Branch(models.Model):
     idBranch = models.AutoField(primary_key=True, serialize=False)
-    unBranch = models.IntegerField(default=0, null=True, blank=True)
-    unArea = models.IntegerField(default=0, null=True, blank=True)
-    unTemplateItemControl = models.IntegerField(default=0, null=True, blank=True)
-    unTemplateProductionBatch = models.IntegerField(default=0, null=True, blank=True)
+    fkArea = models.IntegerField(default=0, null=True, blank=True)
+    fkTemplateItemControl = models.IntegerField(default=0, null=True, blank=True)
+    fkTemplateProductionBatch = models.IntegerField(default=0, null=True, blank=True)
+    AName = models.CharField(default='', max_length=30, null=True, blank=True)
+    TICName = models.CharField(default='', max_length=30, null=True, blank=True)
+    TPBName = models.CharField(default='', max_length=45, null=True, blank=True)
     BName = models.CharField(default='', max_length=150, null=True, blank=True)
     BDescription = models.CharField(default='', max_length=150, null=True, blank=True)
     BSAPCode = models.CharField(default='', max_length=20, null=True, blank=True)
-    BType = models.IntegerField(default=0, null=True, blank=True,)
+    BType = models.CharField(default='', max_length=20, null=True, blank=True)
     BQuotaInterval = models.DecimalField(default=0.0000, blank=True, null=True, max_digits=8, decimal_places=4)
     BQuota = models.DecimalField(default=0.0000, blank=True, null=True, max_digits=8, decimal_places=4)
     BQuotaPointAmount = models.DecimalField(default=0.0000, blank=True, null=True, max_digits=8, decimal_places=4)
@@ -30,13 +32,20 @@ class Area(models.Model):
     TimeStamp = models.DateTimeField(default=datetime.now(), blank=True)
     Status = models.BooleanField(default=True)
 
-#Wala pa ma makemigrations nga mga class :
-
 class TemplateItemControl(models.Model):
-    idTemplateItemControl = models.AutoField(primary_key=True, serialize=False)
-    unTemplateItemControl = models.IntegerField(default=0, null=True, blank=True)
-    unArea = models.IntegerField(default=0, null=True, blank=True)
+    idTIC = models.AutoField(primary_key=True, serialize=False)
+    fkArea = models.IntegerField(default=0, null=True, blank=True)
+    AName = models.CharField(default='', max_length=30, null=True, blank=True)
     TICName = models.CharField(default='', max_length=30, null=True, blank=True)
     TimeStamp = models.DateTimeField(default=datetime.now(), blank=True)
     Status = models.BooleanField(default=True)
 
+class TemplateProductionBatch(models.Model):
+    idTPB = models.AutoField(primary_key=True, serialize=False)
+    fkArea = models.IntegerField(default=0, null=True, blank=True)
+    fkTemplateItemControl = models.IntegerField(default=0, null=True, blank=True)
+    AName = models.CharField(default='', max_length=30, null=True, blank=True)
+    TICName = models.CharField(default='', max_length=30, null=True, blank=True)
+    TPBName = models.CharField(default='', max_length=45, null=True, blank=True)
+    TimeStamp = models.DateTimeField(default=datetime.now(), blank=True)
+    Status = models.BooleanField(default=True)
