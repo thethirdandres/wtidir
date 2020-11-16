@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'wtidir3000',
         'USER': 'root',
         'PASSWORD': '@i3cFg#7mP!2t?',
-        'HOST': '119.93.23.210',
+        'HOST': '10.1.1.3',
         'PORT': '3306',
     }
 }
