@@ -34,7 +34,7 @@
         </thead>
         <tbody>
             {% for areadata in all_areas %}
-                <tr> 
+                <tr>
                     <form action="{% url 'repository:area_update' areadata.idArea %}" method="POST" autocomplete="off">
                         {% csrf_token %}
                         <td><input name="AName" type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>

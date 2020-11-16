@@ -9,17 +9,17 @@
     <div class="modal-body d-flex">
         <div class="flex-grow-1">
             <div class="d-flex">
-                <div class="form-group mx-1">
+                <div class="form-group mx-1 w-25">
                     <label for="documentnumber">ITF Number</label>
                     <input type="text"
                         class="form-control form-control-sm" name="documentnumber" id="documentnumber">
                 </div>
-                <div class="form-group mx-1">
+                <div class="form-group mx-1 w-25">
                     <label for="date">Date</label>
                     <input type="date"
                         class="form-control form-control-sm" name="date" id="date">
                 </div>
-                <div class="form-group sheets-select mx-1">
+                <div class="form-group sheets-select mx-1 w-25">
                     <label for="deliveredby">Delivered By</label>
                     <select class="form-control form-control-sm" name="deliveredby" id="deliveredby">
                         <option selected disabled></option>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="d-flex">
-                <div class="form-group sheets-select mx-1">
+                <div class="form-group sheets-select mx-1 w-25">
                     <label class="d-block">FROM<br/></label>
                     <label for="crew">Crew</label>
                     <select class="form-control form-control-sm" name="crew" id="crew">
@@ -40,7 +40,8 @@
                         <option>Test</option>
                     </select>
                 </div>
-                <div class="form-group sheets-select mx-1">
+                <div class="form-group sheets-select mx-1 w-25">
+                    <label class="d-block"><br/></label>
                     <label for="branchfrom">Branch From</label>
                     <select class="form-control form-control-sm" name="branchfrom" id="branchfrom">
                         <option selected disabled></option>
@@ -49,7 +50,7 @@
                         <option>Test</option>
                     </select>
                 </div>
-                <div class="form-group sheets-select mx-1">
+                <div class="form-group sheets-select mx-1 w-25">
                     <label class="d-block">TO</label>
                     <label for="crew2">Crew</label>
                     <select class="form-control form-control-sm" name="crew2" id="crew2">
@@ -59,7 +60,8 @@
                         <option>Test</option>
                     </select>
                 </div>
-                <div class="form-group sheets-select mx-1">
+                <div class="form-group sheets-select mx-1 w-25">
+                    <label class="d-block"><br/></label>
                     <label for="branchfrom2">Branch From</label>
                     <select class="form-control form-control-sm" name="branchfrom2" id="branchfrom2">
                         <option selected disabled></option>
@@ -79,6 +81,9 @@
             <div class="form-check form-check-radio">
                 <input type="radio" class="form-check-input" id="materialUnchecked" name="materialExampleRadios">
                 <label class="form-check-label" for="materialUnchecked">Others (Please Specify)</label>
+            </div>
+            <div class="form-group mt-3">
+                <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"></textarea>
             </div>
         </div>
     </div>
