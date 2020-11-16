@@ -1,26 +1,20 @@
 function openNav() {
-    // document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("mySidebar").style.left = "0px";
 }
 
 function closeNav() {
-    // document.getElementById("mySidebar").style.width = "0";
     document.getElementById("mySidebar").style.left = "-300px";
 }
 
-
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("sidebar-dropdown-button");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-    dropdown[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var dropdownContent = this.nextElementSibling;
-        if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
+$(document).ready(function() {
+    $('.sidebar-dropdown-button').click(function() {
+        var currentDropdown = $(this).next();
+        if (currentDropdown.hasClass('d-none')) {
+            currentDropdown.addClass('d-block').removeClass('d-none');
         } else {
-            dropdownContent.style.display = "block";
+            currentDropdown.addClass('d-none').removeClass('d-block');
         }
+        $('.sidebar-dropdown-container').not(currentDropdown).addClass('d-none').removeClass('d-block');
+
     });
-}
+});

@@ -43,7 +43,7 @@
 }
 
 .sidebar-dropdown-container {
-    display: none;
+    /* display: none; */
     padding-left: 2rem;
 }
 
