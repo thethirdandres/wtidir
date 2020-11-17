@@ -42,8 +42,9 @@
 
 .repository-edit-gray-button {
     height: 15px !important;
-    margin-top: 6px;
+    margin-top: 0.35rem;
 }
+
 
 /* AREA */
 
@@ -63,11 +64,13 @@
     background-image: url('../img/repository-icons/add.png');
 }
 
-.area-edit-input{
+.area-edit-input {
     border: none;
     word-wrap: break-word;
     width: fit-content;
 }
+
+
 /* USER */
 
 .repository-user-grouptab-name-row {
@@ -108,7 +111,7 @@
 /* UOM */
 
 .uom-unit-input {
-    width: 7rem;
+    width: 7rem !important;
 }
 
 .uom-table-td {

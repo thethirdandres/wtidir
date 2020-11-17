@@ -8,7 +8,7 @@ $(document).ready(function() {
         $(this).addClass('d-none');
         $(this).parents('a').next().removeClass('d-none');
 
-        
+
         // For Branch (Repository)
         if ($(this).hasClass('in-branch')) {
             $(".repo-edit-quota-button").removeClass('d-none');
@@ -23,18 +23,25 @@ $(document).ready(function() {
         });
         $(this).addClass('d-none');
         $(this).prev().children('img').removeClass('d-none');
-    
+
         // For Branch (Repository)
         if ($(this).hasClass('in-branch')) {
             $(".repo-edit-quota-button").addClass('d-none');
         }
     });
-
-
     // For Branch (Repository)
     if ($(this).hasClass('in-branch')) {
         document.getElementById("repo-edit-quota-button").style.display === "block" ? document.getElementById("repo-edit-quota-button").style.display = "none" : document.getElementById("repo-edit-quota-button").style.display = "block";
     }
 
-    // $(this).attr("src") == "../../static/img/repository-icons/edit-gray.png" ? $(this).attr("src", "../../static/img/repository-icons/edit.png") : $(this).attr("src", "../../static/img/repository-icons/edit-gray.png");
+
+
+
+    $('.confirm-all-modal').click(function() {
+        setTimeout(function() {
+            $('.close-all-modal').modal('hide');
+        }, 1200);
+    })
+
+
 });
