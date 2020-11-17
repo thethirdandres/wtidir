@@ -11,3 +11,6 @@ def delivery_view(request):
 
 def transfer_view(request):
     return render(request, 'sheets_templates/transfer.html')
+
+def damage_view(request):
+    return render(request, 'sheets_templates/damage.html')
