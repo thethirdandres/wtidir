@@ -1,15 +1,7 @@
-$(document).ready(function() {
-    $('.create-employee-confirm').click(function() {
-        setTimeout(function() {
-            $('.create-employee-modal').modal('hide');
-        }, 1500);
-    })
-
-    // $('.sheets-nav-item').click(function() {
-    //     $(this).children('a').addClass('active');
-    //     $(this).siblings().children('a').removeClass('active');
-    // })
-});
+// $('.sheets-nav-item').click(function() {
+//     $(this).children('a').addClass('active');
+//     $(this).siblings().children('a').removeClass('active');
+// })
 
 // $(function() {
 //     // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line

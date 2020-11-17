@@ -1,0 +1,53 @@
+{% extends 'sheets_templates/sheets.html' %}
+
+{% block sheets-content %}
+
+    <div class="d-flex justify-content-between mb-3">
+        <div class="roboto-16 mt-2 ml-3 text-gray">City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></div>
+        <div class="">
+            <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_editnewsheet">
+                <img src="../../static/img/sheets-icons/edit.png" class="">
+                EDIT
+            </button>
+            <div class="modal fade" id="modal_editnewsheet" tabindex="-1" role="dialog" aria-labelledby="modal_editnewsheetlabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">    
+                    {% include '../modals/modal_editnewsheet.html' %}
+                </div>
+            </div>
+            <button type="button" class="repository-user-add-button">
+                <img src="../../static/img/sheets-icons/save.png" class="mr-1">
+                SAVE
+            </button>
+        </div>
+    </div>
+    <table class="table table-borderless  table-sm  mt-3">
+        <thead class="table-active">
+            <tr>
+                <th>DATE ID</th>
+                <th>SHIFT ID</th>
+                <th>DATE</th>
+                <th>TIME</th>
+                <th>CASHIER</th>
+                <th>BEGINNING BALANCE</th>
+                <th>ENDING BALANCE</th>
+                <th>TOTAL SALES</th>
+                <th>DISCOUNT</th>
+                <th>NET SALES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">000367 </td>
+                <td>000368</td>
+                <td>2019-01-20</td>
+                <td>12:00:00pm</td>
+                <td>Esther Pena</td>
+                <td>1000.00</td>
+                <td>1000.00</td>
+                <td>1450.00</td>
+                <td>42.31</td>
+                <td>1355.86</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock sheets-content %}

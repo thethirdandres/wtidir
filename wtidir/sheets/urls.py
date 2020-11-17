@@ -10,4 +10,6 @@ urlpatterns = [
     path('delivery', views.delivery_view, name='delivery_view'),
     path('transfer', views.transfer_view, name='transfer_view'),
     path('damage', views.damage_view, name='damage_view'),
+    path('sold', views.sold_view, name='sold_view'),
+    path('pettycash', views.pettycash_view, name='pettycash_view'),
 ]

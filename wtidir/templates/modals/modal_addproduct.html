@@ -42,7 +42,12 @@
         </div>
     </div>
     <div class="d-flex justify-content-center my-3">
-        <button type="button" class="btn button-red mr-2">ADD</button>
+        <button type="button" class="btn button-red mr-2" data-toggle="modal" data-target="#prompt_confirmaddproduct">ADD</button>
+        <div class="modal fade close-all-modal" id="prompt_confirmaddproduct" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmaddproductlabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">    
+                {% include '../prompts/prompt_confirmaddproduct.html' %}
+            </div>
+        </div>
         <button type="button" class="btn button-white" data-dismiss="modal">CLOSE</button>
     </div>
 </div>

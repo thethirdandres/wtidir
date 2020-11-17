@@ -14,3 +14,9 @@ def transfer_view(request):
 
 def damage_view(request):
     return render(request, 'sheets_templates/damage.html')
+
+def sold_view(request):
+    return render(request, 'sheets_templates/sold.html')
+
+def pettycash_view(request):
+    return render(request, 'sheets_templates/pettycash.html')

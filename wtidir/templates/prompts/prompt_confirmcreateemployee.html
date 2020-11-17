@@ -7,9 +7,9 @@
     </div>
     <div class="d-flex ml-auto mr-0 mt-4">
         <button class="button-white mr-2" data-dismiss="modal" > Cancel </button>
-        <button  class="button-red create-employee-confirm" data-toggle="modal" data-target="#prompt_donecreateemployee"> Add </button>
-        <div class="modal fade create-employee-modal" id="prompt_donecreateemployee" tabindex="-1" role="dialog" aria-labelledby="prompt_donecreateemployeelabel" aria-hidden="true">
-            <div class="modal-dialog modal-xs modal-dialog-centered create-employee-modal" role="document">    
+        <button  class="button-red confirm-all-modal " data-toggle="modal" data-target="#prompt_donecreateemployee"> Add </button>
+        <div class="modal fade close-all-modal" id="prompt_donecreateemployee" tabindex="-1" role="dialog" aria-labelledby="prompt_donecreateemployeelabel" aria-hidden="true">
+            <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    
                 {% include '../prompts/prompt_donecreateemployee.html' %}
             </div>
         </div>

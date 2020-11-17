@@ -1,0 +1,66 @@
+{% extends 'sheets_templates/sheets.html' %}
+
+{% block sheets-content %}
+
+    <div class="d-flex justify-content-between mb-3">
+        <div class="roboto-16 mt-2 ml-3 text-gray">City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></div>
+        <div class="">
+            <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_addnewdelivery">
+                <img src="../../static/img/repository-icons/plus.png" class="">
+                Add New
+            </button>
+            <div class="modal fade" id="modal_addnewdelivery" tabindex="-1" role="dialog" aria-labelledby="modal_addnewdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">    
+                    {% include '../modals/modal_addnewdelivery.html' %}
+                </div>
+            </div>
+            <button type="button" class="repository-user-add-button">
+                <img src="../../static/img/sheets-icons/save.png" class="">
+                SAVE
+            </button>
+        </div>
+    </div>
+    <div class="d-flex pt-3">
+        <table class="table table-borderless table-hover table-sm mr-2 flex-grow-1">
+            <thead class="table-active">
+                <tr>
+                    <th>PREPARED BY</th>
+                    <th>REFERENCE NUMBER</th>
+                    <th>DATE</th>
+                    <th>AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-toggle="modal" data-id="1" data-target="#modal_unmapdelivery">
+                    <td scope="row">Abismo, Stephen</td>
+                    <td>253698</td>
+                    <td>13/11/2019</td>
+                    <td>1523.25</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="table table-borderless  table-sm w-50">
+            <thead class="table-active">
+                <tr>
+                    <th>DESCRIPTION</th>
+                    <th>AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">Transportation</td>
+                    <td>125.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        {% comment %} MODAL {% endcomment %}
+        <div id="modal_unmapdelivery" class="modal hide fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">    
+                {% include '../modals/modal_unmapdelivery.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock sheets-content %}
