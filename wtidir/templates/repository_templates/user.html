@@ -63,7 +63,7 @@
   <div class="tab-pane fade  pt-3" id="nav-group" role="tabpanel" aria-labelledby="nav-group-tab">
     <form>
         <div class="form-row mb-4">
-            <input type="text" class="form-control ml-2 w-25" name="area"  placeholder="Area">
+            <input type="text" class="form-control ml-2 unit-input" name="area"  placeholder="Area">
             <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
         </div>
     </form>
@@ -76,7 +76,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
+                <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
                 <td>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
                     <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
