@@ -49,3 +49,22 @@
 .sheets-addnewdelivery-description-input-siblings {
     width: 5rem !important;
 }
+
+
+/* DELIVERY */
+
+.delivery-section {
+    width: 100%;
+    position: relative;
+}
+
+.delivery-list {
+    height: 100%;
+    width: 20%;
+    background-color: firebrick;
+}
+
+.delivery-content {
+    width: 80%;
+    float: right;
+}

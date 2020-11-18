@@ -20,3 +20,8 @@ def sold_view(request):
 
 def pettycash_view(request):
     return render(request, 'sheets_templates/pettycash.html')
+
+
+
+def _delivery_view(request):
+    return render(request, 'sheets_templates/_delivery_.html')
