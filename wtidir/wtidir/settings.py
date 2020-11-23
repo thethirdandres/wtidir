@@ -78,6 +78,8 @@ WSGI_APPLICATION = 'wtidir.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# 'HOST': '119.93.23.210',
+
 
 DATABASES = {
     'default': {
@@ -85,8 +87,8 @@ DATABASES = {
         'NAME': 'wtidir3000',
         'USER': 'root',
         'PASSWORD': '@i3cFg#7mP!2t?',
-        'HOST': '10.1.1.3',
-        'PORT': '3306',
+        'HOST': '119.93.23.210',
+        'PORT': '3306 ',
     }
 }
 

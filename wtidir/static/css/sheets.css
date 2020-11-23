@@ -27,9 +27,6 @@
     background-color: #222222;
 }
 
-.sheets-content {
-    padding:
-}
 
 
 /* MODAL_ADDNEWDELIVERY */
@@ -55,16 +52,25 @@
 
 .delivery-section {
     width: 100%;
+    height: 100%;
     position: relative;
 }
 
 .delivery-list {
     height: 100%;
-    width: 20%;
-    background-color: firebrick;
+    width: 20%; 
+    /* box-shadow: gray; */
 }
 
 .delivery-content {
     width: 80%;
     float: right;
+}
+
+.delivery-content .modal-content {
+    border: none;
+}
+
+.delivery-list-card {
+    border-bottom: 0.5px solid black;
 }
