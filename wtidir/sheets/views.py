@@ -25,3 +25,6 @@ def pettycash_view(request):
 
 def _delivery_view(request):
     return render(request, 'sheets_templates/_delivery_.html')
+
+def _transfer_view(request):
+    return render(request, 'sheets_templates/_transfer_.html')

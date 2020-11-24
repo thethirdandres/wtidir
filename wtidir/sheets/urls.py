@@ -13,4 +13,5 @@ urlpatterns = [
     path('sold', views.sold_view, name='sold_view'),
     path('pettycash', views.pettycash_view, name='pettycash_view'),
     path('_delivery', views._delivery_view, name='_delivery_view'),
+    path('_transfer', views._transfer_view, name='_transfer_view'),
 ]

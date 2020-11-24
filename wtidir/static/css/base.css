@@ -127,4 +127,6 @@ body {
 .content {
     padding-left: 50px !important;
     height: 100%;
+    z-index: -1000;
+    position: relative;
 }

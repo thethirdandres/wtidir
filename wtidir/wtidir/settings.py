@@ -81,16 +81,16 @@ WSGI_APPLICATION = 'wtidir.wsgi.application'
 # 'HOST': '119.93.23.210',
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'wtidir3000',
-        'USER': 'root',
-        'PASSWORD': '@i3cFg#7mP!2t?',
-        'HOST': '119.93.23.210',
-        'PORT': '3306 ',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'wtidir3000',
+#         'USER': 'root',
+#         'PASSWORD': '@i3cFg#7mP!2t?',
+#         'HOST': '119.93.23.210',
+#         'PORT': '3306 ',
+#     }
+# }
 
 
 # Password validation
