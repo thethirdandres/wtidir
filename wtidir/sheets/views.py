@@ -28,3 +28,6 @@ def _delivery_view(request):
 
 def _transfer_view(request):
     return render(request, 'sheets_templates/_transfer_.html')
+
+def _damagereturn_view(request):
+    return render(request, 'sheets_templates/_damagereturn_.html')

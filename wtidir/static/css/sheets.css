@@ -50,54 +50,37 @@
 
 /* DELIVERY */
 
-.delivery-section {
+.delivery-section,
+.transfer-section,
+.damagereturn-section {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.delivery-list {
+.delivery-list,
+.transfer-list,
+.damagereturn-list {
     height: 100%;
     width: 20%; 
     /* box-shadow: gray; */
 }
 
-.delivery-content {
+.delivery-content,
+.transfer-content,
+.damagereturn-content {
     width: 80%;
     float: right;
 }
 
-.delivery-content .modal-content {
+.delivery-content .modal-content,
+.transfer-content .modal-content,
+.damagereturn-content .modal-content {
     border: none;
 }
 
-.delivery-list-card {
-    border-bottom: 0.5px solid black;
-}
-
-/* TRANSFER */
-
-.transfer-section {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.transfer-list {
-    height: 100%;
-    width: 20%; 
-    /* box-shadow: gray; */
-}
-
-.transfer-content {
-    width: 80%;
-    float: right;
-}
-
-.transfer-content .modal-content {
-    border: none;
-}
-
-.transfer-list-card {
+.delivery-list-card,
+.transfer-list-card,
+.damagereturn-list-card {
     border-bottom: 0.5px solid black;
 }
