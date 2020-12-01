@@ -1,11 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="delivery-section">
-        <div class="delivery-list">
-
+    <div class="delivery-section d-flex">
+        <div class="delivery-list text-center p-2">
+            <input class="pl-2 w-100" type="text" placeholder="🔍 Search">
+            <hr/>
+            <div class="delivery-list-card py-2">
+                <div class="dlc-header d-flex">
+                    <div class="dlc-date font-weight-bold">October 24, 2019</div>
+                    <div class="dlc-doc-number font-weight-bold ml-auto">75648</div>
+                </div>
+                <div class="dlc-content roboto-12 text-left">
+                    From Commissary to City Mall Tagbak
+                </div>
+            </div>
+            <div class="delivery-list-card py-2">
+                <div class="dlc-header d-flex">
+                    <div class="dlc-date font-weight-bold">October 24, 2019</div>
+                    <div class="dlc-doc-number font-weight-bold ml-auto">75648</div>
+                </div>
+                <div class="dlc-content roboto-12 text-left">
+                    From Commissary to City Mall Tagbak
+                </div>
+            </div>
+            <div class="delivery-list-card py-2">
+                <div class="dlc-header d-flex">
+                    <div class="dlc-date font-weight-bold">October 24, 2019</div>
+                    <div class="dlc-doc-number font-weight-bold ml-auto">75648</div>
+                </div>
+                <div class="dlc-content roboto-12 text-left">
+                    From Commissary to City Mall Tagbak
+                </div>
+            </div>
         </div>
-        <div class="delivery-content">
+        <div class="delivery-content p-3">
             {% include 'modals/modal_addnewdelivery.html' %}
         </div>
     </div>
