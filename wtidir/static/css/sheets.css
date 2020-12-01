@@ -28,7 +28,6 @@
 }
 
 
-
 /* MODAL_ADDNEWDELIVERY */
 
 .sheets-addnewdelivery-modal-header {
@@ -55,14 +54,13 @@
 .damagereturn-section {
     width: 100%;
     height: 100%;
-    position: relative;
 }
 
 .delivery-list,
 .transfer-list,
 .damagereturn-list {
     height: 100%;
-    width: 20%; 
+    width: 20%;
     /* box-shadow: gray; */
 }
 
@@ -83,4 +81,13 @@
 .transfer-list-card,
 .damagereturn-list-card {
     border-bottom: 0.5px solid black;
+}
+
+
+/* INVOICE */
+
+.isb-left,
+.isb-right {
+    height: 100%;
+    width: 100%;
 }

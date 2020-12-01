@@ -2,7 +2,6 @@
     height: 100%;
     width: 250px;
     position: fixed;
-    z-index: 1000;
     top: 0;
     left: -300px;
     background-color: #222222;
@@ -11,6 +10,7 @@
     padding: 20px;
     margin-top: 65px;
     color: white;
+    /* z-index: 1000; */
 }
 
 .sidebar .closebtn {
@@ -54,6 +54,7 @@
     color: white;
     padding: 10px 15px;
     border: none;
+    outline: none !important;
 }
 
 .openbtn:hover {

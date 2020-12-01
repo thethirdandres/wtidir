@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="invoice-section p-3">
+        <div class="invoice-section-header pl-5 pb-3 d-flex border-bottom">
+            <select class="ish-select text-red font-weight-bold roboto border-0" name="" id="">
+                <option selected class="text-red font-weight-bold roboto">DIVERSION</option>
+                <option class="text-red font-weight-bold">TEST</option>
+                <option class="text-red font-weight-bold">TEST</option>
+                <option class="text-red font-weight-bold">TEST</option>
+            </select>
+            <div class="text-red ml-5 btn">Select Sales & Shift</div>
+            <button class="button-pale-red ml-5 mr-1 font-weight-bold">
+                    BUTTON
+            </button>
+            <button class="button-pale-red font-weight-bold">
+                    BUTTON
+            </button>
+        </div>
+        <div class="invoice-section-body d-flex pl-5 p-3">
+            <div class="isb-left bg-primary">
+                <div class="isb-left-header d-flex">
+                    <div class="roboto">Invoice Number</div>
+                    <div class="font-weight-bold roboto ">0334582</div>
+                </div>
+            </div>
+            <div class="isb-right bg-warning">
+            </div>
+        </div>
+    </div>
+{% endblock content %}

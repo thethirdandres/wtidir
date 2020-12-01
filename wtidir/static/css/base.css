@@ -34,7 +34,6 @@ body {
 }
 
 
-
 /* END OF OVERRIDES */
 
 .bg-main {
@@ -47,6 +46,10 @@ body {
 
 .text-white {
     color: #FFFFFF;
+}
+
+.text-red {
+    color: #890F00;
 }
 
 .roboto {
@@ -127,6 +130,12 @@ body {
 .content {
     padding-left: 50px !important;
     height: 100%;
-    /* z-index: -1000; */
-    position: relative;
 }
+
+
+/* 
+.delivery-list,
+.transfer-list,
+.damagereturn-list {
+    z-index: -1;
+} */

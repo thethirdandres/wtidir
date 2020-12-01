@@ -15,4 +15,5 @@ urlpatterns = [
     path('_delivery', views._delivery_view, name='_delivery_view'),
     path('_transfer', views._transfer_view, name='_transfer_view'),
     path('_damagereturn', views._damagereturn_view, name='_damagereturn_view'),
+    path('_invoice', views._invoice_view, name='_invoice_view'),
 ]
