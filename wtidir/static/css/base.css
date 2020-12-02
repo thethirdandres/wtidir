@@ -76,6 +76,13 @@ body {
     font: 24px bolder Roboto, sans-serif;
 }
 
+.button {
+    background-color: white;
+    border: none;
+    text-align: center;
+    /* outline: none !important; */
+}
+
 .button-pale-red {
     height: 2rem;
     background-color: #F6DADA;
@@ -130,6 +137,10 @@ body {
 .content {
     padding-left: 50px !important;
     height: 100%;
+}
+
+.content div:first-child {
+    overflow-y: hidden;
 }
 
 

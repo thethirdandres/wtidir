@@ -51,7 +51,8 @@
 
 .delivery-section,
 .transfer-section,
-.damagereturn-section {
+.damagereturn-section,
+.invoice-section {
     width: 100%;
     height: 100%;
 }
@@ -86,8 +87,29 @@
 
 /* INVOICE */
 
+
+/* .invoice-section {
+    overflow-y: scroll !important;
+} */
+
 .isb-left,
 .isb-right {
     height: 100%;
     width: 100%;
+}
+
+.invoice-remove-button img {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.isb-left-table {
+    height: 100% !important;
+}
+
+.isb-left-table tbody {
+    overflow-y: scroll !important;
 }
