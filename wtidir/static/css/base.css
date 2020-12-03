@@ -139,7 +139,7 @@ body {
     height: 100%;
 }
 
-.content div:first-child {
+.content+div:first-child {
     overflow-y: hidden;
 }
 

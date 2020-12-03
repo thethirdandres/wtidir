@@ -92,10 +92,20 @@
     overflow-y: scroll !important;
 } */
 
+.invoice-section-body {
+    height: 80%;
+    width: 100%;
+}
+
 .isb-left,
 .isb-right {
-    height: 100%;
-    width: 100%;
+    height: 100% !important;
+    width: 47%;
+}
+
+.isb-left-table {
+    height: 75% !important;
+    overflow-y: auto !important;
 }
 
 .invoice-remove-button img {
@@ -106,10 +116,11 @@
     transform: rotate(45deg);
 }
 
-.isb-left-table {
-    height: 100% !important;
+.isb-right-pax {
+    width: 3rem;
+    height: 2rem;
 }
 
-.isb-left-table tbody {
-    overflow-y: scroll !important;
+.isb-right-table-label {
+    background-image: linear-gradient(white, #F8F7F7);
 }
