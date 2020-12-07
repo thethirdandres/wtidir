@@ -1,9 +1,12 @@
 {% extends 'sheets_templates/sheets.html' %}
 
 {% block sheets-content %}
-
     <div class="d-flex justify-content-between mb-3">
-        <div class="roboto-16 mt-2 ml-3 text-gray">City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></div>
+        <select class="roboto-16 mt-2 ml-3 text-gray border-0">
+            <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
+            <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
+            <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
+        </select>
         <div class="">
             <select class="" name="rawmats" id="rawmats">
                 <option selected disabled>Rawmats</option>
@@ -26,29 +29,55 @@
             </button>
         </div>
     </div>
-    <table class="table table-borderless  table-sm  mt-3">
+    <table class="inventory-table table table-borderless table-sm  mt-3">
         <thead class="table-active">
             <tr>
-                <th>Products</th>
+                <th>Items</th>
                 <th>Starting</th>
+                <th>Start (W)</th>
+                <th>Start (F)</th>
                 <th>Delivery</th>
                 <th>Transfer</th>
-                <th>Damage</th>
-                <th>End Whole</th>
-                <th>End Fraction</th>
-                <th>End Total</th>
-                <th>Adjustments</th>
-                <th>Process Out<br/> Usage</th>
-                <th>Process Out<br/> Standard</th>
-                <th>Variance Qty</th>
-                <th>Variancce Amt</th>
+                <th>Return</th>
+                <th>Ending</th>
+                <th>Ending (W)</th>
+                <th>Ending (F)</th>
+                <th>Process Out (Pcs)</th>
+                <th>Adjustment</th>
             </tr>
         </thead>
         <tbody>
-            <tr><td class="font-weight-bold">Rice</td></tr>
+            <td class="font-weight-bold mt-3">Rice</td>
             <tr>
                 <td scope="row" contenteditable="false">Repack - Rice 5kg </td>
                 <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+            </tr>
+            <tr>
+                <td scope="row" contenteditable="false">Repack - Rice 5kg </td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+                <td contenteditable="false">0.000000</td>
+            </tr>
+            <tr>
+                <td scope="row" contenteditable="false">Repack - Rice 5kg </td>
                 <td contenteditable="false">0.000000</td>
                 <td contenteditable="false">0.000000</td>
                 <td contenteditable="false">0.000000</td>
