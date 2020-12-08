@@ -34,3 +34,6 @@ def _damagereturn_view(request):
 
 def _invoice_view(request):
     return render(request, 'sheets_templates/_invoice_.html')
+
+def _pettycash_view(request):
+    return render(request, 'sheets_templates/_pettycash_.html')

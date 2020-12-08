@@ -11,7 +11,7 @@
                 </a>
                 <div class="modal fade" id="modal_addnewsheet" tabindex="-1" role="dialog" aria-labelledby="modal_addnewsheetlabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">    
-                        {% include '../modals/modal_selectshift.html' %}
+                        {% include '../modals/modal_addnewsheet.html' %}
                     </div>
                 </div>
                 
@@ -27,11 +27,11 @@
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/damagereturn.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Damage Return</span>
                 </a>
-                <a class="d-inline-flex flex-column landing-page-card" href="{% url 'sheets:_invoice_view' %}">
+                {% comment %} <a class="d-inline-flex flex-column landing-page-card" href="{% url 'sheets:_invoice_view' %}">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/invoice.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Invoice</span>
-                </a>
-                <a class="d-inline-flex flex-column landing-page-card">
+                </a> {% endcomment %}
+                <a class="d-inline-flex flex-column landing-page-card" href="{% url 'sheets:_pettycash_view' %}">
                     <img class="mx-auto" src="../../static/img/home-icons/createnew/pettycash.png">
                     <span class="mx-auto mt-3 roboto-10 landing-page-card-text">Petty Cash</span>
                 </a>

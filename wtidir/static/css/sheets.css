@@ -57,35 +57,44 @@
 .delivery-section,
 .transfer-section,
 .damagereturn-section,
-.invoice-section {
+.invoice-section,
+.pettycash-section {
     width: 100%;
     height: 100%;
 }
 
 .delivery-list,
 .transfer-list,
-.damagereturn-list {
+.damagereturn-list,
+.pettycash-list {
     height: 100%;
     width: 20%;
-    /* box-shadow: gray; */
 }
 
 .delivery-content,
 .transfer-content,
-.damagereturn-content {
+.damagereturn-content,
+.pettycash-content {
     width: 80%;
     float: right;
 }
 
 .delivery-content .modal-content,
 .transfer-content .modal-content,
-.damagereturn-content .modal-content {
+.damagereturn-content .modal-content,
+.pettycash-content .modal-content {
+    border: none;
+}
+
+.pettycash-content .modal-content {
     border: none;
 }
 
 .delivery-list-card,
 .transfer-list-card,
-.damagereturn-list-card {
+.damagereturn-list-card,
+.transfer-list-card,
+.pettycash-list-card {
     border-bottom: 0.5px solid black;
 }
 
