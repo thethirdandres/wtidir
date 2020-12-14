@@ -34,7 +34,9 @@
     color: white;
 }
 
-.sidebar-file + div:hover, .sidebar-edit + div:hover {
+.sidebar-file>div:hover,
+.sidebar-edit>div:hover,
+.sidebar-edit>div a:hover {
     color: #AF0700;
 }
 

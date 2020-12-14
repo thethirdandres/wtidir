@@ -3,36 +3,22 @@
 //     $(this).siblings().children('a').removeClass('active');
 // })
 
-// $(function() {
-//     // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
-//     $('a[role="tab"]').on('shown.bs.tab', function(e) {
-//         // save the latest tab; use cookies if you like 'em better:
-//         localStorage.setItem('lastTab', $(this).attr('href'));
-//     });
+$(document).ready(function() {
+    $('.delivery-table-documents').children('tbody').find('tr').click(function() {
+        var showTable = $('.delivery-table-documents-content');
+        var row = showTable.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = "NEW CELL1";
+        cell2.innerHTML = "NEW CELL2";
+        // showTable.children('tbody').find('tr').detach();
+        // var row = showTable.insertRow(0);
+        // var itemCell = row.insertCell(0);
+        // var quantityCell = row.insertCell(1);
+        // var unitCell = row.insertCell(2);
 
-//     // go to the latest tab, if it exists:
-//     var lastTab = localStorage.getItem('lastTab');
-//     if (lastTab) {
-//         $('.sheets-navpills-header a[href="' + lastTab + '"]').tab('show');
-//     }
-// });
-
-// Check if the sessionStorage object exists
-if (sessionStorage) {
-    $(function() {
-        // Store data
-        $('.sheets-nav-item').click(function() {
-            // save the latest tab; use cookies if you like 'em better:
-            sessionStorage.setItem("lastTab", $(this).attr('href'));
-        });
-
-        // Retrieve datavar 
-        lastTab = sessionStorage.getItem('lastTab');
-        if (lastTab) {
-            $('.sheets-navpills-header a[href="' + lastTab + '"]').tab('show');
-        }
-        // alert("Hi, " + localStorage.getItem("first_name") + " " + sessionStorage.getItem("last_name"));
-    })
-} else {
-    alert("Sorry, your browser do not support session storage.");
-}
+        // itemCell.innerHTML = "BBQ Sauce";
+        // quantityCell.innerHTML = "5000";
+        // unitCell.innerHTML = "bot";
+    });
+});
