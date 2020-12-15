@@ -151,3 +151,7 @@
 .modal_selectshift_input:hover {
     background-color: honeydew;
 }
+
+.pointer-cursor-on-hover:hover {
+    cursor: pointer;
+}

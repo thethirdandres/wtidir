@@ -3,7 +3,12 @@
         <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">NEW TRANSFER</h5>
         <div>
             <button class="button-white"  data-dismiss="modal">CANCEL</button>
-            <button class="button-red">SAVE</button>
+            <button class="button-red confirm-all-modal" data-toggle="modal" data-target="#prompt_doneaddnewtransfer">SAVE</button>
+            <div class="modal fade close-all-modal" id="prompt_doneaddnewtransfer" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewtransferlabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">    
+                    {% include '../prompts/prompt_doneaddnewtransfer.html' %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-body d-flex">
