@@ -18,19 +18,22 @@
                     {% include '../modals/modal_addnewdelivery.html' %}
                 </div>
             </div>
-            <button type="button" class="button-white">
-                <img src="../../static/img/sheets-icons/save.png" class="">
+            <button type="button" class="button-white" data-toggle="modal" data-target="#modal_mapdelivery">
                 MAP
             </button>
+            <div class="modal fade close-all-modal" id="modal_mapdelivery" tabindex="-1" role="dialog" aria-labelledby="modal_mapdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                    {% include '../modals/modal_mapdelivery.html' %}
+                </div>
+            </div>
             <button type="button" class="button-white">
-                <img src="../../static/img/sheets-icons/save.png" class="">
                 SAVE
             </button>
         </div>
     </div>
     <div class="d-flex pt-3 mb-5">
-        <div class="d-flex flex-column w-75">
-            <table class="delivery-table-documents table table-borderless table-hover table-sm mr-2">
+        {% comment %} <div class="d-flex flex-column w-75"> {% endcomment %}
+            <table class="delivery-table-documents table table-border table-hover table-sm mr-2">
                 <thead class="table-active">
                     <tr>
                         <th>DOC NUMBER</th>
@@ -41,14 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-toggle="modal" data-id="1">
-                        <td scope="row" contenteditable="false">54540</td>
-                        <td contenteditable="false">October 29, 2019</td>
-                        <td contenteditable="false">453565</td>
-                        <td contenteditable="false">Commissary</td>
-                        <td contenteditable="false">for delivery</td>
-                    </tr>
-                    <tr data-toggle="modal" data-id="2">
+                    <tr class="pointer-cursor-on-hover" data-toggle="modal" data-id="1" data-target="#modal_unmapdelivery">
                         <td scope="row" contenteditable="false">54540</td>
                         <td contenteditable="false">October 29, 2019</td>
                         <td contenteditable="false">453565</td>
@@ -57,7 +53,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="delivery-table-documents-content table table-borderless table-hover table-sm mr-2 ">
+            {% comment %} <table class="delivery-table-documents-content table table-border table-hover table-sm mr-2 ">
                 <thead class="table-active">
                     <tr>
                         <th>ITEM</th>
@@ -72,11 +68,11 @@
                         <td contenteditable="false">pack</td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
-        <div class="d-flex flex-column w-25 ml-4">
+            </table> {% endcomment %}
+        {% comment %} </div> {% endcomment %}
+        <div class="d-flex flex-column w-50 ml-4">
             <label for="table-all" class="roboto font-weight-bold">ALL DELIVERIES</label>
-            <table id="table-all" class="table table-borderless table-sm ">
+            <table id="table-all" class="table table-border table-sm ">
                 <thead class="table-active">
                     <tr>
                         <th>ITEM</th>
@@ -92,6 +88,13 @@
                     </tr>
                 </tbody>
             </table>
+
+            
+        </div>
+        <div id="modal_unmapdelivery" class="modal hide fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">    
+                {% include '../modals/modal_unmapdelivery.html' %}
+            </div>
         </div>
 
 

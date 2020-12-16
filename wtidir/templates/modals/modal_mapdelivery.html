@@ -1,0 +1,68 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title roboto-16 text-white mx-auto">MAP DELIVERY</h5>
+    </div>
+    <div class="modal-body map-delivery-modal-body">
+        <div class="d-flex h-75">
+            <div class="mapdelivery-list px-2 pb-2">
+                <div class="mapdelivery-list-item d-flex mt-3">
+                    <div class="mli-date roboto-12"> October 24, 2019</div>
+                    <div class="mli-doc-number roboto-12 font-weight-bold ml-auto"> 76841</div>
+                </div>
+                <div class="mapdelivery-list-item d-flex mt-3">
+                    <div class="mli-date roboto-12"> October 24, 2019</div>
+                    <div class="mli-doc-number roboto-12 font-weight-bold ml-auto"> 76841</div>
+                </div>
+                <div class="mapdelivery-list-item d-flex mt-3">
+                    <div class="mli-date roboto-12"> October 24, 2019</div>
+                    <div class="mli-doc-number roboto-12 font-weight-bold ml-auto"> 76841</div>
+                </div>
+            </div>
+            <div class="mapdelivery-table ml-auto">
+                <table class="table table-border table-sm ">
+                    <thead class="table-active">
+                        <tr>
+                            <th>ITEM</th>
+                            <th>QTY</th>
+                            <th>UNIT</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">Cheddar Cheese 20g</td>
+                                <td>12</td>
+                                <td>pack</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="h-25  mb-5">
+            <div class="d-flex">
+                <div class="d-flex flex-column mt-3">
+                    <label class="roboto-12" for="branchfrom">Branch From:</label>
+                    <input class="input-width mt-n2" type="text" name="branchfrom" id="branchfrom">
+                </div>
+                <div class="d-flex flex-column m-3">
+                    <label class="roboto-12" for="toinventorysheet">To Inventory Sheet:</label>
+                    <input class="input-width mt-n2 " type="text" name="toinventorysheet" id="toinventorysheet">
+                </div>
+            </div>
+            <div class="d-flex flex-column ">
+                <label class="roboto-12" for="branchto">Branch To:</label>
+                <input class="input-width mt-n2 h-25" type="text" name="branchto" id="branchto">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <button type="button" class="btn btn-danger mr-2 confirm-all-modal" data-toggle="modal" data-target="#prompt_donemapping">UPDATE</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">CANCEL</button>
+
+        
+    <div class="modal fade close-all-modal" id="prompt_donemapping" tabindex="-1" role="dialog" aria-labelledby="prompt_donemappinglabel" aria-hidden="true">
+        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+            {% include '../prompts/prompt_donemapping.html' %}
+        </div>
+    </div>
+    </div>
+</div>
