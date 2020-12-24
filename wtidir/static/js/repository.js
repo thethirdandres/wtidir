@@ -3,7 +3,6 @@ $(document).ready(function() {
         var currentTD = $(this).parents('tr').find('td:not(:last-child)');
         $.each(currentTD, function() {
             $(this).children('input').attr('readonly', false);
-            console.log('hi');
         });
         $(this).addClass('d-none');
         $(this).parents('a').next().removeClass('d-none');

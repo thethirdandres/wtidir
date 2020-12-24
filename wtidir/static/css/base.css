@@ -164,3 +164,19 @@ body {
     border: 1px gray solid !important;
     cursor:not-allowed;
 }
+
+.clickable-list button {
+    width: 100% !important;
+    height: 2rem !important;
+    background-color: white;
+    border: none;
+    color: black;
+}
+/* 
+.clickable-list button:active {
+    background-color: #AF0700;
+}
+
+.clickable-list button:active:after {
+    background-color: #AF0700;
+} */

@@ -32,4 +32,9 @@ $(document).ready(function() {
         $(this).parents('.content').find('.add-new-delivery-button').attr('disabled', false).removeClass('button-disable');
         $(this).parents('.content').find('.add-new-delivery-button').parents().next().addClass('d-none');
     })
+
+    $('.clickable-list').children('button').click(function() {
+        $(this).css('background-color', '#AF0700');
+        $(this).siblings().css('background-color', 'white');
+    })
 });
