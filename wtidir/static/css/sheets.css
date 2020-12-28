@@ -24,6 +24,31 @@
 /* end of overrides */
 
 
+/* NAVBAR */
+
+.sheets-dropdown-container {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.sheets-dropdown-container div {
+    float: none;
+    color: black;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.sheets-dropdown-button:hover .sheets-dropdown-container {
+    display: block;
+}
+
+
 /* INVENTORY */
 
 .inventory-table tr:nth-child(2n+0) {
@@ -94,6 +119,14 @@
 .transfer-list-card,
 .pettycash-list-card {
     border-bottom: 0.5px solid black;
+}
+
+.delivery-clickable-list button[class="delivery-list-card py-2"] {
+    width: 100% !important;
+    height: 3rem !important;
+    background-color: white;
+    border: none;
+    color: black;
 }
 
 

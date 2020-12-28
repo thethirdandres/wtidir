@@ -33,6 +33,10 @@ body {
     margin-left: 0px !important;
 }
 
+button {
+    outline: none !important;
+}
+
 
 /* END OF OVERRIDES */
 
@@ -157,12 +161,14 @@ body {
 
 .input-width {
     width: 10rem !important;
+    border: 1px gray solid;
+    border-radius: 4px;
 }
 
 .button-disable {
     background-color: gray !important;
     border: 1px gray solid !important;
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
 
 .clickable-list button {
@@ -172,6 +178,12 @@ body {
     border: none;
     color: black;
 }
+
+.delivery-section .clickable-list button:not(.clickable-list button:first-child) {
+    height: 3rem !important;
+}
+
+
 /* 
 .clickable-list button:active {
     background-color: #AF0700;

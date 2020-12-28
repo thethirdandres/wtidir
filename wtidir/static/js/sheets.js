@@ -34,7 +34,19 @@ $(document).ready(function() {
     })
 
     $('.clickable-list').children('button').click(function() {
-        $(this).css('background-color', '#AF0700');
-        $(this).siblings().css('background-color', 'white');
+        $(this).css('background-color', '#AF0700').css('color', 'white');
+        $(this).siblings().css('background-color', 'white').css('color', 'black');
     })
+
+    $('.delivery-clickable-list').children('.delivery-list-card').click(function() {
+        $(this).css('background-color', '#AF0700').css('color', 'white');
+        $(this).siblings('.delivery-list-card').css('background-color', 'white').css('color', 'black');
+        $(this).parents('.delivery-section').find('.dc-edit').removeClass('d-none');
+        // $(this).parents('.delivery-section').find('.dc-add').addClass('d-none');
+
+    })
+
+    // change add/edt delivery title
+    $('.')
+
 });
