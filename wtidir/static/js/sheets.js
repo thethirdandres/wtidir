@@ -65,7 +65,4 @@ $(document).ready(function() {
         $(this).parents('.content').find('.dc-edit').addClass('d-none');
     })
 
-    // change add/edt delivery title
-    $('.')
-
 });

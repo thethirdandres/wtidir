@@ -33,16 +33,47 @@ $(document).ready(function() {
         document.getElementById("repo-edit-quota-button").style.display === "block" ? document.getElementById("repo-edit-quota-button").style.display = "none" : document.getElementById("repo-edit-quota-button").style.display = "block";
     }
 
-
-
-
     $('.confirm-all-modal').click(function() {
         setTimeout(function() {
             $('.close-all-modal').modal('hide');
         }, 1200);
     })
-
-    
-
-
 });
+
+// ~ ~ ~ ~ ~ Area Page Eventlistener ~ ~ ~ ~ ~
+$(".btn-add-area").click(function(){
+    var AName = $('#area-name').val()
+    var unBranchCommi = $('#area-branch-commi').val()
+    var ASAPSvr = $('#area-server').val()
+    var ASAPUsr = $('#area-user').val()
+    var ASAPPwd = $('#area-password').val()
+    var ASAPDB = $('#area-database').val()
+    var ASAPDataSource = $('#area-datasource').val()
+
+    if (AName==''){
+        alert("Area Name is needed.")
+        return;
+    }else if(ASAPSvr==''){
+        alert("Server Name is needed.")
+        return;
+    }else if(ASAPUsr==''){
+        alert("Username Name is needed.")
+        return;
+    }else if(ASAPPwd==''){
+        alert("Password is needed.")
+        return;
+    }else if(ASAPDB==''){
+        alert("Database is needed.")
+        return;
+    }else if(ASAPDataSource==''){
+        alert("Data Source is needed.")
+        return;
+    }else{
+        $.ajax({
+            url:"area_add",
+            type:"POST",
+            data:{AName:AName, unBranchCommi:unBranchCommi, ASAPSvr:ASAPSvr, ASAPUsr:ASAPUsr, ASAPPwd:ASAPPwd, ASAPDB:ASAPDB, ASAPDataSource:ASAPDataSource}
+        })
+    }
+})
+// * * * * * Area Page Eventlistener * * * * *
