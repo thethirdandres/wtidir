@@ -1,6 +1,8 @@
+import json
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Area, Branch
 
@@ -12,8 +14,8 @@ def user_view(request):
 
 # * * * * * Area Page * * * * *
 def area_view(request): # -This is to load the Necessary Data to be displayed in Repository Area Page.
-    all_areas = Area.objects.filter(Status=1).order_by('-idArea')
-    return render(request, 'repository_templates/area.html', {'all_areas' : all_areas})
+    areas = Area.objects.filter(Status=1).order_by('-idArea')
+    return render(request, 'repository_templates/area.html', {'areas' : areas})
 
 def area_add(request):
     if request.method == "POST":       
