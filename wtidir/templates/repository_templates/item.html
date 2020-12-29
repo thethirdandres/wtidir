@@ -16,8 +16,8 @@
 
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-item-tab" data-toggle="tab" href="#nav-item" role="tab" aria-controls="nav-item" aria-selected="true">Item</a>
-    <a class="nav-item nav-link" id="nav-group-tab" data-toggle="tab" href="#nav-group" role="tab" aria-controls="nav-group" aria-selected="false">Group</a>
+    <a class="nav-item nav-link active repository-user-tab" id="nav-item-tab" data-toggle="tab" href="#nav-item" role="tab" aria-controls="nav-item" aria-selected="true">Item</a>
+    <a class="nav-item nav-link repository-group-tab" id="nav-group-tab" data-toggle="tab" href="#nav-group" role="tab" aria-controls="nav-group" aria-selected="false">Group</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -35,7 +35,14 @@
         <tbody>
             <tr>
                 <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                <td>
+                    <select class="form-control form-control-sm w-100" disabled>
+                        <option selected></option>
+                        <option>Test</option>
+                        <option>Test</option>
+                        <option>Test</option>
+                    </select>
+                </td>                
                 <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
                 <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
 
