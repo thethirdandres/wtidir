@@ -3,6 +3,7 @@ $(document).ready(function() {
         var currentTD = $(this).parents('tr').find('td:not(:last-child)');
         $.each(currentTD, function() {
             $(this).children('input').attr('readonly', false);
+            $(this).children('select').attr('disabled', false);
         });
         $(this).addClass('d-none');
         $(this).parents('a').next().removeClass('d-none');
@@ -18,6 +19,7 @@ $(document).ready(function() {
         var currentTD = $(this).parents('tr').find('td:not(:last-child)');
         $.each(currentTD, function() {
             $(this).children('input').attr('readonly', true);
+            $(this).children('select').attr('disabled', true);
 
         });
         $(this).addClass('d-none');
@@ -42,7 +44,11 @@ $(document).ready(function() {
         }, 1200);
     })
 
-    
-
+    $('.repository-group-tab').click(function() {
+        $(this).parents('nav').prev().find('.repository-user-add-button').addClass('d-none');
+    })
+    $('.repository-user-tab').click(function() {
+        $(this).parents('nav').prev().find('.repository-user-add-button').removeClass('d-none');
+    })
 
 });
