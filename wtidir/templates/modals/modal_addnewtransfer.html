@@ -3,7 +3,12 @@
         <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">NEW TRANSFER</h5>
         <div>
             <button class="button-white"  data-dismiss="modal">CANCEL</button>
-            <button class="button-red">SAVE</button>
+            <button class="button-red confirm-all-modal" data-toggle="modal" data-target="#prompt_doneaddnewtransfer">SAVE</button>
+            <div class="modal fade close-all-modal" id="prompt_doneaddnewtransfer" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewtransferlabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">    
+                    {% include '../prompts/prompt_doneaddnewtransfer.html' %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-body d-flex">
@@ -31,7 +36,7 @@
             </div>
             <div class="d-flex">
                 <div class="form-group sheets-select mx-1 w-25">
-                    <label class="d-block">FROM<br/></label>
+                    <label class="d-block font-weight-bold">FROM<br/></label>
                     <label for="crew">Crew</label>
                     <select class="form-control form-control-sm" name="crew" id="crew">
                         <option selected disabled></option>
@@ -51,7 +56,7 @@
                     </select>
                 </div>
                 <div class="form-group sheets-select mx-1 w-25">
-                    <label class="d-block">TO</label>
+                    <label class="d-block font-weight-bold">TO</label>
                     <label for="crew2">Crew</label>
                     <select class="form-control form-control-sm" name="crew2" id="crew2">
                         <option selected disabled></option>
@@ -73,7 +78,7 @@
             </div>
         </div>
         <div>
-            <label class="form-check-label text-weight-bold" for="form-check-radio">Reason for Stock Transfer (Please Select One)</label>
+            <label class="form-check-label font-weight-bold" for="form-check-radio">Reason for Stock Transfer (Please Select One)</label>
             <div class="form-check form-check-radio">
                 <input type="radio" class="form-check-input" id="materialUnchecked" name="materialExampleRadios">
                 <label class="form-check-label" for="materialUnchecked">Shortage of Supply</label>
@@ -110,7 +115,7 @@
             </button>
         {% comment %} </div> {% endcomment %}
     </div>
-    <table class="table table-borderless  table-sm w-50 m-3">
+    <table class="table table-border  table-sm w-50 m-3">
         <tbody>
             <tr>
                 <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>

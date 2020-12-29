@@ -33,6 +33,9 @@ body {
     margin-left: 0px !important;
 }
 
+button {
+    outline: none !important;
+}
 
 
 /* END OF OVERRIDES */
@@ -47,6 +50,10 @@ body {
 
 .text-white {
     color: #FFFFFF;
+}
+
+.text-red {
+    color: #890F00;
 }
 
 .roboto {
@@ -71,6 +78,13 @@ body {
 
 .roboto-24 {
     font: 24px bolder Roboto, sans-serif;
+}
+
+.button {
+    background-color: white;
+    border: none;
+    text-align: center;
+    /* outline: none !important; */
 }
 
 .button-pale-red {
@@ -127,6 +141,54 @@ body {
 .content {
     padding-left: 50px !important;
     height: 100%;
-    /* z-index: -1000; */
-    position: relative;
 }
+
+.content+div:first-child {
+    overflow-y: hidden;
+}
+
+.pointer-cursor-on-hover:hover {
+    cursor: pointer;
+}
+
+.table-border {
+    border: 1px solid #ECECEC !important;
+}
+
+.sheets-navpills-header {
+    background-color: #222222;
+}
+
+.input-width {
+    width: 10rem !important;
+    border: 1px gray solid;
+    border-radius: 4px;
+}
+
+.button-disable {
+    background-color: gray !important;
+    border: 1px gray solid !important;
+    cursor: not-allowed;
+}
+
+.clickable-list button {
+    width: 100% !important;
+    height: 2rem !important;
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.delivery-section .clickable-list button:not(.clickable-list button:first-child) {
+    height: 3rem !important;
+}
+
+
+/* 
+.clickable-list button:active {
+    background-color: #AF0700;
+}
+
+.clickable-list button:active:after {
+    background-color: #AF0700;
+} */

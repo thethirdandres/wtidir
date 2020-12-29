@@ -3,25 +3,36 @@
 {% block sheets-content %}
 
     <div class="d-flex justify-content-between mb-3">
-        <div class="roboto-16 mt-2 ml-3 text-gray">City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></div>
+        <select class="pointer-cursor-on-hover roboto-16 mt-2 ml-3 text-gray border-0">
+            <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
+            <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
+            <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
+        </select>    
         <div class="">
-            <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_addnewtransfer">
+            <button type="button" class="button-pale-red" data-toggle="modal" data-target="#modal_addnewtransfer">
                 <img src="../../static/img/repository-icons/plus.png" class="">
                 Add New
             </button>
-            <div class="modal fade" id="modal_addnewtransfer" tabindex="-1" role="dialog" aria-labelledby="modal_addnewtransferlabel" aria-hidden="true">
+            <div class="modal fade close-all-modal" id="modal_addnewtransfer" tabindex="-1" role="dialog" aria-labelledby="modal_addnewtransferlabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered" role="document">    
                     {% include '../modals/modal_addnewtransfer.html' %}
                 </div>
             </div>
-            <button type="button" class="repository-user-add-button">
-                <img src="../../static/img/sheets-icons/save.png" class="">
+            <button type="button" class="button-white" data-toggle="modal" data-target="#modal_mapitf">
+                MAP
+            </button>
+            <div class="modal fade close-all-modal" id="modal_mapitf" tabindex="-1" role="dialog" aria-labelledby="modal_mapitflabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                    {% include '../modals/modal_mapitf.html' %}
+                </div>
+            </div>
+            <button type="button" class="button-white">
                 SAVE
             </button>
         </div>
     </div>
     <div class="d-flex pt-3">
-        <table class="table table-borderless table-hover table-sm mr-2 flex-grow-1">
+        <table class="table table-border table-hover table-sm mr-2 flex-grow-1">
             <thead class="table-active">
                 <tr>
                     <th>ITF NUMBER</th>
@@ -34,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr data-toggle="modal" data-id="1" data-target="#modal_unmapdelivery">
+                <tr class="pointer-cursor-on-hover" data-toggle="modal" data-id="1" data-target="#modal_unmapdelivery">
                     <td scope="row" contenteditable="false">54540</td>
                     <td contenteditable="false">October 29, 2019</td>
                     <td contenteditable="false">Atrium</td>
@@ -46,7 +57,7 @@
             </tbody>
         </table>
         
-        <table class="table table-borderless table-sm w-50">
+        <table class="table table-border table-sm w-50">
             <thead class="table-active">
                 <tr>
                     <th>ITEM</th>
@@ -64,7 +75,7 @@
         </table>
 
         
-        <div id="modal_unmapdelivery" class="modal hide fade" role="dialog" aria-hidden="true">
+        <div id="modal_unmapdelivery" class="modal hide fade close-all-modal" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">    
                 {% include '../modals/modal_unmapdelivery.html' %}
             </div>

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="invoice-section p-3">
+        <div class="invoice-section-header pl-5 pb-3 d-flex  border-bottom">
+            <select class="ish-select text-red font-weight-bold roboto border-0" name="" id="">
+                <option selected class="text-red font-weight-bold roboto">DIVERSION</option>
+                <option class="text-red font-weight-bold">TEST</option>
+                <option class="text-red font-weight-bold">TEST</option>
+                <option class="text-red font-weight-bold">TEST</option>
+            </select>
+            <div class="text-red ml-5 btn">Select Sales & Shift</div>
+            <button class="button-pale-red ml-5 mr-1 font-weight-bold">
+                    BUTTON
+            </button>
+            <button class="button-pale-red font-weight-bold">
+                    BUTTON
+            </button>
+        </div>
+        <div class="invoice-section-body d-flex justify-content-between px-5 p-3">
+            <div class="isb-left">
+                <div class="isb-left-header d-flex justify-content-between">
+                    <div class="roboto">Invoice Number</div>
+                    <div class="font-weight-bold roboto">0334582</div>
+                </div>
+                <div class="isb-left-search d-flex">
+                    <input class="pl-3 mt-3 w-100" type="text" placeholder="Enter keyword to search item">
+                    <button type="submit" class="mt-auto ml-2 button">
+                        <img src="../../static/img/sheets-icons/add.png" />
+                    </button>
+                </div>
+                <div class="isb-left-table mt-3">
+                    <table class="table table-border table-sm">
+                        <thead class="table-active">
+                            <tr>
+                                <th>QTY</th>
+                                <th>ITEM</th>
+                                <th>UNIT PRICE</th>
+                                <th>TOTAL</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12</td>
+                                <td>Del Monte 202 Orange</td>
+                                <td>28.00</td>
+                                <td>326.00</td>
+                        
+                                <td>
+                                    <button type="submit" class="mt-auto ml-2 button invoice-remove-button">
+                                        <img src="../../static/img/sheets-icons/add.png"/>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="isb-left-footer d-flex px-3 pt-3">
+                     <div class="roboto">Total</div>
+                    <div class="font-weight-bold roboto ml-auto">1,680.00</div>
+                </div>
+            </div>
+            <div class="isb-right">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group d-flex align-items-center">
+                        <label for="pax" class="my-auto">PAX</label>
+                        <input type="number" min="0"
+                            class="isb-right-pax ml-3 text-right" name="pax" id="pax">
+                    </div>
+                    <button class="button-pale-red">button</button>
+                </div>
+                <table class="table table-sm ">
+                    <div class="isb-right-table-label ml-4">
+                        <label for="tbody" class="text-gray">DISCOUNT</label>
+                    </div>
+
+                    <tbody>
+                        <tr>
+                            <td>20%</td>
+                            <td>Senior Citizen</td>
+                            <td>28.00</td>
+                    
+                            <td>
+                                <button type="submit" class="mt-auto ml-2 button invoice-remove-button">
+                                    <img src="../../static/img/sheets-icons/add.png"/>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="isb-right-tally">
+                    <div class="isb-right-tally-total d-flex justify-content-between">
+                        <div class="roboto-12">TOTAL</div>
+                        <div class="font-weight-bold roboto-12">1,680.00</div>
+                    </div>
+                    <div class="isb-right-tally-totaldue d-flex justify-content-between mt-3">
+                        <div class="roboto-12">TOTAL DUE</div>
+                        <div class="font-weight-bold roboto-12">1,680.00</div>
+                    </div>
+                    <div class="isb-right-tally-totaldue-vatsales d-flex justify-content-between mt-3 px-4">
+                        <div class="text-gray roboto-12 ">VAT SALES</div>
+                        <div class="font-weight-bold roboto-12">1,680.00</div>
+                    </div>
+                    <div class="isb-right-tally-totaldue-vatexsales d-flex justify-content-between mt-3 px-4">
+                        <div class="text-gray roboto-12">VATEx SALES</div>
+                        <div class="font-weight-bold roboto-12">1,680.00</div>
+                    </div>
+                    <div class="isb-right-tally-totaldue-taxamount d-flex justify-content-between mt-3 px-4">
+                        <div class="text-gray roboto-12">Tax Amount</div>
+                        <div class="font-weight-bold roboto-12">1,680.00</div>
+                    </div>
+                    <div class="isb-right-tally-totaldue-payment d-flex justify-content-between mt-4">
+                        <div class="">
+                            <label for="paymenttype">Payment Type</label>
+                            <select class="form-control form-control-sm" name="paymenttype" id="paymenttype">
+                                <option selected>Cash</option>
+                                <option>Other</option>
+                                <option>Other</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class=" text-right d-flex flex-column">
+                            <label for="amount">Amount</label>
+                            <input type="number" min="0"
+                                class="form-control form-control-sm" name="amount" id="amount">
+                        </div>
+                    </div>
+                    <div class="isb-right-tally-forfeit d-flex justify-content-between mt-3">
+                        <div class="text-gray ">Forfeit/Change</div>
+                        <div class="font-weight-bold">1,680.00</div>
+                    </div>
+                    <div class="isb-right-buttons mt-5 text-right">
+                        <button class="button-white ">button</button>
+                        <button class="button-red mx-5">button</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

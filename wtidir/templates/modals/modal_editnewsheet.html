@@ -32,7 +32,13 @@
 
     </div>
     <div class="d-flex justify-content-center my-3">
-        <button type="button" class="btn button-red mr-2">UPDATE</button>
+        <button type="button" class="btn button-red mr-2 confirm-all-modal" data-toggle="modal" data-target="#prompt_doneeditnewinventorysheet">UPDATE</button>
         <button type="button" class="btn button-white" data-dismiss="modal">CANCEL</button>
+
+        <div class="modal fade close-all-modal" id="prompt_doneeditnewinventorysheet" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditnewinventorysheetlabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">    
+                {% include '../prompts/prompt_doneeditnewinventorysheet.html' %}
+            </div>
+        </div>
     </div>
 </div>
