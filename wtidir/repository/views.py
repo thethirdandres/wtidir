@@ -3,15 +3,15 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Area, Branch
-# Create your views here.
+
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
 
 def user_view(request):
     return render(request, 'repository_templates/user.html')
 
-#Area Start \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
-def area_view(request):   
+# * * * * * Area Page * * * * *
+def area_view(request): # -This is to load the Necessary Data to be displayed in Repository Area Page.
     all_areas = Area.objects.filter(Status=1).order_by('-idArea')
     return render(request, 'repository_templates/area.html', {'all_areas' : all_areas})
 
@@ -49,16 +49,16 @@ def area_delete(request, id):
     areadata.save()
     print("-Area has been deleted successfully")
     return HttpResponseRedirect("/repository/area")
-#Area End /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+# ~ ~ ~ ~ ~ Area Page ~ ~ ~ ~ ~
 
-#Branch Start \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+#Branch Start 
 def branch_view(request):
     all_branches = Branch.objects.filter(Status=1).order_by('-idBranch')
     return render(request, 'repository_templates/branch.html', {'all_branches' : all_branches})
 
 def branch_add(request):
     return HttpResponseRedirect("/repository/branch")
-#Branch End /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+#Branch End
 
 def employee_view(request):
     return render(request, 'repository_templates/employee.html')
