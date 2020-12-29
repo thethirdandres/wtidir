@@ -7,9 +7,9 @@
             <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
             <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
             <option> City Mall Tagbak - 09398 <span class="font-weight-bolder">[October 30, 2019]</span></option>
-        </select>        
+        </select>    
         <div class="">
-            <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_addnewtransfer">
+            <button type="button" class="button-pale-red" data-toggle="modal" data-target="#modal_addnewtransfer">
                 <img src="../../static/img/repository-icons/plus.png" class="">
                 Add New
             </button>
@@ -18,8 +18,15 @@
                     {% include '../modals/modal_addnewtransfer.html' %}
                 </div>
             </div>
-            <button type="button" class="repository-user-add-button">
-                <img src="../../static/img/sheets-icons/save.png" class="">
+            <button type="button" class="button-white" data-toggle="modal" data-target="#modal_mapitf">
+                MAP
+            </button>
+            <div class="modal fade close-all-modal" id="modal_mapitf" tabindex="-1" role="dialog" aria-labelledby="modal_mapitflabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                    {% include '../modals/modal_mapitf.html' %}
+                </div>
+            </div>
+            <button type="button" class="button-white">
                 SAVE
             </button>
         </div>

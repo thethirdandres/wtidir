@@ -20,6 +20,11 @@ $(document).ready(function() {
     $('.add-new-delivery-button').click(function() {
         $(this).attr('disabled', true).addClass('button-disable');
         $(this).parents().next().removeClass('d-none')
+        $(this).parents('.delivery-section').find('.dc-edit').addClass('d-none');
+
+
+        $(this).siblings('.delivery-list-card').css('background-color', 'white').css('color', 'black');
+
     });
 
     $('.done-add-new-delivery').click(function() {
@@ -42,8 +47,22 @@ $(document).ready(function() {
         $(this).css('background-color', '#AF0700').css('color', 'white');
         $(this).siblings('.delivery-list-card').css('background-color', 'white').css('color', 'black');
         $(this).parents('.delivery-section').find('.dc-edit').removeClass('d-none');
-        // $(this).parents('.delivery-section').find('.dc-add').addClass('d-none');
 
+        $(this).parents('.delivery-section').find('.dc-add').addClass('d-none');
+        $(this).parents('.content').find('.add-new-delivery-button').attr('disabled', false).removeClass('button-disable');
+    })
+
+
+    // $('.done-edit-new-delivery').click(function() {
+    //     setTimeout(() => {
+    //         $(this).parents('.content').find('.delivery-list-card').removeClass('button-disable');
+    //         $(this).parents('.content').find('.delivery-list-card').parents().next().addClass('d-none');
+    //     }, 1500);
+    // })
+
+    $('.cancel-edit-new-delivery').click(function() {
+        $(this).parents('.content').find('.delivery-list-card').css('background-color', 'white').css('color', 'black');
+        $(this).parents('.content').find('.dc-edit').addClass('d-none');
     })
 
     // change add/edt delivery title
