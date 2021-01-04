@@ -14,7 +14,7 @@ class Branch(models.Model):
     BQuotaInterval = models.DecimalField(default=0.0000, blank=True, null=True, max_digits=8, decimal_places=4)
     BQuota = models.DecimalField(default=0.0000, blank=True, null=True, max_digits=8, decimal_places=4)
     BQuotaPointAmount = models.DecimalField(default=0.0000, blank=True, null=True, max_digits=8, decimal_places=4)
-    TimeStamp = models.DateTimeField(default=datetime.now(), blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True)
     Status = models.BooleanField(default=True)
 
 class Area(models.Model):
@@ -27,7 +27,7 @@ class Area(models.Model):
     ASAPUsr = models.CharField(default='', max_length=10, null=True, blank=True)
     ASAPPwd = models.CharField(default='', max_length=20, null=True, blank=True)
     ASAPDataSource = models.CharField(default='', max_length=30, null=True, blank=True)
-    TimeStamp = models.DateTimeField(default=datetime.now(), blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True)
     Status = models.BooleanField(default=True)
 
 #Wala pa ma makemigrations nga mga class :
@@ -37,6 +37,6 @@ class TemplateItemControl(models.Model):
     unTemplateItemControl = models.IntegerField(default=0, null=True, blank=True)
     unArea = models.IntegerField(default=0, null=True, blank=True)
     TICName = models.CharField(default='', max_length=30, null=True, blank=True)
-    TimeStamp = models.DateTimeField(default=datetime.now(), blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True)
     Status = models.BooleanField(default=True)
 

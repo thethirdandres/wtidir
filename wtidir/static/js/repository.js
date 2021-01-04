@@ -73,7 +73,32 @@ $(".btn-add-area").click(function(){
             url:"area_add",
             type:"POST",
             data:{AName:AName, unBranchCommi:unBranchCommi, ASAPSvr:ASAPSvr, ASAPUsr:ASAPUsr, ASAPPwd:ASAPPwd, ASAPDB:ASAPDB, ASAPDataSource:ASAPDataSource}
+        }).done(function(response){
+            if(response['error']==false){
+                console.log(response['Message'])
+                
+                var html_data="<tr id='"+response['idArea']+"'><td><input name='AName' type='text' class='form-control' value='"+response['AName']+"' readonly /></td><td><input name='unBranchCommi' type='text' class='form-control' value='"+response['unBranchCommi']+"' readonly /></td><td><input name='ASAPSvr' type='text' class='form-control' value='"+response['ASAPSvr']+"' readonly /></td><td><input name='ASAPUsr' type='text' class='form-control' value='"+response['ASAPUsr']+"' readonly /></td><td><input name='ASAPPwd' type='text' class='form-control' value='"+response['ASAPPwd']+"' readonly /></td><td><input name='ASAPDB' type='text' class='form-control' value='"+response['ASAPDB']+"' readonly /></td><td><input name='ASAPDataSource' type='text' class='form-control' value='"+response['ASAPDataSource']+"' readonly /></td></tr>"
+                $(html_data).prependTo(".table-area > tbody") 
+            }else{
+                console.log(response['Message']) 
+            }
         })
     }
+})
+
+$(document).on("click",".btn-deactivate-area",function(){
+    // $('div.dialog-deactivation-title').text('testing')
+    var idArea = $(this).closest('tr').attr('id')
+    var AName = $(this).closest('tr').find('.td-area-AName').val()
+
+    $('#dialog-deactivation-title').text('Deactivate Area?')
+    $('#dialog-deactivation-description').text('You are about to deactivate '+ AName +'. this action cannot be undone. Continue?')
+    
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('btn-deactivate-area')
+})
+
+$(document).on("click",".btn-deactivate-area",function(){
+    var idArea = $(this).closest('tr').attr('id')
+    console.log('test this')
 })
 // * * * * * Area Page Eventlistener * * * * *
