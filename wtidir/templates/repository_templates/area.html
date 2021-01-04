@@ -3,21 +3,19 @@
 {% block repository-content %}
     <div class="repo-title roboto-24 text-gray">Area</div> 
     <hr/>
-    <form action="{% url 'repository:area_add' %}" method="POST" autocomplete="off">
-        {% csrf_token %}
-        <div class="form-row mb-4">
-            <input type="text" class="form-control col ml-2" name="area"  placeholder="Area" required>
-            <select class="form-control col ml-2" id='select' name="commissary">
-                <option selected>Commi Iloilo</option>
-            </select>
-            <input type="text" class="form-control col ml-2" name="server"  placeholder="Server" required>
-            <input type="text" class="form-control col ml-2" name="user"  placeholder="User" required>
-            <input type="text" class="form-control col ml-2" name="password"  placeholder="Password" required>
-            <input type="text" class="form-control col ml-2" name="database"  placeholder="Database" required>
-            <input type="text" class="form-control col ml-2" name="datasource"  placeholder="Data Source" required>
-            <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
-        </div>
-    </form>
+
+    <div class="form-row mb-4">
+        <input type="text" class="form-control col ml-2 area-name" id="area-name"  placeholder="Area" required>
+        <select class="form-control col ml-2" id='area-branch-commi' name="commissary">
+            <option selected>Commi Iloilo</option>
+        </select>
+        <input type="text" class="form-control col ml-2" id='area-server'  placeholder="Server" required>
+        <input type="text" class="form-control col ml-2" id='area-user'  placeholder="User" required>
+        <input type="text" class="form-control col ml-2" id='area-password'  placeholder="Password" required>
+        <input type="text" class="form-control col ml-2" id='area-database'  placeholder="Database" required>
+        <input type="text" class="form-control col ml-2" id='area-datasource'  placeholder="Data Source" required>
+        <button type="submit" class="btn btn-add-area"><img src="../../static/img/repository-icons/add.png"/></button>
+    </div>
 
     <table class="table table-border  table-sm">
         <thead class="table-active">
@@ -33,30 +31,27 @@
             </tr>
         </thead>
         <tbody>
-            {% for areadata in all_areas %}
-                <tr>
-                    <form action="{% url 'repository:area_update' areadata.idArea %}" method="POST" autocomplete="off">
-                        {% csrf_token %}
-                        <td><input name="AName" type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
-                        <td><input name="unBranchCommi" type="text" class="form-control" value="{{ areadata.unBranchCommi }}" readonly /></td>
-                        <td><input name="ASAPSvr" type="text" class="form-control" value="{{ areadata.ASAPSvr }}" readonly /></td>
-                        <td><input name="ASAPUsr" type="text" class="form-control" value="{{ areadata.ASAPUsr }}" readonly /></td>
-                        <td><input name="ASAPSvr" type="text" class="form-control" value="{{ areadata.ASAPSvr }}" readonly /></td>
-                        <td><input name="ASAPPwd" type="text" class="form-control" value="{{ areadata.ASAPPwd }}" readonly /></td>
-                        <td><input name="ASAPDataSource" type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+            {% for area in areas %}
+            <tr>                
+                <td><input name="AName" type="text" class="form-control" value="{{ area.AName }}" readonly /></td>
+                <td><input name="unBranchCommi" type="text" class="form-control" value="{{ area.unBranchCommi }}" readonly /></td>
+                <td><input name="ASAPSvr" type="text" class="form-control" value="{{ area.ASAPSvr }}" readonly /></td>
+                <td><input name="ASAPUsr" type="text" class="form-control" value="{{ area.ASAPUsr }}" readonly /></td>
+                <td><input name="ASAPPwd" type="text" class="form-control" value="{{ area.ASAPPwd }}" readonly /></td>
+                <td><input name="ASAPDB" type="text" class="form-control" value="{{ area.ASAPDB }}" readonly /></td>
+                <td><input name="ASAPDataSource" type="text" class="form-control" value="{{ area.ASAPDataSource }}" readonly /></td>
 
-                        <td class="d-flex">
-                            <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                            <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
-                            <a data-toggle="modal" data-target="#prompt_confirmdeactivate"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
-                            <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
-                                    {% include '../prompts/prompt_confirmdeactivate.html' %}
-                                </div>
-                            </div>
-                        </td>
-                    </form>
-                </tr>
+                <td class="d-flex">
+                    <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
+                    <a data-toggle="modal" data-target="#prompt_confirmdeactivate"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                    <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                            {% include '../prompts/prompt_confirmdeactivate.html' %}
+                        </div>
+                    </div>
+                </td>
+            </tr>
             {% endfor %}          
         </tbody>
     </table>

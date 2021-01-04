@@ -64,4 +64,5 @@ $(document).ready(function() {
         $(this).parents('.content').find('.delivery-list-card').css('background-color', 'white').css('color', 'black');
         $(this).parents('.content').find('.dc-edit').addClass('d-none');
     })
+
 });
