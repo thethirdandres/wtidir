@@ -20,11 +20,11 @@ def area_view(request): # <-This is to load the Necessary Data to be displayed i
 @csrf_exempt
 def area_add(request): # <-This is to Insert the Area into mysql. When Area has been Inserted successfully return Area Data to the Repository Area Page to be displayed.
     AName = request.POST.get('AName')                   # <-
-    unBranchCommi = request.POST.get('unBranchCommi')   # <-
-    ASAPSvr = request.POST.get('ASAPSvr')               # <-
-    ASAPUsr = request.POST.get('ASAPUsr')               # <- Data passed from repository.js
-    ASAPPwd = request.POST.get('ASAPPwd')               # <-
-    ASAPDB = request.POST.get('ASAPDB')                 # <-
+    unBranchCommi = request.POST.get('unBranchCommi')       # <-
+    ASAPSvr = request.POST.get('ASAPSvr')                       # <-
+    ASAPUsr = request.POST.get('ASAPUsr')                           # <- Data passed from repository.js
+    ASAPPwd = request.POST.get('ASAPPwd')                       # <-
+    ASAPDB = request.POST.get('ASAPDB')                     # <-
     ASAPDataSource = request.POST.get('ASAPDataSource') # <-
     try:
         area = Area(AName=AName, unBranchCommi=unBranchCommi, ASAPSvr=ASAPSvr, ASAPUsr=ASAPUsr, ASAPPwd=ASAPPwd, ASAPDB=ASAPDB, ASAPDataSource=ASAPDataSource)
@@ -59,7 +59,7 @@ def area_update(request, id):
         return JsonResponse(area_data,safe=False)
 
 @csrf_exempt
-def area_delete(request, id): # <-This is to Deactivate the Area in mysql that means turn Area Status to 0
+def area_delete(request): # <-This is to Deactivate the Area in mysql that means turn Area Status to 0
     idArea = request.POST.get('idArea') # <- Data passed from repository.js
     try:
         area = Area.objects.get(idArea=idArea)

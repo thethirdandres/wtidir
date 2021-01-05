@@ -91,14 +91,36 @@ $(document).on("click",".btn-deactivate-area",function(){
     var idArea = $(this).closest('tr').attr('id')
     var AName = $(this).closest('tr').find('.td-area-AName').val()
 
+    $('#dialog-hidden-id').text(idArea)
     $('#dialog-deactivation-title').text('Deactivate Area?')
     $('#dialog-deactivation-description').text('You are about to deactivate '+ AName +'. this action cannot be undone. Continue?')
     
-    $('#btn-deactivate').removeClass('btn-deactivate').addClass('btn-deactivate-area')
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('btn-deactivate-dialog')   
+    // console.log('1st click '+idArea)
+
 })
 
-$(document).on("click",".btn-deactivate-area",function(){
-    var idArea = $(this).closest('tr').attr('id')
-    console.log('test this')
+$(document).on("click",".btn-deactivate-dialog",function(){
+    var idArea = $('#dialog-hidden-id').text()
+    // console.log('2nd click '+idArea)
+
+    $.ajax({
+        url:"area_delete",
+        type:'POST',
+        data:{idArea:idArea}
+    }).done(function(response){
+        if(response['error']==false){
+            console.log(response['Message'])      
+        }else{
+            console.log(response['Message']) 
+        }
+    })
+
+    // $(this).closest('tr').remove()
+    $('table#table_area tr#'+idArea).closest('tr').remove()
+    $(".modal-fade").modal("hide");
+    $(".modal-backdrop").remove();
+    // $('#prompt_confirmdeactivate').modal('toggle');
+    // console.log('testing')
 })
 // * * * * * Area Page Eventlistener * * * * *
