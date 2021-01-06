@@ -61,13 +61,11 @@
     </table>
   </div>
   <div class="tab-pane fade  pt-3" id="nav-group" role="tabpanel" aria-labelledby="nav-group-tab">
-    <form>
         <div class="form-row mb-4">
-            <input type="text" class="form-control ml-2 unit-input" name="area"  placeholder="Area">
-            <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
+            <input type="text" class="form-control ml-2 unit-input" name="area" id="AGName"  placeholder="Area">
+            <button type="submit" class="btn" id="btn-add-user-group"><img src="../../static/img/repository-icons/add.png"/></button>
         </div>
-    </form>
-    <table class="table table-border  table-sm  mt-3">
+    <table class="table table-border  table-sm  mt-3 table-account-group" id="table_account_group">
         <thead class="table-active">
             <tr>
                 <th>NAME</th>
@@ -75,16 +73,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
+            {% for AccountGroup in AccountGroups %}
+            <tr id="{{ AccountGroup.idAccountGroup }}">
+                <td class="unit-input"><input type="text" class="form-control td-AG-AGName" value="{{ AccountGroup.AGName }}" readonly /></td>
                 <td>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
-                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3 account-group-update">
+                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" class="account-group-deactive"></a>
                 </td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
   </div>
 </div>
+
+<div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+    <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+        {% include '../prompts/prompt_confirmdeactivate.html' %}
+    </div>
+</div>
+
 {% endblock repository-content %}
