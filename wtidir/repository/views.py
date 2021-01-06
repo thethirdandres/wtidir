@@ -38,18 +38,18 @@ def area_add(request): # <-This is to Insert the Area into mysql. When Area has 
         return JsonResponse(area_data,safe=False)
 
 @csrf_exempt
-def area_update(request, id):
-    data=request.POST.get("data") # <- Data passed from repository.js
-    dict_data=json.loads(data) # <- Parse JSON Array Data into Single Data
+def area_update(request):
+    # data=request.POST.get("data") # <- Data passed from repository.js
+    # dict_data=json.loads(data) # <- Parse JSON Array Data into Single Data
     try:
-        area = Area.objects.get(idArea=dict_data['idArea']) # <- Query Specific Area Data to be edited/updated
-        area.AName=dict_data['AName']
-        area.ASAPSvr=dict_data['ASAPSvr']
-        area.ASAPUsr=dict_data['ASAPUsr']
-        area.ASAPPwd=dict_data['ASAPPwd']
-        area.ASAPDB=dict_data['ASAPDB']
-        area.ASAPDataSource=dict_data['ASAPDataSource']
-        user_account.save() # <- Save Area Changes in mysql
+        area = Area.objects.get(idArea=request.POST.get('idArea')) # <- Query Specific Area Data to be edited/updated
+        area.AName = request.POST.get('AName')
+        area.ASAPSvr = request.POST.get('ASAPSvr')
+        area.ASAPUsr = request.POST.get('ASAPUsr')
+        area.ASAPPwd = request.POST.get('ASAPPwd')
+        area.ASAPDB = request.POST.get('ASAPDB')
+        area.ASAPDataSource = request.POST.get('ASAPDataSource')
+        area.save() # <- Save Area Changes in mysql
         area_data={"error":False,"Message":"Area has been Updated"}
         # ^- Area Data to be returned after Updating Successfully (JSON Format)
         return JsonResponse(area_data,safe=False)

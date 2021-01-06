@@ -74,20 +74,19 @@ $(".btn-add-area").click(function(){
             type:"POST",
             data:{AName:AName, unBranchCommi:unBranchCommi, ASAPSvr:ASAPSvr, ASAPUsr:ASAPUsr, ASAPPwd:ASAPPwd, ASAPDB:ASAPDB, ASAPDataSource:ASAPDataSource}
         }).done(function(response){
-            if(response['error']==false){
-                console.log(response['Message'])
+            if(response["error"]==false){
+                console.log(response["Message"])
                 
-                var html_data="<tr id='"+response['idArea']+"'><td><input name='AName' type='text' class='form-control' value='"+response['AName']+"' readonly /></td><td><input name='unBranchCommi' type='text' class='form-control' value='"+response['unBranchCommi']+"' readonly /></td><td><input name='ASAPSvr' type='text' class='form-control' value='"+response['ASAPSvr']+"' readonly /></td><td><input name='ASAPUsr' type='text' class='form-control' value='"+response['ASAPUsr']+"' readonly /></td><td><input name='ASAPPwd' type='text' class='form-control' value='"+response['ASAPPwd']+"' readonly /></td><td><input name='ASAPDB' type='text' class='form-control' value='"+response['ASAPDB']+"' readonly /></td><td><input name='ASAPDataSource' type='text' class='form-control' value='"+response['ASAPDataSource']+"' readonly /></td></tr>"
+                var html_data="<tr id='"+response['idArea']+"'><td><input name='AName' type='text' class='form-control td-area-AName' value='"+response['AName']+"' readonly /></td><td><input name='unBranchCommi' type='text' class='form-control td-area-unBranchCommi' value='"+response['unBranchCommi']+"' readonly /></td><td><input name='ASAPSvr' type='text' class='form-control td-area-ASAPSvr' value='"+response['ASAPSvr']+"' readonly /></td><td><input name='ASAPUsr' type='text' class='form-control td-area-ASAPUsr' value='"+response['ASAPUsr']+"' readonly /></td><td><input name='ASAPPwd' type='text' class='form-control td-area-ASAPPwd' value='"+response['ASAPPwd']+"' readonly /></td><td><input name='ASAPDB' type='text' class='form-control td-area-ASAPDB' value='"+response['ASAPDB']+"' readonly /></td><td><input name='ASAPDataSource' type='text' class='form-control td-area-ASAPDataSource' value='"+response['ASAPDataSource']+"' readonly /></td></tr>"
                 $(html_data).prependTo(".table-area > tbody") 
             }else{
-                console.log(response['Message']) 
+                console.log(response["Message"]) 
             }
         })
     }
 })
 
 $(document).on("click",".btn-deactivate-area",function(){
-    // $('div.dialog-deactivation-title').text('testing')
     var idArea = $(this).closest('tr').attr('id')
     var AName = $(this).closest('tr').find('.td-area-AName').val()
 
@@ -96,8 +95,6 @@ $(document).on("click",".btn-deactivate-area",function(){
     $('#dialog-deactivation-description').text('You are about to deactivate '+ AName +'. this action cannot be undone. Continue?')
     
     $('#btn-deactivate').removeClass('btn-deactivate').addClass('btn-deactivate-dialog')   
-    // console.log('1st click '+idArea)
-
 })
 
 $(document).on("click",".btn-deactivate-dialog",function(){
@@ -106,21 +103,43 @@ $(document).on("click",".btn-deactivate-dialog",function(){
 
     $.ajax({
         url:"area_delete",
-        type:'POST',
+        type:"POST",
         data:{idArea:idArea}
     }).done(function(response){
-        if(response['error']==false){
-            console.log(response['Message'])      
+        if(response["error"]==false){
+            console.log(response["Message"])      
         }else{
-            console.log(response['Message']) 
+            console.log(response["Message"]) 
         }
     })
 
     // $(this).closest('tr').remove()
     $('table#table_area tr#'+idArea).closest('tr').remove()
-    $(".modal-fade").modal("hide");
-    $(".modal-backdrop").remove();
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
     // $('#prompt_confirmdeactivate').modal('toggle');
     // console.log('testing')
+})
+
+$(document).on("click","#btn-area-update",function(){
+    var idArea = $(this).closest('tr').attr('id')
+    var AName = $(this).closest('tr').find('.td-area-AName').val()
+    var ASAPSvr = $(this).closest('tr').find('.td-area-ASAPSvr').val()
+    var ASAPDB = $(this).closest('tr').find('.td-area-ASAPDB').val()
+    var ASAPUsr = $(this).closest('tr').find('.td-area-ASAPUsr').val()
+    var ASAPPwd = $(this).closest('tr').find('.td-area-ASAPPwd').val()
+    var ASAPDataSource = $(this).closest('tr').find('.td-area-ASAPDataSource').val()
+
+    $.ajax({
+        url:"area_update",
+        type:"POST",
+        data:{idArea:idArea, AName:AName, ASAPSvr:ASAPSvr, ASAPDB:ASAPDB, ASAPUsr:ASAPUsr, ASAPPwd:ASAPPwd, ASAPDataSource:ASAPDataSource}
+    }).done(function(response){
+        if(response["error"]==false){
+            console.log(response["Message"])      
+        }else{
+            console.log(response["Message"]) 
+        }
+    })
 })
 // * * * * * Area Page Eventlistener * * * * *
