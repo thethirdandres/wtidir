@@ -17,7 +17,7 @@
         <button type="submit" class="btn btn-add-area"><img src="../../static/img/repository-icons/add.png"/></button>
     </div>
 
-    <table class="table table-border  table-sm">
+    <table class="table table-border  table-sm table-area" id="table_area">
         <thead class="table-active">
             <tr>
                 <th>AREA</th>
@@ -32,26 +32,26 @@
         </thead>
         <tbody>
             {% for area in areas %}
-            <tr>                
-                <td><input name="AName" type="text" class="form-control" value="{{ area.AName }}" readonly /></td>
-                <td><input name="unBranchCommi" type="text" class="form-control" value="{{ area.unBranchCommi }}" readonly /></td>
-                <td><input name="ASAPSvr" type="text" class="form-control" value="{{ area.ASAPSvr }}" readonly /></td>
-                <td><input name="ASAPUsr" type="text" class="form-control" value="{{ area.ASAPUsr }}" readonly /></td>
-                <td><input name="ASAPPwd" type="text" class="form-control" value="{{ area.ASAPPwd }}" readonly /></td>
-                <td><input name="ASAPDB" type="text" class="form-control" value="{{ area.ASAPDB }}" readonly /></td>
-                <td><input name="ASAPDataSource" type="text" class="form-control" value="{{ area.ASAPDataSource }}" readonly /></td>
+                <tr id="{{ area.idArea }}">                
+                    <td><input name="AName" type="text" class="form-control td-area-AName" value="{{ area.AName }}" readonly /></td>
+                    <td><input name="unBranchCommi" type="text" class="form-control td-area-unBranchCommi" value="{{ area.unBranchCommi }}" readonly /></td>
+                    <td><input name="ASAPSvr" type="text" class="form-control td-area-ASAPSvr" value="{{ area.ASAPSvr }}" readonly /></td>
+                    <td><input name="ASAPUsr" type="text" class="form-control td-area-ASAPUsr" value="{{ area.ASAPUsr }}" readonly /></td>
+                    <td><input name="ASAPPwd" type="text" class="form-control td-area-ASAPPwd" value="{{ area.ASAPPwd }}" readonly /></td>
+                    <td><input name="ASAPDB" type="text" class="form-control td-area-ASAPDB" value="{{ area.ASAPDB }}" readonly /></td>
+                    <td><input name="ASAPDataSource" type="text" class="form-control td-area-ASAPDataSource" value="{{ area.ASAPDataSource }}" readonly /></td>
 
-                <td class="d-flex">
-                    <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
-                    <a data-toggle="modal" data-target="#prompt_confirmdeactivate"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
-                    <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
-                            {% include '../prompts/prompt_confirmdeactivate.html' %}
+                    <td class="d-flex">
+                        <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3" id="btn-area-update">
+                        <a data-toggle="modal" data-target="#prompt_confirmdeactivate"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" class="btn-deactivate-area"></a>
+                        <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                                {% include '../prompts/prompt_confirmdeactivate.html' %}
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             {% endfor %}          
         </tbody>
     </table>
