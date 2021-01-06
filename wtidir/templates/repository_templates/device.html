@@ -1,0 +1,44 @@
+{% extends "repository_templates/repository.html" %}
+
+{% block repository-content %}
+    <div class="repo-title roboto-24 text-gray">Device</div> 
+    <hr/>
+    <form>
+        <div class="form-row mb-4">
+            <input type="text" class="form-control col ml-2" name="devicename"  placeholder="Device Name">
+            <input type="text" class="form-control col ml-2" name="branch"  placeholder="Branch">
+            <input type="text" class="form-control col ml-2" name="area"  placeholder="Area">
+            <input type="text" class="form-control col ml-2" name="serialnumber"  placeholder="Serial Number">
+            <input type="text" class="form-control col ml-2" name="macaddress"  placeholder="Mac Address">
+            <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
+        </div>
+    </form>
+
+    <table class="table table-border  table-sm">
+        <thead class="table-active">
+            <tr>
+                <th>DEVICE NAME</th>
+                <th>BRANCH</th>
+                <th>AREA</th>
+                <th>SERIAL NUMBER</th>
+                <th>MAC ADDRESS</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                <td class="d-flex">
+                    <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button in-branch"></a>
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                    <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock repository-content %}

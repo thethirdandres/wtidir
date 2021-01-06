@@ -63,6 +63,15 @@ def branch_add(request):
 def employee_view(request):
     return render(request, 'repository_templates/employee.html')
 
+def device_view(request):
+    return render(request, 'repository_templates/device.html')
+
+def paymenttype_view(request):
+    return render(request, 'repository_templates/paymenttype.html')
+
+def discounttype_view(request):
+    return render(request, 'repository_templates/discounttype.html')
+
 def uom_view(request):
     return render(request, 'repository_templates/uom.html')
 
