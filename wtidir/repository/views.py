@@ -73,6 +73,7 @@ def area_add(request): # <-This is to Insert the Area into mysql. When Area has 
         area = Area(AName=AName, unBranchCommi=unBranchCommi, ASAPSvr=ASAPSvr, ASAPUsr=ASAPUsr, ASAPPwd=ASAPPwd, ASAPDB=ASAPDB, ASAPDataSource=ASAPDataSource)
         area.save() #<- Insert Data to mysql
         # ^- Area Data to be returned after Inserting Successfully (JSON Format)
+        area_data = {"idArea":area.idArea, "AName":area.AName, "unBranchCommi":area.unBranchCommi, "ASAPSvr":area.ASAPSvr, "ASAPUsr":area.ASAPUsr, "ASAPPwd":area.ASAPPwd, "ASAPDB":area.ASAPDB, "ASAPDataSource":area.ASAPDataSource, "error":False, "Message":"Area has been Added"}
         return JsonResponse(area_data,safe=False)
     except:
         area_data = {"error":True,"Message":"Error Failed to Added Area"}

@@ -42,17 +42,18 @@
                     <td><input name="ASAPDataSource" type="text" class="form-control td-area-ASAPDataSource" value="{{ area.ASAPDataSource }}" readonly /></td>
 
                     <td class="d-flex">
-                        <a class="mr-2" type="submit" name="edit"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3" id="btn-area-update">
-                        <a data-toggle="modal" data-target="#prompt_confirmdeactivate"><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" class="btn-deactivate-area"></a>
-                        <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
-                                {% include '../prompts/prompt_confirmdeactivate.html' %}
-                            </div>
-                        </div>
+                        <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3 btn-area-update">
+                        <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" class="area-deactivate"></a>
                     </td>
                 </tr>
             {% endfor %}          
         </tbody>
     </table>
+
+    <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+            {% include '../prompts/prompt_confirmdeactivate.html' %}
+        </div>
+    </div>
 {% endblock repository-content %}

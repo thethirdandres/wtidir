@@ -150,7 +150,7 @@ $(".btn-add-area").click(function(){
             if(response["error"]==false){
                 console.log(response["Message"])
                 
-                var html_data="<tr id='"+response['idArea']+"'><td><input name='AName' type='text' class='form-control td-area-AName' value='"+response['AName']+"' readonly /></td><td><input name='unBranchCommi' type='text' class='form-control td-area-unBranchCommi' value='"+response['unBranchCommi']+"' readonly /></td><td><input name='ASAPSvr' type='text' class='form-control td-area-ASAPSvr' value='"+response['ASAPSvr']+"' readonly /></td><td><input name='ASAPUsr' type='text' class='form-control td-area-ASAPUsr' value='"+response['ASAPUsr']+"' readonly /></td><td><input name='ASAPPwd' type='text' class='form-control td-area-ASAPPwd' value='"+response['ASAPPwd']+"' readonly /></td><td><input name='ASAPDB' type='text' class='form-control td-area-ASAPDB' value='"+response['ASAPDB']+"' readonly /></td><td><input name='ASAPDataSource' type='text' class='form-control td-area-ASAPDataSource' value='"+response['ASAPDataSource']+"' readonly /></td></tr>"
+                var html_data="<tr id='"+response['idArea']+"'><td><input name='AName' type='text' class='form-control td-area-AName' value='"+response['AName']+"' readonly /></td><td><input name='unBranchCommi' type='text' class='form-control td-area-unBranchCommi' value='"+response['unBranchCommi']+"' readonly /></td><td><input name='ASAPSvr' type='text' class='form-control td-area-ASAPSvr' value='"+response['ASAPSvr']+"' readonly /></td><td><input name='ASAPUsr' type='text' class='form-control td-area-ASAPUsr' value='"+response['ASAPUsr']+"' readonly /></td><td><input name='ASAPPwd' type='text' class='form-control td-area-ASAPPwd' value='"+response['ASAPPwd']+"' readonly /></td><td><input name='ASAPDB' type='text' class='form-control td-area-ASAPDB' value='"+response['ASAPDB']+"' readonly /></td><td><input name='ASAPDataSource' type='text' class='form-control td-area-ASAPDataSource' value='"+response['ASAPDataSource']+"' readonly /></td><td class='d-flex'><a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none mr-2 ml-n3 btn-area-update'><a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='area-deactivate'></a></td></tr>"
                 $(html_data).prependTo(".table-area > tbody") 
             }else{
                 console.log(response["Message"]) 
@@ -159,9 +159,11 @@ $(".btn-add-area").click(function(){
     }
 })
 
-$(document).on("click",".btn-deactivate-area",function(){
+$(document).on("click",".area-deactivate",function(){
     var idArea = $(this).closest('tr').attr('id')
     var AName = $(this).closest('tr').find('.td-area-AName').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
 
     $('#dialog-hidden-id').text(idArea)
     $('#dialog-deactivation-title').text('Deactivate Area?')
@@ -172,7 +174,6 @@ $(document).on("click",".btn-deactivate-area",function(){
 
 $(document).on("click",".btn-deactivate-area",function(){
     var idArea = $('#dialog-hidden-id').text()
-    // console.log('2nd click '+idArea)
 
     $.ajax({
         url:"area_delete",
@@ -194,7 +195,7 @@ $(document).on("click",".btn-deactivate-area",function(){
     // console.log('testing')
 })
 
-$(document).on("click","#btn-area-update",function(){
+$(document).on("click",".btn-area-update",function(){
     var idArea = $(this).closest('tr').attr('id')
     var AName = $(this).closest('tr').find('.td-area-AName').val()
     var ASAPSvr = $(this).closest('tr').find('.td-area-ASAPSvr').val()
