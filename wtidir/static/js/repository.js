@@ -187,12 +187,9 @@ $(document).on("click",".btn-deactivate-area",function(){
         }
     })
 
-    // $(this).closest('tr').remove()
     $('table#table_area tr#'+idArea).closest('tr').remove()
     $(".modal-fade").modal("hide")
     $(".modal-backdrop").remove()
-    // $('#prompt_confirmdeactivate').modal('toggle');
-    // console.log('testing')
 })
 
 $(document).on("click",".btn-area-update",function(){
@@ -217,3 +214,37 @@ $(document).on("click",".btn-area-update",function(){
     })
 })
 // * * * * * Area Page Eventlistener * * * * *
+// ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-branch-add").click(function(){
+    var BName = $('#branch-name').val()
+    var AName  = $('#branch-area').val()
+    var TICName = $('#branch-template').val()
+    var TPBName  = $('#branch-BOM').val()
+    var BSAPCode   = $('#branch-sapcode').val()
+    var BType = $('#branch-type').val()
+    var BDescription = $('#branch-desc').val()
+
+    if (BName == "") {
+        alert("Branch Name is needed.")
+        return;
+    } else if (AName == null) {
+        alert("Area is needed.")
+        return;
+    } else if (TICName == null) {
+        alert("Template is needed.")
+        return;
+    } else if (TPBName == null) {
+        alert("BOM is needed.")
+        return;
+    } else if (BType == null) {
+        alert("Type is needed.")
+        return;
+    } else {
+        $.ajax({
+            url:"branch_add",
+            type:"POST",
+            data:{BName:BName}    
+        })
+    }
+})
+// * * * * * Branch Page Eventlistener * * * * *
