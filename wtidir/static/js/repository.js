@@ -236,6 +236,7 @@ $(document).on("click",".btn-area-update",function(){
 // ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
 $("#btn-branch-add").click(function(){
     var BName = $('#branch-name').val()
+    var idArea = $("#branch-area option:selected").attr("id")
     var AName  = $('#branch-area').val()
     var TICName = $('#branch-template').val()
     var TPBName  = $('#branch-BOM').val()
@@ -262,7 +263,13 @@ $("#btn-branch-add").click(function(){
         $.ajax({
             url:"branch_add",
             type:"POST",
-            data:{BName:BName}    
+            data:{BName:BName, idArea:idArea, AName:AName, TICName:TICName, TPBName:TPBName, BSAPCode:BSAPCode, BType:BType, BDescription:BDescription}
+        }).done(function(response){
+            if(response["error"]==false){
+                console.log(response["Message"])      
+            }else{
+                console.log(response["Message"]) 
+            }
         })
     }
 })

@@ -117,14 +117,21 @@ def area_delete(request): # <-This is to Deactivate the Area in mysql that means
 # ~ ~ ~ ~ ~ Branch Page ~ ~ ~ ~ ~
 def branch_view(request):
     areas = Area.objects.filter(Status=1).order_by('-idArea')
-    all_branches = Branch.objects.filter(Status=1).order_by('-idBranch')
-    return render(request, 'repository_templates/branch.html', {'all_branches' : all_branches, 'areas' : areas})
+    branches = Branch.objects.filter(Status=1).order_by('-idBranch')
+    return render(request, 'repository_templates/branch.html', {'branches' : branches, 'areas' : areas})
 
 @csrf_exempt
 def branch_add(request):
-    BName = request.POST.get('BName')
-    print(BName)
-    return HttpResponse('')
+    try:
+        branch = Branch(BName=request.POST.get('BName'), fkArea=request.POST.get('idArea'), AName=request.POST.get('AName'), TICName=request.POST.get('TICName'), TPBName=request.POST.get('TPBName'), BSAPCode=request.POST.get('BSAPCode'), BType=request.POST.get('BType'), BDescription=request.POST.get('BDescription'))
+        branch.save() #<- Insert Data to mysql
+        branch_data = {"idBranch":branch.idBranch, "BName":branch.BName, "fkArea":branch.fkArea, "AName":branch.AName, "TICName":branch.TICName, "TPBName":branch.TPBName, "BSAPCode":branch.BSAPCode, "BType":branch.BType, "BDescription":branch.BDescription, "error":False,"Message":"Branch has been Added Successfully"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(branch_data,safe=False)
+    except:
+        branch_data = {"error":True,"Message":"Error Failed to Added Branch"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(branch_data,safe=False)
 # * * * * * Branch Page * * * * *
 
 def employee_view(request):
