@@ -97,3 +97,37 @@
     padding: 1rem 1rem;
     width: 45%;
 }
+
+
+/* LOGIN PAGE */
+.login-page {
+    height: 100%;
+    width: 100%;
+    background-color: #333333;
+}
+
+
+
+.login-left-logo {
+    bottom: 12rem;
+    left: 7rem;
+    position:absolute;
+}
+
+.login-left-text {
+    bottom: 4rem;
+    left: 7rem;
+    position:absolute;
+    line-height: 3rem;
+}
+
+
+.login-left-text {
+    color: white;
+    font-size: 3rem;
+}
+
+.login-right-manager {
+    background-image: url(../../static/img/login-img/manager-white.png);
+    background-size: cover;
+}

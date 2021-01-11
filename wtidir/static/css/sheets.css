@@ -121,8 +121,7 @@
     border-bottom: 0.5px solid black;
 }
 
-.delivery-clickable-list button[class="delivery-list-card py-2"] {
-    width: 100% !important;
+.delivery-clickable-list button[class="delivery-list-card py-2"] {    width: 100% !important;
     height: 3rem !important;
     background-color: white;
     border: none;
