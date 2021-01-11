@@ -69,15 +69,6 @@ $("#btn-add-user-group").click(function(){
     }
 })
 
-    $('.confirm-all-modal').click(function() {
-        $('.close-all-modal').modal('hide');
-        var alert = $(this).parents(".content").find(".alert");
-        alert.removeClass("d-none");
-
-        setTimeout(function() {
-            alert.addClass("d-none");
-        }, 3000);
-
 $(document).on("click",".account-group-update",function(){
     $.ajax({
         url:"user_group_update",
@@ -92,12 +83,22 @@ $(document).on("click",".account-group-update",function(){
     })
 })
 
-    $('.repository-group-tab').click(function() {
-        $(this).parents('nav').prev().find('.repository-user-add-button').addClass('d-none');
-    })
-    $('.repository-user-tab').click(function() {
-        $(this).parents('nav').prev().find('.repository-user-add-button').removeClass('d-none');
-    })
+$('.confirm-all-modal').click(function() {
+    $('.close-all-modal').modal('hide');
+    var alert = $(this).parents(".content").find(".alert");
+    alert.removeClass("d-none");
+
+    setTimeout(function() {
+        alert.addClass("d-none");
+    }, 3000);
+
+$('.repository-group-tab').click(function() {
+    $(this).parents('nav').prev().find('.repository-user-add-button').addClass('d-none');
+})
+$('.repository-user-tab').click(function() {
+    $(this).parents('nav').prev().find('.repository-user-add-button').removeClass('d-none');
+})
+
 $(document).on("click",".account-group-deactive",function(){
     var idAccountGroup = $(this).closest('tr').attr('id')
     var AGName  = $(this).closest('tr').find('.td-AG-AGName').val()
