@@ -1,6 +1,7 @@
 {% extends 'repository_templates/repository.html' %}
 
 {% block repository-content %}
+
 <div class="d-flex justify-content-between mb-3">
     <div class="repo-title roboto-24 text-gray">User</div>
     <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_createuser">
@@ -22,6 +23,9 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active " id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab">
+    <div class="alert alert-success mt-3 d-none">
+        <strong>Success!</strong> User created successfully.
+    </div>
     <table class="table table-border  table-sm  mt-3">
         <thead class="table-active">
             <tr>

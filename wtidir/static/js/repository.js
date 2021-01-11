@@ -39,9 +39,14 @@ $(document).ready(function() {
 
 
     $('.confirm-all-modal').click(function() {
+        $('.close-all-modal').modal('hide');
+        var alert = $(this).parents(".content").find(".alert");
+        alert.removeClass("d-none");
+
         setTimeout(function() {
-            $('.close-all-modal').modal('hide');
-        }, 1200);
+            alert.addClass("d-none");
+        }, 3000);
+
     })
 
     $('.repository-group-tab').click(function() {

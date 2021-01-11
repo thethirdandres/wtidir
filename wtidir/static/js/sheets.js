@@ -68,4 +68,8 @@ $(document).ready(function() {
     $('.sheets-edit-delivery-inputs').find('input').change(function() {
         $(this).parents('.modal-content').find('.done-edit-new-delivery').removeClass('button-disable').removeAttr('disabled');
     });
+
+    $(".reset-fields").click(function() {
+        $(this).parents('.modal-header').next().find("input[type=text], textarea, select").val("");
+    });
 });
