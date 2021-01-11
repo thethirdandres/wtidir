@@ -114,13 +114,18 @@ def area_delete(request): # <-This is to Deactivate the Area in mysql that means
         # ^- Area Data to be returned after Deactivating Failed (JSON Format)
         return JsonResponse(area_data,safe=False)
 # * * * * * Area Page * * * * *
-
+# ~ ~ ~ ~ ~ Branch Page ~ ~ ~ ~ ~
 def branch_view(request):
+    areas = Area.objects.filter(Status=1).order_by('-idArea')
     all_branches = Branch.objects.filter(Status=1).order_by('-idBranch')
-    return render(request, 'repository_templates/branch.html', {'all_branches' : all_branches})
+    return render(request, 'repository_templates/branch.html', {'all_branches' : all_branches, 'areas' : areas})
 
+@csrf_exempt
 def branch_add(request):
-    return HttpResponseRedirect("/repository/branch")
+    BName = request.POST.get('BName')
+    print(BName)
+    return HttpResponse('')
+# * * * * * Branch Page * * * * *
 
 def employee_view(request):
     return render(request, 'repository_templates/employee.html')
