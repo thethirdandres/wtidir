@@ -4,14 +4,57 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Area, Branch
+from .models import Area, Branch, AccountGroup
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
-
+# ~ ~ ~ ~ ~ User Page ~ ~ ~ ~ ~
 def user_view(request):
-    return render(request, 'repository_templates/user.html')
+    AccountGroups = AccountGroup.objects.filter(Status=1).order_by('-idAccountGroup')
+    return render(request, 'repository_templates/user.html', {'AccountGroups' : AccountGroups})
 
+# Group
+@csrf_exempt
+def user_group_add(request):
+    try:
+        AG = AccountGroup(AGName=request.POST.get('AGName'))
+        AG.save() #<- Insert Data to mysql
+        AG_data = {"idAccountGroup":AG.idAccountGroup, "AGName":AG.AGName, "error":False,"Message":"Account Group has been Added Successfully"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(AG_data,safe=False)
+    except:
+        AG_data = {"error":True,"Message":"Error Failed to Added Account Group"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(AG_data,safe=False)
+
+@csrf_exempt
+def user_group_update(request):
+    try:
+        AG = AccountGroup.objects.get(idAccountGroup=request.POST.get('idAccountGroup'))
+        AG.AGName = request.POST.get('AGName')
+        AG.save() #<- Insert Data to mysql
+        AG_data = {"error":True,"Message":"Account Group has been Updated"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(AG_data,safe=False)
+    except:
+        AG_data = {"error":True,"Message":"Error Failed to Updated Account Group"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(AG_data,safe=False)
+
+@csrf_exempt
+def user_group_deactivate(request):
+    try:
+        AG = AccountGroup.objects.get(idAccountGroup=request.POST.get('idAccountGroup'))
+        AG.Status = 0
+        AG.save() #<- Insert Data to mysql
+        AG_data = {"error":True,"Message":"Account Group has been Deactivated"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(AG_data,safe=False)
+    except:
+        AG_data = {"error":True,"Message":"Error Failed to Deactivated Account Group"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(AG_data,safe=False)
+# * * * * * User Page * * * * *
 # ~ ~ ~ ~ ~ Area Page ~ ~ ~ ~ ~
 def area_view(request): # <-This is to load the Necessary Data to be displayed in Repository Area Page.
     areas = Area.objects.filter(Status=1).order_by('-idArea')
@@ -29,8 +72,8 @@ def area_add(request): # <-This is to Insert the Area into mysql. When Area has 
     try:
         area = Area(AName=AName, unBranchCommi=unBranchCommi, ASAPSvr=ASAPSvr, ASAPUsr=ASAPUsr, ASAPPwd=ASAPPwd, ASAPDB=ASAPDB, ASAPDataSource=ASAPDataSource)
         area.save() #<- Insert Data to mysql
-        area_data = {"idArea" : area.idArea, "AName" : area.AName, "unBranchCommi" : area.unBranchCommi, "ASAPSvr" : area.ASAPSvr, "ASAPUsr" : area.ASAPUsr, "ASAPPwd" : area.ASAPPwd, "ASAPDB" : area.ASAPDB, "ASAPDataSource" : area.ASAPDataSource,"error":False,"Message":"Area has been Added Successfully"}
         # ^- Area Data to be returned after Inserting Successfully (JSON Format)
+        area_data = {"idArea":area.idArea, "AName":area.AName, "unBranchCommi":area.unBranchCommi, "ASAPSvr":area.ASAPSvr, "ASAPUsr":area.ASAPUsr, "ASAPPwd":area.ASAPPwd, "ASAPDB":area.ASAPDB, "ASAPDataSource":area.ASAPDataSource, "error":False, "Message":"Area has been Added"}
         return JsonResponse(area_data,safe=False)
     except:
         area_data = {"error":True,"Message":"Error Failed to Added Area"}
@@ -39,8 +82,6 @@ def area_add(request): # <-This is to Insert the Area into mysql. When Area has 
 
 @csrf_exempt
 def area_update(request):
-    # data=request.POST.get("data") # <- Data passed from repository.js
-    # dict_data=json.loads(data) # <- Parse JSON Array Data into Single Data
     try:
         area = Area.objects.get(idArea=request.POST.get('idArea')) # <- Query Specific Area Data to be edited/updated
         area.AName = request.POST.get('AName')

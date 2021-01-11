@@ -1,6 +1,29 @@
 from django.db import models
 from datetime import datetime
 
+class AccountGroup(models.Model):
+    idAccountGroup = models.AutoField(primary_key=True, serialize=False)
+    AGName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True)
+    Status = models.BooleanField(default=True)
+
+class AccountUser(models.Model):
+    idAccountUser = models.AutoField(primary_key=True, serialize=False)
+    idAccountGroup = models.IntegerField(default=0, null=True, blank=True)
+    idArea = models.IntegerField(default=0, null=True, blank=True)
+    unAccountUser = models.IntegerField(default=0, null=True, blank=True)
+    AUUserName = models.CharField(default='', max_length=50, null=True, blank=True)
+    AULastName = models.CharField(default='', max_length=50, null=True, blank=True)
+    AUFirstName = models.CharField(default='', max_length=50, null=True, blank=True)
+    AUMiddleName = models.CharField(default='', max_length=50, null=True, blank=True)
+    AUPassword = models.CharField(default='', max_length=100, null=True, blank=True)
+    AUEmail = models.CharField(default='', max_length=50, null=True, blank=True)
+    AGName = models.CharField(default='', max_length=50, null=True, blank=True)
+    AName = models.CharField(default='', max_length=30, null=True, blank=True)
+    AUSession = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True)
+    Status = models.BooleanField(default=True)
+
 class Branch(models.Model):
     idBranch = models.AutoField(primary_key=True, serialize=False)
     unBranch = models.IntegerField(default=0, null=True, blank=True)
