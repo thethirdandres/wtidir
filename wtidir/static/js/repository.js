@@ -69,6 +69,15 @@ $("#btn-add-user-group").click(function(){
     }
 })
 
+    $('.confirm-all-modal').click(function() {
+        $('.close-all-modal').modal('hide');
+        var alert = $(this).parents(".content").find(".alert");
+        alert.removeClass("d-none");
+
+        setTimeout(function() {
+            alert.addClass("d-none");
+        }, 3000);
+
 $(document).on("click",".account-group-update",function(){
     $.ajax({
         url:"user_group_update",
