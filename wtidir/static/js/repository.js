@@ -66,8 +66,15 @@ $(document).on("click", ".repository-edit-gray-button", function() {
 
 
 $('.confirm-all-modal').click(function() {
+    if ($(this).hasClass('prompt_confirmcreateuser')) {
+        $('.close-all-modal').modal('hide');
+        var alert = $(this).parents(".content").find(".alert_confirmcreateuser");
+        alert.removeClass("d-none");
 
-    if ($(this).hasClass("button-red")) {
+        setTimeout(function() {
+            alert.addClass("d-none");
+        }, 3000);
+    } else if ($(this).hasClass("button-red")) {
         setTimeout(function() {
             $('.close-all-modal').modal('hide');
         }, 3000);
@@ -77,8 +84,7 @@ $('.confirm-all-modal').click(function() {
             $('#area-user').val() !== "" &&
             $('#area-password').val() !== "" &&
             $('#area-database').val() !== "" &&
-            $('#area-datasource').val() !== "")
-    ) {
+            $('#area-datasource').val() !== "")) {
         $('.close-all-modal').modal('hide');
         var alert = $(this).parents(".content").find(".alert");
         alert.removeClass("d-none");
@@ -88,6 +94,7 @@ $('.confirm-all-modal').click(function() {
         }, 3000);
     }
 });
+
 
 $('.repository-group-tab').click(function() {
     $(this).parents('nav').prev().find('.repository-user-add-button').addClass('d-none');
