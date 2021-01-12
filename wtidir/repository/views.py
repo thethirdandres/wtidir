@@ -13,6 +13,9 @@ def user_view(request):
     AccountGroups = AccountGroup.objects.filter(Status=1).order_by('-idAccountGroup')
     return render(request, 'repository_templates/user.html', {'AccountGroups' : AccountGroups})
 
+#User Account
+
+
 # Group
 @csrf_exempt
 def user_group_add(request):
@@ -54,6 +57,12 @@ def user_group_deactivate(request):
         AG_data = {"error":True,"Message":"Error Failed to Deactivated Account Group"}
         # ^- Data to be returned after Inserting Failed (JSON Format)
         return JsonResponse(AG_data,safe=False)
+
+@csrf_exempt
+def user_group_list(request):
+     accountgroups = AccountGroup.objects.filter(Status=1).values()
+     areas = Area.objects.filter(Status=1).values()
+     return JsonResponse({"AccountGroups":list(accountgroups), "areas":list(areas)}, safe=False)
 # * * * * * User Page * * * * *
 # ~ ~ ~ ~ ~ Area Page ~ ~ ~ ~ ~
 def area_view(request): # <-This is to load the Necessary Data to be displayed in Repository Area Page.
