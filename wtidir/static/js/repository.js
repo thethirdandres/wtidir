@@ -342,7 +342,7 @@ $("#btn-branch-add").click(function() {
             })
         }
     })
-})
+    
 // * * * * * Area Page Eventlistener * * * * *
 // ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
 $("#btn-branch-add").click(function(){
