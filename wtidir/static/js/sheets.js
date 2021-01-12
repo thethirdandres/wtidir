@@ -70,6 +70,7 @@ $(document).ready(function() {
     });
 
     $(".reset-fields").click(function() {
-        $(this).parents('.modal-header').next().find("input[type=text], textarea, select").val("");
+        // $(this).parents('.modal-header').next().find("input[type=text], textarea, select").val("");
+        $(this).parents(".reset-fields-here").find("input[type=text], textarea, select").val("");
     });
 });

@@ -22,7 +22,7 @@
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active " id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab">
+  <div class="tab-pane fade show active" id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab">
     <div class="alert alert-success mt-3 d-none">
         <strong>Success!</strong> User created successfully.
     </div>
@@ -47,7 +47,7 @@
                 <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
                 <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
                 <td>
-                    <select class="form-control form-control-sm w-100" disabled>
+                    <select class="form-control" disabled>
                         <option selected></option>
                         <option>Test</option>
                         <option>Test</option>
@@ -72,12 +72,15 @@
     </table>
   </div>
   <div class="tab-pane fade  pt-3" id="nav-group" role="tabpanel" aria-labelledby="nav-group-tab">
-        <div class="form-row mb-4">
-            <input type="text" class="form-control ml-2 unit-input" name="area" id="AGName"  placeholder="Area">
-            <button type="submit" class="btn" id="btn-add-user-group"><img src="../../static/img/repository-icons/add.png"/></button>
-        </div>
-    <table class="table table-border  table-sm  mt-3 table-account-group" id="table_account_group">
-        <thead class="table-active">
+    <div class="form-row mb-4 reset-fields-here">
+        <input type="text" class="form-control ml-2 unit-input" name="area" id="AGName"  placeholder="Area">
+        <button type="submit" class="btn confirm-all-modal reset-fields" id="btn-add-user-group"><img src="../../static/img/repository-icons/add.png"/></button>
+    </div>
+    <div class="alert alert-success mt-3 d-none">
+        <strong>Success!</strong> User group created successfully.
+    </div>
+    <table class="table table-border table-sm  mt-3 table-account-group" id="table_account_group">
+        <thead class="table-active  ">
             <tr>
                 <th>NAME</th>
                 <th></th>

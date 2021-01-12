@@ -4,7 +4,7 @@
     <div class="repo-title roboto-24 text-gray">Area</div> 
     <hr/>
 
-    <div class="form-row mb-4">
+    <div class="form-row mb-4 reset-fields-here">
         <input type="text" class="form-control col ml-2 area-name" id="area-name"  placeholder="Area" required>
         <select class="form-control col ml-2" id='area-branch-commi' name="commissary">
             <option selected>Commi Iloilo</option>
@@ -14,7 +14,10 @@
         <input type="text" class="form-control col ml-2" id='area-password'  placeholder="Password" required>
         <input type="text" class="form-control col ml-2" id='area-database'  placeholder="Database" required>
         <input type="text" class="form-control col ml-2" id='area-datasource'  placeholder="Data Source" required>
-        <button type="submit" class="btn btn-add-area"><img src="../../static/img/repository-icons/add.png"/></button>
+        <button type="submit" class="btn btn-add-area confirm-all-modal reset-fields"><img src="../../static/img/repository-icons/add.png"/></button>
+    </div>
+    <div class="alert alert-success mt-3 d-none">
+        <strong>Success!</strong> User group created successfully.
     </div>
 
     <table class="table table-border  table-sm table-area" id="table_area">
