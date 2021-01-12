@@ -31,8 +31,9 @@
         <input type="textarea" class="form-control col ml-2" name="description" id="branch-desc"  placeholder="Description">
         <button type="submit" class="btn" id="btn-branch-add"><img src="../../static/img/repository-icons/add.png"/></button>
     </div>
-    
-
+    <div class="alert alert-success mt-3 d-none">
+        <strong>Success!</strong> Branch created successfully.
+    </div>
     <table class="table table-border  table-sm">
         <thead class="table-active">
             <tr>
@@ -77,7 +78,12 @@
                 
                 <td class="d-flex">
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button in-branch"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png"  data-toggle="modal" data-target="#prompt_doneeditbranch" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                    <div class="modal fade" id="prompt_doneeditbranch" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditbranchlabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                            {% include '../prompts/prompt_doneeditbranch.html' %}
+                        </div>
+                    </div>
                     <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Deactivate"></a>
                     <a id="repo-edit-quota-button" class="repo-edit-quota-button d-none roboto-14 ml-3" data-toggle="modal" data-target="#modal_editquota"><span>EDIT QUOTA</span></a>
                     <div class="modal fade" id="modal_editquota" tabindex="-1" role="dialog" aria-labelledby="modal_editquotalabel" aria-hidden="true">

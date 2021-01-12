@@ -144,6 +144,6 @@
     transform: translateX(-8%);
 }
 
-.done-prompt {
-    position: relative;
+.select-area-prompt {
+    transform: translateX(50%) !important;
 }

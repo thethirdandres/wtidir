@@ -46,7 +46,13 @@
 
                     <td class="d-flex">
                         <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3 btn-area-update">
+                        
+                        <input type="image" src="../../static/img/repository-icons/edit-gray.png"  data-toggle="modal" data-target="#prompt_doneeditarea" class="repository-edit-gray-button d-none mr-2 ml-n3 btn-area-update">
+                        <div class="modal fade" id="prompt_doneeditarea" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditarealabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                                {% include '../prompts/prompt_doneeditarea.html' %}
+                            </div>
+                        </div>
                         <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" class="area-deactivate"></a>
                     </td>
                 </tr>
