@@ -44,7 +44,6 @@ $(document).on("click", ".repository-edit-gray-button", function() {
 
 
 $('.confirm-all-modal').click(function() {
-    $('.close-all-modal').modal('hide');
 
     if (
         $('#AGName').val() !== "" &&
@@ -55,16 +54,19 @@ $('.confirm-all-modal').click(function() {
             $('#area-database').val() !== "" &&
             $('#area-datasource').val() !== "")
     ) {
+        $('.close-all-modal').modal('hide');
         var alert = $(this).parents(".content").find(".alert");
         alert.removeClass("d-none");
 
         setTimeout(function() {
             alert.addClass("d-none");
         }, 3000);
+    } else if ($(this).hasClass(".button-red")) {
+        setTimeout(function() {
+            $('.close-all-modal').modal('hide');
+        }, 3000);
     }
 });
-
-
 
 $('.repository-group-tab').click(function() {
     $(this).parents('nav').prev().find('.repository-user-add-button').addClass('d-none');
@@ -74,7 +76,7 @@ $('.repository-user-tab').click(function() {
     $(this).parents('nav').prev().find('.repository-user-add-button').removeClass('d-none');
 })
 
-///////////////////////// end of Andres' Jqueries //////////////////////////////
+///////////////////////// end of Andres' JQueries //////////////////////////////
 
 // ~ ~ ~ ~ ~ User Page Eventlistener ~ ~ ~ ~ ~
 
@@ -162,6 +164,9 @@ $(".btn-add-area").click(function() {
 
     if (AName == '') {
         alert("Area Name is needed.")
+        return;
+    } else if (unBranchCommi == null) { //Andres added this condition 1/12/21
+        alert("Commi Branch is needed.")
         return;
     } else if (ASAPSvr == '') {
         alert("Server Name is needed.")
