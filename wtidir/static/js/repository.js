@@ -80,6 +80,59 @@ $('.repository-user-tab').click(function() {
 
 // ~ ~ ~ ~ ~ User Page Eventlistener ~ ~ ~ ~ ~
 
+//User Account
+$("#btn-open-createuser-modal").click(function(){
+
+    $('#account-group').empty()
+    $('#area-list').empty()
+
+    $.ajax({
+        url:"user_group_list",
+        type:"GET"
+    }).done(function(response){
+        response['AccountGroups'].forEach(account_group)
+        response['areas'].forEach(areas)
+        function account_group(item){
+            $('#account-group').append($('<option></option>').val(item['idAccountGroup']).html(item['AGName']))
+        }
+        function areas(item){
+            var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' value='"+item['AName']+"'>"+item['AName']+"</label></li>"
+            // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
+            $('#area-list').append(html_data)
+        }
+    })
+})
+
+$('#create-account-prompt-cancel').click(function(){
+    $('#prompt_confirmcreateuser').modal('hide')
+})
+
+$("#user-account-create").click(function(){
+    var username=$("#username").val()
+    var lastname=$("#lastname").val()
+    var firstname=$("#firstname").val()
+    var middlename=$("#middlename").val()
+    var emailaddress=$("#emailaddress").val()
+    var password=$("#password").val()
+    var verifypassword=$("#verifypassword").val()
+    var idgroup=$("#account-group").children(':selected').attr('value')
+    var group=$("#account-group").find('option:selected').text()
+    var idarea=$("#area").find(':selected').attr('value')
+    var area=$("#area").find('option:selected').text()
+
+    console.log(username)
+    console.log(lastname)
+    console.log(firstname)
+    console.log(middlename)
+    console.log(emailaddress)
+    console.log(password)
+    console.log(verifypassword)
+    console.log(idgroup)
+    console.log(group)
+    console.log(idarea)
+    console.log(area)
+})
+
 // Group
 $("#btn-add-user-group").click(function() {
     var AGName = $('#AGName').val()
@@ -289,4 +342,46 @@ $("#btn-branch-add").click(function() {
             })
         }
     })
-    // * * * * * Branch Page Eventlistener * * * * *
+})
+// * * * * * Area Page Eventlistener * * * * *
+// ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-branch-add").click(function(){
+    var BName = $('#branch-name').val()
+    var idArea = $("#branch-area option:selected").attr("id")
+    var AName  = $('#branch-area').val()
+    var TICName = $('#branch-template').val()
+    var TPBName  = $('#branch-BOM').val()
+    var BSAPCode   = $('#branch-sapcode').val()
+    var BType = $('#branch-type').val()
+    var BDescription = $('#branch-desc').val()
+
+    if (BName == "") {
+        alert("Branch Name is needed.")
+        return;
+    } else if (AName == null) {
+        alert("Area is needed.")
+        return;
+    } else if (TICName == null) {
+        alert("Template is needed.")
+        return;
+    } else if (TPBName == null) {
+        alert("BOM is needed.")
+        return;
+    } else if (BType == null) {
+        alert("Type is needed.")
+        return;
+    } else {
+        $.ajax({
+            url:"branch_add",
+            type:"POST",
+            data:{BName:BName, idArea:idArea, AName:AName, TICName:TICName, TPBName:TPBName, BSAPCode:BSAPCode, BType:BType, BDescription:BDescription}
+        }).done(function(response){
+            if(response["error"]==false){
+                console.log(response["Message"])      
+            }else{
+                console.log(response["Message"]) 
+            }
+        })
+    }
+})
+// * * * * * Branch Page Eventlistener * * * * *
