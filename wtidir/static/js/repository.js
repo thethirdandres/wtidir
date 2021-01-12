@@ -9,6 +9,28 @@ $(document).ready(function() {
             $('.close-all-modal').modal('hide');
         }, 1200);
     })
+
+
+    // $(".selectarea-checkbox-list").find("input[type=checkbox]").click(function() {
+    //     if ($(this).is(':checked')) {
+    //         // alert("hahaha");
+    //         $('.selectarea-select-button').attr('disabled', false).removeClass('button-disable');
+    //     } else {
+    //         $('.selectarea-select-button').attr('disabled', true).addClass('button-disable');
+    //     }
+    // })
+
+    var checkBoxes = $('.selectarea-checkbox-list').find('input[type=checkbox]');
+    checkBoxes.change(function() {
+        $('.selectarea-select-button').prop('disabled', checkBoxes.filter(':checked').length < 1);
+        if (checkBoxes.filter(':checked').length > 0) {
+            $('.selectarea-select-button').removeClass('button-disable');
+        } else {
+            $('.selectarea-select-button').addClass('button-disable');
+        }
+    });
+    checkBoxes.change(); // or add disabled="true" in the HTML
+
 });
 
 $(document).on("click", ".repository-edit-button", function() {
@@ -45,8 +67,11 @@ $(document).on("click", ".repository-edit-gray-button", function() {
 
 $('.confirm-all-modal').click(function() {
 
-    if (
-        $('#AGName').val() !== "" &&
+    if ($(this).hasClass("button-red")) {
+        setTimeout(function() {
+            $('.close-all-modal').modal('hide');
+        }, 3000);
+    } else if ($('#AGName').val() !== "" &&
         ($('#area-server').val() !== "" &&
             $('#area-name').val() !== "" &&
             $('#area-user').val() !== "" &&
@@ -60,10 +85,6 @@ $('.confirm-all-modal').click(function() {
 
         setTimeout(function() {
             alert.addClass("d-none");
-        }, 3000);
-    } else if ($(this).hasClass(".button-red")) {
-        setTimeout(function() {
-            $('.close-all-modal').modal('hide');
         }, 3000);
     }
 });

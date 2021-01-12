@@ -57,6 +57,12 @@
                 <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
 
                 <td class="d-flex">
+                    <a class="mr-2" data-toggle="modal" data-target="#modal_selectarea"><img src="../../static/img/repository-icons/selectarea.png" data-toggle="tooltip" data-placement="top" title="Select Area" ></a>
+                    <div class="modal fade close-all-modal" id="modal_selectarea" tabindex="-1" role="dialog" aria-labelledby="modal_selectarealabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">    
+                            {% include '../modals/modal_selectarea.html' %}
+                        </div>
+                    </div>
                     <a class="mr-2" data-toggle="modal" data-target="#modal_changepassword"><img src="../../static/img/repository-icons/changepassword.png" data-toggle="tooltip" data-placement="top" title="Change Password" ></a>
                     <div class="modal fade" id="modal_changepassword" tabindex="-1" role="dialog" aria-labelledby="modal_changepasswordlabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">    
@@ -64,7 +70,12 @@
                         </div>
                     </div>
                     <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none">
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png"  data-toggle="modal" data-target="#prompt_doneedituser" class="repository-edit-gray-button d-none">
+                    <div class="modal fade" id="prompt_doneedituser" tabindex="-1" role="dialog" aria-labelledby="prompt_doneedituserlabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                            {% include '../prompts/prompt_doneedituser.html' %}
+                        </div>
+                    </div>
                     <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
                 </td>
             </tr>

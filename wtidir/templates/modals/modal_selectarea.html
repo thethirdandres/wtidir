@@ -1,0 +1,51 @@
+<div class="modal-content select-area-prompt w-50">
+    <div class="modal-header">
+        <h5 class="modal-title roboto-16 text-white mx-auto" id="modal_createusertitle">SELECT AREA</h5>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <ul class="selectarea-checkbox-list">
+                <li>
+                    <label for="chkiloilo">
+                        <input type="checkbox" class="form-check-input" name="chkiloilo" id="area" value="checkedValue">
+                        Iloilo
+                    </label>
+                </li>
+                <li>
+                    <label for="chkdavao">
+                        <input type="checkbox" class="form-check-input" name="chkdavao" id="area" value="checkedValue">
+                        Davao
+                    </label>
+                </li>
+                <li>
+                    <label for="chkcebu">
+                        <input type="checkbox" class="form-check-input" name="chkcebu" id="area" value="checkedValue">
+                        Cebu
+                    </label>
+                </li>
+                <li>
+                    <label for="chkcdo">
+                        <input type="checkbox" class="form-check-input" name="chkcdo" id="area" value="checkedValue">
+                        CDO
+                    </label>
+                </li>
+                <li>
+                    <label for="chkmanila">
+                        <input type="checkbox" class="form-check-input" name="chkmanila" id="area" value="checkedValue">
+                        Manila
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <button type="button" class="button-red mr-2 button-disable selectarea-select-button confirm-all-modal" data-toggle="modal" data-target="#prompt_doneselectarea" disabled>SELECT</button>
+        <button type="button" class="btn button-white" data-dismiss="modal">CANCEL</button>
+    </div>
+</div>
+
+<div class="modal fade close-all-modal" id="prompt_doneselectarea" tabindex="-1" role="dialog" aria-labelledby="prompt_doneselectarealabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">    
+        {% include '../prompts/prompt_doneselectarea.html' %}
+    </div>
+</div>
