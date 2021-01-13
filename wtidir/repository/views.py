@@ -28,6 +28,10 @@ def user_account_add(request):
         # ^- Data to be returned after Inserting Failed (JSON Format)
         return JsonResponse(user_account_data,safe=False)
 
+@csrf_exempt
+def user_account_deactivate(request):
+    print()
+    return HttpResponse('')
 
 # Group
 @csrf_exempt

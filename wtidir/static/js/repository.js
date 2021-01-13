@@ -189,6 +189,12 @@ $("#user-account-create").click(function(){
     })
 })
 
+$(document).on("click", ".btn-user-account-deactivate", function() {
+
+    console.log($("#account-group").children(':selected').attr('id'))
+    console.log($("#account-group").find('option:selected').text())
+})
+
 // Group
 $("#btn-add-user-group").click(function() {
     var AGName = $('#AGName').val()
