@@ -4,16 +4,29 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Area, Branch, AccountGroup
+from .models import Area, Branch, AccountGroup, AccountUser
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
 # ~ ~ ~ ~ ~ User Page ~ ~ ~ ~ ~
 def user_view(request):
     AccountGroups = AccountGroup.objects.filter(Status=1).order_by('-idAccountGroup')
-    return render(request, 'repository_templates/user.html', {'AccountGroups' : AccountGroups})
+    UserAccounts = AccountUser.objects.order_by('-idAccountUser')
+    return render(request, 'repository_templates/user.html', {'AccountGroups' : AccountGroups, 'UserAccounts' : UserAccounts})
 
 #User Account
+@csrf_exempt
+def user_account_add(request):
+    try:
+        user_account = AccountUser(AUUserName=request.POST.get('username'), AULastName=request.POST.get('lastname'), AUFirstName=request.POST.get('firstname'), AUMiddleName=request.POST.get('middlename'), AUPassword=request.POST.get('password'), AUEmail=request.POST.get('emailaddress'), idAccountGroup=request.POST.get('idgroup'), AGName=request.POST.get('groupname'))
+        user_account.save() #<- Insert Data to mysql
+        user_account_data = {"idAccountUser":user_account.idAccountUser , "AUUserName ":user_account.AUUserName, "AULastName":user_account.AULastName , "AUFirstName ":user_account.AUFirstName , "AUMiddleName ":user_account.AUMiddleName , "AUPassword":user_account.AUPassword , "AUEmail":user_account.AUEmail , "idAccountGroup":user_account.idAccountGroup, "AGName":user_account.AGName, "error":False,"Message":"User Account has been Created Successfully"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(user_account_data,safe=False)
+    except (e):
+        user_account_data = {"error":True,"Message":"Error Failed to Create User Account"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(user_account_data,safe=False)
 
 
 # Group

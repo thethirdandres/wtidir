@@ -130,6 +130,37 @@ $("#btn-open-createuser-modal").click(function(){
         }
     })
 })
+$('#btn-init-createuser-auth').click(function(){
+    if ($("#username").val() == '') {
+        alert("Username is needed.")
+        return;
+    } else if ($("#lastname").val() == '') {
+        alert("Last Name is needed.")
+        return;
+    } else if ($("#firstname").val() == '') {
+        alert("First Name is needed.")
+        return;
+    } else if ($("#middlename").val() == '') {
+        alert("Middle Name is needed.")
+        return;
+    } else if ($("#emailaddress").val() == '') {
+        alert("Email Address is needed.")
+        return;
+    } else if ($("#password").val() == '') {
+        alert("Password is needed.")
+        return;
+    } else if ($("#verifypassword").val() == '') {
+        alert("Vefify Password is needed.")
+        return;
+    }else{
+        if ($("#password").val() != $("#verifypassword").val()) {
+            alert("Verify Password does not match with the Password")
+            return;
+        } else {
+            $('#prompt_confirmcreateuser').modal('show')
+        }
+    }
+})
 
 $('#create-account-prompt-cancel').click(function(){
     $('#prompt_confirmcreateuser').modal('hide')
@@ -142,23 +173,20 @@ $("#user-account-create").click(function(){
     var middlename=$("#middlename").val()
     var emailaddress=$("#emailaddress").val()
     var password=$("#password").val()
-    var verifypassword=$("#verifypassword").val()
     var idgroup=$("#account-group").children(':selected').attr('value')
-    var group=$("#account-group").find('option:selected').text()
-    var idarea=$("#area").find(':selected').attr('value')
-    var area=$("#area").find('option:selected').text()
+    var groupname=$("#account-group").find('option:selected').text()
 
-    console.log(username)
-    console.log(lastname)
-    console.log(firstname)
-    console.log(middlename)
-    console.log(emailaddress)
-    console.log(password)
-    console.log(verifypassword)
-    console.log(idgroup)
-    console.log(group)
-    console.log(idarea)
-    console.log(area)
+    $.ajax({
+        url: "user_account_add",
+        type: "POST",
+        data: {username:username, lastname:lastname, firstname:firstname, middlename:middlename, emailaddress:emailaddress, password:password, idgroup:idgroup, groupname:groupname}
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
 })
 
 // Group

@@ -19,7 +19,6 @@ class AccountUser(models.Model):
     AUPassword = models.CharField(default='', max_length=100, null=True, blank=True)
     AUEmail = models.CharField(default='', max_length=50, null=True, blank=True)
     AGName = models.CharField(default='', max_length=50, null=True, blank=True)
-    AName = models.CharField(default='', max_length=30, null=True, blank=True)
     AUSession = models.CharField(default='', max_length=50, null=True, blank=True)
     TimeStamp = models.DateTimeField(auto_now_add=True)
     Status = models.BooleanField(default=True)
