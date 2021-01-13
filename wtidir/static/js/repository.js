@@ -130,6 +130,113 @@ $("#btn-open-createuser-modal").click(function(){
         }
     })
 })
+
+$(document).on("click", ".btn-user-account-update", function(){
+    var id = $(this).closest('tr').attr('id')
+    var lastname = $(this).closest('tr').find('.td-au-lastname').val()
+    var firstname = $(this).closest('tr').find('.td-au-firstname').val()
+    var middlename = $(this).closest('tr').find('.td-au-middlename').val()
+    var username = $(this).closest('tr').find('.td-au-username').val()
+    var emailaddress = $(this).closest('tr').find('.td-au-emailaddress').val()
+    var idgroupaccount = $(this).closest('tr').find('.user-html-account-group').children(':selected').attr('id')
+    var groupname = $(this).closest('tr').find('.user-html-account-group').find('option:selected').text()
+    
+    $.ajax({
+        url: "user_account_update",
+        type: "POST",
+        data: {id:id, lastname:lastname, firstname:firstname, middlename:middlename, username:username, emailaddress:emailaddress,idgroupaccount:idgroupaccount, groupname:groupname}
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-user-select-area", function(){
+    $('#area-list').empty()
+
+    $.ajax({
+        url:"user_group_list",
+        type:"GET"
+    }).done(function(response){
+        response['areas'].forEach(areas)
+        function areas(item){
+        var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' value='"+item['AName']+"'>"+item['AName']+"</label></li>"
+        // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
+        $('#area-list').append(html_data)
+    }
+    })
+})
+
+$('#btn-change-pass-auth').click(function(){
+    // console.log($("#new-password").val())
+    if ($("#new-password").val() == '') {
+        alert("Password is needed.")
+        return;
+    } else if ($("#verify-password").val() == '') {
+        alert("Vefify Password is needed.")
+        return;
+    }else{
+        if ($("#new-password").val() != $("#verify-password").val()) {
+            alert("Verify Password does not match with the Password")
+            return;
+        } else {
+            $('#prompt_confirmchangepassword').modal('show')
+        }
+    }
+})
+
+$('.btn-user-change-pass-init').click(function(){
+    var id = $(this).closest('tr').attr('id')
+    // console.log(id)
+    $('#user-hidden-id').text(id)
+})
+
+$('#btn-change-pass').click(function(){
+    var id = $('#user-hidden-id').text()
+    var newpassword = $("#new-password").val()
+
+    $.ajax({
+        url: "user_account_change_password",
+        type: "POST",
+        data: {id:id, newpassword:newpassword}
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('#prompt_donechangepassword').modal('show')
+
+    setTimeout(function() {
+        $('#prompt_donechangepassword').modal('hide')
+    }, 2000);
+    
+    setTimeout(function() {
+        $('#prompt_confirmchangepassword').modal('hide')
+    }, 2100);
+
+    setTimeout(function() {
+        $('#modal_changepassword').modal('hide')
+
+        document.getElementById("new-password").value=""
+        document.getElementById("verify-password").value=""
+
+        $(".modal-fade").modal("hide")
+        $(".modal-backdrop").remove()
+    }, 2300);
+
+})
+
+$('#btn-change-pass-cancel').click(function(){
+    $('#prompt_confirmchangepassword').modal('hide')
+})
+
 $('#btn-init-createuser-auth').click(function(){
     if ($("#username").val() == '') {
         alert("Username is needed.")
@@ -221,14 +328,11 @@ $(document).on("click", ".btn-user-account-deactivate", function() {
     $('#dialog-deactivation-description').text('You are about to deactivate ' + username + '. this action cannot be undone. Continue?')
 
     $('#btn-deactivate').removeClass('btn-deactivate').addClass('btn-deactivate-UserAccount')
-
-    // console.log('user id: '+ $(this).closest('tr').attr("id"))
-    // console.log($(this).closest('tr').find('option:selected').attr('id'))
-    // console.log($(this).closest('tr').find('option:selected').text())
 })
 
 $(document).on("click", ".btn-deactivate-UserAccount", function() {
     var id = $('#dialog-hidden-id').text()
+
     $.ajax({
         url: "user_account_deactivate",
         type: "POST",
@@ -236,12 +340,14 @@ $(document).on("click", ".btn-deactivate-UserAccount", function() {
     }).done(function(response) {
         if (response["error"] == false) {
             console.log(response["Message"])
+
         } else {
             console.log(response["Message"])
         }
     })
 
-    // $('table#table_account_group tr#' + idAccountGroup).closest('tr').remove()
+    $('table#table-user-account tr#' + id).closest('tr').find('.td-au-actions').remove()
+    $('table#table-user-account tr#' + id).closest('tr').find('.td-au-status').val('Deactivated')
     $(".modal-fade").modal("hide")
     $(".modal-backdrop").remove()
 })

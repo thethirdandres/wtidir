@@ -29,6 +29,24 @@ def user_account_add(request):
         return JsonResponse(user_account_data,safe=False)
 
 @csrf_exempt
+def user_account_update(request):
+    try:
+        user_account = AccountUser.objects.get(idAccountUser=request.POST.get('id'))
+        user_account.AULastName  = request.POST.get('lastname')
+        user_account.AUFirstName = request.POST.get('firstname')
+        user_account.AUMiddleName  = request.POST.get('middlename')
+        user_account.AUUserName  = request.POST.get('username')
+        user_account.AUEmail = request.POST.get('emailaddress')
+        user_account.idAccountGroup = request.POST.get('idgroupaccount')
+        user_account.AGName = request.POST.get('groupname')
+        user_account.save()
+        user_account_data = {"error":True,"Message":"User Account has been Updated"}
+        return JsonResponse(user_account_data,safe=False)
+    except:
+        user_account_data = {"error":True,"Message":"Error Failed to Update User Account"}
+        return JsonResponse(user_account_data,safe=False)
+
+@csrf_exempt
 def user_account_deactivate(request):
     try:
         user_account = AccountUser.objects.get(idAccountUser=request.POST.get('id'))
@@ -38,6 +56,18 @@ def user_account_deactivate(request):
         return JsonResponse(user_account_data,safe=False)
     except:
         user_account_data = {"error":True,"Message":"Error Failed to Deactivated User Account"}
+        return JsonResponse(user_account_data,safe=False)
+
+@csrf_exempt
+def user_account_change_password(request):
+    try:
+        user_account = AccountUser.objects.get(idAccountUser=request.POST.get('id'))
+        user_account.AUPassword = idAccountUser=request.POST.get('newpassword')
+        user_account.save()
+        user_account_data = {"error":True,"Message":"User Account Password has been Updated"}
+        return JsonResponse(user_account_data,safe=False)
+    except:
+        user_account_data = {"error":True,"Message":"Error Failed to Update User Account Password"}
         return JsonResponse(user_account_data,safe=False)
 
 # Group
