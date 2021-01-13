@@ -183,6 +183,26 @@ $("#user-account-create").click(function(){
     }).done(function(response) {
         if (response["error"] == false) {
             console.log(response["Message"])
+
+            setTimeout(function() {
+                $('#prompt_confirmcreateuser').modal('hide')
+            }, 100);
+
+            setTimeout(function() {
+                $('#modal_createuser').modal('hide')
+
+                document.getElementById("username").value=""
+                document.getElementById("lastname").value=""
+                document.getElementById("firstname").value=""
+                document.getElementById("middlename").value=""
+                document.getElementById("emailaddress").value=""
+                document.getElementById("password").value=""
+                document.getElementById("verifypassword").value=""
+
+                $(".modal-fade").modal("hide")
+                $(".modal-backdrop").remove()
+            }, 300);
+
         } else {
             console.log(response["Message"])
         }
@@ -191,8 +211,39 @@ $("#user-account-create").click(function(){
 
 $(document).on("click", ".btn-user-account-deactivate", function() {
 
-    console.log($("#account-group").children(':selected').attr('id'))
-    console.log($("#account-group").find('option:selected').text())
+    var id = $(this).closest('tr').attr('id')
+    var username = $(this).closest('tr').find('.td-au-username').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(id)
+    $('#dialog-deactivation-title').text('Deactivating User Account. . . ')
+    $('#dialog-deactivation-description').text('You are about to deactivate ' + username + '. this action cannot be undone. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('btn-deactivate-UserAccount')
+
+    // console.log('user id: '+ $(this).closest('tr').attr("id"))
+    // console.log($(this).closest('tr').find('option:selected').attr('id'))
+    // console.log($(this).closest('tr').find('option:selected').text())
+})
+
+$(document).on("click", ".btn-deactivate-UserAccount", function() {
+    var id = $('#dialog-hidden-id').text()
+    $.ajax({
+        url: "user_account_deactivate",
+        type: "POST",
+        data: { id:id }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    // $('table#table_account_group tr#' + idAccountGroup).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
 })
 
 // Group
@@ -248,23 +299,23 @@ $(document).on("click", ".account-group-deactive", function() {
 })
 
 $(document).on("click", ".btn-deactivate-AccountGroup", function() {
-        var idAccountGroup = $('#dialog-hidden-id').text()
-        $.ajax({
-            url: "user_group_deactivate",
-            type: "POST",
-            data: { idAccountGroup: idAccountGroup }
-        }).done(function(response) {
-            if (response["error"] == false) {
-                console.log(response["Message"])
-            } else {
-                console.log(response["Message"])
-            }
-        })
-
-        $('table#table_account_group tr#' + idAccountGroup).closest('tr').remove()
-        $(".modal-fade").modal("hide")
-        $(".modal-backdrop").remove()
+    var idAccountGroup = $('#dialog-hidden-id').text()
+    $.ajax({
+        url: "user_group_deactivate",
+        type: "POST",
+        data: { idAccountGroup: idAccountGroup }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
     })
+
+    $('table#table_account_group tr#' + idAccountGroup).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
     // * * * * * User Page Eventlistener * * * * *
     // ~ ~ ~ ~ ~ Area Page Eventlistener ~ ~ ~ ~ ~
 $(".btn-add-area").click(function() {

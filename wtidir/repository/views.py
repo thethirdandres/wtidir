@@ -30,21 +30,26 @@ def user_account_add(request):
 
 @csrf_exempt
 def user_account_deactivate(request):
-    print()
-    return HttpResponse('')
+    try:
+        user_account = AccountUser.objects.get(idAccountUser=request.POST.get('id'))
+        user_account.Status = 0
+        user_account.save()
+        user_account_data = {"error":True,"Message":"User Account has been Deactivated"}
+        return JsonResponse(user_account_data,safe=False)
+    except:
+        user_account_data = {"error":True,"Message":"Error Failed to Deactivated User Account"}
+        return JsonResponse(user_account_data,safe=False)
 
 # Group
 @csrf_exempt
 def user_group_add(request):
     try:
         AG = AccountGroup(AGName=request.POST.get('AGName'))
-        AG.save() #<- Insert Data to mysql
+        AG.save() 
         AG_data = {"idAccountGroup":AG.idAccountGroup, "AGName":AG.AGName, "error":False,"Message":"Account Group has been Added Successfully"}
-        # ^- Data to be returned after Inserting Successfully (JSON Format)
         return JsonResponse(AG_data,safe=False)
     except:
         AG_data = {"error":True,"Message":"Error Failed to Added Account Group"}
-        # ^- Data to be returned after Inserting Failed (JSON Format)
         return JsonResponse(AG_data,safe=False)
 
 @csrf_exempt
