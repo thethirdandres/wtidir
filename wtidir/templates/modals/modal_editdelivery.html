@@ -1,8 +1,13 @@
-<div class="modal-content">
+<div class="modal-content reset-fields-here">
     <div class="modal-header sheets-addnewdelivery-modal-header">
         <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">EDIT DELIVERY</h5>
         <div>
-            <button class="button-red confirm-all-modal done-edit-new-delivery button-disable" data-toggle="modal" data-target="#prompt_doneaddnewdelivery" disabled="true">SAVE CHANGES</button>
+            <button class="button-red confirm-all-modal done-edit-new-delivery button-disable reset-fields" data-toggle="modal" data-target="#prompt_doneeditdelivery" disabled="true">SAVE CHANGES</button>
+            <div class="modal fade close-all-modal" id="prompt_doneeditdelivery" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    
+                    {% include '../prompts/prompt_doneeditdelivery.html' %}
+                </div>
+            </div>
             <button class="button-red" data-toggle="modal" data-target="#prompt_doneaddnewdelivery">MAP</button>
             <button class="button-white cancel-edit-new-delivery" data-dismiss="modal">CANCEL</button>
             <div class="modal fade close-all-modal" id="prompt_doneaddnewdelivery" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewdeliverylabel" aria-hidden="true">

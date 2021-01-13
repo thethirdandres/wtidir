@@ -34,7 +34,12 @@
                 <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
                 <td class="d-flex">
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button in-branch"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneeditdevice" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                    <div class="modal fade close-all-modal" id="prompt_doneeditdevice" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditdevicelabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">    
+                            {% include '../prompts/prompt_doneeditdevice.html' %}
+                        </div>
+                    </div>
                     <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
                     <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
                 </td>

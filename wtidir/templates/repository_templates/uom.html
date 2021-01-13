@@ -24,7 +24,12 @@
             <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
             <td>
                 <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none ">
+                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneedituom" class="repository-edit-gray-button d-none ">
+                <div class="modal fade close-all-modal" id="prompt_doneedituom" tabindex="-1" role="dialog" aria-labelledby="prompt_doneedituomlabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">    
+                        {% include '../prompts/prompt_doneedituom.html' %}
+                    </div>
+                </div>
                 <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
             </td>
         </tr>

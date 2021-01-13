@@ -1,24 +1,14 @@
 $(document).ready(function() {
     // For Branch (Repository)
-    if ($(this).hasClass('in-branch')) {
-        document.getElementById("repo-edit-quota-button").style.display === "block" ? document.getElementById("repo-edit-quota-button").style.display = "none" : document.getElementById("repo-edit-quota-button").style.display = "block";
-    }
+    // if ($(this).hasClass('in-branch')) {
+    //     $(".repo-edit-quota-button").style.display === "block" ? document.getElementById("repo-edit-quota-button").style.display = "none" : document.getElementById("repo-edit-quota-button").style.display = "block";
+    // }
 
     $('.confirm-all-modal').click(function() {
         setTimeout(function() {
             $('.close-all-modal').modal('hide');
         }, 1200);
     })
-
-
-    // $(".selectarea-checkbox-list").find("input[type=checkbox]").click(function() {
-    //     if ($(this).is(':checked')) {
-    //         // alert("hahaha");
-    //         $('.selectarea-select-button').attr('disabled', false).removeClass('button-disable');
-    //     } else {
-    //         $('.selectarea-select-button').attr('disabled', true).addClass('button-disable');
-    //     }
-    // })
 
     var checkBoxes = $('.selectarea-checkbox-list').find('input[type=checkbox]');
     checkBoxes.change(function() {
@@ -38,14 +28,19 @@ $(document).on("click", ".repository-edit-button", function() {
     $.each(currentTD, function() {
         $(this).children('input').attr('readonly', false);
         $(this).children('select').attr('disabled', false);
+        // // For Branch (Repository)
+        // if ($(this).parents('tr').find('.repository-edit-button').hasClass('in-branch')) {
+        //     $(this).parents('tr').find('.repo-edit-quota-button').removeClass('d-none');
+        // }
     });
     $(this).addClass('d-none');
     $(this).parents('a').next().removeClass('d-none');
 
     // For Branch (Repository)
     if ($(this).hasClass('in-branch')) {
-        $(".repo-edit-quota-button").removeClass('d-none');
+        $(this).parents().siblings(".repo-edit-quota-button").removeClass('d-none');
     }
+
 })
 
 $(document).on("click", ".repository-edit-gray-button", function() {
@@ -53,13 +48,14 @@ $(document).on("click", ".repository-edit-gray-button", function() {
     $.each(currentTD, function() {
         $(this).children('input').attr('readonly', true);
         $(this).children('select').attr('disabled', true);
+
     })
     $(this).addClass('d-none');
     $(this).prev().children('img').removeClass('d-none');
 
     // For Branch (Repository)
     if ($(this).hasClass('in-branch')) {
-        $(".repo-edit-quota-button").addClass('d-none');
+        $(this).siblings('#repo-edit-quota-button').addClass('d-none');
     }
 });
 
@@ -109,44 +105,46 @@ $('.repository-user-tab').click(function() {
 // ~ ~ ~ ~ ~ User Page Eventlistener ~ ~ ~ ~ ~
 
 //User Account
-$("#btn-open-createuser-modal").click(function(){
+$("#btn-open-createuser-modal").click(function() {
 
     $('#account-group').empty()
     $('#area-list').empty()
 
     $.ajax({
-        url:"user_group_list",
-        type:"GET"
-    }).done(function(response){
+        url: "user_group_list",
+        type: "GET"
+    }).done(function(response) {
         response['AccountGroups'].forEach(account_group)
         response['areas'].forEach(areas)
-        function account_group(item){
+
+        function account_group(item) {
             $('#account-group').append($('<option></option>').val(item['idAccountGroup']).html(item['AGName']))
         }
-        function areas(item){
-            var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' value='"+item['AName']+"'>"+item['AName']+"</label></li>"
-            // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
+
+        function areas(item) {
+            var html_data = "<li><label for='cb" + item['AName'] + "'><input type='checkbox' class='form-check-input' id='" + item['idArea'] + "' value='" + item['AName'] + "'>" + item['AName'] + "</label></li>"
+                // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
             $('#area-list').append(html_data)
         }
     })
 })
 
-$('#create-account-prompt-cancel').click(function(){
+$('#create-account-prompt-cancel').click(function() {
     $('#prompt_confirmcreateuser').modal('hide')
 })
 
-$("#user-account-create").click(function(){
-    var username=$("#username").val()
-    var lastname=$("#lastname").val()
-    var firstname=$("#firstname").val()
-    var middlename=$("#middlename").val()
-    var emailaddress=$("#emailaddress").val()
-    var password=$("#password").val()
-    var verifypassword=$("#verifypassword").val()
-    var idgroup=$("#account-group").children(':selected').attr('value')
-    var group=$("#account-group").find('option:selected').text()
-    var idarea=$("#area").find(':selected').attr('value')
-    var area=$("#area").find('option:selected').text()
+$("#user-account-create").click(function() {
+    var username = $("#username").val()
+    var lastname = $("#lastname").val()
+    var firstname = $("#firstname").val()
+    var middlename = $("#middlename").val()
+    var emailaddress = $("#emailaddress").val()
+    var password = $("#password").val()
+    var verifypassword = $("#verifypassword").val()
+    var idgroup = $("#account-group").children(':selected').attr('value')
+    var group = $("#account-group").find('option:selected').text()
+    var idarea = $("#area").find(':selected').attr('value')
+    var area = $("#area").find('option:selected').text()
 
     console.log(username)
     console.log(lastname)
@@ -339,7 +337,43 @@ $(document).on("click", ".btn-area-update", function() {
     // * * * * * Area Page Eventlistener * * * * *
     // ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
 $("#btn-branch-add").click(function() {
+    var BName = $('#branch-name').val()
+    var AName = $('#branch-area').val()
+    var TICName = $('#branch-template').val()
+    var TPBName = $('#branch-BOM').val()
+    var BSAPCode = $('#branch-sapcode').val()
+    var BType = $('#branch-type').val()
+    var BDescription = $('#branch-desc').val()
+
+    if (BName == "") {
+        alert("Branch Name is needed.")
+        return;
+    } else if (AName == null) {
+        alert("Area is needed.")
+        return;
+    } else if (TICName == null) {
+        alert("Template is needed.")
+        return;
+    } else if (TPBName == null) {
+        alert("BOM is needed.")
+        return;
+    } else if (BType == null) {
+        alert("Type is needed.")
+        return;
+    } else {
+        $.ajax({
+            url: "branch_add",
+            type: "POST",
+            data: { BName: BName }
+        })
+    }
+})
+
+// * * * * * Area Page Eventlistener * * * * *
+// ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-branch-add").click(function() {
         var BName = $('#branch-name').val()
+        var idArea = $("#branch-area option:selected").attr("id")
         var AName = $('#branch-area').val()
         var TICName = $('#branch-template').val()
         var TPBName = $('#branch-BOM').val()
@@ -366,50 +400,14 @@ $("#btn-branch-add").click(function() {
             $.ajax({
                 url: "branch_add",
                 type: "POST",
-                data: { BName: BName }
+                data: { BName: BName, idArea: idArea, AName: AName, TICName: TICName, TPBName: TPBName, BSAPCode: BSAPCode, BType: BType, BDescription: BDescription }
+            }).done(function(response) {
+                if (response["error"] == false) {
+                    console.log(response["Message"])
+                } else {
+                    console.log(response["Message"])
+                }
             })
         }
     })
-    
-// * * * * * Area Page Eventlistener * * * * *
-// ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
-$("#btn-branch-add").click(function(){
-    var BName = $('#branch-name').val()
-    var idArea = $("#branch-area option:selected").attr("id")
-    var AName  = $('#branch-area').val()
-    var TICName = $('#branch-template').val()
-    var TPBName  = $('#branch-BOM').val()
-    var BSAPCode   = $('#branch-sapcode').val()
-    var BType = $('#branch-type').val()
-    var BDescription = $('#branch-desc').val()
-
-    if (BName == "") {
-        alert("Branch Name is needed.")
-        return;
-    } else if (AName == null) {
-        alert("Area is needed.")
-        return;
-    } else if (TICName == null) {
-        alert("Template is needed.")
-        return;
-    } else if (TPBName == null) {
-        alert("BOM is needed.")
-        return;
-    } else if (BType == null) {
-        alert("Type is needed.")
-        return;
-    } else {
-        $.ajax({
-            url:"branch_add",
-            type:"POST",
-            data:{BName:BName, idArea:idArea, AName:AName, TICName:TICName, TPBName:TPBName, BSAPCode:BSAPCode, BType:BType, BDescription:BDescription}
-        }).done(function(response){
-            if(response["error"]==false){
-                console.log(response["Message"])      
-            }else{
-                console.log(response["Message"]) 
-            }
-        })
-    }
-})
-// * * * * * Branch Page Eventlistener * * * * *
+    // * * * * * Branch Page Eventlistener * * * * *

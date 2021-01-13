@@ -65,7 +65,7 @@ $(document).ready(function() {
         $(this).parents('.content').find('.dc-edit').addClass('d-none');
     })
 
-    $('.sheets-edit-delivery-inputs').find('input').change(function() {
+    $('.sheets-edit-delivery-inputs').find("input, select").change(function() {
         $(this).parents('.modal-content').find('.done-edit-new-delivery').removeClass('button-disable').removeAttr('disabled');
     });
 
