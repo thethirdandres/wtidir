@@ -20,18 +20,29 @@ $(document).ready(function() {
     //     }
     // })
 
-    var checkBoxes = $('.selectarea-checkbox-list').find('input[type=checkbox]');
-    checkBoxes.change(function() {
-        $('.selectarea-select-button').prop('disabled', checkBoxes.filter(':checked').length < 1);
-        if (checkBoxes.filter(':checked').length > 0) {
-            $('.selectarea-select-button').removeClass('button-disable');
-        } else {
-            $('.selectarea-select-button').addClass('button-disable');
-        }
-    });
-    checkBoxes.change(); // or add disabled="true" in the HTML
+    // var checkBoxes = $('.selectarea-checkbox-list').find('input[type=checkbox]');
+    // checkBoxes.change(function() {
+    //     $('.selectarea-select-button').prop('disabled', checkBoxes.filter(':checked').length < 1);
+    //     if (checkBoxes.filter(':checked').length > 0) {
+    //         $('.selectarea-select-button').removeClass('button-disable');
+    //     } else {
+    //         $('.selectarea-select-button').addClass('button-disable');
+    //     }
+    // });
+    // checkBoxes.change(); // or add disabled="true" in the HTML
 
 });
+
+$(document).on("click", ".selectarea-checkbox-list", function(){
+    var checkBoxes = $(this).find('input[type=checkbox]')
+
+    $('.selectarea-select-button').prop('disabled', checkBoxes.filter(':checked').length < 1)
+    if (checkBoxes.filter(':checked').length > 0) {
+        $('.selectarea-select-button').removeClass('button-disable')
+    } else {
+        $('.selectarea-select-button').addClass('button-disable')
+    }
+})
 
 $(document).on("click", ".repository-edit-button", function() {
     var currentTD = $(this).parents('tr').find('td:not(:last-child)');
@@ -155,6 +166,9 @@ $(document).on("click", ".btn-user-account-update", function(){
 })
 
 $(document).on("click", ".btn-user-select-area", function(){
+    var id = $(this).closest('tr').attr('id')
+    $('#user-hidden-id').text(id)
+
     $('#area-list').empty()
 
     $.ajax({
@@ -163,10 +177,47 @@ $(document).on("click", ".btn-user-select-area", function(){
     }).done(function(response){
         response['areas'].forEach(areas)
         function areas(item){
-        var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' value='"+item['AName']+"'>"+item['AName']+"</label></li>"
-        // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
-        $('#area-list').append(html_data)
-    }
+            var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' name='cb' value='"+item['AName']+"'>"+item['AName']+"</label></li>"
+            // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
+            $('#area-list').append(html_data)
+        }
+    })
+})
+
+$('#btn-user-account-area-submit').click(function(){
+    var id = $('#user-hidden-id').text()
+    
+    $("input[type=checkbox]:checked").each(function(){
+        $.ajax({
+            url: "user_account_area",
+            type: "POST",
+            data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val()}
+        }).done(function(response) {
+            if (response["error"] == false) {
+                console.log(response["Message"])
+                // setTimeout(function() {
+                //     $('#prompt_confirmcreateuser').modal('hide')
+                // }, 100);
+    
+                // setTimeout(function() {
+                //     $('#modal_createuser').modal('hide')
+    
+                //     document.getElementById("username").value=""
+                //     document.getElementById("lastname").value=""
+                //     document.getElementById("firstname").value=""
+                //     document.getElementById("middlename").value=""
+                //     document.getElementById("emailaddress").value=""
+                //     document.getElementById("password").value=""
+                //     document.getElementById("verifypassword").value=""
+    
+                //     $(".modal-fade").modal("hide")
+                //     $(".modal-backdrop").remove()
+                // }, 300);
+    
+            } else {
+                console.log(response["Message"])
+            }
+        })
     })
 })
 

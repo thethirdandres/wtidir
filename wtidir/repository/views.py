@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Area, Branch, AccountGroup, AccountUser
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -69,6 +69,19 @@ def user_account_change_password(request):
     except:
         user_account_data = {"error":True,"Message":"Error Failed to Update User Account Password"}
         return JsonResponse(user_account_data,safe=False)
+
+@csrf_exempt
+def user_account_area(request):
+    try:
+        user_account_area = AccountUserArea(idAccountUser=request.POST.get('iduser'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'))
+        user_account_area.save() #<- Insert Data to mysql
+        user_account_area_data = {"error":False,"Message":"User Account Access has been Updated"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(user_account_area_data,safe=False)
+    except (e):
+        user_account_area_data = {"error":True,"Message":"Error Failed to Update User Account Area"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(user_account_area_data,safe=False)
 
 # Group
 @csrf_exempt
