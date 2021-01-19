@@ -71,16 +71,20 @@ def user_account_change_password(request):
         return JsonResponse(user_account_data,safe=False)
 
 @csrf_exempt
+def user_account_area_access_init(request):
+    useraccess = AccountUserArea.objects.filter(idAccountUser=request.POST.get('iduser')).values()
+    areas = Area.objects.filter(Status=1).values()
+    return JsonResponse({"useraccounts":list(useraccess), "areas":list(areas)}, safe=False)
+
+@csrf_exempt
 def user_account_area(request):
     try:
         user_account_area = AccountUserArea(idAccountUser=request.POST.get('iduser'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'))
-        user_account_area.save() #<- Insert Data to mysql
+        user_account_area.save()
         user_account_area_data = {"error":False,"Message":"User Account Access has been Updated"}
-        # ^- Data to be returned after Inserting Successfully (JSON Format)
         return JsonResponse(user_account_area_data,safe=False)
-    except (e):
+    except:
         user_account_area_data = {"error":True,"Message":"Error Failed to Update User Account Area"}
-        # ^- Data to be returned after Inserting Failed (JSON Format)
         return JsonResponse(user_account_area_data,safe=False)
 
 # Group

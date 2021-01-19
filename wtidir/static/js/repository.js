@@ -172,16 +172,41 @@ $(document).on("click", ".btn-user-select-area", function(){
     $('#area-list').empty()
 
     $.ajax({
-        url:"user_group_list",
-        type:"GET"
+        url:"user_account_area_access_init",
+        type:"POST",
+        data:{iduser:id}
     }).done(function(response){
-        response['areas'].forEach(areas)
-        function areas(item){
-            var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' name='cb' value='"+item['AName']+"'>"+item['AName']+"</label></li>"
-            // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
+        response['areas'].forEach(function(area){
+            var html_data="<li><label for='cb"+area['AName']+"'><input type='checkbox' class='form-check-input "+area['idArea']+"' id='"+area['idArea']+"' name='cb' value='"+area['AName']+"'>"+area['AName']+"</label></li>"
             $('#area-list').append(html_data)
+        })
+
+        $("input[type=checkbox]").each(function(){
+            user_area_access($(this).attr('id'))           
+        })
+
+        function user_area_access(idArea){
+            response['useraccounts'].forEach(function(useraccess){
+
+                if (idArea ==  useraccess['idArea']) {
+                    console.log('area id: '+useraccess['idArea'])
+                    $("." + useraccess['idArea']).prop('checked', true)
+                }
+            })
         }
     })
+
+    // $.ajax({
+    //     url:"user_group_list",
+    //     type:"GET"
+    // }).done(function(response){
+    //     response['areas'].forEach(areas)
+    //     function areas(item){
+    //         var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' name='cb' value='"+item['AName']+"' checked>"+item['AName']+"</label></li>"
+    //         // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
+    //         $('#area-list').append(html_data)
+    //     }
+    // })
 })
 
 $('#btn-user-account-area-submit').click(function(){
