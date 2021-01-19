@@ -8,7 +8,12 @@
                     {% include '../prompts/prompt_doneeditdelivery.html' %}
                 </div>
             </div>
-            <button class="button-red" data-toggle="modal" data-target="#prompt_doneaddnewdelivery">MAP</button>
+            <button class="button-red" data-toggle="modal" data-target="#modal_mapeditdelivery">MAP</button>
+            <div class="modal fade close-all-modal" id="modal_mapeditdelivery" tabindex="-1" role="dialog" aria-labelledby="modal_mapeditdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    
+                    {% include '../modals/modal_mapeditdelivery.html' %}
+                </div>
+            </div>
             <button class="button-white cancel-edit-new-delivery" data-dismiss="modal">CANCEL</button>
             <div class="modal fade close-all-modal" id="prompt_doneaddnewdelivery" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewdeliverylabel" aria-hidden="true">
                 <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    

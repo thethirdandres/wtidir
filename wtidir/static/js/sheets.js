@@ -58,6 +58,7 @@ $(document).ready(function() {
             $(this).parents('.content').find('.delivery-list-card').removeClass('button-disable');
             $(this).parents('.content').find('.delivery-list-card').parents().next().addClass('d-none');
         }, 1500);
+        $(this).addClass('button-disable').attr("disabled", true);
     })
 
     $('.cancel-edit-new-delivery').click(function() {

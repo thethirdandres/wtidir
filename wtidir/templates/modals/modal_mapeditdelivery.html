@@ -1,0 +1,34 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title roboto-16 text-white mx-auto">MAP DELIVERY [75682]</h5>
+    </div>
+    <div class="modal-body pl-5">
+        <div class="d-flex">
+            <div class="d-flex flex-column mt-3">
+                <label for="branchfrom">From Branch:</label>
+                <input class="input-width" type="text" name="branchfrom" id="branchfrom">
+            </div>
+            <div class="d-flex flex-column mt-3 ml-5">
+                <label for="toinventorysheet">To Inventory Sheet:</label>
+                <select class="input-width" name="toinventorysheet" id="toinventorysheet">
+                    <option disabled selected>Choose</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex flex-column mt-3">
+            <label for="branchto">To Branch:</label>
+            <input class="input-width " type="text" name="branchto" id="branchto">
+        </div>
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <button type="button" class="btn button-red mr-2 confirm-all-modal" data-toggle="modal" data-target="#prompt_donemapping">SAVE</button>
+        <button type="button" class="btn button-white" data-dismiss="modal">CANCEL</button>
+        <div class="modal fade close-all-modal" id="prompt_donemapping" tabindex="-1" role="dialog" aria-labelledby="prompt_donemappinglabel" aria-hidden="true">
+            <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                {% include '../prompts/prompt_donemapping.html' %}
+            </div>
+        </div>
+    </div>
+</div>
