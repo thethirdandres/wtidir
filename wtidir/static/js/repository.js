@@ -189,8 +189,10 @@ $(document).on("click", ".btn-user-select-area", function(){
             response['useraccounts'].forEach(function(useraccess){
 
                 if (idArea ==  useraccess['idArea']) {
-                    console.log('area id: '+useraccess['idArea'])
-                    $("." + useraccess['idArea']).prop('checked', true)
+                    console.log('area id: '+useraccess['Status'])
+                    if (useraccess['Status']) {
+                        $("." + useraccess['idArea']).prop('checked', true)
+                    }
                 }
             })
         }
@@ -211,39 +213,53 @@ $(document).on("click", ".btn-user-select-area", function(){
 
 $('#btn-user-account-area-submit').click(function(){
     var id = $('#user-hidden-id').text()
-    
-    $("input[type=checkbox]:checked").each(function(){
-        $.ajax({
-            url: "user_account_area",
-            type: "POST",
-            data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val()}
-        }).done(function(response) {
-            if (response["error"] == false) {
-                console.log(response["Message"])
-                // setTimeout(function() {
-                //     $('#prompt_confirmcreateuser').modal('hide')
-                // }, 100);
-    
-                // setTimeout(function() {
-                //     $('#modal_createuser').modal('hide')
-    
-                //     document.getElementById("username").value=""
-                //     document.getElementById("lastname").value=""
-                //     document.getElementById("firstname").value=""
-                //     document.getElementById("middlename").value=""
-                //     document.getElementById("emailaddress").value=""
-                //     document.getElementById("password").value=""
-                //     document.getElementById("verifypassword").value=""
-    
-                //     $(".modal-fade").modal("hide")
-                //     $(".modal-backdrop").remove()
-                // }, 300);
-    
-            } else {
-                console.log(response["Message"])
-            }
-        })
+
+    $("input[type=checkbox]").each(function(){
+
+        if ($('.' + $(this).attr('id')).is(":checked")) {
+            $.ajax({
+                url: "user_account_area",
+                type: "POST",
+                data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val(), status:1}
+            }).done(function(response) {
+                if (response["error"] == false) {
+                    console.log(response["Message"])
+        
+                } else {
+                    console.log(response["Message"])
+                }
+            })
+        }else{
+            $.ajax({
+                url: "user_account_area",
+                type: "POST",
+                data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val(), status:0}
+            }).done(function(response) {
+                if (response["error"] == false) {
+                    console.log(response["Message"])
+        
+                } else {
+                    console.log(response["Message"])
+                }
+            })
+        }
+        
     })
+    
+    // $("input[type=checkbox]:checked").each(function(){
+    //     $.ajax({
+    //         url: "user_account_area",
+    //         type: "POST",
+    //         data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val()}
+    //     }).done(function(response) {
+    //         if (response["error"] == false) {
+    //             console.log(response["Message"])
+    
+    //         } else {
+    //             console.log(response["Message"])
+    //         }
+    //     })
+    // })
 })
 
 $('#btn-change-pass-auth').click(function(){

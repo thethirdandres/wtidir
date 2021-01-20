@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 
 from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea
 
@@ -78,14 +79,35 @@ def user_account_area_access_init(request):
 
 @csrf_exempt
 def user_account_area(request):
-    try:
-        user_account_area = AccountUserArea(idAccountUser=request.POST.get('iduser'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'))
-        user_account_area.save()
-        user_account_area_data = {"error":False,"Message":"User Account Access has been Updated"}
+    # try:
+        user_account_area_data = {"error":False,"Message":"Default"}
+        useraccess = AccountUserArea.objects.filter(idAccountUser=request.POST.get('iduser')).values()
+        useraccesscount = AccountUserArea.objects.filter(idAccountUser=request.POST.get('iduser')).count()
+        
+        if useraccesscount > 0: #Check if user access list is empty or not
+            for item in useraccess:
+                if str(item['idArea']) == request.POST.get('idarea'):
+                    user_account_area = AccountUserArea.objects.get(Q(idAccountUser=request.POST.get('iduser')), Q(idArea=request.POST.get('idarea')))
+                    if request.POST.get('status') == '1':
+                        user_account_area.Status=1
+                    else:
+                        user_account_area.Status=0
+                    user_account_area.save()
+                    user_account_area_data = {"error":False,"Message":"User Account Access has been Updated"}                            
+                else:
+                    if request.POST.get('status') == '1':          
+                        user_account_area = AccountUserArea(idAccountUser=request.POST.get('iduser'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'))
+                        user_account_area.save()
+                        user_account_area_data = {"error":False,"Message":"User Account Access has been Added"}
+        else:
+            if request.POST.get('status') == '1':
+                user_account_area = AccountUserArea(idAccountUser=request.POST.get('iduser'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'))
+                user_account_area.save()
+                user_account_area_data = {"error":False,"Message":"User Account Access has been Added"}
         return JsonResponse(user_account_area_data,safe=False)
-    except:
-        user_account_area_data = {"error":True,"Message":"Error Failed to Update User Account Area"}
-        return JsonResponse(user_account_area_data,safe=False)
+    # except:
+    #     user_account_area_data = {"error":True,"Message":"Error Failed to Update User Account Access"}
+    #     return JsonResponse(user_account_area_data,safe=False)
 
 # Group
 @csrf_exempt
