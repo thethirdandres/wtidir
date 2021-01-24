@@ -67,6 +67,7 @@ $('.confirm-all-modal').click(function() {
         var alert = $(this).parents(".content").find(".alert_confirmcreateuser");
         alert.removeClass("d-none");
 
+            if($(this)) {}; //remove if not used;
         setTimeout(function() {
             alert.addClass("d-none");
         }, 3000);

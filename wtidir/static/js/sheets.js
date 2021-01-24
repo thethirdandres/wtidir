@@ -14,7 +14,7 @@ $(document).ready(function() {
 
         // itemCell.innerHTML = "BBQ Sauce";
         // quantityCell.innerHTML = "5000";
-        // unitCell.innerHTML = "bot";
+        // unitCell.innerHTML = "bot";   
     });
 
     $('.add-new-delivery-button').click(function() {
