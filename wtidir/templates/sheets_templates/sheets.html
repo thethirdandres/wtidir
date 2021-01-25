@@ -26,20 +26,17 @@
         <li class="nav-item sheets-nav-item" role="presentation">
             <a class="nav-link sheets-nav-link" id="pills-pettycash-tab" href="{% url 'sheets:pettycash_view' %}" role="tab" aria-controls="pills-pettycash" aria-selected="false">Petty Cash</a>
         </li>
-        <li class="nav-item sheets-nav-item" role="presentation">
-            <a class="nav-link sheets-nav-link sheets-dropdown-button" id="pills-reports-tab">
+        <li class="nav-item sheets-nav-item sheets-dropdown dropdown show" role="presentation">
+            <a class="nav-link sheets-nav-link sheets-dropdown-button dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Reports 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                </svg>
-                <div class="sheets-dropdown-container">
-                    <div class="roboto-12" href="#">Product Mix</div>
-                    <div class="roboto-12" href="#">Sales Report</div>
-                    <div class="roboto-12" href="#">Crew Shortages</div>
-                    <div class="roboto-12" href="#">Crew Incentives</div>
-                    <div class="roboto-12" href="#">FOM Incentives</div>
-                </div>
             </a>
+            <div class="sheets-dropdown-container dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">Product Mix</a>
+                <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">Sales Report</a>
+                <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">Crew Shortages</a>
+                <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">Crew Incentives</a>
+                <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">FOM Incentives</a>
+            </div>
         </li>
     </ul>
     <div class="tab-content p-2" id="pills-tabContent">

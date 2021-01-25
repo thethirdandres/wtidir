@@ -74,4 +74,9 @@ $(document).ready(function() {
         // $(this).parents('.modal-header').next().find("input[type=text], textarea, select").val("");
         $(this).parents(".reset-fields-here").find("input[type=text], textarea, select").val("");
     });
+
+    $(".sheets-dropdown-button").click(function() {
+        $(".sheets-dropdown-container").css('display', 'block');
+        $(".sheets-dropdown-item").css('display', 'block');
+    });
 });
