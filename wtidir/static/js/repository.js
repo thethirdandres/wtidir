@@ -383,11 +383,14 @@ $("#user-account-create").click(function(){
         if (response["error"] == false) {
             console.log(response["Message"])
 
+            var html_data = " <tr id='"+response['idAccountUser']+"'><td><input type='text' class='form-control td-au-lastname' value='"+response['AULastName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUFirstName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUMiddleName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUUserName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUEmail']+"' readonly /></td></tr>"
+            $(html_data).prependTo("#table-user-account> tbody")
+
             setTimeout(function() {
                 $('#prompt_confirmcreateuser').modal('hide')
             }, 100);
 
-            setTimeout(function() {
+            setTimeout(function() { 
                 $('#modal_createuser').modal('hide')
 
                 document.getElementById("username").value=""
