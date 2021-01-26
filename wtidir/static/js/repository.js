@@ -142,6 +142,32 @@ $("#btn-open-createuser-modal").click(function(){
     })
 })
 
+$(document).on("click",".load-account-group", function(){
+    var idgroupaccount = $(this).closest('tr').find('.account-group-new-add-html').children(':selected').attr('id')
+    var groupname = $(this).closest('tr').find('.account-group-new-add-html').find('option:selected').text()
+    console.log(idgroupaccount)
+    $('.account-group-new-add-html').empty()
+
+    var html_data="<option selected selected id='"+idgroupaccount+"'>"+groupname+"</option>"
+    $('.account-group-new-add-html').append(html_data)
+
+    $.ajax({
+        url:"user_group_list",
+        type:"GET"
+    }).done(function(response){
+        response['AccountGroups'].forEach(account_group)
+        function account_group(item){
+
+            if (idgroupaccount != item['idAccountGroup']) {
+                var html_data="<option selected id='"+item['idAccountGroup']+"'>"+item['AGName']+"</option>"        
+               $('.account-group-new-add-html').append(html_data)
+            }
+
+        }
+    })
+
+})
+
 $(document).on("click", ".btn-user-account-update", function(){
     var id = $(this).closest('tr').attr('id')
     var lastname = $(this).closest('tr').find('.td-au-lastname').val()
@@ -189,7 +215,7 @@ $(document).on("click", ".btn-user-select-area", function(){
             response['useraccounts'].forEach(function(useraccess){
 
                 if (idArea ==  useraccess['idArea']) {
-                    console.log('area id: '+useraccess['Status'])
+                    // console.log('area id: '+useraccess['Status'])
                     if (useraccess['Status']) {
                         $("." + useraccess['idArea']).prop('checked', true)
                     }
@@ -245,21 +271,16 @@ $('#btn-user-account-area-submit').click(function(){
         }
         
     })
-    
-    // $("input[type=checkbox]:checked").each(function(){
-    //     $.ajax({
-    //         url: "user_account_area",
-    //         type: "POST",
-    //         data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val()}
-    //     }).done(function(response) {
-    //         if (response["error"] == false) {
-    //             console.log(response["Message"])
-    
-    //         } else {
-    //             console.log(response["Message"])
-    //         }
-    //     })
-    // })
+
+    $('#prompt_doneselectarea').modal('show')
+
+    setTimeout(function() {
+        $('#prompt_doneselectarea').modal('hide')
+    }, 1000);
+
+    setTimeout(function() {
+        $('#modal_selectarea').modal('hide')
+    }, 1200);
 })
 
 $('#btn-change-pass-auth').click(function(){
@@ -307,11 +328,11 @@ $('#btn-change-pass').click(function(){
 
     setTimeout(function() {
         $('#prompt_donechangepassword').modal('hide')
-    }, 2000);
+    }, 1000);
     
     setTimeout(function() {
         $('#prompt_confirmchangepassword').modal('hide')
-    }, 2100);
+    }, 1200);
 
     setTimeout(function() {
         $('#modal_changepassword').modal('hide')
@@ -383,7 +404,7 @@ $("#user-account-create").click(function(){
         if (response["error"] == false) {
             console.log(response["Message"])
 
-            var html_data = " <tr id='"+response['idAccountUser']+"'><td><input type='text' class='form-control td-au-lastname' value='"+response['AULastName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUFirstName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUMiddleName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUUserName']+"' readonly /></td><td><input type='text' class='form-control td-au-lastname' value='"+response['AUEmail']+"' readonly /></td></tr>"
+            var html_data = " <tr id='"+response['idAccountUser']+"'><td><input type='text' class='form-control td-au-lastname' value='"+response['AULastName']+"' readonly /></td><td><input type='text' class='form-control td-au-firstname' value='"+response['AUFirstName']+"' readonly /></td><td><input type='text' class='form-control td-au-middlename' value='"+response['AUMiddleName']+"' readonly /></td><td><input type='text' class='form-control td-au-username' value='"+response['AUUserName']+"' readonly /></td><td><input type='text' class='form-control td-au-emailaddress' value='"+response['AUEmail']+"' readonly /></td><td><select class='form-control user-html-account-group account-group-new-add-html' disabled><option selected disabled id='"+response['idAccountGroup']+"'>"+response['AGName']+"</option></select></td><td><input type='text' class='form-control td-au-status' value='Active' disabled/></td><td class='d-flex td-au-actions'> <a class='mr-2' data-toggle='modal' data-target='#modal_selectarea'><img src='../../static/img/repository-icons/selectarea.png' data-toggle='tooltip' data-placement='top' title='Select Area' class='btn-user-select-area'></a><a class='mr-2' data-toggle='modal' data-target='#modal_changepassword'><img src='../../static/img/repository-icons/changepassword.png' data-toggle='tooltip' data-placement='top' title='Change Password' class='btn-user-change-pass-init'></a><a class=''><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button load-account-group'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png'  data-toggle='modal' data-target='#prompt_doneedituser' class='repository-edit-gray-button d-none btn-user-account-update'><a><img src='../../static/img/repository-icons/deactivate.png' data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-user-account-deactivate'></a></td></tr>"
             $(html_data).prependTo("#table-user-account> tbody")
 
             setTimeout(function() {
