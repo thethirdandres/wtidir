@@ -226,3 +226,17 @@
     width: 55%;
     font: 12px normal Roboto, sans-serif;
 }
+
+
+/* REPORTS_PRODUCTMIX */
+
+.rpm-filter {
+    background-color: rgba(187, 187, 187, 0.282);
+    border-top: 1px solid rgb(182, 182, 182);
+    border-bottom: 1px solid rgb(182, 182, 182);
+    height: 3rem;
+}
+
+.report-productmix table .font-weight-bold {
+    margin-left: -1rem !important;
+}

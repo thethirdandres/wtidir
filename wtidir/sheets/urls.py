@@ -17,4 +17,7 @@ urlpatterns = [
     path('_damagereturn', views._damagereturn_view, name='_damagereturn_view'),
     path('_invoice', views._invoice_view, name='_invoice_view'),
     path('_pettycash', views._pettycash_view, name='_pettycash_view'),
+
+    path('reports_productmix', views.reports_productmix_view, name='reports_productmix'),
+
 ]

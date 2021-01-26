@@ -37,3 +37,7 @@ def _invoice_view(request):
 
 def _pettycash_view(request):
     return render(request, 'sheets_templates/_pettycash_.html')
+
+    
+def reports_productmix_view(request):
+    return render(request, 'sheets_templates/reports_productmix.html')
