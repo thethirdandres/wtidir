@@ -1,18 +1,29 @@
-<div class="modal-content">
+<div class="modal-content reset-fields-here">
     <div class="modal-header sheets-addnewdelivery-modal-header">
-        <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">NEW DAMAGE</h5>
+        <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">EDIT DAMAGE</h5>
         <div>
-            <button class="button-red" data-toggle="modal" data-target="#prompt_doneaddnewdamagereturn">SAVE</button>
-            <div class="modal fade close-all-modal" id="prompt_doneaddnewdamagereturn" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewdamagereturnlabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">    
-                    {% include '../prompts/prompt_doneaddnewdamagereturn.html' %}
+            <button class="button-red confirm-all-modal done-edit-new-delivery button-disable reset-fields" data-toggle="modal" data-target="#prompt_doneeditdelivery" disabled="true">SAVE CHANGES</button>
+            <div class="modal fade close-all-modal" id="prompt_doneeditdelivery" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    
+                    {% include '../prompts/prompt_doneeditdelivery.html' %}
                 </div>
             </div>
-            <button class="button-white cancel-add-new-delivery"  data-dismiss="modal">CANCEL</button>
+            <button class="button-red" data-toggle="modal" data-target="#modal_mapeditdelivery">MAP</button>
+            <div class="modal fade close-all-modal" id="modal_mapeditdelivery" tabindex="-1" role="dialog" aria-labelledby="modal_mapeditdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    
+                    {% include '../modals/modal_mapeditdelivery.html' %}
+                </div>
+            </div>
+            <button class="button-white cancel-edit-new-delivery" data-dismiss="modal">CANCEL</button>
+            <div class="modal fade close-all-modal" id="prompt_doneaddnewdelivery" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewdeliverylabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    
+                    {% include '../prompts/prompt_doneaddnewdelivery.html' %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-body">
-        <div class="d-flex">
+        <div class="d-flex sheets-edit-delivery-inputs">
             <div class="form-group mx-1">
                 <label for="documentnumber">Document Number</label>
                 <input type="text"
@@ -52,7 +63,7 @@
     <div class="d-flex p-3">
         {% comment %} <div class="pull-left"> {% endcomment %}
             <div class="form-group mx-1">
-                <label for="description">DESCRIPTION</label>
+                <label for="description">ITEM NAME</label>
                 <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input" name="description" id="description" placeholder="Enter keyword to search item">
             </div>
             <div class="form-group mx-1">

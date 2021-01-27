@@ -51,7 +51,7 @@
                 <tr>
                     <td><input type="text" class="form-control" value="{{ branch.BName }}" readonly /></td>
                     <td>
-                        <select class="form-control form-control-sm" disabled>
+                        <select class="form-control " disabled>
                             <option selected disabled>{{ branch.AName }}</option>
                             <option>Test</option>
                             <option>Test</option>
@@ -59,7 +59,7 @@
                         </select>
                     </td>
                     <td>
-                        <select class="form-control form-control-sm" disabled>
+                        <select class="form-control " disabled>
                             <option selected disabled>{{ branch.TICName }}</option>
                             <option>Test</option>
                             <option>Test</option>
@@ -67,7 +67,7 @@
                         </select>
                     </td>
                     <td>
-                        <select class="form-control form-control-sm" disabled>
+                        <select class="form-control " disabled>
                             <option selected disabled>{{ branch.TPBName }}</option>
                             <option>Test</option>
                             <option>Test</option>
@@ -76,7 +76,7 @@
                     </td>                
                     <td><input type="text" class="form-control" value="{{ branch.BSAPCode  }}" readonly /></td>
                     <td>
-                        <select class="form-control form-control-sm" disabled>
+                        <select class="form-control " disabled>
                             <option selected disabled>{{ branch.BType }}</option>
                             <option>Test</option>
                             <option>Test</option>
@@ -87,10 +87,15 @@
                     
                     <td class="d-flex">
                         <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button in-branch"></a>
-                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneeditbranch" title="Edit" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                        <div class="modal fade close-all-modal" id="prompt_doneeditbranch" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditbranchlabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">    
+                                {% include '../prompts/prompt_doneeditbranch.html' %}
+                            </div>
+                        </div>
                         <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Deactivate"></a>
                         <a id="repo-edit-quota-button" class="repo-edit-quota-button d-none roboto-14 ml-3" data-toggle="modal" data-target="#modal_editquota"><span>EDIT QUOTA</span></a>
-                        <div class="modal fade" id="modal_editquota" tabindex="-1" role="dialog" aria-labelledby="modal_editquotalabel" aria-hidden="true">
+                        <div class="modal fade close-all-modal" id="modal_editquota" tabindex="-1" role="dialog" aria-labelledby="modal_editquotalabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">    
                                 {% include '../modals/modal_editquota.html' %}
                             </div>

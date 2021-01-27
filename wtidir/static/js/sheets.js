@@ -14,7 +14,7 @@ $(document).ready(function() {
 
         // itemCell.innerHTML = "BBQ Sauce";
         // quantityCell.innerHTML = "5000";
-        // unitCell.innerHTML = "bot";
+        // unitCell.innerHTML = "bot";   
     });
 
     $('.add-new-delivery-button').click(function() {
@@ -58,6 +58,7 @@ $(document).ready(function() {
             $(this).parents('.content').find('.delivery-list-card').removeClass('button-disable');
             $(this).parents('.content').find('.delivery-list-card').parents().next().addClass('d-none');
         }, 1500);
+        $(this).addClass('button-disable').attr("disabled", true);
     })
 
     $('.cancel-edit-new-delivery').click(function() {
@@ -65,12 +66,17 @@ $(document).ready(function() {
         $(this).parents('.content').find('.dc-edit').addClass('d-none');
     })
 
-    $('.sheets-edit-delivery-inputs').find('input').change(function() {
+    $('.sheets-edit-delivery-inputs').find("input, select").change(function() {
         $(this).parents('.modal-content').find('.done-edit-new-delivery').removeClass('button-disable').removeAttr('disabled');
     });
 
     $(".reset-fields").click(function() {
         // $(this).parents('.modal-header').next().find("input[type=text], textarea, select").val("");
         $(this).parents(".reset-fields-here").find("input[type=text], textarea, select").val("");
+    });
+
+    $(".sheets-dropdown-button").click(function() {
+        $(".sheets-dropdown-container").css('display', 'block');
+        $(".sheets-dropdown-item").css('display', 'block');
     });
 });

@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="transfer-section  d-flex">
-        <div class="transfer-list delivery-clickable-list text-center p-2">
+    <div class="delivery-section d-flex">
+        <div class="delivery-list delivery-clickable-list text-center p-2">
             <input class="pl-2 w-100" type="text" placeholder="🔍 Search">
             <hr/>
-            <button class="add-new-delivery-button button-pale-red w-100"> <img src="../../static/img/repository-icons/plus.png" disabled="false"/> ADD NEW DELIVERY</button>
+            <button class="add-new-delivery-button button-pale-red w-100 mb-2" > <img class="mb-1 mr-2" src="../../static/img/repository-icons/plus.png" />ADD NEW DELIVERY</button>
+            <button class="delivery-list-card py-2">
+                <div class="dlc-header d-flex">
+                    <div class="dlc-date font-weight-bold">October 24, 2019</div>
+                    <div class="dlc-doc-number font-weight-bold ml-auto">75648</div>
+                </div>
+                <div class="dlc-content roboto-12 text-left">
+                    From Commissary to City Mall Tagbak
+                </div>
+            </button>
+            <button class="delivery-list-card py-2">
+                <div class="dlc-header d-flex">
+                    <div class="dlc-\date font-weight-bold">October 24, 2019</div>
+                    <div class="dlc-doc-number font-weight-bold ml-auto">75648</div>
+                </div>
+                <div class="dlc-content roboto-12 text-left">
+                    From Commissary to City Mall Tagbak
+                </div>
+            </button>
             <button class="delivery-list-card py-2">
                 <div class="dlc-header d-flex">
                     <div class="dlc-date font-weight-bold">October 24, 2019</div>
@@ -16,8 +34,11 @@
                 </div>
             </button>
         </div>
-        <div class="transfer-content p-3 dc-add d-none">
+        <div class="delivery-content dc-add p-3 d-none">
             {% include 'modals/modal_addnewtransfer.html' %}
+        </div>
+        <div class="delivery-content dc-edit p-3 d-none">
+            {% include 'modals/modal_edittransfer.html' %}
         </div>
     </div>
 {% endblock content %}

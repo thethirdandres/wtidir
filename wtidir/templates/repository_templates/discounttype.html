@@ -1,0 +1,49 @@
+{% extends 'repository_templates/repository.html' %}
+
+{% block repository-content %}
+<div class="d-flex justify-content-between mb-3">
+    <div class="repo-title roboto-24 text-gray">Discount Type</div>
+</div>
+
+<form class="d-flex">
+    <div class="">
+        <input type="text" class="form-control ml-2 " name="discounttype"  placeholder="Discount Type">
+    </div>
+    <div class="ml-3">
+        <input type="text" class="form-control ml-2 " name="percent"  placeholder="Percent">
+    </div>
+    <div class="ml-3">
+        <input type="text" class="form-control ml-2 " name="amount"  placeholder="Amount">
+    </div>
+    <div class="ml-3 pt-2">
+        <input type="checkbox" class=" ml-2 " name="vatexempt">
+        <label for="vatexempt">VAT Exempt</label>
+    </div>
+    <button type="submit" class="btn uom-submit-button"><img src="../../static/img/repository-icons/add.png"/></button>
+</form>
+
+<table class="table table-border  table-sm  mt-3">
+    <thead class="table-active">
+        <tr>
+            <th>DISCOUNT TYPE</th>
+            <th>PERCENT</th>
+            <th>AMOUNT</th>
+            <th>VAT EXEMPT</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+            <td>
+                <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none ">
+                <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock repository-content %}

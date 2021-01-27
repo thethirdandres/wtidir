@@ -1,14 +1,14 @@
-<div class="modal-content">
+<div class="modal-content reset-fields-here">
     <div class="modal-header sheets-addnewdelivery-modal-header">
-        <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">NEW DAMAGE</h5>
+        <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">NEW PETTY CASH</h5>
         <div>
-            <button class="button-red" data-toggle="modal" data-target="#prompt_doneaddnewdamagereturn">SAVE</button>
-            <div class="modal fade close-all-modal" id="prompt_doneaddnewdamagereturn" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewdamagereturnlabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">    
-                    {% include '../prompts/prompt_doneaddnewdamagereturn.html' %}
+            <button class="button-red confirm-all-modal done-add-new-delivery reset-fields" data-toggle="modal" data-target="#prompt_doneaddnewpettycash">ADD</button>
+            <button class="button-white cancel-add-new-delivery" data-dismiss="modal">CANCEL</button>
+            <div class="modal fade close-all-modal" id="prompt_doneaddnewpettycash" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewpettycashlabel" aria-hidden="true">
+                <div class="modal-dialog modal-xs modal-dialog-centered " role="document">    
+                    {% include '../prompts/prompt_doneaddnewpettycash.html' %}
                 </div>
             </div>
-            <button class="button-white cancel-add-new-delivery"  data-dismiss="modal">CANCEL</button>
         </div>
     </div>
     <div class="modal-body">
@@ -52,7 +52,7 @@
     <div class="d-flex p-3">
         {% comment %} <div class="pull-left"> {% endcomment %}
             <div class="form-group mx-1">
-                <label for="description">DESCRIPTION</label>
+                <label for="description">ITEM NAME</label>
                 <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input" name="description" id="description" placeholder="Enter keyword to search item">
             </div>
             <div class="form-group mx-1">

@@ -24,7 +24,7 @@
                 <option>Test</option>
                 </select>
             </div>
-            <input type="submit" id="repo-conversion-table-submit" class="btn btn-light roboto-10 mx-auto" value="ADD CONVERSION">
+            <input type="button" id="repo-conversion-table-submit" class="btn btn-light roboto-10 mx-auto" value="ADD CONVERSION" >
         </form>
         <div class="ml-4 repo-modal-updateconversion-table w-100">
             <table id="repo-conversion-table" class="table table-border  table-sm  mt-3">
@@ -50,8 +50,13 @@
         </div>
     </div>
     <div class="d-flex justify-content-center my-3">
-        <button type="button" class="btn btn-danger mr-2">SAVE</button>
-        <button type="button" class="btn btn-light" data-dismiss="modal">CLOSE</button>
+        <button type="button" class="btn button-red mr-2" data-toggle="modal" data-target="#prompt_confirmupdateconversion">SAVE</button>
+        <div class="modal fade close-all-modal" id="prompt_confirmupdateconversion" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmupdateconversionlabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">    
+                {% include '../prompts/prompt_confirmupdateconversion.html' %}
+            </div>
+        </div>
+        <button type="button" class="btn button-white" data-dismiss="modal">CLOSE</button>
     </div>
 </div>
 

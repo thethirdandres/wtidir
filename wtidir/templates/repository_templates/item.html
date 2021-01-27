@@ -36,7 +36,7 @@
             <tr>
                 <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
                 <td>
-                    <select class="form-control form-control-sm w-100" disabled>
+                    <select class="form-control w-100" disabled>
                         <option selected></option>
                         <option>Test</option>
                         <option>Test</option>
@@ -48,7 +48,12 @@
 
                 <td>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneedititem" class="repository-edit-gray-button d-none mr-2 ml-n3">
+                    <div class="modal fade close-all-modal" id="prompt_doneedititem" tabindex="-1" role="dialog" aria-labelledby="prompt_doneedititemlabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">    
+                            {% include '../prompts/prompt_doneedititem.html' %}
+                        </div>
+                    </div>
                     <a class="mr-2" data-toggle="modal" data-target="#modal_updateconversion"><img src="../../static/img/repository-icons/updateconversion.png" data-toggle="tooltip" data-placement="top" title="Change Password" ></a>
                     <div class="modal fade" id="modal_updateconversion" tabindex="-1" role="dialog" aria-labelledby="modal_updateconversionlabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">    
@@ -81,7 +86,12 @@
 
                 <td>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none mr-2 ml-n3">
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneedititemgroup" class="repository-edit-gray-button d-none mr-2 ml-n3">
+                    <div class="modal fade" id="prompt_doneedititemgroup" tabindex="-1" role="dialog" aria-labelledby="groupgrouplabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">    
+                            {% include '../prompts/prompt_doneedititemgroup.html' %}
+                        </div>
+                    </div>
                     <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
                 </td>
             </tr>
