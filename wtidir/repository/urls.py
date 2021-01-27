@@ -34,4 +34,6 @@ urlpatterns = [
     path('area_delete', views.area_delete, name="area_delete"),
     #Branch
     path('branch_add', views.branch_add, name="branch_add"),
+    path('branch_deactivate', views.branch_deactivate, name="branch_deactivate"),
+    path('branch_update', views.branch_update, name="branch_update"),
 ]

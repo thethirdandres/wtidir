@@ -178,7 +178,7 @@ $(document).on("click",".load-account-group", function(){
 })
 
 $(document).on("click", ".btn-user-account-update", function(){
-    var id = $(this).closest('tr').attr('id')
+    var id = $(this).closest('tr').attr('id') 
     var lastname = $(this).closest('tr').find('.td-au-lastname').val()
     var firstname = $(this).closest('tr').find('.td-au-firstname').val()
     var middlename = $(this).closest('tr').find('.td-au-middlename').val()
@@ -652,10 +652,11 @@ $(document).on("click", ".btn-area-update", function() {
             }
         })
     })
-    // * * * * * Area Page Eventlistener * * * * *
-    // ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
+// * * * * * Area Page Eventlistener * * * * *
+// ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
 $("#btn-branch-add").click(function() {
     var BName = $('#branch-name').val()
+    var idArea = $("#branch-area option:selected").attr("id")
     var AName = $('#branch-area').val()
     var TICName = $('#branch-template').val()
     var TPBName = $('#branch-BOM').val()
@@ -682,50 +683,71 @@ $("#btn-branch-add").click(function() {
         $.ajax({
             url: "branch_add",
             type: "POST",
-            data: { BName: BName }
+            data: { BName: BName, idArea: idArea, AName: AName, TICName: TICName, TPBName: TPBName, BSAPCode: BSAPCode, BType: BType, BDescription: BDescription }
+        }).done(function(response) {
+            if (response["error"] == false) {
+                console.log(response["Message"])
+            } else {
+                console.log(response["Message"])
+            }
         })
     }
 })
 
-// * * * * * Area Page Eventlistener * * * * *
-// ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
-$("#btn-branch-add").click(function() {
-        var BName = $('#branch-name').val()
-        var idArea = $("#branch-area option:selected").attr("id")
-        var AName = $('#branch-area').val()
-        var TICName = $('#branch-template').val()
-        var TPBName = $('#branch-BOM').val()
-        var BSAPCode = $('#branch-sapcode').val()
-        var BType = $('#branch-type').val()
-        var BDescription = $('#branch-desc').val()
+$(document).on("click", ".btn-update-branch", function() {
+    var idBranch = $(this).closest('tr').attr('id') 
+    var branchName=$(".td-branch-name").val()
+    var branchArea=$(this).closest('tr').find(".td-branch-area").find('option:selected').text()
+    var branchTICName=$(this).closest('tr').find(".td-branch-TICName").find('option:selected').text()
+    var branchTPBName=$(this).closest('tr').find(".td-branch-TPBName").find('option:selected').text()
+    var branchBSAPCode=$(".td-branch-BSAPCode").val()
+    var branchBtype=$(this).closest('tr').find(".td-branch-Btype").find('option:selected').text()
+    var branchBDesc=$(".td-branch-BDesc").val()
 
-        if (BName == "") {
-            alert("Branch Name is needed.")
-            return;
-        } else if (AName == null) {
-            alert("Area is needed.")
-            return;
-        } else if (TICName == null) {
-            alert("Template is needed.")
-            return;
-        } else if (TPBName == null) {
-            alert("BOM is needed.")
-            return;
-        } else if (BType == null) {
-            alert("Type is needed.")
-            return;
+    $.ajax({
+        url: "branch_update",
+        type: "POST",
+        data: {idBranch:idBranch, branchName: branchName, branchArea:branchArea, branchTICName:branchTICName, 
+                branchTPBName:branchTPBName, branchBSAPCode:branchBSAPCode, branchBtype:branchBtype, branchBDesc:branchBDesc}
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
         } else {
-            $.ajax({
-                url: "branch_add",
-                type: "POST",
-                data: { BName: BName, idArea: idArea, AName: AName, TICName: TICName, TPBName: TPBName, BSAPCode: BSAPCode, BType: BType, BDescription: BDescription }
-            }).done(function(response) {
-                if (response["error"] == false) {
-                    console.log(response["Message"])
-                } else {
-                    console.log(response["Message"])
-                }
-            })
+            console.log(response["Message"])
         }
     })
+})
+
+$(document).on("click", ".deactivate-branch", function() {
+    var idBranch = $(this).closest('tr').attr('id')
+    var branchName = $(this).closest('tr').find('.td-branch-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idBranch)
+    $('#dialog-deactivation-title').text('Deactivate Branch?')
+    $('#dialog-deactivation-description').text('You are about to deactivate branch ' + branchName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('btn-deactivate-branch')
+})
+
+$(document).on("click", ".btn-deactivate-branch", function() {
+    var idBranch = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "branch_deactivate",
+        type: "POST",
+        data: { idBranch: idBranch }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#table-branch tr#' + idBranch).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
     // * * * * * Branch Page Eventlistener * * * * *

@@ -34,7 +34,7 @@
     <div class="alert alert-success mt-3 d-none">
         <strong>Success!</strong> Branch created successfully.
     </div>
-    <table class="table table-border  table-sm">
+    <table class="table table-border  table-sm" id="table-branch">
         <thead class="table-active">
             <tr>
                 <th>BRANCH</th>
@@ -48,52 +48,41 @@
         </thead>
         <tbody>
             {% for branch in branches %}
-                <tr>
-                    <td><input type="text" class="form-control" value="{{ branch.BName }}" readonly /></td>
+                <tr id="{{ branch.idBranch }}">
+                    <td><input type="text" class="form-control td-branch-name" value="{{ branch.BName }}" readonly /></td>
                     <td>
-                        <select class="form-control " disabled>
+                        <select class="form-control td-branch-area" disabled>
                             <option selected disabled>{{ branch.AName }}</option>
-                            <option>Test</option>
-                            <option>Test</option>
-                            <option>Test</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-control " disabled>
+                        <select class="form-control td-branch-TICName" disabled>
                             <option selected disabled>{{ branch.TICName }}</option>
-                            <option>Test</option>
-                            <option>Test</option>
-                            <option>Test</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-control " disabled>
+                        <select class="form-control td-branch-TPBName" disabled>
                             <option selected disabled>{{ branch.TPBName }}</option>
-                            <option>Test</option>
-                            <option>Test</option>
-                            <option>Test</option>
                         </select>
                     </td>                
-                    <td><input type="text" class="form-control" value="{{ branch.BSAPCode  }}" readonly /></td>
+                    <td><input type="text" class="form-control td-branch-BSAPCode" value="{{ branch.BSAPCode  }}" readonly /></td>
                     <td>
-                        <select class="form-control " disabled>
+                        <select class="form-control td-branch-Btype" disabled>
                             <option selected disabled>{{ branch.BType }}</option>
-                            <option>Test</option>
-                            <option>Test</option>
                             <option>Test</option>
                         </select>
                     </td>
-                    <td><input type="text" class="form-control" value="{{ branch.BDescription  }}" readonly /></td>
+                    <td><input type="text" class="form-control td-branch-BDesc" value="{{ branch.BDescription  }}" readonly /></td>
                     
                     <td class="d-flex">
                         <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button in-branch"></a>
-                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneeditbranch" title="Edit" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
+                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneeditbranch" title="Edit" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3 btn-update-branch">
                         <div class="modal fade close-all-modal" id="prompt_doneeditbranch" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditbranchlabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">    
                                 {% include '../prompts/prompt_doneeditbranch.html' %}
                             </div>
                         </div>
-                        <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Deactivate"></a>
+                        <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Deactivate" class="deactivate-branch"></a>
                         <a id="repo-edit-quota-button" class="repo-edit-quota-button d-none roboto-14 ml-3" data-toggle="modal" data-target="#modal_editquota"><span>EDIT QUOTA</span></a>
                         <div class="modal fade close-all-modal" id="modal_editquota" tabindex="-1" role="dialog" aria-labelledby="modal_editquotalabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">    
@@ -105,4 +94,10 @@
             {% endfor %}  
         </tbody>
     </table>
+
+    <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+            {% include '../prompts/prompt_confirmdeactivate.html' %}
+        </div>
+    </div>
 {% endblock repository-content %}

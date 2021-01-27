@@ -217,6 +217,38 @@ def branch_add(request):
         branch_data = {"error":True,"Message":"Error Failed to Added Branch"}
         # ^- Data to be returned after Inserting Failed (JSON Format)
         return JsonResponse(branch_data,safe=False)
+
+@csrf_exempt
+def branch_update(request):
+    try:
+        branch = Branch.objects.get(idBranch=request.POST.get('idBranch'))
+        branch.BName = request.POST.get('branchName')
+        branch.AName = request.POST.get('branchArea')
+        branch.TICName = request.POST.get('branchTICName')
+        branch.TPBName = request.POST.get('branchTPBName')
+        branch.BSAPCode = request.POST.get('branchBSAPCode')
+        branch.BType = request.POST.get('branchBtype')
+        branch.BDescription = request.POST.get('branchBDesc')
+        branch.save()
+        branch_data = {"error":True,"Message":"Branch has been created"}
+        return JsonResponse(branch_data,safe=False)
+    except:
+        branch_data = {"error":True,"Message":"Error Failed to create Branch"}
+        return JsonResponse(branch_data,safe=False)
+
+@csrf_exempt
+def branch_deactivate(request):
+    try:
+        branch = Branch.objects.get(idBranch=request.POST.get('idBranch'))
+        branch.Status = 0
+        branch.save() #<- Insert Data to mysql
+        branch_data = {"error":True,"Message":"Branch has been Deactivated"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(branch_data,safe=False)
+    except:
+        branch_data = {"error":True,"Message":"Error Failed to Deactivated Branch"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(branch_data,safe=False)
 # * * * * * Branch Page * * * * *
 
 def employee_view(request):
