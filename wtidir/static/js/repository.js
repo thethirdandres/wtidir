@@ -696,13 +696,13 @@ $("#btn-branch-add").click(function() {
 
 $(document).on("click", ".btn-update-branch", function() {
     var idBranch = $(this).closest('tr').attr('id') 
-    var branchName=$(".td-branch-name").val()
+    var branchName=$(this).closest('tr').find(".td-branch-name").val()
     var branchArea=$(this).closest('tr').find(".td-branch-area").find('option:selected').text()
     var branchTICName=$(this).closest('tr').find(".td-branch-TICName").find('option:selected').text()
     var branchTPBName=$(this).closest('tr').find(".td-branch-TPBName").find('option:selected').text()
-    var branchBSAPCode=$(".td-branch-BSAPCode").val()
+    var branchBSAPCode=$(this).closest('tr').find(".td-branch-BSAPCode").val()
     var branchBtype=$(this).closest('tr').find(".td-branch-Btype").find('option:selected').text()
-    var branchBDesc=$(".td-branch-BDesc").val()
+    var branchBDesc=$(this).closest('tr').find(".td-branch-BDesc").val()
 
     $.ajax({
         url: "branch_update",
