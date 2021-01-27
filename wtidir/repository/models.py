@@ -10,7 +10,6 @@ class AccountGroup(models.Model):
 class AccountUser(models.Model):
     idAccountUser = models.AutoField(primary_key=True, serialize=False)
     idAccountGroup = models.IntegerField(default=0, null=True, blank=True)
-    idArea = models.IntegerField(default=0, null=True, blank=True)
     unAccountUser = models.IntegerField(default=0, null=True, blank=True)
     AUUserName = models.CharField(default='', max_length=50, null=True, blank=True)
     AULastName = models.CharField(default='', max_length=50, null=True, blank=True)
@@ -19,7 +18,6 @@ class AccountUser(models.Model):
     AUPassword = models.CharField(default='', max_length=100, null=True, blank=True)
     AUEmail = models.CharField(default='', max_length=50, null=True, blank=True)
     AGName = models.CharField(default='', max_length=50, null=True, blank=True)
-    AName = models.CharField(default='', max_length=30, null=True, blank=True)
     AUSession = models.CharField(default='', max_length=50, null=True, blank=True)
     TimeStamp = models.DateTimeField(auto_now_add=True)
     Status = models.BooleanField(default=True)
@@ -55,8 +53,6 @@ class Area(models.Model):
     TimeStamp = models.DateTimeField(auto_now_add=True)
     Status = models.BooleanField(default=True)
 
-#Wala pa ma makemigrations nga mga class :
-
 class TemplateItemControl(models.Model):
     idTemplateItemControl = models.AutoField(primary_key=True, serialize=False)
     unTemplateItemControl = models.IntegerField(default=0, null=True, blank=True)
@@ -65,3 +61,10 @@ class TemplateItemControl(models.Model):
     TimeStamp = models.DateTimeField(auto_now_add=True)
     Status = models.BooleanField(default=True)
 
+class AccountUserArea(models.Model):
+    idAccountUserArea = models.AutoField(primary_key=True, serialize=False)
+    idAccountUser = models.IntegerField(default=0, null=True, blank=True)
+    idArea = models.IntegerField(default=0, null=True, blank=True)
+    AName = models.CharField(default='', max_length=30, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)

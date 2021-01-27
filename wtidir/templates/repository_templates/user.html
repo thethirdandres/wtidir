@@ -26,7 +26,7 @@
     <div class="alert alert-success mt-3 d-none alert_confirmcreateuser">
         <strong>Success!</strong> User created successfully.
     </div>
-    <table class="table table-border  table-sm  mt-3">
+    <table class="table table-border  table-sm  mt-3" id="table-user-account">
         <thead class="table-active">
             <tr>
                 <th>LAST NAME</th>
@@ -40,45 +40,53 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
-                <td>
-                    <select class="form-control" disabled>
-                        <option selected></option>
-                        <option>Test</option>
-                        <option>Test</option>
-                        <option>Test</option>
-                    </select>
-                </td>
-                <td><input type="text" class="form-control" value="{{ areadata.AName }}" readonly /></td>
+            {% for useraccount in UserAccounts %}
+                <tr id="{{ useraccount.idAccountUser }}">
+                    <td><input type="text" class="form-control td-au-lastname" value="{{ useraccount.AULastName }}" readonly /></td>
+                    <td><input type="text" class="form-control td-au-firstname" value="{{ useraccount.AUFirstName }}" readonly /></td>
+                    <td><input type="text" class="form-control td-au-middlename" value="{{ useraccount.AUMiddleName }}" readonly /></td>
+                    <td><input type="text" class="form-control td-au-username" value="{{ useraccount.AUUserName }}" readonly /></td>
+                    <td><input type="text" class="form-control td-au-emailaddress" value="{{ useraccount.AUEmail }}" readonly /></td>
+                    <td>
+                        <select class="form-control user-html-account-group" disabled>
+                            <option selected disabled id="{{ useraccount.idAccountGroup }}">{{ useraccount.AGName }}</option>
+                            {% for AccountGroup in AccountGroups %}
+                            <option id="{{ AccountGroup.idAccountGroup }}">{{ AccountGroup.AGName }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    {% if useraccount.Status %}
+                        <td><input type="text" class="form-control td-au-status" value="Active" disabled/></td>
+                    {% else %}
+                        <td><input type="text" class="form-control td-au-status" value="Deactivated" disabled/></td>
+                    {% endif %}
 
-                <td class="d-flex">
-                    <a class="mr-2" data-toggle="modal" data-target="#modal_selectarea"><img src="../../static/img/repository-icons/selectarea.png" data-toggle="tooltip" data-placement="top" title="Select Area" ></a>
-                    <div class="modal fade close-all-modal" id="modal_selectarea" tabindex="-1" role="dialog" aria-labelledby="modal_selectarealabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">    
-                            {% include '../modals/modal_selectarea.html' %}
+                    {% if useraccount.Status %}
+                    <td class="d-flex td-au-actions">
+                        <a class="mr-2" data-toggle="modal" data-target="#modal_selectarea"><img src="../../static/img/repository-icons/selectarea.png" data-toggle="tooltip" data-placement="top" title="Select Area" class="btn-user-select-area"></a>
+                        <div class="modal fade close-all-modal" id="modal_selectarea" tabindex="-1" role="dialog" aria-labelledby="modal_selectarealabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">    
+                                {% include '../modals/modal_selectarea.html' %}
+                            </div>
                         </div>
-                    </div>
-                    <a class="mr-2" data-toggle="modal" data-target="#modal_changepassword"><img src="../../static/img/repository-icons/changepassword.png" data-toggle="tooltip" data-placement="top" title="Change Password" ></a>
-                    <div class="modal fade close-all-modal" id="modal_changepassword" tabindex="-1" role="dialog" aria-labelledby="modal_changepasswordlabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">    
-                            {% include '../modals/modal_changepassword.html' %}
+                        <a class="mr-2" data-toggle="modal" data-target="#modal_changepassword"><img src="../../static/img/repository-icons/changepassword.png" data-toggle="tooltip" data-placement="top" title="Change Password" class="btn-user-change-pass-init"></a>
+                        <div class="modal fade close-all-modal" id="modal_changepassword" tabindex="-1" role="dialog" aria-labelledby="modal_changepasswordlabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">    
+                                {% include '../modals/modal_changepassword.html' %}
+                            </div>
                         </div>
-                    </div>
-                    <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png"  data-toggle="modal" data-target="#prompt_doneedituser" class="repository-edit-gray-button d-none">
-                    <div class="modal fade" id="prompt_doneedituser" tabindex="-1" role="dialog" aria-labelledby="prompt_doneedituserlabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
-                            {% include '../prompts/prompt_doneedituser.html' %}
+                        <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                        <input type="image" src="../../static/img/repository-icons/edit-gray.png"  data-toggle="modal" data-target="#prompt_doneedituser" class="repository-edit-gray-button d-none btn-user-account-update">
+                        <div class="modal fade" id="prompt_doneedituser" tabindex="-1" role="dialog" aria-labelledby="prompt_doneedituserlabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+                                {% include '../prompts/prompt_doneedituser.html' %}
+                            </div>
                         </div>
-                    </div>
-                    <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
-                </td>
-            </tr>
+                        <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Deactivate" class="btn-user-account-deactivate"></a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
   </div>

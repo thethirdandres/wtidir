@@ -22,6 +22,12 @@ urlpatterns = [
     path('user_group_deactivate', views.user_group_deactivate, name="user_group_deactivate"),
     path('user_group_update', views.user_group_update, name="user_group_update"),
     path('user_group_list', views.user_group_list, name="user_group_list"),
+    path('user_account_add', views.user_account_add, name="user_account_add"),
+    path('user_account_deactivate', views.user_account_deactivate, name="user_account_deactivate"),
+    path('user_account_update', views.user_account_update, name="user_account_update"),
+    path('user_account_change_password', views.user_account_change_password, name="user_account_change_password"),
+    path('user_account_area', views.user_account_area, name="user_account_area"),
+    path('user_account_area_access_init', views.user_account_area_access_init, name="user_account_area_access_init"),
     #Area
     path('area_add', views.area_add, name="area_add"),
     path('area_update', views.area_update, name="area_update"),
