@@ -79,7 +79,7 @@ def user_account_area_access_init(request):
 
 @csrf_exempt
 def user_account_area(request):
-    user_account_area_data = {"error":False,"Message":"Default (code-1)"}
+    user_account_area_data = {"error":False,"Message":"Default"}
     useraccess = AccountUserArea.objects.filter(idAccountUser=request.POST.get('iduser')).values()
     userAccessCount = AccountUserArea.objects.filter(Q(idAccountUser=request.POST.get('iduser')), Q(idArea=request.POST.get('idarea'))).count()
 
