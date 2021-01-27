@@ -237,6 +237,38 @@
     height: 3rem;
 }
 
-.report-productmix table .font-weight-bold {
-    margin-left: -1rem !important;
+.rpm-table {
+    width: 90%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0 3rem;
+}
+
+.rpm-thead {
+    display: block;
+    width: 100%;
+}
+
+.rpm-thead th:not(:first-child) {
+    text-align: center;
+    /* width: 7% !important; */
+}
+
+.rpm-tbody {
+    display: block;
+    /* width: 100% !important; */
+    overflow: auto;
+    height: 50% !important;
+}
+
+
+/* 
+.rpm-tbody td:first-child {
+    width: 75% !important;
+    margin-right: 5rem !important;
+} */
+
+.rpm-tbody td:not(:first-child) {
+    text-align: center;
+    /* width: 7% !important; */
 }
