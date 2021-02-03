@@ -1,39 +1,33 @@
 {% extends 'base.html' %}
-
+  
 {% block content %}
-    <div class="reports-productmix">
+    <div class="reports-sales">
         <div class="d-flex pt-4 px-5"> 
-            <div class="flex-grow-1 roboto-24"><span class="font-weight-bold">Atrium</span> [PRODUCT MIX REPORT] </div>
+            <div class="flex-grow-1 roboto-24"><span class="font-weight-bold">Atrium</span> [SALES REPORT] </div>
             <button class="button-pale-red mr-2"><img src="../../static/img/sheets-icons/print.png" class="mr-1">  PRINT</button>
             <button class="button-pale-red mr-5"><img src="../../static/img/sheets-icons/exportreport.png" class="mr-1 mb-1">  EXPORT REPORT</button>
         </div>
-        <div class="rpm-filter d-flex px-5 mt-3 roboto-12">
-            <label for="rpm-filter-from" class="my-auto mr-2">From</label>
-            <select class="sheets-select h-50 my-auto" name="rpm-filter-from" id="rpm-filter-from">
-                <option>09371 [October 1, 2019]</option>
-                <option>09371 [October 1, 2019]</option>
-                <option>09371 [October 1, 2019]</option>
-            </select>
-            <label for="rpm-filter-to" class="my-auto mr-2 ml-3">To</label>
-            <select class="sheets-select h-50 my-auto" name="rpm-filter-to" id="rpm-filter-to">
-                <option>09371 [October 1, 2019]</option>
-                <option>09371 [October 1, 2019]</option>
-                <option>09371 [October 1, 2019]</option>
-            </select>
+        <div class="rs-filter d-flex px-5 mt-3 roboto-12">
+            <label for="rs-filter-from" class="my-auto mr-2">From</label>
+            <input name="rs-filter-from" class="sheets-select h-50 my-auto" type="date">
+            
+            <label for="rs-filter-to" class="my-auto mr-2 ml-3">To</label>
+            <input name="rs-filter-to" class="sheets-select h-50 my-auto" type="date">
+            
             <button class="btn">
                 <img src="../../static/img/sheets-icons/rpmfiltersubmit.png" role="button">
             </button>
         </div>
-        <div class="rpm-table-div mt-3">
-            <table class="pl-5 rpm-table">
-                <thead class="mb-3 text-secondary rpm-thead ">
+        <div class="rs-table-div mt-3">
+            <table class="pl-5 rs-table">
+                <thead class="mb-3 text-secondary rs-thead ">
                     <th>PRODUCTS</th>
                     <th>QTY</th>
                     <th>UNIT PRICE</th>
                     <th>AMOUNT</th>
                     <th>PERCENTAGE</th>
                 </thead>
-                <tbody class="rpm-tbody mt-2">
+                <tbody class="rs-tbody mt-2">
                     <tr class="font-weight-bold">
                         <td>Beverages</td>
                     </tr>
@@ -143,7 +137,7 @@
                         <td>0.98</td>
                     </tr>
                 </tbody>
-                <tfoot class="rpm-tfoot ">
+                <tfoot class="rs-tfoot ">
                     <tr class="align-top font-weight-bold">
                         <td >
                             <span class="d-flex"><span>Breakdown of Total: </span><span class="ml-auto">Total: </span></span>
