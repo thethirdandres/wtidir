@@ -5,14 +5,14 @@
     <div class="repo-title roboto-24 text-gray">Unit of Measure</div>
 </div>
 
-<form class="d-flex">
+<div class="d-flex">
     <div class="unit-input">
-        <input type="text" class="form-control ml-2 " name="unit"  placeholder="Unit">
+        <input type="text" class="form-control ml-2 " name="unit"  placeholder="Unit" id="txt-puom-name">
     </div>
-    <button type="submit" class="btn uom-submit-button"><img src="../../static/img/repository-icons/add.png"/></button>
-</form>
+    <button type="submit" class="btn uom-submit-button" id="btn-new-uom"><img src="../../static/img/repository-icons/add.png"/></button>
+</div>
 
-<table class="table table-border  table-sm  mt-3">
+<table class="table table-border  table-sm  mt-3" id="tbl-product-uom">
     <thead class="table-active">
         <tr>
             <th>UNIT</th>
@@ -20,19 +20,27 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-            <td>
-                <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneedituom" class="repository-edit-gray-button d-none ">
-                <div class="modal fade close-all-modal" id="prompt_doneedituom" tabindex="-1" role="dialog" aria-labelledby="prompt_doneedituomlabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">    
-                        {% include '../prompts/prompt_doneedituom.html' %}
+        {% for PUOM in PUOMS %}
+            <tr id="{{ PUOM.idProductUOM }}">
+                <td class="unit-input"><input type="text" class="form-control td-product-uom-name" value="{{ PUOM.PUOMName }}" readonly /></td>
+                <td>
+                    <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneedituom" class="repository-edit-gray-button d-none btn-product-uom-update">
+                    <div class="modal fade close-all-modal" id="prompt_doneedituom" tabindex="-1" role="dialog" aria-labelledby="prompt_doneedituomlabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">    
+                            {% include '../prompts/prompt_doneedituom.html' %}
+                        </div>
                     </div>
-                </div>
-                <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
-            </td>
-        </tr>
+                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" class="btn-product-uom-deactivate"></a>
+                </td>
+            </tr>
+        {% endfor %} 
     </tbody>
 </table>
+
+<div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+    <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+        {% include '../prompts/prompt_confirmdeactivate.html' %}
+    </div>
+</div>
 {% endblock repository-content %}

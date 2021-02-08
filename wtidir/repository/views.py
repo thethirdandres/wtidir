@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -294,7 +294,53 @@ def employee_group_deactivate(request):
         EG_data = {"error":True,"Message":"Error Failed to Deactivated Employee Group"}
         # ^- Data to be returned after Inserting Failed (JSON Format)
         return JsonResponse(EG_data,safe=False)
+
+@csrf_exempt
+def employee_group_list(request):
+     emplogroups = EmployeeGroup.objects.filter(Status=1).values()
+     return JsonResponse({"emplogroups":list(emplogroups)}, safe=False)
+
 # * * * * * Employee Page * * * * *
+# ~ ~ ~ ~ ~ UOM Page ~ ~ ~ ~ ~
+def uom_view(request):
+    PUOMS = ProductUOM.objects.filter(Status=1).order_by('-idProductUOM')
+    return render(request, 'repository_templates/uom.html', {'PUOMS' : PUOMS})
+
+@csrf_exempt
+def ProductUOM_add(request):
+    try:
+        PUOM = ProductUOM(PUOMName=request.POST.get('PUOMName'))
+        PUOM.save() 
+        PUOM_data = {"idProductUOM":PUOM.idProductUOM, "PUOMName":PUOM.PUOMName, "error":False,"Message":"Product UOM has been Added Successfully"}
+        return JsonResponse(PUOM_data,safe=False)
+    except:
+        PUOM_data = {"error":True,"Message":"Error Failed to Added Product UOM"}
+        return JsonResponse(PUOM_data,safe=False)
+
+@csrf_exempt
+def ProductUOM_deactivate(request):
+    try:
+        PUOM = ProductUOM.objects.get(idProductUOM=request.POST.get('idPUOM'))
+        PUOM.Status = 0
+        PUOM.save()
+        PUOM_data = {"error":True,"Message":"Product UOM has been Deactivated"}
+        return JsonResponse(PUOM_data,safe=False)
+    except:
+        PUOM_data = {"error":True,"Message":"Error Failed to Deactivated Product UOM"}
+        return JsonResponse(PUOM_data,safe=False)
+
+@csrf_exempt
+def ProductUOM_update(request):
+    try:
+        PUOM = ProductUOM.objects.get(idProductUOM=request.POST.get('idPUOM'))
+        PUOM.PUOMName = request.POST.get('PUOMName')
+        PUOM.save()
+        PUOM_data = {"error":True,"Message":"Product UOM has been Updated"}
+        return JsonResponse(PUOM_data,safe=False)
+    except:
+        PUOM_data = {"error":True,"Message":"Error Failed to Deactivated Product Updated"}
+        return JsonResponse(PUOM_data,safe=False)
+# * * * * * UOM Page * * * * *
 
 
 
@@ -306,9 +352,6 @@ def paymenttype_view(request):
 
 def discounttype_view(request):
     return render(request, 'repository_templates/discounttype.html')
-
-def uom_view(request):
-    return render(request, 'repository_templates/uom.html')
 
 def item_view(request):
     return render(request, 'repository_templates/item.html')

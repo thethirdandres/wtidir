@@ -75,3 +75,9 @@ class EmployeeGroup(models.Model):
     EGLevel = models.IntegerField(default=0, null=True, blank=True)
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
+
+class ProductUOM (models.Model):
+    idProductUOM = models.AutoField(primary_key=True, serialize=False)
+    PUOMName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)

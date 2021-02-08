@@ -744,6 +744,7 @@ $(document).on("click", ".btn-deactivate-branch", function() {
 })
     // * * * * * Branch Page Eventlistener * * * * *
     // ~ ~ ~ ~ ~ Employee Page Eventlistener ~ ~ ~ ~ ~
+// Group
 $("#btn-create-emplo-group").click(function() {
     var emploGroupName = $('#emplo-group-name').val()
     var emploGroupCredential = $("#credential-level").find('option:selected').text()
@@ -819,4 +820,104 @@ $(document).on("click", ".deactivate-emplo-group", function(){
     $(".modal-fade").modal("hide")
     $(".modal-backdrop").remove()
 })
+// Employee
+$("#btn-add-new-emplo").click(function() {
+    var idEmploGroup = $(this).closest('tr').find('#cb-emplo-group').children(':selected').attr('id')
+    // var groupname = $(this).closest('tr').find('.account-group-new-add-html').find('option:selected').text()
+    // console.log(idgroupaccount)
+    $('#cb-emplo-group').empty()
+
+    // var html_data="<option selected selected id='"+idgroupaccount+"'>"+groupname+"</option>"
+    // $('.account-group-new-add-html').append(html_data)
+
+    $.ajax({
+        url:"employee_group_list",
+        type:"GET"
+    }).done(function(response){
+        response['emplogroups'].forEach(account_group)
+        function account_group(item){
+
+            if (idEmploGroup != item['idEmployeeGroup']) {
+                var html_data="<option selected id='"+item['idEmployeeGroup']+"'>"+item['EGName']+"</option>"        
+               $('#cb-emplo-group').append(html_data)
+            }
+
+        }
+    })
+})
     // * * * * * Employee Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ UOM Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-new-uom").click(function() {
+    var PUOMName = $('#txt-puom-name').val()
+    
+    if (PUOMName == '') {
+        alert("Product UOM Name is needed.")
+        return;
+    }
+
+    $.ajax({
+        url: "ProductUOM_add",
+        type: "POST",
+        data: { PUOMName: PUOMName }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+            var html_data = "<tr id='"+response['idProductUOM']+"'><td class='unit-input'><input type='text' class='form-control td-product-uom-name' value='"+response['PUOMName']+"' readonly /></td><td><a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='modal' data-target='#prompt_doneedituom' class='repository-edit-gray-button d-none btn-product-uom-update'><a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-product-uom-deactivate'></a></td></tr>"
+            $(html_data).prependTo("#tbl-product-uom > tbody")
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-product-uom-deactivate", function(){
+    var idPUOM = $(this).closest('tr').attr('id')
+    var PUOMName = $(this).closest('tr').find('.td-product-uom-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idPUOM)
+    $('#dialog-deactivation-title').text('Deactivate Product UOM?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Product UOM Name ' + PUOMName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-product-uom')
+})
+
+$(document).on("click", ".deactivate-product-uom", function(){
+    var idPUOM = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "ProductUOM_deactivate",
+        type: "POST",
+        data: { idPUOM: idPUOM }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-product-uom tr#' + idPUOM).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+
+$(document).on("click", ".btn-product-uom-update", function(){
+    var idPUOM = $(this).closest('tr').attr('id')
+    var PUOMName = $(this).closest('tr').find('.td-product-uom-name').val()
+
+    $.ajax({
+        url: "ProductUOM_update",
+        type: "POST",
+        data: { idPUOM: idPUOM, PUOMName: PUOMName }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+    // * * * * * UOM Page Eventlistener * * * * *

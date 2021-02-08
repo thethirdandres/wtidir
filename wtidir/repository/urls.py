@@ -40,4 +40,9 @@ urlpatterns = [
     path('employee_group_add', views.employee_group_add, name="employee_group_add"),
     path('employee_group_deactivate', views.employee_group_deactivate, name="employee_group_deactivate"),
     path('employee_group_update', views.employee_group_update, name="employee_group_update"),
+    path('employee_group_list', views.employee_group_list, name="employee_group_list"),
+    #Product UOM
+    path('ProductUOM_add', views.ProductUOM_add, name="ProductUOM_add"),
+    path('ProductUOM_deactivate', views.ProductUOM_deactivate, name="ProductUOM_deactivate"),
+    path('ProductUOM_update', views.ProductUOM_update, name="ProductUOM_update"),
 ]
