@@ -230,43 +230,65 @@
 
 /* REPORTS_PRODUCTMIX */
 
-.reports-productmix, .reports-sales {
+.reports-productmix,
+.reports-sales {
     height: 90%;
 }
 
-.rpm-filter, .rs-filter {
+.rpm-filter,
+.rs-filter {
     background-color: rgba(187, 187, 187, 0.282);
     border-top: 1px solid rgb(182, 182, 182);
     border-bottom: 1px solid rgb(182, 182, 182);
     height: 3rem;
 }
 
-.rpm-table-div, .rs-table-div {
+.rpm-table-div,
+.rs-table-div {
     overflow: auto;
     position: relative;
     height: 75% !important;
 }
 
-.rpm-table, .rs-table {
+.rpm-table {
     border-collapse: collapse;
     width: 90%;
     margin: 0 3rem;
 }
 
-.rpm-thead th:not(:first-child), .rpm-tbody td:not(:first-child), .rpm-tfoot td:not(:first-child),
-.rs-thead th:not(:first-child), .rs-tbody td:not(:first-child), .rs-tfoot td:not(:first-child) {
+.rs-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 150%;
+    margin: 0 3rem;
+}
+
+.rpm-thead th:not(:first-child),
+.rpm-tbody td:not(:first-child),
+.rpm-tfoot td:not(:first-child) {
     text-align: right;
     width: 10%;
 }
 
-.rpm-thead th, .rs-thead th {
+.rs-thead th,
+.rs-tbody td,
+.rs-tfoot td {
+    text-align: center;
+    width: 50px !important;
+}
+
+.rs-tfoot {
+    border-top: solid black 2px;
+}
+
+.rpm-thead th {
     position: sticky;
     height: 6%;
-    top:0;
+    top: 0;
     background-color: #ffffff;
 }
 
-.rpm-tfoot td, .rs-tfoot td {
+.rpm-tfoot td {
     position: sticky;
     bottom: 0;
     height: 10%;
