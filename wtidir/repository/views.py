@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -203,7 +203,8 @@ def area_delete(request): # <-This is to Deactivate the Area in mysql that means
 def branch_view(request):
     areas = Area.objects.filter(Status=1).order_by('-idArea')
     branches = Branch.objects.filter(Status=1).order_by('-idBranch')
-    return render(request, 'repository_templates/branch.html', {'branches' : branches, 'areas' : areas})
+    BTypes = {'Office', 'Outlet', 'Commi'}
+    return render(request, 'repository_templates/branch.html', {'branches' : branches, 'areas' : areas, 'BTypes': BTypes})
 
 @csrf_exempt
 def branch_add(request):
@@ -230,10 +231,10 @@ def branch_update(request):
         branch.BType = request.POST.get('branchBtype')
         branch.BDescription = request.POST.get('branchBDesc')
         branch.save()
-        branch_data = {"error":True,"Message":"Branch has been created"}
+        branch_data = {"error":True,"Message":"Branch has been updated"}
         return JsonResponse(branch_data,safe=False)
     except:
-        branch_data = {"error":True,"Message":"Error Failed to create Branch"}
+        branch_data = {"error":True,"Message":"Error Failed to update Branch"}
         return JsonResponse(branch_data,safe=False)
 
 @csrf_exempt
@@ -250,9 +251,52 @@ def branch_deactivate(request):
         # ^- Data to be returned after Inserting Failed (JSON Format)
         return JsonResponse(branch_data,safe=False)
 # * * * * * Branch Page * * * * *
-
+# ~ ~ ~ ~ ~ Employee Page ~ ~ ~ ~ ~
 def employee_view(request):
-    return render(request, 'repository_templates/employee.html')
+    employee_groups = EmployeeGroup.objects.filter(Status=1).order_by('-idEmployeeGroup')
+    return render(request, 'repository_templates/employee.html', {'employee_groups' : employee_groups})
+
+@csrf_exempt
+def employee_group_add(request):
+    try:
+        print(request.POST.get('emploGroupCredential'))       
+        EG = EmployeeGroup(EGName=request.POST.get('emploGroupName'), EGLevel=request.POST.get('emploGroupCredential'))
+        EG.save() 
+        EG_data = {"idEmployeeGroup":EG.idEmployeeGroup, "EGName":EG.EGName, "EGLevel":EG.EGLevel, "error":False,"Message":"Employee Group has been Added Successfully"}
+        return JsonResponse(EG_data,safe=False)
+    except:
+        EG_data = {"error":True,"Message":"Error Failed to Added Employee Group"}
+        return JsonResponse(EG_data,safe=False)
+
+@csrf_exempt
+def employee_group_update(request):
+    try:
+        EG = EmployeeGroup.objects.get(idEmployeeGroup=request.POST.get('idEmploGroup'))
+        EG.EGName = request.POST.get('emploGroupName')
+        EG.EGLevel = request.POST.get('emploGroupCredential')
+        EG.save()
+        EG_data = {"error":True,"Message":"Employee Group has been Updated"}
+        return JsonResponse(EG_data,safe=False)
+    except:
+        EG_data = {"error":True,"Message":"Error Failed to Update Employee Group"}
+        return JsonResponse(EG_data,safe=False)
+
+@csrf_exempt
+def employee_group_deactivate(request):
+    try:
+        EG = EmployeeGroup.objects.get(idEmployeeGroup=request.POST.get('idEmploGroup'))
+        EG.Status = 0
+        EG.save() #<- Insert Data to mysql
+        EG_data = {"error":True,"Message":"Employee Group has been Deactivated"}
+        # ^- Data to be returned after Inserting Successfully (JSON Format)
+        return JsonResponse(EG_data,safe=False)
+    except:
+        EG_data = {"error":True,"Message":"Error Failed to Deactivated Employee Group"}
+        # ^- Data to be returned after Inserting Failed (JSON Format)
+        return JsonResponse(EG_data,safe=False)
+# * * * * * Employee Page * * * * *
+
+
 
 def device_view(request):
     return render(request, 'repository_templates/device.html')

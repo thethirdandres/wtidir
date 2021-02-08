@@ -122,9 +122,9 @@ $('.repository-user-tab').click(function() {
     $(this).parents('nav').prev().find('.repository-user-add-button').removeClass('d-none');
 })
 
-///////////////////////// end of Andres' JQueries //////////////////////////////
+    ///////////////////////// end of Andres' JQueries //////////////////////////////
 
-// ~ ~ ~ ~ ~ User Page Eventlistener ~ ~ ~ ~ ~
+    // ~ ~ ~ ~ ~ User Page Eventlistener ~ ~ ~ ~ ~
 
 //User Account
 $("#btn-open-createuser-modal").click(function() {
@@ -233,17 +233,6 @@ $(document).on("click", ".btn-user-select-area", function(){
         }
     })
 
-    // $.ajax({
-    //     url:"user_group_list",
-    //     type:"GET"
-    // }).done(function(response){
-    //     response['areas'].forEach(areas)
-    //     function areas(item){
-    //         var html_data="<li><label for='cb"+item['AName']+"'><input type='checkbox' class='form-check-input' id='"+item['idArea']+"' name='cb' value='"+item['AName']+"' checked>"+item['AName']+"</label></li>"
-    //         // $('#area-list').append($('<li></li>').val(item['idArea']).html(item['AName']))
-    //         $('#area-list').append(html_data)
-    //     }
-    // })
 })
 
 $('#btn-user-account-area-submit').click(function(){
@@ -652,8 +641,8 @@ $(document).on("click", ".btn-area-update", function() {
             }
         })
     })
-// * * * * * Area Page Eventlistener * * * * *
-// ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
+    // * * * * * Area Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Branch Page Eventlistener ~ ~ ~ ~ ~
 $("#btn-branch-add").click(function() {
     var BName = $('#branch-name').val()
     var idArea = $("#branch-area option:selected").attr("id")
@@ -687,6 +676,9 @@ $("#btn-branch-add").click(function() {
         }).done(function(response) {
             if (response["error"] == false) {
                 console.log(response["Message"])
+
+                var html_data = "<tr id='"+response['idBranch']+"'><td><input type='text' class='form-control td-branch-name' value='"+response['BName']+"' readonly /></td><td><select class='form-control td-branch-area' disabled><option>"+response['AName']+"</option></select></td><td><select class='form-control td-branch-TICName' disabled><option selected>"+response['TICName']+"</option></select></td><td><select class='form-control td-branch-TPBName' disabled><option selected>"+response['TPBName']+"</option></select></td><td><input type='text' class='form-control td-branch-BSAPCode' value='"+response['BSAPCode']+"' readonly /></td><td><select class='form-control td-branch-Btype' disabled><option selected>"+response['BType']+"</option></select></td><td><input type='text' class='form-control td-branch-BDesc' value='"+response['BDescription']+"' readonly /></td><td class='d-flex'><a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button in-branch'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='modal' data-target='#prompt_doneeditbranch' title='Edit' class='repository-edit-gray-button in-branch d-none mr-2 ml-n3 btn-update-branch'><a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Deactivate' class='deactivate-branch'></a></td></tr>"
+                $(html_data).prependTo("#table-branch > tbody")
             } else {
                 console.log(response["Message"])
             }
@@ -703,7 +695,7 @@ $(document).on("click", ".btn-update-branch", function() {
     var branchBSAPCode=$(this).closest('tr').find(".td-branch-BSAPCode").val()
     var branchBtype=$(this).closest('tr').find(".td-branch-Btype").find('option:selected').text()
     var branchBDesc=$(this).closest('tr').find(".td-branch-BDesc").val()
-
+ 
     $.ajax({
         url: "branch_update",
         type: "POST",
@@ -751,3 +743,80 @@ $(document).on("click", ".btn-deactivate-branch", function() {
     $(".modal-backdrop").remove()
 })
     // * * * * * Branch Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Employee Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-create-emplo-group").click(function() {
+    var emploGroupName = $('#emplo-group-name').val()
+    var emploGroupCredential = $("#credential-level").find('option:selected').text()
+    
+    if (emploGroupName == '') {
+        alert("Employee Group Name is needed.")
+        return;
+    }
+
+    $.ajax({
+        url: "employee_group_add",
+        type: "POST",
+        data: { emploGroupName: emploGroupName, emploGroupCredential: emploGroupCredential }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+            var html_data = "<tr id='"+response['idEmployeeGroup']+"'><td><input type='text' class='form-control td-emplo-group-name' value='"+response['EGName']+"' readonly /></td><td> <select class='form-control td-emplo-group-credential' disabled><option selected disabled>"+response['EGLevel']+"</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td><td class='w-25'><a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png' class='repository-edit-gray-button d-none mr-2 ml-n3 btn-emplo-group-update'><a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-emplo-group-deactive'></a></td></tr>"
+            $(html_data).prependTo("#table-emplo-group > tbody")
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-emplo-group-deactive", function(){
+    var idEmploGroup = $(this).closest('tr').attr('id')
+    var emploGroupName = $(this).closest('tr').find('.td-emplo-group-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idEmploGroup)
+    $('#dialog-deactivation-title').text('Deactivate Employee Group?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Employee Group Name ' + emploGroupName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-emplo-group')
+})
+
+$(document).on("click", ".btn-emplo-group-update", function(){
+    var idEmploGroup = $(this).closest('tr').attr('id')
+    var emploGroupName = $(this).closest('tr').find('.td-emplo-group-name').val()
+    var emploGroupCredential = $(this).closest('tr').find('.td-emplo-group-credential').find('option:selected').text()
+  
+    $.ajax({
+        url: "employee_group_update",
+        type: "POST",
+        data: {idEmploGroup: idEmploGroup, emploGroupName: emploGroupName, emploGroupCredential: emploGroupCredential}
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".deactivate-emplo-group", function(){
+    var idEmploGroup = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "employee_group_deactivate",
+        type: "POST",
+        data: { idEmploGroup: idEmploGroup }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#table-emplo-group tr#' + idEmploGroup).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+    // * * * * * Employee Page Eventlistener * * * * *

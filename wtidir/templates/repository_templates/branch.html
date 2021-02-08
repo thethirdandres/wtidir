@@ -52,24 +52,45 @@
                     <td><input type="text" class="form-control td-branch-name" value="{{ branch.BName }}" readonly /></td>
                     <td>
                         <select class="form-control td-branch-area" disabled>
-                            <option selected disabled>{{ branch.AName }}</option>
+                            <option selected>{{ branch.AName }}</option>
+                            {% for area in areas %}
+                                {% if area.AName != branch.AName %}
+                                    <option>{{ area.AName }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </td>
                     <td>
                         <select class="form-control td-branch-TICName" disabled>
-                            <option selected disabled>{{ branch.TICName }}</option>
+                            {% if branch.TICName == 'Airport' %}
+                                <option selected>{{ branch.TICName }}</option>
+                                <option>Regular</option>
+                            {% else %}
+                                <option selected>{{ branch.TICName }}</option>
+                                <option>Airport</option>
+                            {% endif %}
                         </select>
                     </td>
                     <td>
                         <select class="form-control td-branch-TPBName" disabled>
-                            <option selected disabled>{{ branch.TPBName }}</option>
+                            {% if branch.TPBName == 'Airport' %}
+                                <option selected>{{ branch.TPBName }}</option>
+                                <option>Regular</option>
+                            {% else %}
+                                <option selected>{{ branch.TPBName }}</option>
+                                <option>Airport</option>
+                            {% endif %}
                         </select>
                     </td>                
                     <td><input type="text" class="form-control td-branch-BSAPCode" value="{{ branch.BSAPCode  }}" readonly /></td>
                     <td>
                         <select class="form-control td-branch-Btype" disabled>
-                            <option selected disabled>{{ branch.BType }}</option>
-                            <option>Test</option>
+                            <option selected>{{ branch.BType }}</option>
+                            {% for BType in BTypes %}
+                                {% if BType != branch.BType %}
+                                    <option>{{ BType }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </td>
                     <td><input type="text" class="form-control td-branch-BDesc" value="{{ branch.BDescription  }}" readonly /></td>
