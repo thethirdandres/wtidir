@@ -82,14 +82,14 @@ WSGI_APPLICATION = 'wtidir.wsgi.application'
 
 
 DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'wtidir3000',
-#         'USER': 'root',
-#         'PASSWORD': '@i3cFg#7mP!2t?',
-#         'HOST': '10.1.1.3',
-#         'PORT': '3306 ',
-#     }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wtidir3000',
+        'USER': 'root',
+        'PASSWORD': '@i3cFg#7mP!2t?',
+        'HOST': '10.1.1.3',
+        'PORT': '3306 ',
+    }
 }
 
 

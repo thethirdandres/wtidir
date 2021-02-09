@@ -1,0 +1,91 @@
+<div class="modal-content">
+    <div class="modal-header sheets-addnewdelivery-modal-header">
+        <h5 class="modal-title roboto-24 " id="modal_addnewdelivery">NEW DAMAGE</h5>
+        <div>
+            <button class="button-red" data-toggle="modal" data-target="#prompt_doneaddnewdamagereturn">SAVE</button>
+            <div class="modal fade close-all-modal" id="prompt_doneaddnewdamagereturn" tabindex="-1" role="dialog" aria-labelledby="prompt_doneaddnewdamagereturnlabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">    
+                    {% include '../prompts/prompt_doneaddnewdamagereturn.html' %}
+                </div>
+            </div>
+            <button class="button-white cancel-add-new-delivery"  data-dismiss="modal">CANCEL</button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex">
+            <div class="form-group mx-1">
+                <label for="documentnumber">Document Number</label>
+                <input type="text"
+                    class="form-control form-control-sm" name="documentnumber" id="documentnumber">
+            </div>
+            <div class="form-group mx-1">
+                <label for="date">Date</label>
+                <input type="date"
+                    class="form-control form-control-sm" name="date" id="date">
+            </div>
+            <div class="form-group sheets-select">
+                <label for="branchfrom">Branch From</label>
+                <select class="form-control form-control-sm" name="branchfrom" id="branchfrom">
+                    <option selected disabled></option>
+                    <option>Test</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                </select>
+            </div>
+            <div class="form-group sheets-select mx-1">
+                <label for="branchto">Branch To</label>
+                <select class="form-control form-control-sm" name="branchto" id="branchto">
+                    <option selected disabled></option>
+                    <option>Test</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                </select>
+            </div>
+            <div class="form-group mx-1 w-50">
+                <label for="comments">Comments</label>
+                <input type="text"
+                    class="form-control form-control-sm" name="comments" id="comments">
+            </div>
+        </div>
+
+    </div>
+    <div class="d-flex p-3">
+        {% comment %} <div class="pull-left"> {% endcomment %}
+            <div class="form-group mx-1">
+                <label for="description">DESCRIPTION</label>
+                <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input" name="description" id="description" placeholder="Enter keyword to search item">
+            </div>
+            <div class="form-group mx-1">
+                <label for="sapqty">SAP QTY</label>
+                <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input-siblings" name="sapqty" id="sapqty">
+            </div>
+            <div class="form-group mx-1">
+                <label for="qty">QTY</label>
+                <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input-siblings" name="qty" id="qty">
+            </div>
+            <div class="form-group mx-1">
+                <label for="unit">UNIT</label>
+                <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input-siblings" name="unit" id="unit">
+            </div>
+            <button type="submit" class="btn h-50 mt-4">
+                    <img src="../../static/img/sheets-icons/add.png" />
+            </button>
+        {% comment %} </div> {% endcomment %}
+    </div>
+    <table class="table table-border  table-sm w-50 m-3">
+        <tbody>
+            <tr>
+                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
+                <td contenteditable="false">5.00</td>
+                <td contenteditable="false">5</td>
+                <td contenteditable="false">piece</td>
+            </tr>
+            <tr>
+                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
+                <td contenteditable="false">5.00</td>
+                <td contenteditable="false">5</td>
+                <td contenteditable="false">piece</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

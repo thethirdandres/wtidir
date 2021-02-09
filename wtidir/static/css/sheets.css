@@ -294,3 +294,12 @@
     height: 10%;
     background-color: #ffffff;
 }
+
+
+/* TEMPLATE */
+
+.ts-add-template {
+    height: 4rem;
+    background-color: rgb(238, 238, 238);
+    border: .5px rgb(214, 214, 214) solid;
+}

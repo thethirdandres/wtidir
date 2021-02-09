@@ -79,4 +79,8 @@ $(document).ready(function() {
         $(".sheets-dropdown-container").css('display', 'block');
         $(".sheets-dropdown-item").css('display', 'block');
     });
+
+    $("template-section input[type=radio]").click(function {
+        $(this).checked == true ? $(this).checked = false : $(this).checked = true;
+    })
 });

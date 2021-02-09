@@ -47,5 +47,6 @@ def reports_sales_view(request):
     return render(request, 'sheets_templates/reports_sales.html')
 
 
-def temptemp_view(request):
-    return render(request, 'sheets_templates/temptemp.html')
+
+def template_view(request):
+    return render(request, 'sheets_templates/template.html')
