@@ -9,7 +9,7 @@
             </label>
         </div>
         <div class="ts-add-template w-100 d-flex align-items-center mt-3 pl-4">
-            <input class="roboto" value="Template Name">
+            <input class="roboto" placeholder="Template Name">
             <label class=" ml-3 py-auto h-25">
                 <input type="radio" name="template-source">
                 Empty Template
@@ -39,13 +39,13 @@
                 <tr>
                     <td class="w-25"><input type="text" class="form-control" value="Regular" readonly /></td>
                     <td>
-                        <a class="mr-2" data-toggle="modal" data-target="#edittemplateitems"><img src="../../static/img/sheets-icons/edititems.png" data-toggle="tooltip" data-placement="top" title="Edit Items" ></a>
+                        <a class="mr-2 pointer-cursor-on-hover" data-toggle="modal" data-target="#edittemplateitems"><img src="../../static/img/sheets-icons/edititems.png" data-toggle="tooltip" data-placement="top" title="Edit Items" ></a>
                         <div class="modal fade" id="edittemplateitems" tabindex="-1" role="dialog" aria-labelledby="edittemplateitemslabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">    
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">    
                                 {% include '../modals/edittemplateitems.html' %}
                             </div>
                         </div>
-                        <a><img src="../../static/img/sheets-icons/delete.png"data-toggle="tooltip" data-placement="top" title="Delete" ></a>
+                        <a class="pointer-cursor-on-hover"><img src="../../static/img/sheets-icons/delete.png"data-toggle="tooltip" data-placement="top" title="Delete" ></a>
                     </td>
                 </tr>
             </tbody>
