@@ -90,3 +90,12 @@ class DiscountType (models.Model):
     DTVatExempt = models.BooleanField(default=False)
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
+
+class PaymentType (models.Model):
+    idPaymentType = models.AutoField(primary_key=True, serialize=False)
+    PTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PTFixedAmount = models.DecimalField(default=0.00, decimal_places=2, max_digits=6)
+    PTReference = models.IntegerField(default=0)
+    PTPriority = models.IntegerField(default=0)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)

@@ -395,7 +395,5 @@ def paymenttype_view(request):
 def device_view(request):
     return render(request, 'repository_templates/device.html')
 
-
-
 def item_view(request):
     return render(request, 'repository_templates/item.html')

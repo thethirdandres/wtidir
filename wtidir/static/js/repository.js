@@ -1013,3 +1013,30 @@ $(document).on("click", ".btn-update-discount-type", function(){
     $(this).parents('tr').find('td:not(:last-child)').children('input').attr('disabled', true)
 })
     // * * * * * Discount Type Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Payment Type Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-add-payment-type").click(function() {
+    var PTName = $('#txt-payment-type-unit').val()
+    var PTFixedAmount = $('#txt-payment-type-fixed-amount').val() + ".00"
+
+    // $.ajax({
+    //     url: "DiscountTpye_add",
+    //     type: "POST",
+    //     data: { DTName: DTName, DTPercent: DTPercent, DTAmount: DTAmount, DTVatExempt: DTVatExempt }
+    // }).done(function(response) {
+    //     if (response["error"] == false) {
+    //         console.log(response["Message"])
+
+    //         var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTVatExempt' value='"+response['DTVatExempt']+"' disabled /></td>"
+    //                         + "<td>"
+    //                         + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
+    //                         + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-discount-type'>"
+    //                         + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-discount-type'></a>"
+    //                         + "</td>"
+    //                         + "</tr>"
+    //         $(html_data).prependTo("#tbl-discount-type > tbody")
+    //     } else {
+    //         console.log(response["Message"])
+    //     }
+    // })
+})
+    // * * * * * Payment Type Page Eventlistener * * * * *
