@@ -81,3 +81,12 @@ class ProductUOM (models.Model):
     PUOMName = models.CharField(default='', max_length=50, null=True, blank=True)
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
+
+class DiscountType (models.Model):
+    idDiscountType = models.AutoField(primary_key=True, serialize=False)
+    DTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    DTPercent = models.DecimalField(default=0.00, decimal_places=2, max_digits=6)
+    DTAmount = models.DecimalField(default=0.00, decimal_places=2, max_digits=6)
+    DTVatExempt = models.BooleanField(default=False)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)

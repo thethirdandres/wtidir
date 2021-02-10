@@ -5,45 +5,60 @@
     <div class="repo-title roboto-24 text-gray">Discount Type</div>
 </div>
 
-<form class="d-flex">
+<div class="d-flex">
     <div class="">
-        <input type="text" class="form-control ml-2 " name="discounttype"  placeholder="Discount Type">
+        <input type="text" class="form-control ml-2 " name="discounttype"  placeholder="Discount Type" id="txt-discount-type">
     </div>
     <div class="ml-3">
-        <input type="text" class="form-control ml-2 " name="percent"  placeholder="Percent">
+        <input type="number" class="form-control ml-2 " name="percent"  placeholder="Percent" id="txt-discount-percent">
     </div>
     <div class="ml-3">
-        <input type="text" class="form-control ml-2 " name="amount"  placeholder="Amount">
+        <input type="number" class="form-control ml-2 " name="amount"  placeholder="Amount" id="txt-discount-amount">
     </div>
     <div class="ml-3 pt-2">
-        <input type="checkbox" class=" ml-2 " name="vatexempt">
+        <input type="checkbox" class=" ml-2 " name="vatexempt" id="chkbox-vat-exempt">
         <label for="vatexempt">VAT Exempt</label>
     </div>
-    <button type="submit" class="btn uom-submit-button"><img src="../../static/img/repository-icons/add.png"/></button>
-</form>
+    <button type="submit" class="btn uom-submit-button" id="btn-add-discount-type"><img src="../../static/img/repository-icons/add.png"/></button>
+</div>
 
-<table class="table table-border  table-sm  mt-3">
+<table class="table table-border  table-sm  mt-3" id="tbl-discount-type">
     <thead class="table-active">
         <tr>
             <th>DISCOUNT TYPE</th>
             <th>PERCENT</th>
             <th>AMOUNT</th>
-            <th>VAT EXEMPT</th>
             <th></th>
+            <th>ACTION</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+        {% for DT in DTS %}
+        <tr id="{{ DT.idDiscountType }}">
+            <td class="unit-input"><input type="text" class="form-control td-discount-type-DTName" value="{{ DT.DTName }}" readonly /></td>
+            <td class="unit-input"><input type="text" class="form-control td-discount-type-DTPercent" value="{{ DT.DTPercent }}" readonly /></td>
+            <td class="unit-input"><input type="text" class="form-control td-discount-type-DTAmount" value="{{ DT.DTAmount }}" readonly /></td>
+            <td class="unit-input ml-3 pt-2">
+                {% if DT.DTVatExempt %}
+                    <input type="checkbox" class=" ml-2 " name="vatexempt" class="chkbox-vat-exempt" checked disabled>                   
+                {% else %}
+                    <input type="checkbox" class=" ml-2 " name="vatexempt" class="chkbox-vat-exempt" disabled>
+                {% endif %}
+                <label for="vatexempt">VAT Exempt</label>
+            </td>
             <td>
-                <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none ">
-                <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
+                <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button btn-enable-update-dt"></a>
+                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none btn-update-discount-type">
+                <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete" class="btn-deactivate-discount-type"></a>
             </td>
         </tr>
+        {% endfor %} 
     </tbody>
 </table>
+
+<div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+    <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+        {% include '../prompts/prompt_confirmdeactivate.html' %}
+    </div>
+</div>
 {% endblock repository-content %}

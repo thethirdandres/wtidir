@@ -45,4 +45,8 @@ urlpatterns = [
     path('ProductUOM_add', views.ProductUOM_add, name="ProductUOM_add"),
     path('ProductUOM_deactivate', views.ProductUOM_deactivate, name="ProductUOM_deactivate"),
     path('ProductUOM_update', views.ProductUOM_update, name="ProductUOM_update"),
+    #Discount Type
+    path('DiscountTpye_add', views.DiscountTpye_add, name="DiscountTpye_add"),
+    path('DiscountType_deactivate', views.DiscountType_deactivate, name="DiscountType_deactivate"),
+    path('DiscountType_update', views.DiscountType_update, name="DiscountType_update"),
 ]

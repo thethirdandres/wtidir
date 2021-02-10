@@ -921,3 +921,95 @@ $(document).on("click", ".btn-product-uom-update", function(){
     })
 })
     // * * * * * UOM Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Discount Type Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-add-discount-type").click(function() {
+    var DTName = $('#txt-discount-type').val()
+    var DTPercent = $('#txt-discount-percent').val() + ".00"
+    var DTAmount = $('#txt-discount-amount').val() + ".00"
+    var DTVatExempt = 0
+
+    if (document.getElementById('chkbox-vat-exempt').checked) {
+        DTVatExempt = 1
+    }
+
+    $.ajax({
+        url: "DiscountTpye_add",
+        type: "POST",
+        data: { DTName: DTName, DTPercent: DTPercent, DTAmount: DTAmount, DTVatExempt: DTVatExempt }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+            var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTVatExempt' value='"+response['DTVatExempt']+"' disabled /></td>"
+                            + "<td>"
+                            + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
+                            + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-discount-type'>"
+                            + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-discount-type'></a>"
+                            + "</td>"
+                            + "</tr>"
+            $(html_data).prependTo("#tbl-discount-type > tbody")
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-enable-update-dt", function(){
+    $(this).parents('tr').find('td:not(:last-child)').children('input').attr('disabled', false)
+})
+
+$(document).on("click", ".btn-deactivate-discount-type", function(){
+    var idDiscountType = $(this).closest('tr').attr('id')
+    var DTName = $(this).closest('tr').find('.td-discount-type-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idDiscountType)
+    $('#dialog-deactivation-title').text('Deactivate Discount Type?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Discount Type Name ' + DTName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-discount-type')
+})
+
+$(document).on("click", ".deactivate-discount-type", function(){
+    var idDiscountType = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "DiscountType_deactivate",
+        type: "POST",
+        data: { idDiscountType: idDiscountType }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-discount-type tr#' + idDiscountType).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+
+$(document).on("click", ".btn-update-discount-type", function(){
+    var idDiscountType = $(this).closest('tr').attr('id')
+    var DTName = $(this).closest('tr').find('.td-discount-type-DTName').val()
+    var DTPercent = $(this).closest('tr').find('.td-discount-type-DTPercent').val()
+    var DTAmount = $(this).closest('tr').find('.td-discount-type-DTAmount').val()
+    var DTVatExempt = $(this).closest('tr').find('input[type=checkbox]').is(":checked")
+
+    $.ajax({
+        url: "DiscountType_update",
+        type: "POST",
+        data: { idDiscountType: idDiscountType, DTName: DTName, DTPercent: DTPercent, DTAmount: DTAmount, DTVatExempt: DTVatExempt }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $(this).parents('tr').find('td:not(:last-child)').children('input').attr('disabled', true)
+})
+    // * * * * * Discount Type Page Eventlistener * * * * *

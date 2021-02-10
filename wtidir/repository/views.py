@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -314,7 +314,7 @@ def ProductUOM_add(request):
         PUOM_data = {"idProductUOM":PUOM.idProductUOM, "PUOMName":PUOM.PUOMName, "error":False,"Message":"Product UOM has been Added Successfully"}
         return JsonResponse(PUOM_data,safe=False)
     except:
-        PUOM_data = {"error":True,"Message":"Error Failed to Added Product UOM"}
+        PUOM_data = {"error":True,"Message":"Error Failed to Add Product UOM"}
         return JsonResponse(PUOM_data,safe=False)
 
 @csrf_exempt
@@ -341,17 +341,61 @@ def ProductUOM_update(request):
         PUOM_data = {"error":True,"Message":"Error Failed to Deactivated Product Updated"}
         return JsonResponse(PUOM_data,safe=False)
 # * * * * * UOM Page * * * * *
+# ~ ~ ~ ~ ~ Discount Type Page ~ ~ ~ ~ ~
+def discounttype_view(request):
+    DTS = DiscountType.objects.filter(Status=1).order_by('-idDiscountType')
+    return render(request, 'repository_templates/discounttype.html', {'DTS': DTS})
 
+@csrf_exempt
+def DiscountTpye_add(request):
+    try:
+        DT = DiscountType(DTName=request.POST.get('DTName'), DTPercent=request.POST.get('DTPercent'), DTAmount=request.POST.get('DTAmount'), DTVatExempt=int(request.POST.get('DTVatExempt')))
+        DT.save() 
+        DT_data = {"idDiscountType":DT.idDiscountType, "DTName":DT.DTName, "DTPercent":DT.DTPercent, "DTAmount":DT.DTAmount, "DTVatExempt":DT.DTVatExempt,"error":False,"Message":"Product Discount Type has been Added Successfully"}
+        return JsonResponse(DT_data,safe=False)
+    except:
+        DT_data = {"error":True,"Message":"Error Failed to Add Discount Type"}
+        return JsonResponse(DT_data,safe=False)
 
+@csrf_exempt
+def DiscountType_deactivate(request):
+    try:
+        DT = DiscountType.objects.get(idDiscountType=request.POST.get('idDiscountType'))
+        DT.Status = 0
+        DT.save()
+        DT_data = {"error":True,"Message":"Discount Type has been Deactivated"}
+        return JsonResponse(DT_data,safe=False)
+    except:
+        DT_data = {"error":True,"Message":"Error Failed to Deactivated Discount Type"}
+        return JsonResponse(DT_data,safe=False)
+
+@csrf_exempt
+def DiscountType_update(request):
+    try:
+        DT = DiscountType.objects.get(idDiscountType=request.POST.get('idDiscountType'))
+        DT.DTName = request.POST.get('DTName')
+        DT.DTPercent = request.POST.get('DTPercent')
+        DT.DTAmount = request.POST.get('DTAmount')
+        if request.POST.get('DTVatExempt'):
+             DT.DTVatExempt = 1
+        else:
+            DT.DTVatExempt = 0
+        DT.save()
+        DT_data = {"error":True,"Message":"Discount Type has been updated"}
+        return JsonResponse(DT_data,safe=False)
+    except:
+        DT_data = {"error":True,"Message":"Error Failed to update Discount Type"}
+        return JsonResponse(DT_data,safe=False)
+# * * * * * Discount Type Page * * * * *
+# ~ ~ ~ ~ ~ Payment Type Page ~ ~ ~ ~ ~
+def paymenttype_view(request):
+    return render(request, 'repository_templates/paymenttype.html')
+# * * * * * Payment Type Page * * * * *
 
 def device_view(request):
     return render(request, 'repository_templates/device.html')
 
-def paymenttype_view(request):
-    return render(request, 'repository_templates/paymenttype.html')
 
-def discounttype_view(request):
-    return render(request, 'repository_templates/discounttype.html')
 
 def item_view(request):
     return render(request, 'repository_templates/item.html')
