@@ -10,12 +10,12 @@
         <input type="text" class="form-control ml-2 " name="unit"  placeholder="Unit" id="txt-payment-type-unit">
     </div>
     <div class="ml-3">
-        <input type="text" class="form-control ml-2 " name="fixedamount"  placeholder="Fixed Amount" id="txt-payment-type-fixed-amount">
+        <input type="number" class="form-control ml-2 " name="fixedamount"  placeholder="Fixed Amount" id="txt-payment-type-fixed-amount">
     </div>
     <button type="submit" class="btn uom-submit-button" id="btn-add-payment-type"><img src="../../static/img/repository-icons/add.png"/></button>
 </div>
 
-<table class="table table-border  table-sm  mt-3">
+<table class="table table-border  table-sm  mt-3" id="tbl-payment-type">
     <thead class="table-active">
         <tr>
             <th>UNIT</th>
@@ -24,15 +24,23 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-            <td class="unit-input"><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-            <td>
-                <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
-                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none ">
-                <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
-            </td>
-        </tr>
+        {% for PT in PTS %}
+            <tr id="{{ PT.idPaymentType }}">
+                <td class="unit-input"><input type="text" class="form-control td-payment-type-name" value="{{ PT.PTName }}" readonly /></td>
+                <td class="unit-input"><input type="text" class="form-control td-payment-type-fixed-amount" value="{{ PT.PTFixedAmount }}" readonly /></td>
+                <td>
+                    <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none btn-update-payment-type">
+                    <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete" class="btn-deactivate-payment-type"></a>
+                </td>
+            </tr>
+        {% endfor %} 
     </tbody>
 </table>
+
+<div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+    <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+        {% include '../prompts/prompt_confirmdeactivate.html' %}
+    </div>
+</div>
 {% endblock repository-content %}

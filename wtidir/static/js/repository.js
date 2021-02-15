@@ -928,6 +928,19 @@ $("#btn-add-discount-type").click(function() {
     var DTAmount = $('#txt-discount-amount').val() + ".00"
     var DTVatExempt = 0
 
+    if (DTName == "") {
+        alert("Discount Type Name is needed.")
+        return;
+    }
+
+    if (DTPercent == 0) {
+        DTPercent = "0.00"
+    }
+
+    if (DTAmount == 0) {
+        DTAmount = "0.00"
+    }
+
     if (document.getElementById('chkbox-vat-exempt').checked) {
         DTVatExempt = 1
     }
@@ -940,7 +953,8 @@ $("#btn-add-discount-type").click(function() {
         if (response["error"] == false) {
             console.log(response["Message"])
 
-            var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTVatExempt' value='"+response['DTVatExempt']+"' disabled /></td>"
+            var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td>"
+                            + "<td class='unit-input ml-3 pt-2 td-discount-type-vatExempt'></td>"
                             + "<td>"
                             + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
                             + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-discount-type'>"
@@ -948,6 +962,14 @@ $("#btn-add-discount-type").click(function() {
                             + "</td>"
                             + "</tr>"
             $(html_data).prependTo("#tbl-discount-type > tbody")
+
+            if (response['DTVatExempt']) {
+                var vatExempt = "<input type='checkbox' class='ml-2' name='vatexempt' class='chkbox-vat-exempt' checked disabled><label for='vatexempt'>VAT Exempt</label>"
+            }else{               
+                var vatExempt = "<input type='checkbox' class='ml-2' name='vatexempt' class='chkbox-vat-exempt' disabled></input><label for='vatexempt'>VAT Exempt</label>"
+            }
+
+            $('.td-discount-type-vatExempt').append(vatExempt)
         } else {
             console.log(response["Message"])
         }
@@ -1018,25 +1040,83 @@ $("#btn-add-payment-type").click(function() {
     var PTName = $('#txt-payment-type-unit').val()
     var PTFixedAmount = $('#txt-payment-type-fixed-amount').val() + ".00"
 
-    // $.ajax({
-    //     url: "DiscountTpye_add",
-    //     type: "POST",
-    //     data: { DTName: DTName, DTPercent: DTPercent, DTAmount: DTAmount, DTVatExempt: DTVatExempt }
-    // }).done(function(response) {
-    //     if (response["error"] == false) {
-    //         console.log(response["Message"])
+    if (PTFixedAmount == 0) {
+        PTFixedAmount = "0.00"
+    }
 
-    //         var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTVatExempt' value='"+response['DTVatExempt']+"' disabled /></td>"
-    //                         + "<td>"
-    //                         + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
-    //                         + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-discount-type'>"
-    //                         + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-discount-type'></a>"
-    //                         + "</td>"
-    //                         + "</tr>"
-    //         $(html_data).prependTo("#tbl-discount-type > tbody")
-    //     } else {
-    //         console.log(response["Message"])
-    //     }
-    // })
+    $.ajax({
+        url: "PaymentType_add",
+        type: "POST",
+        data: { PTName: PTName, PTFixedAmount: PTFixedAmount }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+            var html_data = "<tr id='"+response['idPaymentType']+"'>"
+                                + "<td class='unit-input'><input type='text' class='form-control td-payment-type-name' value='"+response['PTName']+"' readonly /></td>"
+                                + "<td class='unit-input'><input type='text' class='form-control td-payment-type-fixed-amount' value='"+response['PTFixedAmount']+"' readonly /></td>"
+                                + "<td>"
+                                    + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
+                                    + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-payment-type'>"
+                                    + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-payment-type'></a>"
+                                + "</td>"
+                            + "</tr>"
+            $(html_data).prependTo("#tbl-payment-type > tbody")
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-deactivate-payment-type", function(){
+    var idPaymentType = $(this).closest('tr').attr('id')
+    var PTName = $(this).closest('tr').find('.td-payment-type-name').val()
+
+    console.log(idPaymentType)
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idPaymentType)
+    $('#dialog-deactivation-title').text('Deactivate Payment Type?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Payment Type Named ' + PTName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-payment-type')
+})
+
+$(document).on("click", ".deactivate-payment-type", function(){
+    var idPaymentType = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "PaymentType_deactivate",
+        type: "POST",
+        data: { idPaymentType: idPaymentType }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-payment-type tr#' + idPaymentType).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+
+$(document).on("click", ".btn-update-payment-type", function(){
+    var idPaymentType = $(this).closest('tr').attr('id')
+    var PTName = $(this).closest('tr').find('.td-payment-type-name').val()
+    var DTPercent = $(this).closest('tr').find('.td-payment-type-fixed-amount').val()
+
+    $.ajax({
+        url: "PaymentType_Update",
+        type: "POST",
+        data: { idPaymentType: idPaymentType, PTName: PTName, DTPercent: DTPercent }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
 })
     // * * * * * Payment Type Page Eventlistener * * * * *

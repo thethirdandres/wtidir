@@ -34,24 +34,24 @@
     </thead>
     <tbody>
         {% for DT in DTS %}
-        <tr id="{{ DT.idDiscountType }}">
-            <td class="unit-input"><input type="text" class="form-control td-discount-type-DTName" value="{{ DT.DTName }}" readonly /></td>
-            <td class="unit-input"><input type="text" class="form-control td-discount-type-DTPercent" value="{{ DT.DTPercent }}" readonly /></td>
-            <td class="unit-input"><input type="text" class="form-control td-discount-type-DTAmount" value="{{ DT.DTAmount }}" readonly /></td>
-            <td class="unit-input ml-3 pt-2">
-                {% if DT.DTVatExempt %}
-                    <input type="checkbox" class=" ml-2 " name="vatexempt" class="chkbox-vat-exempt" checked disabled>                   
-                {% else %}
-                    <input type="checkbox" class=" ml-2 " name="vatexempt" class="chkbox-vat-exempt" disabled>
-                {% endif %}
-                <label for="vatexempt">VAT Exempt</label>
-            </td>
-            <td>
-                <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button btn-enable-update-dt"></a>
-                <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none btn-update-discount-type">
-                <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete" class="btn-deactivate-discount-type"></a>
-            </td>
-        </tr>
+            <tr id="{{ DT.idDiscountType }}">
+                <td class="unit-input"><input type="text" class="form-control td-discount-type-DTName" value="{{ DT.DTName }}" readonly /></td>
+                <td class="unit-input"><input type="text" class="form-control td-discount-type-DTPercent" value="{{ DT.DTPercent }}" readonly /></td>
+                <td class="unit-input"><input type="text" class="form-control td-discount-type-DTAmount" value="{{ DT.DTAmount }}" readonly /></td>
+                <td class="unit-input ml-3 pt-2">
+                    {% if DT.DTVatExempt %}
+                        <input type="checkbox" class=" ml-2 " name="vatexempt" class="chkbox-vat-exempt" checked disabled>                   
+                    {% else %}
+                        <input type="checkbox" class=" ml-2 " name="vatexempt" class="chkbox-vat-exempt" disabled>
+                    {% endif %}
+                    <label for="vatexempt">VAT Exempt</label>
+                </td>
+                <td>
+                    <a class=""><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button btn-enable-update-dt"></a>
+                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-gray-button d-none btn-update-discount-type">
+                    <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete" class="btn-deactivate-discount-type"></a>
+                </td>
+            </tr>
         {% endfor %} 
     </tbody>
 </table>

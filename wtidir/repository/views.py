@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -389,7 +389,44 @@ def DiscountType_update(request):
 # * * * * * Discount Type Page * * * * *
 # ~ ~ ~ ~ ~ Payment Type Page ~ ~ ~ ~ ~
 def paymenttype_view(request):
-    return render(request, 'repository_templates/paymenttype.html')
+    PTS = PaymentType.objects.filter(Status=1).order_by('-idPaymentType')
+    return render(request, 'repository_templates/paymenttype.html', {'PTS': PTS})
+
+@csrf_exempt
+def PaymentType_add(request):
+    try:
+        PT = PaymentType(PTName=request.POST.get('PTName'), PTFixedAmount=request.POST.get('PTFixedAmount'))
+        PT.save()
+        PT_data = {"idPaymentType":PT.idPaymentType, "PTName":PT.PTName, "PTFixedAmount":PT.PTFixedAmount, "error":False,"Message":"Payment Type has been Added Successfully"}
+        return JsonResponse(PT_data,safe=False)
+    except:
+        PT_data = {"error":True,"Message":"Error Failed to Add Payment Type"}
+        return JsonResponse(PT_data,safe=False)
+
+@csrf_exempt
+def PaymentType_deactivate(request):
+    try:
+        PT = PaymentType.objects.get(idPaymentType=request.POST.get('idPaymentType'))
+        PT.Status = 0
+        PT.save()
+        PT_data = {"error":True,"Message":"Payment Type has been Deactivated"}
+        return JsonResponse(PT_data,safe=False)
+    except:
+        PT_data = {"error":True,"Message":"Error! Failed to Deactivate Payment Type"}
+        return JsonResponse(PT_data,safe=False)
+
+@csrf_exempt
+def PaymentType_Update(request):
+    try:
+        PT = PaymentType.objects.get(idPaymentType=request.POST.get('idPaymentType'))
+        PT.PTName = request.POST.get('PTName')
+        PT.PTFixedAmount = request.POST.get('PTFixedAmount')
+        PT.save()
+        PT_data = {"error":True,"Message":"Payment Type has been Updated"}
+        return JsonResponse(PT_data,safe=False)
+    except:
+        PT_data = {"error":True,"Message":"Error! Failed to Deactivate Payment Type"}
+        return JsonResponse(PT_data,safe=False)
 # * * * * * Payment Type Page * * * * *
 
 def device_view(request):

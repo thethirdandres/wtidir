@@ -49,4 +49,8 @@ urlpatterns = [
     path('DiscountTpye_add', views.DiscountTpye_add, name="DiscountTpye_add"),
     path('DiscountType_deactivate', views.DiscountType_deactivate, name="DiscountType_deactivate"),
     path('DiscountType_update', views.DiscountType_update, name="DiscountType_update"),
+    #Payment Type
+    path('PaymentType_add', views.PaymentType_add, name="PaymentType_add"),
+    path('PaymentType_deactivate', views.PaymentType_deactivate, name="PaymentType_deactivate"),
+    path('PaymentType_Update', views.PaymentType_Update, name="PaymentType_Update"),
 ]
