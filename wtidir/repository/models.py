@@ -99,3 +99,16 @@ class PaymentType (models.Model):
     PTPriority = models.IntegerField(default=0)
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
+
+class Device (models.Model):
+    idDevice = models.AutoField(primary_key=True, serialize=False)
+    idBranch = models.IntegerField(default=0)
+    idArea = models.IntegerField(default=0)
+    unDevice = models.CharField(default='', max_length=10, null=True, blank=True)
+    BName = models.CharField(default='', max_length=50, null=True, blank=True)
+    AName = models.CharField(default='', max_length=50, null=True, blank=True)
+    DSerialNumber = models.CharField(default='', max_length=50, null=True, blank=True)
+    DMacAddress = models.CharField(default='', max_length=50, null=True, blank=True)
+    DName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)

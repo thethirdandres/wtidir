@@ -53,4 +53,7 @@ urlpatterns = [
     path('PaymentType_add', views.PaymentType_add, name="PaymentType_add"),
     path('PaymentType_deactivate', views.PaymentType_deactivate, name="PaymentType_deactivate"),
     path('PaymentType_Update', views.PaymentType_Update, name="PaymentType_Update"),
+    #Device
+    path('Device_add', views.Device_add, name="Device_add"),
+    path('Device_deactivate', views.Device_deactivate, name="Device_deactivate"),
 ]

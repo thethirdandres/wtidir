@@ -80,8 +80,6 @@ $(document).on("click", ".repository-edit-gray-button", function() {
     }
 });
 
-
-
 $('.confirm-all-modal').click(function() {
     if ($(this).hasClass('prompt_confirmcreateuser')) {
         $('.close-all-modal').modal('hide');
@@ -123,6 +121,18 @@ $('.repository-user-tab').click(function() {
 })
 
     ///////////////////////// end of Andres' JQueries //////////////////////////////
+
+function ClearAllInputBox() {
+    // $(this).find('#form-device').find('input').each(function(){
+    //     $(this).val('')
+    // })
+    var inputElements = document.getElementsByTagName('input')
+    for (var i=0; i < inputElements.length; i++) {
+        if (inputElements[i].find('.') == 'text') {
+            inputElements[i].value = ''
+        }
+    }
+}
 
     // ~ ~ ~ ~ ~ User Page Eventlistener ~ ~ ~ ~ ~
 
@@ -1072,7 +1082,6 @@ $(document).on("click", ".btn-deactivate-payment-type", function(){
     var idPaymentType = $(this).closest('tr').attr('id')
     var PTName = $(this).closest('tr').find('.td-payment-type-name').val()
 
-    console.log(idPaymentType)
     $('#prompt_confirmdeactivate').modal('show')
 
     $('#dialog-hidden-id').text(idPaymentType)
@@ -1120,3 +1129,93 @@ $(document).on("click", ".btn-update-payment-type", function(){
     })
 })
     // * * * * * Payment Type Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Device Type Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-add-device").click(function() {
+    var DName = $('#txtDeviceName').val()
+    var idBranch = $('#select-branches').children(':selected').attr('id')
+    var BName = $('#select-branches').find('option:selected').text()
+    var idArea = $('#select-areas').children(':selected').attr('id')
+    var AName = $('#select-areas').find('option:selected').text()
+    var DSerialNumber = $('#txtSerialNumber').val()
+    var DMacAddress = $('#txtMacAddress').val()
+    
+    if (DName == "") {
+        alert('Device Name is needed.')
+        return
+    } else if (DSerialNumber == "") {
+        alert('Serial Number is needed.')
+        return
+    } else if (DMacAddress == "") {
+        alert('Mac Address is needed.')
+        return
+    }
+
+    $.ajax({
+        url: "Device_add",
+        type: "POST",
+        data: {DName: DName, idBranch: idBranch, BName: BName, idArea: idArea, AName: AName, DSerialNumber: DSerialNumber, DMacAddress: DMacAddress}
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+            // var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td>"
+            //                 + "<td class='unit-input ml-3 pt-2 td-discount-type-vatExempt'></td>"
+            //                 + "<td>"
+            //                 + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
+            //                 + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-discount-type'>"
+            //                 + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-discount-type'></a>"
+            //                 + "</td>"
+            //                 + "</tr>"
+            // $(html_data).prependTo("#tbl-discount-type > tbody")
+
+            // ClearAllInputBox()
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-deactivate-device", function(){
+    var idDevice = $(this).closest('tr').attr('id')
+    var DName = $(this).closest('tr').find('.td-device-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idDevice)
+    $('#dialog-deactivation-title').text('Deactivate Device?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Device Named ' + DName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-device')
+})
+
+$(document).on("click", ".deactivate-device", function(){
+    var idDevice = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "Device_deactivate",
+        type: "POST",
+        data: { idDevice: idDevice }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-devices tr#' + idDevice).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+
+$(document).on("click", ".btn-device-update", function(){
+    var idDevice = $(this).closest('tr').attr('id')
+    var DName = $(this).closest('tr').find('.td-device-name').val()
+    var idBranch = $('#select-branches').children(':selected').attr('id')
+    var BName = $('#select-branches').find('option:selected').text()
+    var idArea = $('#select-areas').children(':selected').attr('id')
+    var AName = $('#select-areas').find('option:selected').text()
+    var DSerialNumber = $(this).closest('tr').find('.td-device-DSerialNumber').val()
+    var DMacAddress = $(this).closest('tr').find('.td-device-DMacAddress').val()
+})
+     // * * * * * Device Type Page Eventlistener * * * * *

@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -428,9 +428,41 @@ def PaymentType_Update(request):
         PT_data = {"error":True,"Message":"Error! Failed to Deactivate Payment Type"}
         return JsonResponse(PT_data,safe=False)
 # * * * * * Payment Type Page * * * * *
-
+# ~ ~ ~ ~ ~ Device Page ~ ~ ~ ~ ~
 def device_view(request):
-    return render(request, 'repository_templates/device.html')
+    branches = Branch.objects.filter(Status=1).order_by('-BName')
+    areas = Area.objects.filter(Status=1).order_by('-AName')
+    devices = Device.objects.filter(Status=1).order_by('-idDevice')
+    return render(request, 'repository_templates/device.html', { 'branches': branches, 'areas': areas, 'devices': devices })
+
+@csrf_exempt
+def Device_add(request):
+    try:
+        _device = Device(DName=request.POST.get('DName'), idBranch=request.POST.get('idBranch'), BName=request.POST.get('BName'), 
+                        idArea=request.POST.get('idArea'), AName=request.POST.get('AName'), DSerialNumber=request.POST.get('DSerialNumber'), 
+                        DMacAddress=request.POST.get('DMacAddress'))
+        _device.save()
+        device_data = {"idDevice": _device.idDevice, "DName": _device.DName, "idBranch": _device.idBranch, "BName": _device.BName, "idArea": _device.idArea, 
+                "AName": _device.AName, "DSerialNumber": _device.DSerialNumber, "DMacAddress": _device.DMacAddress, "error":False, "Message":"Device has been Added Successfully"}
+        return JsonResponse(device_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        device_data = {"error":True,"Message": "Error Failed to Add Device"}       
+        return JsonResponse(device_data,safe=False)
+
+@csrf_exempt
+def Device_deactivate(request):
+    try:
+        _device = Device.objects.get(idDevice=request.POST.get('idDevice'))
+        _device.Status = 0
+        _device.save()
+        device_data = {"error":True,"Message":"Device has been Deactivated"}
+        return JsonResponse(device_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        device_data = {"error":True,"Message":"Error! Failed to Deactivate Device"}
+        return JsonResponse(device_data,safe=False)
+# * * * * * Device Page * * * * *
 
 def item_view(request):
     return render(request, 'repository_templates/item.html')
