@@ -50,3 +50,6 @@ def reports_sales_view(request):
 
 def template_view(request):
     return render(request, 'sheets_templates/template.html')
+    
+def bom_view(request):
+    return render(request, 'sheets_templates/bom.html')

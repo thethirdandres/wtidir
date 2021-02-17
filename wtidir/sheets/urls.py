@@ -22,4 +22,5 @@ urlpatterns = [
     path('reports_sales', views.reports_sales_view, name='reports_sales_view'),
 
     path('template', views.template_view, name='template_view'),
+    path('bom', views.bom_view, name='bom_view'),
 ]
