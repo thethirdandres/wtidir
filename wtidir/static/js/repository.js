@@ -1137,7 +1137,7 @@ $("#btn-add-device").click(function() {
     var idArea = $('#select-areas').children(':selected').attr('id')
     var AName = $('#select-areas').find('option:selected').text()
     var DSerialNumber = $('#txtSerialNumber').val()
-    var DMacAddress = $('#txtMacAddress').val()
+    var DMacAddress = $('#txtMacAddress').val()   
     
     if (DName == "") {
         alert('Device Name is needed.')
@@ -1156,17 +1156,29 @@ $("#btn-add-device").click(function() {
         data: {DName: DName, idBranch: idBranch, BName: BName, idArea: idArea, AName: AName, DSerialNumber: DSerialNumber, DMacAddress: DMacAddress}
     }).done(function(response) {
         if (response["error"] == false) {
-            console.log(response["Message"])
+            console.log(response["Message"])           
 
-            // var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td>"
-            //                 + "<td class='unit-input ml-3 pt-2 td-discount-type-vatExempt'></td>"
-            //                 + "<td>"
-            //                 + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
-            //                 + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-discount-type'>"
-            //                 + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-discount-type'></a>"
-            //                 + "</td>"
-            //                 + "</tr>"
-            // $(html_data).prependTo("#tbl-discount-type > tbody")
+            var html_data = "<tr id='"+response['idDevice']+"'>"
+                            + "<td><input type='text' class='form-control td-device-name' value='"+response['DName']+"' readonly /></td>"
+                            + "<td>"
+                                + "<select class='form-control td-device-branch td-device-new' disabled>"
+                                    + "<option id='"+response['idBranch']+"'>"+response['BName']+"</option>"                                    
+                                + "</select>"
+                            + "</td>"
+                            + "<td>"
+                                + "<select class='form-control td-device-area' disabled>"
+                                    + "<option id='"+response['idArea']+"'>"+response['AName']+"</option>"
+                                + "</select>"
+                            + "</td>"
+                            + "<td><input type='text' class='form-control td-device-DSerialNumber' value='"+response['DSerialNumber']+"' readonly /></td>"
+                            + "<td><input type='text' class='form-control td-device-DMacAddress' value='"+response['DMacAddress']+"' readonly /></td>"
+                            + "<td class='d-flex'>"
+                                + "<a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button in-branch btn-init-new-device'></a>"
+                                + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='modal' data-target='#prompt_doneeditdevice' class='repository-edit-gray-button in-branch d-none mr-2 ml-n3 btn-device-update'>"
+                                + "<a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-deactivate-device'></a>"
+                            + "</td>"
+                            + "</tr>"
+            $(html_data).prependTo("#tbl-devices > tbody")
 
             // ClearAllInputBox()
         } else {
@@ -1211,11 +1223,53 @@ $(document).on("click", ".deactivate-device", function(){
 $(document).on("click", ".btn-device-update", function(){
     var idDevice = $(this).closest('tr').attr('id')
     var DName = $(this).closest('tr').find('.td-device-name').val()
-    var idBranch = $('#select-branches').children(':selected').attr('id')
-    var BName = $('#select-branches').find('option:selected').text()
-    var idArea = $('#select-areas').children(':selected').attr('id')
-    var AName = $('#select-areas').find('option:selected').text()
+    var idBranch =  $(this).closest('tr').find(".td-device-branch").find('option:selected').attr('id')
+    var BName = $(this).closest('tr').find(".td-device-branch").find('option:selected').text()
+    var idArea = $(this).closest('tr').find(".td-device-area").find('option:selected').attr('id')
+    var AName = $(this).closest('tr').find(".td-device-area").find('option:selected').text()
     var DSerialNumber = $(this).closest('tr').find('.td-device-DSerialNumber').val()
     var DMacAddress = $(this).closest('tr').find('.td-device-DMacAddress').val()
+
+    $.ajax({
+        url: "Device_update",
+        type: "POST",
+        data: { idDevice: idDevice, DName: DName, idBranch: idBranch, BName: BName,
+                idArea: idArea, AName: AName, DSerialNumber: DSerialNumber, DMacAddress: DMacAddress }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-init-new-device", function(){
+    var idBranch =  $(this).closest('tr').find(".td-device-branch").find('option:selected').attr('id')
+    var idArea = $(this).closest('tr').find(".td-device-area").find('option:selected').attr('id')
+
+    $.ajax({
+        url: "Device_branch_and_area_list",
+        type: "GET"
+    }).done(function(response) {
+        lstBranches = response['branches']
+        lstAreas = response['areas']
+
+        lstBranches.forEach(listBranches)
+        function listBranches(branch){           
+            if (idBranch != branch.idBranch) {
+                html_branch = "<option id='"+branch.idBranch+"'>"+branch.BName+"</option>"
+                 $('tbody tr').first().find(".td-device-branch").append(html_branch)
+            }         
+        }
+
+        lstAreas.forEach(listAreas)
+        function listAreas(area){           
+            if (idArea != area.idArea) {
+                html_area = "<option id='"+area.idArea+"'>"+area.AName+"</option>"
+                 $('tbody tr').first().find(".td-device-branch").append(html_branch)
+            }         
+        }
+    })
 })
      // * * * * * Device Type Page Eventlistener * * * * *

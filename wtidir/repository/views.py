@@ -438,6 +438,8 @@ def device_view(request):
 @csrf_exempt
 def Device_add(request):
     try:
+        branches = Branch.objects.filter(Status=1).order_by('-BName').values()
+        areas = Area.objects.filter(Status=1).order_by('-AName').values()
         _device = Device(DName=request.POST.get('DName'), idBranch=request.POST.get('idBranch'), BName=request.POST.get('BName'), 
                         idArea=request.POST.get('idArea'), AName=request.POST.get('AName'), DSerialNumber=request.POST.get('DSerialNumber'), 
                         DMacAddress=request.POST.get('DMacAddress'))
@@ -448,7 +450,7 @@ def Device_add(request):
     except Exception as e:
         print("Hey! I Found an Error:", e)
         device_data = {"error":True,"Message": "Error Failed to Add Device"}       
-        return JsonResponse(device_data,safe=False)
+        return JsonResponse({"branches": list(branches), "areas": list(areas)}, device_data,safe=False)
 
 @csrf_exempt
 def Device_deactivate(request):
@@ -462,6 +464,31 @@ def Device_deactivate(request):
         print("Hey! I Found an Error:", e)
         device_data = {"error":True,"Message":"Error! Failed to Deactivate Device"}
         return JsonResponse(device_data,safe=False)
+
+@csrf_exempt
+def Device_update(request):
+    try:
+        _device = Device.objects.get(idDevice=request.POST.get('idDevice'))
+        _device.idBranch = request.POST.get('idBranch')
+        _device.idArea = request.POST.get('idArea')
+        _device.BName = request.POST.get('BName')
+        _device.AName = request.POST.get('AName')
+        _device.DSerialNumber = request.POST.get('DSerialNumber')
+        _device.DMacAddress = request.POST.get('DMacAddress')
+        _device.DName = request.POST.get('DName')
+        _device.save()
+        device_data = {"error":True,"Message":"Device has been Updated"}
+        return JsonResponse(device_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        device_data = {"error":True,"Message":"Error! Failed to Update Device"}
+        return JsonResponse(device_data,safe=False)
+
+@csrf_exempt
+def Device_branch_and_area_list(request):
+     branches = Branch.objects.filter(Status=1).order_by('-BName').values()
+     areas = Area.objects.filter(Status=1).order_by('-AName').values()
+     return JsonResponse({"branches": list(branches), "areas": list(areas)}, safe=False)
 # * * * * * Device Page * * * * *
 
 def item_view(request):

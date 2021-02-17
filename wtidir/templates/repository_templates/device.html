@@ -37,7 +37,7 @@
                 <tr id="{{ device.idDevice }}">
                     <td><input type="text" class="form-control td-device-name" value="{{ device.DName }}" readonly /></td>
                     <td>
-                        <select class="form-control td-branch-area" id="td-select-device-branch" disabled>
+                        <select class="form-control td-device-branch" disabled>
                             <option id="{{ device.idBranch }}">{{ device.BName }}</option>
                             {% for branch in branches %}
                                 {% if device.idBranch != branch.idBranch %}
@@ -47,11 +47,11 @@
                         </select>
                     </td>
                     <td>
-                        <select class="form-control td-branch-area" id="td-select-device-area" disabled>
+                        <select class="form-control td-device-area" disabled>
                             <option id="{{ device.idArea }}">{{ device.AName }}</option>
                             {% for area in areas %}
                                 {% if device.idArea != area.idArea %}
-                                    <option id="{{ area.idBranch }}">{{ area.AName }}</option>
+                                    <option id="{{ area.idArea }}">{{ area.AName }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>

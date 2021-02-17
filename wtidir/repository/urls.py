@@ -56,4 +56,6 @@ urlpatterns = [
     #Device
     path('Device_add', views.Device_add, name="Device_add"),
     path('Device_deactivate', views.Device_deactivate, name="Device_deactivate"),
+    path('Device_update', views.Device_update, name="Device_update"),
+    path('Device_branch_and_area_list', views.Device_branch_and_area_list, name="Device_branch_and_area_list"),
 ]
