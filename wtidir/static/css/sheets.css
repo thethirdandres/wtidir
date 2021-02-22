@@ -300,6 +300,19 @@
 
 .ts-add-template {
     height: 4rem;
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(255, 255, 255);
     border: .5px rgb(214, 214, 214) solid;
+}
+
+.modal.fade:not(.in).modal-additem .modal-dialog {
+    -webkit-transform: translate3d(30%, 0, 0) !important;
+    transform: translate3d(30%, 0, 0) !important;
+}
+
+.edititem-searchbar {
+    background-color: rgb(240, 240, 240);
+}
+
+.modal-additem {
+    max-height: 90% !important;
 }

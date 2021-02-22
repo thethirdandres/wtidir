@@ -39,10 +39,10 @@
                 <tr>
                     <td class="w-25"><input type="text" class="form-control" value="Regular" readonly /></td>
                     <td>
-                        <a class="mr-2 pointer-cursor-on-hover" data-toggle="modal" data-target="#edittemplateitems"><img src="../../static/img/sheets-icons/edititems.png" data-toggle="tooltip" data-placement="top" title="Edit Items" ></a>
-                        <div class="modal fade" id="edittemplateitems" tabindex="-1" role="dialog" aria-labelledby="edittemplateitemslabel" aria-hidden="true">
+                        <a class="mr-2 pointer-cursor-on-hover" data-toggle="modal" data-target="#modal_edittemplateitems"><img src="../../static/img/sheets-icons/edititems.png" data-toggle="tooltip" data-placement="top" title="Edit Items" ></a>
+                        <div class="modal fade close-all-modal h-100" id="modal_edittemplateitems" tabindex="-1" role="dialog" aria-labelledby="modal_edittemplateitemslabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">    
-                                {% include '../modals/edittemplateitems.html' %}
+                                {% include '../modals/modal_edittemplateitems.html' %}
                             </div>
                         </div>
                         <a class="pointer-cursor-on-hover"><img src="../../static/img/sheets-icons/delete.png"data-toggle="tooltip" data-placement="top" title="Delete" ></a>
