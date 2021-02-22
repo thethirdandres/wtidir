@@ -69,6 +69,21 @@ class AccountUserArea(models.Model):
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
 
+class Employee(models.Model):
+    idEmployee = models.AutoField(primary_key=True, serialize=False)
+    idEmployeeGroup = models.IntegerField(default=0, null=True, blank=True)
+    unEmployee = models.CharField(default='', max_length=25, null=True, blank=True)
+    ELastName = models.CharField(default='', max_length=50, null=True, blank=True)
+    EFirstName = models.CharField(default='', max_length=50, null=True, blank=True)
+    EMiddleName = models.CharField(default='', max_length=50, null=True, blank=True)
+    EAlias = models.CharField(default='', max_length=50, null=True, blank=True)
+    ENumber = models.CharField(default='', max_length=50, null=True, blank=True)
+    EUsername = models.CharField(default='', max_length=50, null=True, blank=True)
+    EPassword = models.CharField(default='', max_length=50, null=True, blank=True)
+    EGroup = models.CharField(default='', max_length=25, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
 class EmployeeGroup(models.Model):
     idEmployeeGroup = models.AutoField(primary_key=True, serialize=False)
     EGName = models.CharField(default='', max_length=50, null=True, blank=True)

@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device, Employee
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -253,8 +253,23 @@ def branch_deactivate(request):
 # * * * * * Branch Page * * * * *
 # ~ ~ ~ ~ ~ Employee Page ~ ~ ~ ~ ~
 def employee_view(request):
+    employees = Employee.objects.filter(Status=1).order_by('-idEmployee')
     employee_groups = EmployeeGroup.objects.filter(Status=1).order_by('-idEmployeeGroup')
-    return render(request, 'repository_templates/employee.html', {'employee_groups' : employee_groups})
+    return render(request, 'repository_templates/employee.html', {'employee_groups' : employee_groups, 'employees' : employees})
+
+@csrf_exempt
+def employee_add(request):
+    try:
+        emp = Employee(ELastName=request.POST.get('ELastName'), EFirstName=request.POST.get('EFirstName'), EMiddleName=request.POST.get('EMiddleName'),
+                        EAlias=request.POST.get('EAlias'), ENumber=request.POST.get('ENumber'), EUsername=request.POST.get('EUsername'), EPassword=request.POST.get('EPassword'),
+                        idEmployeeGroup=request.POST.get('idEmployeeGroup'), EGroup=request.POST.get('EGroup'))
+        emp.save()
+        emp_data = {"ELastName":emp.ELastName, "error":False,"Message":"Employee has been Added Successfully"}
+        return JsonResponse(emp_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        emp_data = {"error":True,"Message":"Error! Failed to Add Employee"}
+        return JsonResponse(emp_data,safe=False)
 
 @csrf_exempt
 def employee_group_add(request):

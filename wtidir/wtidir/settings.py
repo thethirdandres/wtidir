@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'wtidir.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 # 'HOST': '119.93.23.210',
 
-
+# Office Connection
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -91,6 +91,18 @@ DATABASES = {
         'PORT': '3306 ',
     }
 }
+
+# Home Connection
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'wtidir3000',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '3306 ',
+#     }
+# }
 
 
 # Password validation

@@ -755,106 +755,11 @@ $(document).on("click", ".btn-deactivate-branch", function() {
     // * * * * * Branch Page Eventlistener * * * * *
     // ~ ~ ~ ~ ~ Employee Page Eventlistener ~ ~ ~ ~ ~
 // Group
-$("#btn-create-emplo-group").click(function() {
-    var emploGroupName = $('#emplo-group-name').val()
-    var emploGroupCredential = $("#credential-level").find('option:selected').text()
-    
-    if (emploGroupName == '') {
-        alert("Employee Group Name is needed.")
-        return;
-    }
 
-    $.ajax({
-        url: "employee_group_add",
-        type: "POST",
-        data: { emploGroupName: emploGroupName, emploGroupCredential: emploGroupCredential }
-    }).done(function(response) {
-        if (response["error"] == false) {
-            console.log(response["Message"])
 
-            var html_data = "<tr id='"+response['idEmployeeGroup']+"'><td><input type='text' class='form-control td-emplo-group-name' value='"+response['EGName']+"' readonly /></td><td> <select class='form-control td-emplo-group-credential' disabled><option selected disabled>"+response['EGLevel']+"</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td><td class='w-25'><a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png' class='repository-edit-gray-button d-none mr-2 ml-n3 btn-emplo-group-update'><a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-emplo-group-deactive'></a></td></tr>"
-            $(html_data).prependTo("#table-emplo-group > tbody")
-        } else {
-            console.log(response["Message"])
-        }
-    })
-})
+// $("#btn-employee-add").click(function(){
 
-$(document).on("click", ".btn-emplo-group-deactive", function(){
-    var idEmploGroup = $(this).closest('tr').attr('id')
-    var emploGroupName = $(this).closest('tr').find('.td-emplo-group-name').val()
-
-    $('#prompt_confirmdeactivate').modal('show')
-
-    $('#dialog-hidden-id').text(idEmploGroup)
-    $('#dialog-deactivation-title').text('Deactivate Employee Group?')
-    $('#dialog-deactivation-description').text('You are about to deactivate Employee Group Name ' + emploGroupName + '. This action cannot be undone afterwards. Continue?')
-
-    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-emplo-group')
-})
-
-$(document).on("click", ".btn-emplo-group-update", function(){
-    var idEmploGroup = $(this).closest('tr').attr('id')
-    var emploGroupName = $(this).closest('tr').find('.td-emplo-group-name').val()
-    var emploGroupCredential = $(this).closest('tr').find('.td-emplo-group-credential').find('option:selected').text()
-  
-    $.ajax({
-        url: "employee_group_update",
-        type: "POST",
-        data: {idEmploGroup: idEmploGroup, emploGroupName: emploGroupName, emploGroupCredential: emploGroupCredential}
-    }).done(function(response) {
-        if (response["error"] == false) {
-            console.log(response["Message"])
-        } else {
-            console.log(response["Message"])
-        }
-    })
-})
-
-$(document).on("click", ".deactivate-emplo-group", function(){
-    var idEmploGroup = $('#dialog-hidden-id').text()
-
-    $.ajax({
-        url: "employee_group_deactivate",
-        type: "POST",
-        data: { idEmploGroup: idEmploGroup }
-    }).done(function(response) {
-        if (response["error"] == false) {
-            console.log(response["Message"])
-        } else {
-            console.log(response["Message"])
-        }
-    })
-
-    $('table#table-emplo-group tr#' + idEmploGroup).closest('tr').remove()
-    $(".modal-fade").modal("hide")
-    $(".modal-backdrop").remove()
-})
-// Employee
-$("#btn-add-new-emplo").click(function() {
-    var idEmploGroup = $(this).closest('tr').find('#cb-emplo-group').children(':selected').attr('id')
-    // var groupname = $(this).closest('tr').find('.account-group-new-add-html').find('option:selected').text()
-    // console.log(idgroupaccount)
-    $('#cb-emplo-group').empty()
-
-    // var html_data="<option selected selected id='"+idgroupaccount+"'>"+groupname+"</option>"
-    // $('.account-group-new-add-html').append(html_data)
-
-    $.ajax({
-        url:"employee_group_list",
-        type:"GET"
-    }).done(function(response){
-        response['emplogroups'].forEach(account_group)
-        function account_group(item){
-
-            if (idEmploGroup != item['idEmployeeGroup']) {
-                var html_data="<option selected id='"+item['idEmployeeGroup']+"'>"+item['EGName']+"</option>"        
-               $('#cb-emplo-group').append(html_data)
-            }
-
-        }
-    })
-})
+// })
     // * * * * * Employee Page Eventlistener * * * * *
     // ~ ~ ~ ~ ~ UOM Page Eventlistener ~ ~ ~ ~ ~
 $("#btn-new-uom").click(function() {

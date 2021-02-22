@@ -37,6 +37,7 @@ urlpatterns = [
     path('branch_deactivate', views.branch_deactivate, name="branch_deactivate"),
     path('branch_update', views.branch_update, name="branch_update"),
     #Employee
+    path('employee_add', views.employee_add, name="employee_add"),
     path('employee_group_add', views.employee_group_add, name="employee_group_add"),
     path('employee_group_deactivate', views.employee_group_deactivate, name="employee_group_deactivate"),
     path('employee_group_update', views.employee_group_update, name="employee_group_update"),

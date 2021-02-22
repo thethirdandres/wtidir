@@ -7,55 +7,52 @@
             <div class="form-group">
             <label for="lastname">Last Name</label>
             <input type="text"
-                class="form-control form-control-sm" name="lastname" id="lastname" placeholder="">
+                class="form-control form-control-sm txt-employee-lastname" id="textbox1" placeholder="">
             </div>
             <div class="form-group">
             <label for="firstname">First Name</label>
             <input type="text"
-                class="form-control form-control-sm" name="firstname" id="firstname" placeholder="">
+                class="form-control form-control-sm txt-employee-firstname" id="textbox2" placeholder="">
             </div>
             <div class="form-group">
             <label for="middlename">Middle Name</label>
             <input type="text"
-                class="form-control form-control-sm" name="middlename" id="middlename" placeholder="">
+                class="form-control form-control-sm txt-employee-middlename" id="textbox3" placeholder="">
             </div>
             <div class="form-group">
             <label for="alias">Alias</label>
             <input type="text"
-                class="form-control form-control-sm" name="alias" id="alias" placeholder="">
+                class="form-control form-control-sm txt-employee-alias" id="textbox4" placeholder="">
             </div>
             <div class="form-group">
             <label for="employeeno">Employee No.</label>
             <input type="text"
-                class="form-control form-control-sm" name="employeeno" id="employeeno" placeholder="">
+                class="form-control form-control-sm txt-employee-idnumber" id="textbox5" placeholder="">
             </div>
         </div>
         <div>
             <div class="form-group">
               <label for="group">Group</label>
-              <select class="form-control form-control-sm" name="group" id="cb-emplo-group">
-                <option>Administrator</option>
-                <option>Test</option>
-                <option>Test</option>
+              <select class="form-control form-control-sm" id="cb-emplo-group">
               </select>
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control form-control-sm" name="username" id="username" placeholder="">
+              <input type="text" class="form-control form-control-sm txt-employee-username" id="textbox6" placeholder="">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="">
+              <input type="password" class="form-control form-control-sm txt-employee-password" id="textbox7" placeholder="">
             </div>
         </div>
     </div>
     <div class="d-flex justify-content-center my-3">
-        <button type="button" class="btn button-red mr-2"  data-toggle="modal" data-target="#prompt_confirmcreateemployee">ADD</button>
-        <div class="modal fade close-all-modal" id="prompt_confirmcreateemployee" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmcreateemployeelabel" aria-hidden="true">
+        <button type="button" class="btn button-red mr-2" id="btn-employee-add">ADD</button>
+        <!-- <div class="modal fade close-all-modal" id="prompt_confirmcreateemployee" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmcreateemployeelabel" aria-hidden="true">
             <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
                 {% include '../prompts/prompt_confirmcreateemployee.html' %}
             </div>
-        </div>
+        </div> -->
         <button type="button" class="btn button-white" data-dismiss="modal">CLOSE</button>
     </div>
 </div>
