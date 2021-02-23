@@ -313,6 +313,11 @@
     background-color: rgb(240, 240, 240);
 }
 
+.edititem-list {
+    list-style-type: none;
+}
+
 .modal-additem {
     max-height: 90% !important;
+    padding: 0% !important;
 }

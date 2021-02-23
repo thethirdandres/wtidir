@@ -15,109 +15,12 @@
         <input class="pl-2 w-75 mx-auto" type="text" placeholder="🔍 Search item">
     </div>
     <div class="modal-body">
-        <div class="d-flex">
-            <div class="form-group mx-1">
-                <label for="documentnumber">Document Number</label>
-                <input type="text"
-                    class="form-control form-control-sm" name="documentnumber" id="documentnumber">
-            </div>
-            <div class="form-group mx-1">
-                <label for="date">Date</label>
-                <input type="date"
-                    class="form-control form-control-sm" name="date" id="date">
-            </div>
-            <div class="form-group sheets-select">
-                <label for="branchfrom">Branch From</label>
-                <select class="form-control form-control-sm" name="branchfrom" id="branchfrom">
-                    <option selected disabled></option>
-                    <option>Test</option>
-                    <option>Test</option>
-                    <option>Test</option>
-                </select>
-            </div>
-        </div>
-
+        <ul class="edititem-list">
+            <li><input class="edititem-selectall" type="checkbox" onclick="toggle(this)"> Select All</li>
+            <li class="border-top py-2"><input type="checkbox" name="edititem-checkbox" > Item Name</li>
+            <li class="border-top py-2"><input type="checkbox" name="edititem-checkbox" > Item Name</li>
+            <li class="border-top py-2"><input type="checkbox" name="edititem-checkbox" > Item Name</li>
+            <li class="border-top py-2"><input type="checkbox" name="edititem-checkbox" > Item Name</li>
+        </ul>
     </div>
-    <div class="d-flex p-3">
-        {% comment %} <div class="pull-left"> {% endcomment %}
-            <div class="form-group mx-1">
-                <label for="description">DESCRIPTION</label>
-                <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input" name="description" id="description" placeholder="Enter keyword to search item">
-            </div>
-            <div class="form-group mx-1">
-                <label for="sapqty">SAP QTY</label>
-                <input type="text" class="form-control form-control-sm sheets-addnewdelivery-description-input-siblings" name="sapqty" id="sapqty">
-            </div>
-        {% comment %} </div> {% endcomment %}
-    </div>
-    <table class="table table-border  table-sm w-50 m-3">
-        <tbody>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-            <tr>
-                <td scope="row" contenteditable="false">Beef Shawarma Barbecue Sauce</td>
-                <td contenteditable="false">5.00</td>
-                <td contenteditable="false">5</td>
-                <td contenteditable="false">piece</td>
-            </tr>
-        </tbody>
-    </table>
 </div>
