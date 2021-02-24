@@ -318,6 +318,7 @@
 }
 
 .modal-additem {
-    max-height: 90% !important;
+    max-height: 100% !important;
     padding: 0% !important;
+    overflow: scroll;
 }

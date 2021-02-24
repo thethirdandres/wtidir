@@ -5,21 +5,13 @@
         <div class="ts-head">
             <label class="roboto-24 font-weight-bold text-gray"> 
                 <a class="my-auto mr-3" href="{% url 'landing:landing_view' %}"><img src="../../static/img/sheets-icons/back.png" ></a>
-                Template
+                Production
             </label>
         </div>
         <div class="ts-add-template w-100 d-flex align-items-center mt-3 pl-4">
-            <input class="roboto" placeholder="Template Name">
-            <label class=" ml-3 py-auto h-25">
-                <input type="radio" name="template-source">
-                Empty Template
-            </label>
-            <label class="ml-3 py-auto h-25">
-                <input type="radio" name="template-source">
-                Copy From
-            </label>
-            <select class=" ml-2 sheets-select" >
-                <option  selected disabled>Choose</option>
+            <input class="roboto" placeholder="Production Name">
+            <select class=" ml-2 sheets-select h-50" >
+                <option  selected disabled>Template</option>
                 <option >Test</option>
                 <option >Test</option>
                 <option >Test</option>
@@ -31,16 +23,18 @@
         <table class="table table-border  table-sm  mt-3">
             <thead class="table-active">
                 <tr>
-                    <th>TEMPLATE NAME</th>
+                    <th>PRODUCTION NAME</th>
+                    <th>TEMPLATE</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="w-25"><input type="text" class="form-control" value="Regular" readonly /></td>
+                    <td class="w-25"><input type="text" class="form-control" value="Airport" readonly /></td>
                     <td>
                         <a class="mr-2 pointer-cursor-on-hover" data-toggle="modal" data-target="#modal_edittemplateitems"><img src="../../static/img/sheets-icons/edititems.png" data-toggle="tooltip" data-placement="top" title="Edit Items" ></a>
-                        <div class="modal fade" id="modal_edittemplateitems" tabindex="-1" role="dialog" aria-labelledby="modal_edittemplateitemslabel" aria-hidden="true">
+                        <div class="modal fade h-100" id="modal_edittemplateitems" tabindex="-1" role="dialog" aria-labelledby="modal_edittemplateitemslabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">    
                                 {% include '../modals/modal_edittemplateitems.html' %}
                             </div>
