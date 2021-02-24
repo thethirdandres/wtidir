@@ -210,16 +210,27 @@ $(document).on("click", ".btn-user-account-update", function(){
     })
 })
 
-$(document).on("click", ".btn-user-select-area", function(){
+$(document).on("click", ".btn-select-area", function(){
     var id = $(this).closest('tr').attr('id')
+    var repoTable = $(this).closest('table').attr('id')
+    var _url = ''
+
     $('#user-hidden-id').text(id)
+
+    if (repoTable == 'table-employee-account') {
+        _url = 'employee_area_access_init'
+        $('#user-hidden-url').text('employee_area_access')
+    } else {
+        _url = 'user_account_area_access_init'
+        $('#user-hidden-url').text('user_account_area')
+    }
 
     $('#area-list').empty()
 
     $.ajax({
-        url:"user_account_area_access_init",
+        url: _url,
         type:"POST",
-        data:{iduser:id}
+        data:{ id: id }
     }).done(function(response){
         response['areas'].forEach(function(area){
             var html_data="<li><label for='cb"+area['AName']+"'><input type='checkbox' class='form-check-input "+area['idArea']+"' id='"+area['idArea']+"' name='cb' value='"+area['AName']+"'>"+area['AName']+"</label></li>"
@@ -227,16 +238,16 @@ $(document).on("click", ".btn-user-select-area", function(){
         })
 
         $("input[type=checkbox]").each(function(){
-            user_area_access($(this).attr('id'))           
+            account_area_access($(this).attr('id'))           
         })
 
-        function user_area_access(idArea){
-            response['useraccounts'].forEach(function(useraccess){
+        function account_area_access(idArea){
+            response['accounts'].forEach(function(account){
 
-                if (idArea ==  useraccess['idArea']) {
+                if (idArea ==  account['idArea']) {
                     // console.log('area id: '+useraccess['Status'])
-                    if (useraccess['Status']) {
-                        $("." + useraccess['idArea']).prop('checked', true)
+                    if (account['Status']) {
+                        $("." + account['idArea']).prop('checked', true)
                     }
                 }
             })
@@ -247,14 +258,17 @@ $(document).on("click", ".btn-user-select-area", function(){
 
 $('#btn-user-account-area-submit').click(function(){
     var id = $('#user-hidden-id').text()
+    var _url = $('#user-hidden-url').text()
+
+    console.log(_url)
 
     $("input[type=checkbox]").each(function(){
 
         if ($('.' + $(this).attr('id')).is(":checked")) {
             $.ajax({
-                url: "user_account_area",
+                url: _url,
                 type: "POST",
-                data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val(), status:1}
+                data: {id: id, idarea:$(this).attr('id'), namearea:$(this).val(), status:1}
             }).done(function(response) {
                 if (response["error"] == false) {
                     console.log(response["Message"])
@@ -265,9 +279,9 @@ $('#btn-user-account-area-submit').click(function(){
             })
         }else{
             $.ajax({
-                url: "user_account_area",
+                url: _url,
                 type: "POST",
-                data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val(), status:0}
+                data: {id: id, idarea:$(this).attr('id'), namearea:$(this).val(), status:0}
             }).done(function(response) {
                 if (response["error"] == false) {
                     console.log(response["Message"])
@@ -309,20 +323,29 @@ $('#btn-change-pass-auth').click(function(){
     }
 })
 
-$('.btn-user-change-pass-init').click(function(){
+$('.btn-change-pass-init').click(function(){
     var id = $(this).closest('tr').attr('id')
+    var repoTable = $(this).closest('table').attr('id')
     // console.log(id)
     $('#user-hidden-id').text(id)
+
+    if (repoTable == 'table-employee-account') {
+        $('#user-hidden-url').text('user_employee_change_password')
+    } else {
+        $('#user-hidden-url').text('user_account_change_password')
+    }
+
 })
 
 $('#btn-change-pass').click(function(){
     var id = $('#user-hidden-id').text()
-    var newpassword = $("#new-password").val()
+    var newpassword = $('#new-password').val()
+    var _url = $('#user-hidden-url').text()
 
     $.ajax({
-        url: "user_account_change_password",
+        url: _url,
         type: "POST",
-        data: {id:id, newpassword:newpassword}
+        data: {id: id, newpassword: newpassword}
     }).done(function(response) {
         if (response["error"] == false) {
             console.log(response["Message"])

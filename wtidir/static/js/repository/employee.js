@@ -49,6 +49,8 @@ $("#btn-employee-add").click(function(){
             TextBoxControl('Clear')
             document.getElementById('textbox7').value = ''
 
+            var html_data = "<tr id='"+response['idPaymentType']+"'>"
+            $(html_data).prependTo("#tbl-payment-type > tbody")
         } else {
             console.log(response["Message"])
         }
@@ -56,19 +58,68 @@ $("#btn-employee-add").click(function(){
 })
 
 $(document).on("click", ".btn-employee-select-area", function(){
-    console.log('testing select area')
+    // console.log('testing select area')
 })
 
 $(document).on("click", ".btn-employee-change-pass-init", function(){
-    console.log('testing change password')
+    // console.log('testing change password')
 })
 
 $(document).on("click", ".btn-employee-update", function(){
-    console.log('testing update')
+    var idEmployee = $(this).closest('tr').attr('id')
+    var ELastName = $(this).closest('tr').find('.td-employee-lastname').val()
+    var EFirstName = $(this).closest('tr').find('.td-employee-firstname').val()
+    var EMiddleName = $(this).closest('tr').find('.td-employee-middlename').val()
+    var EAlias = $(this).closest('tr').find('.td-employee-alias').val()
+    var ENumber = $(this).closest('tr').find('.td-employee-enumber').val()
+    var idEmployeeGroup = $(this).closest('tr').find('.td-employee-egroup').find('option:selected').attr('id')
+    var EGroup = $(this).closest('tr').find('.td-employee-egroup').find('option:selected').text()
+
+    $.ajax({
+        url: "employee_update",
+        type: "POST",
+        data: {idEmployee: idEmployee, ELastName: ELastName, EFirstName: EFirstName, EMiddleName: EMiddleName, EAlias: EAlias,
+            ENumber: ENumber, idEmployeeGroup: idEmployeeGroup, EGroup: EGroup }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
 })
 
 $(document).on("click", ".btn-employee-deactivate", function(){
-    console.log('testing deactivate')
+    var idEmployee = $(this).closest('tr').attr('id')
+    var EmployeeName = $(this).closest('tr').find('.td-employee-lastname').val() + ', ' + $(this).closest('tr').find('.td-employee-firstname').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idEmployee)
+    $('#dialog-deactivation-title').text('Deactivate Employee Account?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Employee Account Name ' + EmployeeName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-employee-account')
+})
+
+$(document).on("click", ".deactivate-employee-account", function(){
+    var idEmployee = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "employee_deactivate",
+        type: "POST",
+        data: { idEmployee: idEmployee }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#table-employee-account tr#' + idEmployee).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
 })
 
 $("#btn-create-emplo-group").click(function() {
@@ -100,7 +151,7 @@ $(document).on("click", ".btn-emplo-group-deactive", function(){
     var idEmploGroup = $(this).closest('tr').attr('id')
     var emploGroupName = $(this).closest('tr').find('.td-emplo-group-name').val()
 
-    $('#prompt_confirmdeactivate').modal({backdrop: 'static', keyboard: false}, 'show')
+    $('#prompt_confirmdeactivate').modal('show')
 
     $('#dialog-hidden-id').text(idEmploGroup)
     $('#dialog-deactivation-title').text('Deactivate Employee Group?')

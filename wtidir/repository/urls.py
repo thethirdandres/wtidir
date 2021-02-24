@@ -38,6 +38,11 @@ urlpatterns = [
     path('branch_update', views.branch_update, name="branch_update"),
     #Employee
     path('employee_add', views.employee_add, name="employee_add"),
+    path('employee_update', views.employee_update, name="employee_update"),
+    path('user_employee_change_password', views.user_employee_change_password, name="user_employee_change_password"),
+    path('employee_area_access_init', views.employee_area_access_init, name="employee_area_access_init"),
+    path('employee_area_access', views.employee_area_access, name="employee_area_access"),
+    path('employee_deactivate', views.employee_deactivate, name="employee_deactivate"),
     path('employee_group_add', views.employee_group_add, name="employee_group_add"),
     path('employee_group_deactivate', views.employee_group_deactivate, name="employee_group_deactivate"),
     path('employee_group_update', views.employee_group_update, name="employee_group_update"),

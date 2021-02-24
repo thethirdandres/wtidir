@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device, Employee
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device, Employee, EmployeeAccountArea
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -73,23 +73,23 @@ def user_account_change_password(request):
 
 @csrf_exempt
 def user_account_area_access_init(request):
-    useraccess = AccountUserArea.objects.filter(idAccountUser=request.POST.get('iduser')).values()
+    accounts = AccountUserArea.objects.filter(idAccountUser=request.POST.get('id')).values()
     areas = Area.objects.filter(Status=1).values()
-    return JsonResponse({"useraccounts":list(useraccess), "areas":list(areas)}, safe=False)
+    return JsonResponse({"accounts":list(accounts), "areas":list(areas)}, safe=False)
 
 @csrf_exempt
 def user_account_area(request):
     user_account_area_data = {"error":False,"Message":"Default"}
-    useraccess = AccountUserArea.objects.filter(idAccountUser=request.POST.get('iduser')).values()
-    userAccessCount = AccountUserArea.objects.filter(Q(idAccountUser=request.POST.get('iduser')), Q(idArea=request.POST.get('idarea'))).count()
+    useraccess = AccountUserArea.objects.filter(idAccountUser=request.POST.get('id')).values()
+    userAccessCount = AccountUserArea.objects.filter(Q(idAccountUser=request.POST.get('id')), Q(idArea=request.POST.get('idarea'))).count()
 
     if userAccessCount > 0:
-        user_account_area = AccountUserArea.objects.get(Q(idAccountUser=request.POST.get('iduser')), Q(idArea=request.POST.get('idarea')))
+        user_account_area = AccountUserArea.objects.get(Q(idAccountUser=request.POST.get('id')), Q(idArea=request.POST.get('idarea')))
         user_account_area.Status=int(request.POST.get('status'))
         user_account_area.save()
         user_account_area_data = {"error":False,"Message":"User Account Access has been Updated"}
     else:
-        user_account_area = AccountUserArea(idAccountUser=request.POST.get('iduser'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'), Status=int(request.POST.get('status')))
+        user_account_area = AccountUserArea(idAccountUser=request.POST.get('id'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'), Status=int(request.POST.get('status')))
         user_account_area.save()
         user_account_area_data = {"error":False,"Message":"User Account Access has been Added"}
     return JsonResponse(user_account_area_data,safe=False)
@@ -272,6 +272,74 @@ def employee_add(request):
         return JsonResponse(emp_data,safe=False)
 
 @csrf_exempt
+def employee_area_access_init(request):
+    accounts = EmployeeAccountArea.objects.filter(idEmployee=request.POST.get('id')).values()
+    areas = Area.objects.filter(Status=1).values()
+    return JsonResponse({"accounts":list(accounts), "areas":list(areas)}, safe=False)
+
+@csrf_exempt
+def employee_area_access(request):
+    employee_account_area_data = {"error":False,"Message":"Default"}
+    employeeaccess = EmployeeAccountArea.objects.filter(idEmployee=request.POST.get('id')).values()
+    employeeAccessCount = EmployeeAccountArea.objects.filter(Q(idEmployee=request.POST.get('id')), Q(idArea=request.POST.get('idarea'))).count()
+
+    if employeeAccessCount > 0:
+        employee_account_area = EmployeeAccountArea.objects.get(Q(idEmployee=request.POST.get('id')), Q(idArea=request.POST.get('idarea')))
+        employee_account_area.Status=int(request.POST.get('status'))
+        employee_account_area.save()
+        employee_account_area_data = {"error":False,"Message":"Employee Account Access has been Updated"}
+    else:
+        user_account_area = EmployeeAccountArea(idEmployee=request.POST.get('id'), idArea=request.POST.get('idarea'), AName=request.POST.get('namearea'), Status=int(request.POST.get('status')))
+        user_account_area.save()
+        employee_account_area_data = {"error":False,"Message":"Employee Account Access has been Added"}
+    return JsonResponse(employee_account_area_data,safe=False)
+
+@csrf_exempt
+def employee_deactivate(request):
+    try:
+        emp = Employee.objects.get(idEmployee=request.POST.get('idEmployee'))
+        emp.Status = 0
+        emp.save()
+        emp_data = {"error":True,"Message":"Employee Account has been Deactivated"}
+        return JsonResponse(emp_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        emp_data = {"error":True,"Message":"Error Failed to Deactivated Employee Account"}
+        return JsonResponse(emp_data,safe=False)
+
+@csrf_exempt
+def employee_update(request):
+    try:
+        emp = Employee.objects.get(idEmployee=request.POST.get('idEmployee'))
+        emp.ELastName = request.POST.get('ELastName')
+        emp.EFirstName = request.POST.get('EFirstName')
+        emp.EMiddleName = request.POST.get('EMiddleName')
+        emp.EAlias = request.POST.get('EAlias')
+        emp.ENumber = request.POST.get('ENumber')
+        emp.idEmployeeGroup = request.POST.get('idEmployeeGroup')
+        emp.EGroup = request.POST.get('EGroup')
+        emp.save()
+        emp_data = {"error":True,"Message":"Employee Account has been Updated"}
+        return JsonResponse(emp_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        emp_data = {"error":True,"Message":"Error Failed to Update Employee Account"}
+        return JsonResponse(emp_data,safe=False)
+
+@csrf_exempt
+def user_employee_change_password(request):
+    try:
+        emp_account = Employee.objects.get(idEmployee=request.POST.get('id'))
+        emp_account.EPassword = idAccountUser=request.POST.get('newpassword')
+        emp_account.save()
+        emp_account_data = {"error":True,"Message":"Employee Account Password has been Updated"}
+        return JsonResponse(emp_account_data,safe=False)
+    except:
+        print("Hey! I Found an Error:", e)
+        emp_account_data = {"error":True,"Message":"Error Failed to Update Employee Account Password"}
+        return JsonResponse(emp_account_data,safe=False)
+
+@csrf_exempt
 def employee_group_add(request):
     try:
         print(request.POST.get('emploGroupCredential'))       
@@ -303,16 +371,14 @@ def employee_group_deactivate(request):
         EG.Status = 0
         EG.save() #<- Insert Data to mysql
         EG_data = {"error":True,"Message":"Employee Group has been Deactivated"}
-        # ^- Data to be returned after Inserting Successfully (JSON Format)
         return JsonResponse(EG_data,safe=False)
     except:
-        EG_data = {"error":True,"Message":"Error Failed to Deactivated Employee Group"}
-        # ^- Data to be returned after Inserting Failed (JSON Format)
+        EG_data = {"error":True,"Message":"Error Failed to Deactivate Employee Group"}
         return JsonResponse(EG_data,safe=False)
 
 @csrf_exempt
 def employee_group_list(request):
-     emplogroups = EmployeeGroup.objects.filter(Status=1).values()
+     emplogroups = EmployeeGroup.objects.filter(Status=1).order_by('-EGLevel').values()
      return JsonResponse({"emplogroups":list(emplogroups)}, safe=False)
 
 # * * * * * Employee Page * * * * *
