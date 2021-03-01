@@ -264,7 +264,7 @@ def employee_add(request):
                         EAlias=request.POST.get('EAlias'), ENumber=request.POST.get('ENumber'), EUsername=request.POST.get('EUsername'), EPassword=request.POST.get('EPassword'),
                         idEmployeeGroup=request.POST.get('idEmployeeGroup'), EGroup=request.POST.get('EGroup'))
         emp.save()
-        emp_data = {"ELastName":emp.ELastName, "error":False,"Message":"Employee has been Added Successfully"}
+        emp_data = {"idEmployee":emp.idEmployee, "ELastName":emp.ELastName, "EFirstName":emp.EFirstName, "EMiddleName":emp.EMiddleName, "EAlias":emp.EAlias, "ENumber":emp.ENumber,  "idEmployeeGroup":emp.idEmployeeGroup, "EGroup":emp.EGroup,"error":False,"Message":"Employee has been Added Successfully"}
         return JsonResponse(emp_data,safe=False)
     except Exception as e:
         print("Hey! I Found an Error:", e)
