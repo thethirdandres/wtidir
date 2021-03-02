@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device, Employee, EmployeeAccountArea
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device, Employee, EmployeeAccountArea, ShortageType, ProductType, ProductGroup
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -573,4 +573,19 @@ def Device_branch_and_area_list(request):
 # * * * * * Device Page * * * * *
 
 def item_view(request):
-    return render(request, 'repository_templates/item.html')
+    producttypes = ProductType.objects.filter(Status=1).order_by('-idProductType')
+    shortagetypes = ShortageType.objects.filter(Status=1).order_by('-STName')
+    itemgroups = ProductGroup.objects.filter(Status=1).order_by('-idProductGroup')
+    return render(request, 'repository_templates/item.html', { 'producttypes': producttypes, 'shortagetypes': shortagetypes, 'itemgroups': itemgroups })
+
+@csrf_exempt
+def Item_add(request):
+    try:
+        pg = ProductGroup(PGName=request.POST.get('PGName'), idProductType=request.POST.get('idProductType'), PTName=request.POST.get('PTName'), idShortageType=request.POST.get('idShortageType'), STName=request.POST.get('STName'), PGPriority=request.POST.get('PGPriority'))
+        pg.save()
+        pg_data = {"idProductGroup": pg.idProductGroup, "PGName": pg.PGName, "idProductType": pg.idProductType, "PTName": pg.PTName, "idShortageType": pg.idShortageType, "STName": pg.STName, "PGPriority": pg.PGPriority, "error":False, "Message":"Device has been Added Successfully"}
+        return JsonResponse(pg_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        pg_data = {"error":True,"Message": "Error Failed to Add Item"}       
+        return JsonResponse(pg_data,safe=False)

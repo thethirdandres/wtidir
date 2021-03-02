@@ -135,3 +135,26 @@ class Device (models.Model):
     DName = models.CharField(default='', max_length=50, null=True, blank=True)
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
+
+class ProductGroup(models.Model):
+    idProductGroup = models.AutoField(primary_key=True, serialize=False)
+    idProductType = models.IntegerField(default=0)
+    idShortageType = models.IntegerField(default=0)
+    PTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    STName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PGName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PGPriority = models.IntegerField(default=0)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class ProductType(models.Model):
+    idProductType = models.AutoField(primary_key=True, serialize=False)
+    PTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class ShortageType(models.Model):
+    idShortageType = models.AutoField(primary_key=True, serialize=False)
+    STName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
