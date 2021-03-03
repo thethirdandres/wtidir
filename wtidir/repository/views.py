@@ -579,13 +579,50 @@ def item_view(request):
     return render(request, 'repository_templates/item.html', { 'producttypes': producttypes, 'shortagetypes': shortagetypes, 'itemgroups': itemgroups })
 
 @csrf_exempt
-def Item_add(request):
+def Item_group_add(request):
     try:
         pg = ProductGroup(PGName=request.POST.get('PGName'), idProductType=request.POST.get('idProductType'), PTName=request.POST.get('PTName'), idShortageType=request.POST.get('idShortageType'), STName=request.POST.get('STName'), PGPriority=request.POST.get('PGPriority'))
         pg.save()
-        pg_data = {"idProductGroup": pg.idProductGroup, "PGName": pg.PGName, "idProductType": pg.idProductType, "PTName": pg.PTName, "idShortageType": pg.idShortageType, "STName": pg.STName, "PGPriority": pg.PGPriority, "error":False, "Message":"Device has been Added Successfully"}
+        pg_data = {"idProductGroup": pg.idProductGroup, "PGName": pg.PGName, "idProductType": pg.idProductType, "PTName": pg.PTName, "idShortageType": pg.idShortageType, "STName": pg.STName, "PGPriority": pg.PGPriority, "error":False, "Message":"Item Group has been Added Successfully"}
         return JsonResponse(pg_data,safe=False)
     except Exception as e:
         print("Hey! I Found an Error:", e)
-        pg_data = {"error":True,"Message": "Error Failed to Add Item"}       
+        pg_data = {"error":True,"Message": "Error Failed to Deactivate Item Group"}       
         return JsonResponse(pg_data,safe=False)
+
+@csrf_exempt
+def Item_group_deactivate(request):
+    try:
+        pg = ProductGroup.objects.get(idProductGroup=request.POST.get('idProductGroup'))
+        pg.Status = 0
+        pg.save()
+        pg_data = {"error": False, "Message": "Item Group has been Deactivated"}
+        return JsonResponse(pg_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        pg_data = {"error":True,"Message": "Error Failed to deactivate Group Item"}       
+        return JsonResponse(pg_data,safe=False)
+
+@csrf_exempt
+def Item_group_update(request):
+    try:
+        pg = ProductGroup.objects.get(idProductGroup=request.POST.get('idProductGroup'))
+        pg.PGName = request.POST.get('PGName')
+        pg.idProductType = request.POST.get('idProductType')
+        pg.PTName = request.POST.get('PTName')
+        pg.idShortageType = request.POST.get('idShortageType')
+        pg.STName = request.POST.get('STName')
+        pg.PGPriority = request.POST.get('PGPriority')
+        pg.save()
+        pg_data = {"error": False, "Message": "Item Group has been Updated"}
+        return JsonResponse(pg_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        pg_data = {"error":True,"Message": "Error Failed to Update Group Item"}       
+        return JsonResponse(pg_data,safe=False)
+
+@csrf_exempt
+def item_group_init(request):
+    producttypes = ProductType.objects.filter(Status=1).order_by('-idProductType').values()
+    shortagetypes = ShortageType.objects.filter(Status=1).order_by('-STName').values()
+    return JsonResponse({"producttypes":list(producttypes)}, safe=False)

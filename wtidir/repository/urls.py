@@ -65,5 +65,8 @@ urlpatterns = [
     path('Device_update', views.Device_update, name="Device_update"),
     path('Device_branch_and_area_list', views.Device_branch_and_area_list, name="Device_branch_and_area_list"),
     #Items
-    path('Item_add', views.Item_add, name="Item_add"),
+    path('Item_group_add', views.Item_group_add, name="Item_group_add"),
+    path('Item_group_deactivate', views.Item_group_deactivate, name="Item_group_deactivate"),
+    path('Item_group_update', views.Item_group_update, name="Item_group_update"),
+    path('item_group_init', views.item_group_init, name="item_group_init"),
 ]

@@ -50,24 +50,24 @@ $("#btn-employee-add").click(function(){
             document.getElementById('textbox7').value = ''
 
             var html_data = "<tr id='"+response['idEmployee']+"'>"
-                        + "<td><input type='text' class='form-control td-employee-lastname' value='"+response['ELastName']+"' readonly /></td>"
-                        + "<td><input type='text' class='form-control td-employee-firstname' value='"+response['EFirstName']+"' readonly /></td>"
-                        + "<td><input type='text' class='form-control td-employee-middlename' value='"+response['EMiddleName']+"' readonly /></td>"
-                        + "<td><input type='text' class='form-control td-employee-alias' value='"+response['EAlias']+"' readonly /></td>"
-                        + "<td><input type='text' class='form-control td-employee-enumber' value='"+response['ENumber']+"' readonly /></td>"
-                        + "<td>"
-                            + "<select class='form-control td-employee-egroup' disabled>"
-                                + "<option id='"+response['idEmployeeGroup']+"'  selected>"+response['EGroup']+"</option>"
-                            + "</select>"
-                        + "</td>"
-                        + "<td class='d-flex td-au-actions'>"
-                            + "<a class='mr-2' data-toggle='modal' data-target='#modal_selectarea'><img src='../../static/img/repository-icons/selectarea.png' data-toggle='tooltip' data-placement='top' title='Select Area' class='btn-select-area'></a>"
-                            + "<a class='mr-2' data-toggle='modal' data-target='#modal_changepassword'><img src='../../static/img/repository-icons/changepassword.png' data-toggle='tooltip' data-placement='top' title='Change Password' class='btn-change-pass-init'></a>"
-                            + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button btn-employee-update-init'></a>"
-                            + "<input type='image' src='../../static/img/repository-icons/edit-gray.png'  data-toggle='modal' data-target='#prompt_doneedituser' class='repository-edit-gray-button d-none btn-employee-update'>"
-                            + "<a><img src='../../static/img/repository-icons/deactivate.png' data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-employee-deactivate'></a>"
-                        + "</td>"
-                    + "</tr>"
+                                + "<td><input type='text' class='form-control td-employee-lastname' value='"+response['ELastName']+"' readonly /></td>"
+                                + "<td><input type='text' class='form-control td-employee-firstname' value='"+response['EFirstName']+"' readonly /></td>"
+                                + "<td><input type='text' class='form-control td-employee-middlename' value='"+response['EMiddleName']+"' readonly /></td>"
+                                + "<td><input type='text' class='form-control td-employee-alias' value='"+response['EAlias']+"' readonly /></td>"
+                                + "<td><input type='text' class='form-control td-employee-enumber' value='"+response['ENumber']+"' readonly /></td>"
+                                + "<td>"
+                                    + "<select class='form-control td-employee-egroup' disabled>"
+                                        + "<option id='"+response['idEmployeeGroup']+"'  selected>"+response['EGroup']+"</option>"
+                                    + "</select>"
+                                + "</td>"
+                                + "<td class='d-flex td-au-actions'>"
+                                    + "<a class='mr-2' data-toggle='modal' data-target='#modal_selectarea'><img src='../../static/img/repository-icons/selectarea.png' data-toggle='tooltip' data-placement='top' title='Select Area' class='btn-select-area'></a>"
+                                    + "<a class='mr-2' data-toggle='modal' data-target='#modal_changepassword'><img src='../../static/img/repository-icons/changepassword.png' data-toggle='tooltip' data-placement='top' title='Change Password' class='btn-change-pass-init'></a>"
+                                    + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button btn-employee-update-init'></a>"
+                                    + "<input type='image' src='../../static/img/repository-icons/edit-gray.png'  data-toggle='modal' data-target='#prompt_doneedituser' class='repository-edit-gray-button d-none btn-employee-update'>"
+                                    + "<a><img src='../../static/img/repository-icons/deactivate.png' data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-employee-deactivate'></a>"
+                                + "</td>"
+                            + "</tr>"
 
             $(html_data).prependTo("#table-employee-account > tbody")
         } else {
@@ -90,12 +90,10 @@ $(document).on("click", ".btn-employee-update-init", function(){
         response['emplogroups'].forEach(account_group)       
 
         function account_group(item){
-
             if (idEmploGroup != item['idEmployeeGroup']) {
                 var html_data="<option id='"+item['idEmployeeGroup']+"'>"+item['EGName']+"</option>"        
                 $('tbody tr').first().find('.td-employee-egroup').append(html_data)
             }
-
         }
     })
 })
