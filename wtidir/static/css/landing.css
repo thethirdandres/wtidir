@@ -131,3 +131,14 @@
     background-image: url(../../static/img/login-img/manager-white.png);
     background-size: cover;
 }
+
+/* loging */
+.login-card {
+    width: 20%;
+    height: 55%;
+}
+
+.login-card > img {
+    /* height: 1; */
+    width: 100%;
+}
