@@ -100,27 +100,25 @@
 
 
 /* LOGIN PAGE */
+
 .login-page {
     height: 100%;
     width: 100%;
     background-color: #333333;
 }
 
-
-
 .login-left-logo {
     bottom: 12rem;
     left: 7rem;
-    position:absolute;
+    position: absolute;
 }
 
 .login-left-text {
     bottom: 4rem;
     left: 7rem;
-    position:absolute;
+    position: absolute;
     line-height: 3rem;
 }
-
 
 .login-left-text {
     color: white;
@@ -132,13 +130,27 @@
     background-size: cover;
 }
 
-/* loging */
-.login-card {
-    width: 20%;
-    height: 55%;
+
+/* login */
+
+.login-select {
+    position: relative;
+    float: right;
+    right: 3rem;
 }
 
-.login-card > img {
+.login-content {
+    width: 20%;
+    height: 55%;
+    transform: translateX(5rem);
+}
+
+.login-card {
+    /* width: 20%;
+    height: 55%; */
+}
+
+.login-card>img {
     /* height: 1; */
     width: 100%;
 }
