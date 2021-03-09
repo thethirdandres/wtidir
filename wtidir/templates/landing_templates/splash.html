@@ -1,18 +1,49 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <div class="login-page d-flex">
-        <div class="login-left w-50">
-            <img src="../../static/img/wtilogo-lg.png" class="login-left-logo">
-            <div class="login-left-text roboto"> Waffle Time <br/> Group of Companies </div>
+{% block login %}
+    <div class="splash-page d-flex h-100 w-100">
+        <div class="splash-left w-50">
+            <img src="../../static/img/wtilogo-lg.png" class="splash-left-logo">
+            <div class="splash-left-text roboto"> Waffle Time <br/> Group of Companies </div>
         </div>
-        <div class="login-right w-50 bg-warning">
-            <button class="login-right-manager button">
-                {% comment %} <img src="../../static/img/login-img/manager-white.png"> {% endcomment %}
-            </button>
-            <button class="login-right-dir button">
-                <img src="../../static/img/login-img/dir-white.png">
-            </button>
+        <div class="splash-right d-flex flex-column mt-5">
+            <div class="splash-right-text text-white roboto-24 mb-4">Choose an application</div>
+            <a class="splash-right-button button" href="{% url 'landing:login_view' %}">
+                <img src="../../static/img/login-icons/dir.png" > 
+                Daily Inventory Report
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Upward Appraisal Tool
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Monthly Appraisal Tool
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Supervisory Appraisal Tool
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Supervisory Appraisal Tool
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Supervisory Appraisal Tool
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Supervisory Appraisal Tool
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Supervisory Appraisal Tool
+            </a>
+            <a class="splash-right-button button" href="">
+                <img src="../../static/img/login-icons/app.png"> 
+                Supervisory Appraisal Tool
+            </a>
         </div>
     </div>
-{% endblock content %}
+{% endblock login %}
