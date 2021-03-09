@@ -105,6 +105,19 @@ class ProductUOM (models.Model):
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
 
+class ProductItem (models.Model):
+    idProductItem = models.AutoField(primary_key=True, serialize=False)
+    idProductUOM = models.IntegerField(default=0)
+    idProductGroup = models.IntegerField(default=0)
+    PIName = models.CharField(default='', max_length=255, null=True, blank=True)
+    PISAPCode = models.CharField(default='', max_length=20, null=True, blank=True)
+    PIPack = models.DecimalField(default=0.00, decimal_places=2, max_digits=8)
+    PIBulkDiscount = models.IntegerField(default=0)
+    PUOMName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PGName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
 class DiscountType (models.Model):
     idDiscountType = models.AutoField(primary_key=True, serialize=False)
     DTName = models.CharField(default='', max_length=50, null=True, blank=True)

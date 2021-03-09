@@ -3,7 +3,7 @@
 {% block repository-content %}
 <div class="d-flex justify-content-between mb-3">
     <div class="repo-title roboto-24 text-gray">Item</div>
-    <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_addproduct">
+    <button type="button" class="repository-user-add-button" data-toggle="modal" data-target="#modal_addproduct" id="add-new-item">
         <img src="../../static/img/repository-icons/plus.png" class="">
         Add New
     </button>
@@ -33,18 +33,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+            {% for item in items %}
+            <tr id="{{ item.idProductItem }}">
+                <td><input type="text" class="form-control td-item-name" value="{{ item.PIName }}" readonly /></td>
                 <td>
                     <select class="form-control w-100" disabled>
-                        <option selected></option>
-                        <option>Test</option>
-                        <option>Test</option>
-                        <option>Test</option>
+                        <option id="{{ item.idProductUOM }}" selected>{{ item.PUOMName }}</option>
                     </select>
                 </td>                
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
+                <td><input type="text" class="form-control" value="{{ item.PIPack }}" readonly /></td>
+                <td><input type="text" class="form-control" value="{{ item.PISAPCode }}" readonly /></td>
 
                 <td>
                     <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button"></a>
@@ -60,9 +58,10 @@
                             {% include '../modals/modal_updateconversion.html' %}
                         </div>
                     </div>
-                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
+                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate"  class="product-item-deactivate"></a>
                 </td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
   </div>

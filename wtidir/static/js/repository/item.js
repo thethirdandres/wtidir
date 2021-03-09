@@ -46,6 +46,43 @@ $("#btn-item-group-add").click(function(){
     })
 })
 
+$("#btn-add-product-item").click(function(){
+    var item_name = $('#item-name').val()
+    var item_unit = $('#item-unit').val()
+    var item_pieceperpack = $('#item-pieceperpack').val()
+    var item_sapcode = $('#item-sapcode').val()
+    var id_item_unit = $('#item-unit').find('option:selected').attr('id')
+    var item_unit = $('#item-unit').find('option:selected').text()
+    var id_item_group = $('#dropdown-item-group').find('option:selected').attr('id')
+    var item_group = $('#dropdown-item-group').find('option:selected').text()
+    
+    $.ajax({
+        url: "item_add",
+        type: "POST",
+        data: { item_name: item_name, item_pieceperpack: item_pieceperpack, item_sapcode: item_sapcode, id_item_unit: id_item_unit,
+            item_unit: item_unit, id_item_group: id_item_group, item_group: item_group }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".product-item-deactivate", function(){
+    var idProductItem = $(this).closest('tr').attr('id')
+    var PIName = $(this).closest('tr').find('.td-item-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idProductItem)
+    $('#dialog-deactivation-title').text('Deactivate Product Item?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Product Item Name ' + PIName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-product-item')
+})
+
 $(document).on("click", ".btn-deactivate-group-item", function(){
     var idProductGroup = $(this).closest('tr').attr('id')
     var PGName = $(this).closest('tr').find('.td-item-group-name').val()
@@ -103,6 +140,7 @@ $(document).on("click", ".update-item-group", function(){
 
 $(document).on("click", ".init-item-group-update", function(){
     var idProductType = $(this).closest('tr').find('.td-item-group-type').find('option:selected').attr('id')
+
     $.ajax({
         url:"item_group_init",
         type:"GET"
@@ -113,8 +151,7 @@ $(document).on("click", ".init-item-group-update", function(){
             
             if (idProductType != item['idProductType']) {             
                 var html_data = "<option id='"+item['idProductType']+"'>"+ item['PTName']+"</option>"                    
-                $('tbody tr').first().find('.td-item-group-type').append(html_data)
-                console.log(html_data)
+                $('tbody tr').closest('tr').find('.td-item-group-type').append(html_data)
             }
         }
     })

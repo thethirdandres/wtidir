@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
-from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device, Employee, EmployeeAccountArea, ShortageType, ProductType, ProductGroup
+from .models import Area, Branch, AccountGroup, AccountUser, AccountUserArea, EmployeeGroup, ProductUOM, DiscountType, PaymentType, Device, Employee, EmployeeAccountArea, ShortageType, ProductType, ProductGroup, ProductItem
 
 def main_view(request):
     return render(request, 'repository_templates/repository.html')
@@ -573,10 +573,12 @@ def Device_branch_and_area_list(request):
 # * * * * * Device Page * * * * *
 
 def item_view(request):
+    items = ProductItem.objects.filter(Status=1).order_by('-idProductItem')
     producttypes = ProductType.objects.filter(Status=1).order_by('-idProductType')
     shortagetypes = ShortageType.objects.filter(Status=1).order_by('-STName')
     itemgroups = ProductGroup.objects.filter(Status=1).order_by('-idProductGroup')
-    return render(request, 'repository_templates/item.html', { 'producttypes': producttypes, 'shortagetypes': shortagetypes, 'itemgroups': itemgroups })
+    PUOMS = ProductUOM.objects.filter(Status=1).order_by('-idProductUOM')
+    return render(request, 'repository_templates/item.html', { 'producttypes': producttypes, 'shortagetypes': shortagetypes, 'itemgroups': itemgroups, 'PUOMS': PUOMS, 'items': items })
 
 @csrf_exempt
 def Item_group_add(request):
@@ -625,4 +627,25 @@ def Item_group_update(request):
 def item_group_init(request):
     producttypes = ProductType.objects.filter(Status=1).order_by('-idProductType').values()
     shortagetypes = ShortageType.objects.filter(Status=1).order_by('-STName').values()
-    return JsonResponse({"producttypes":list(producttypes)}, safe=False)
+    return JsonResponse({"producttypes":list(producttypes), "shortagetypes":list(shortagetypes)}, safe=False)
+
+@csrf_exempt
+def item_add_init(request):
+    itemgroups = ProductGroup.objects.filter(Status=1).order_by('-idProductGroup').values()
+    PUOMS = ProductUOM.objects.filter(Status=1).order_by('-idProductUOM').values
+    return JsonResponse({"itemgroups":list(itemgroups), }, safe=False)
+
+@csrf_exempt
+def item_add(request):
+    try:    
+        pi = ProductItem(PIName=request.POST.get('item_name'), PISAPCode=request.POST.get('item_sapcode'), PIPack=request.POST.get('item_pieceperpack'),
+                         idProductUOM=request.POST.get('id_item_unit'), PUOMName=request.POST.get('item_unit'), idProductGroup=request.POST.get('id_item_group'), 
+                         PGName=request.POST.get('item_group'))
+        pi.save()
+        pi_data = {"idProductItem": pi.idProductItem, "PIName": pi.PIName, "PISAPCode": pi.PISAPCode, "PIPack": pi.PIPack, "idProductUOM": pi.idProductUOM, 
+                    "PUOMName": pi.PUOMName, "idProductGroup": pi.idProductGroup, "PGName": pi.PGName, "PIBulkDiscount": pi.PIBulkDiscount, "error":False, "Message":"Product Item has been Added Successfully"}
+        return JsonResponse(pi_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        pi_data = {"error":True,"Message": "Error Failed to Add Product Item"}       
+        return JsonResponse(pi_data,safe=False)

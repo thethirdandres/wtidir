@@ -1179,7 +1179,7 @@ $(document).on("click", ".btn-init-new-device", function(){
         function listBranches(branch){           
             if (idBranch != branch.idBranch) {
                 html_branch = "<option id='"+branch.idBranch+"'>"+branch.BName+"</option>"
-                $('tbody tr').first().find(".td-device-branch").append(html_branch)
+                $('tbody tr').closest('tr').find(".td-device-branch").append(html_branch)
             }         
         }
 
@@ -1187,7 +1187,7 @@ $(document).on("click", ".btn-init-new-device", function(){
         function listAreas(area){           
             if (idArea != area.idArea) {
                 html_area = "<option id='"+area.idArea+"'>"+area.AName+"</option>"
-                $('tbody tr').first().find(".td-device-branch").append(html_branch)
+                $('tbody tr').closest('tr').find(".td-device-area").append(html_area)
             }         
         }
     })
