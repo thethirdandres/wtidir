@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div id="main" class="main container-fluid d-none">
+    <div id="main" class="main container-fluid">
         {% include "components/_navbar.html" %}
         <div class="sidebar-collpased-menu">
             <button class="openbtn" onclick="openNav()">☰</button> 
@@ -35,7 +35,7 @@
             {% block content %}{% endblock %}
         </div>
     </div>
-    <div id="login-div" class="login-div container-fluid h-100">
+    <div id="login-div" class="login-div container-fluid d-none h-100">
         {% block login %}{% endblock %}
     </div>
     

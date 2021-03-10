@@ -23,6 +23,12 @@ $(document).ready(function() {
 
 });
 
+
+function changeDiv() {
+    $('.login-div').removeClass('d-none');
+    $('.main').addClass('d-none');
+}
+
 $(document).on("click", ".repository-edit-button", function() {
     var currentTD = $(this).parents('tr').find('td:not(:last-child)');
     $.each(currentTD, function() {

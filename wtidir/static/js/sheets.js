@@ -96,9 +96,11 @@ $(document).ready(function() {
     //     $(this).parents('.login-div').addClass('d-none');
     //     $(this).parents('.login-div').siblings('.main').removeClass('d-none');
     // });
+
+
 });
 
 function changeDiv() {
-    $('#login-div').addClass('d-none');
-    $('#main').removeClass('d-none');
+    $('.login-div').removeClass('d-none');
+    $('.main').addClass('d-none');
 }
