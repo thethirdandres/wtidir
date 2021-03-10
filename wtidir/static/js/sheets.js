@@ -91,4 +91,14 @@ $(document).ready(function() {
         $('.edititem-list li input[type="checkbox"]').prop('checked', this.checked);
     })
 
+
+    // $('.login-button').click(function() {
+    //     $(this).parents('.login-div').addClass('d-none');
+    //     $(this).parents('.login-div').siblings('.main').removeClass('d-none');
+    // });
 });
+
+function changeDiv() {
+    $('#login-div').addClass('d-none');
+    $('#main').removeClass('d-none');
+}

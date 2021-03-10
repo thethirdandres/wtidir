@@ -141,7 +141,6 @@
     margin-bottom: 1rem;
     margin-left: 3rem;
     padding: 1rem;
-    /* width: 110%; */
     text-align: left;
     border-radius: 0.30rem;
     text-decoration: none !important;
@@ -161,6 +160,14 @@
     position: relative;
     float: right;
     right: 3rem;
+}
+
+.login-select>select {
+    background-color: #333333;
+}
+
+.login-select>select:focus {
+    background-color: #333333;
 }
 
 .login-content {
