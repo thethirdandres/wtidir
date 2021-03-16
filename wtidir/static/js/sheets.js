@@ -77,8 +77,13 @@ $(document).ready(function() {
     });
 
     $(".sheets-dropdown-button").click(function() {
-        $(".sheets-dropdown-container").css('display', 'block');
-        $(".sheets-dropdown-item").css('display', 'block');
+        if ($(".sheets-dropdown-container").style.display == 'none') {
+            $(".sheets-dropdown-container").css('display', 'block');
+            $(".sheets-dropdown-item").css('display', 'block');
+        } else {
+            $(".sheets-dropdown-container").css('display', 'none');
+            $(".sheets-dropdown-item").css('display', 'none');
+        }
     });
 
     // $("template-section input[type=radio]").click(function() {

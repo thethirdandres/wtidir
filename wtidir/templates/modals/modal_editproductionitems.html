@@ -58,18 +58,18 @@
 
                     <td class="d-flex">
                         <a class="mr-2 pointer-cursor-on-hover" data-toggle="modal" data-target="#modal_editproductionitem"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class=""></a>
-                        <div class="modal fade" id="modal_editproductionitem" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditarealabel" aria-hidden="true">
+                        <div class="modal fade close-all-modal" id="modal_editproductionitem" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditarealabel" aria-hidden="true">
                             <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
                                 {% include '../modals/modal_editproductionitem.html' %}
                             </div>
                         </div>
-                        <a class="pointer-cursor-on-hover" data-toggle="modal" data-target="#prompt_doneedititem"><img src="../../static/img/sheets-icons/editcomponents.png" data-toggle="tooltip" data-placement="top" title="Edit Components" class="area-deactivate"></a>
-                        <div class="modal fade" id="prompt_doneedititem" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditarealabel" aria-hidden="true">
+                        <a class="pointer-cursor-on-hover" data-toggle="modal" data-target="#"><img src="../../static/img/sheets-icons/editcomponents.png" data-toggle="tooltip" data-placement="top" title="Edit Components" class="area-deactivate"></a>
+                        <a class="pointer-cursor-on-hover" data-toggle="modal" data-target="#prompt_confirmdeleteproductionitem"><img src="../../static/img/sheets-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete" ></a>
+                        <div class="modal fade close-all-modal" id="prompt_confirmdeleteproductionitem" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditarealabel" aria-hidden="true">
                             <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
-                                {% include '../prompts/prompt_doneedititem.html' %}
+                                {% include '../prompts/prompt_confirmdeleteproductionitem.html' %}
                             </div>
                         </div>
-                        <a class="pointer-cursor-on-hover"><img src="../../static/img/sheets-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete" ></a>
                     </td>
                     <td>
                     </td>
