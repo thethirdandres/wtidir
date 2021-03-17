@@ -578,7 +578,7 @@ def item_view(request):
     shortagetypes = ShortageType.objects.filter(Status=1).order_by('-STName')
     itemgroups = ProductGroup.objects.filter(Status=1).order_by('-idProductGroup')
     PUOMS = ProductUOM.objects.filter(Status=1).order_by('-idProductUOM')
-    return render(request, 'repository_templates/item.html', { 'producttypes': producttypes, 'shortagetypes': shortagetypes, 'itemgroups': itemgroups, 'PUOMS': PUOMS, 'items': items })
+    return render(request, 'repository_templates/item.html', { 'producttypes': producttypes, 'itemgroups': itemgroups, 'shortagetypes': shortagetypes, 'PUOMS': PUOMS, 'items': items })
 
 @csrf_exempt
 def Item_group_add(request):
@@ -631,9 +631,9 @@ def item_group_init(request):
 
 @csrf_exempt
 def item_add_init(request):
-    itemgroups = ProductGroup.objects.filter(Status=1).order_by('-idProductGroup').values()
-    PUOMS = ProductUOM.objects.filter(Status=1).order_by('-idProductUOM').values
-    return JsonResponse({"itemgroups":list(itemgroups), }, safe=False)
+    productgroups = ProductGroup.objects.filter(Status=1).order_by('-idProductGroup').values()
+    PUOMS = ProductUOM.objects.filter(Status=1).order_by('-idProductUOM').values()
+    return JsonResponse({"productgroups":list(productgroups), "PUOMS": list(PUOMS)}, safe=False)
 
 @csrf_exempt
 def item_add(request):
@@ -648,4 +648,34 @@ def item_add(request):
     except Exception as e:
         print("Hey! I Found an Error:", e)
         pi_data = {"error":True,"Message": "Error Failed to Add Product Item"}       
+        return JsonResponse(pi_data,safe=False)
+
+@csrf_exempt
+def Item_deactivate(request):
+    try:
+        pi = ProductItem.objects.get(idProductItem=request.POST.get('idProductItem'))
+        pi.Status = 0
+        pi.save()
+        pi_data = {"error": False, "Message": "Item has been Deactivated"}
+        return JsonResponse(pi_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        pi_data = {"error":True,"Message": "Error Failed to deactivate Item"}       
+        return JsonResponse(pi_data,safe=False)
+
+@csrf_exempt
+def Item_update(request):
+    try:
+        pi = ProductItem.objects.get(idProductItem=request.POST.get('idProductItem'))
+        pi.PIName = request.POST.get('PIName')
+        pi.idProductUOM = request.POST.get('idProductUOM')
+        pi.PUOMName = request.POST.get('PUOMName')
+        pi.PIPack = request.POST.get('PIPack')
+        pi.PISAPCode = request.POST.get('PISAPCode')
+        pi.save()
+        pi_data = {"error": False, "Message": "Item has been updated"}
+        return JsonResponse(pi_data,safe=False)
+    except Exception as e:
+        print("Hey! I Found an Error:", e)
+        pi_data = {"error":True,"Message": "Error Failed to update Item"}       
         return JsonResponse(pi_data,safe=False)

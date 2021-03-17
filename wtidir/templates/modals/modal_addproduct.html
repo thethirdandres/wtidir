@@ -27,7 +27,7 @@
             <div class="form-group">
               <label for="group">Group</label>
               <select class="form-control form-control-sm" id="dropdown-item-group">
-                {% for itemgroup in itemgroups %}
+                {% for itemgroup in productgroups %}
                     <option id="{{ itemgroup.idProductGroup }}">{{ itemgroup.PGName }}</option>
                 {% endfor %}
               </select>

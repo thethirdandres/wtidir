@@ -63,10 +63,26 @@ $("#btn-add-product-item").click(function(){
             item_unit: item_unit, id_item_group: id_item_group, item_group: item_group }
     }).done(function(response) {
         if (response["error"] == false) {
-            console.log(response["Message"])
-        } else {
-            console.log(response["Message"])
-        }
+            var html_data = "<tr id='"+response['idProductItem']+"'>"
+                                + "<td><input type='text' class='form-control td-item-name' value='"+response['PIName']+"' readonly /></td>"
+                                + "<td>"
+                                    + "<select class='form-control td-cb-item-uom' disabled>"
+                                        + "<option id='"+response['idProductUOM']+"' selected>"+response['PUOMName']+"</option>"
+                                    + "</select>"                  
+                                + "</td>"
+                                + "<td><input type='text' class='form-control td-item-pipack' value='"+response['PIPack']+"' readonly /></td>"
+                                + "<td><input type='text' class='form-control td-item-sapcode' value='"+response['PISAPCode']+"' readonly /></td>"
+                                + "<td>"
+                                    + "<a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button init-update-item'></a>"
+                                    + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='modal' data-target='#prompt_doneedititem' class='repository-edit-gray-button d-none mr-2 ml-n3 update-item'>"
+                                    + "<a class='mr-2' data-toggle='modal' data-target='#modal_updateconversion'><img src='../../static/img/repository-icons/updateconversion.png' data-toggle='tooltip' data-placement='top' title='Update Conversion'></a>"
+                                    + "<a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate'  class='product-item-deactivate'></a>"
+                                + "</td>"
+                            + "</tr>"
+            $(html_data).prependTo("#tbl-product-item > tbody")
+        } 
+       
+        console.log(response["Message"])
     })
 })
 
@@ -81,6 +97,26 @@ $(document).on("click", ".product-item-deactivate", function(){
     $('#dialog-deactivation-description').text('You are about to deactivate Product Item Name ' + PIName + '. This action cannot be undone afterwards. Continue?')
 
     $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-product-item')
+})
+
+$(document).on("click", ".deactivate-product-item", function(){
+    var idProductItem = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "Item_deactivate",
+        type: "POST",
+        data: { idProductItem: idProductItem }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-product-item tr#' + idProductItem).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
 })
 
 $(document).on("click", ".btn-deactivate-group-item", function(){
@@ -153,6 +189,64 @@ $(document).on("click", ".init-item-group-update", function(){
                 var html_data = "<option id='"+item['idProductType']+"'>"+ item['PTName']+"</option>"                    
                 $('tbody tr').closest('tr').find('.td-item-group-type').append(html_data)
             }
+        }
+    })
+})
+
+$(document).on("click", ".init-update-item", function(){
+    var idProductUOM = $(this).closest('tr').find('.td-cb-item-uom').find('option:selected').attr('id')
+  
+    $.ajax({
+        url:"item_add_init",
+        type:"GET"
+    }).done(function(response){
+        response['PUOMS'].forEach(product_item)  
+        
+        function product_item(item){
+            
+            if (idProductUOM != item['idProductUOM']) {             
+                var html_data = "<option id='"+item['idProductUOM']+"'>"+ item['PUOMName']+"</option>"                    
+                $('tbody tr').closest('tr').find('.td-cb-item-uom').append(html_data)
+            }
+        }
+    })
+})
+
+$('#btn-modal-item-group-init').click(function(){
+    $("#dropdown-item-group").empty()
+
+    $.ajax({
+        url:"item_add_init",
+        type:"GET"
+    }).done(function(response){
+        response['productgroups'].forEach(item_group)  
+        
+        function item_group(item){                     
+            var html_data = "<option id='"+item['idProductGroup']+"'>"+ item['PGName']+"</option>"                    
+            $('#dropdown-item-group').append(html_data)          
+        }
+    })
+})
+
+$(document).on("click", ".update-item", function(){
+    var idProductItem = $(this).closest('tr').attr('id')
+    var PIName = $(this).closest('tr').find('.td-item-name').val()
+    var idProductUOM = $(this).closest('tr').find('.td-cb-item-uom').find('option:selected').attr('id')
+    var PUOMName = $(this).closest('tr').find('.td-cb-item-uom').find('option:selected').text()
+    // var idProductGroup = $(this).closest('tr').find('.td-cb-item-uom').find('option:selected').attr('id')
+    // var PGName = $(this).closest('tr').find('.td-cb-item-uom').find('option:selected').text() 
+    var PIPack = $(this).closest('tr').find('.td-item-pipack').val()
+    var PISAPCode = $(this).closest('tr').find('.td-item-sapcode').val()
+    
+    $.ajax({
+        url: "Item_update",
+        type: "POST",
+        data: {idProductItem: idProductItem, PIName: PIName, idProductUOM: idProductUOM, PUOMName: PUOMName, PIPack: PIPack, PISAPCode: PISAPCode }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
         }
     })
 })

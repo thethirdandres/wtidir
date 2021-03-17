@@ -71,4 +71,6 @@ urlpatterns = [
     path('item_group_init', views.item_group_init, name="item_group_init"),
     path('item_add_init', views.item_add_init, name="item_add_init"),
     path('item_add', views.item_add, name="item_add"),
+    path('Item_deactivate', views.Item_deactivate, name='Item_deactivate'),
+    path('Item_update', views.Item_update, name='Item_update'),
 ]

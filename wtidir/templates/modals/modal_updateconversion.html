@@ -7,9 +7,9 @@
             <div class="form-group">
                 <label for="unit">Unit</label>
                 <select class="form-control form-control-sm" name="unit" id="unit">
-                <option selected disabled></option>
-                <option>Test</option>
-                <option>Test</option>
+                    {% for PUOM in PUOMS %}
+                        <option>{{ PUOM.PUOMName }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
@@ -19,9 +19,8 @@
             <div class="form-group">
                 <label for="set">Set</label>
                 <select class="form-control form-control-sm" name="set" id="set">
-                <option selected disabled></option>
-                <option>Test</option>
-                <option>Test</option>
+                <option selected>F</option>
+                <option>W</option>
                 </select>
             </div>
             <input type="button" id="repo-conversion-table-submit" class="button-white roboto-10 mx-auto" value="ADD CONVERSION" >
@@ -40,7 +39,7 @@
                     <tr>
                         <td scope="row" contenteditable="false">pc</td>
                         <td contenteditable="false">1.000000</td>
-                        <td contenteditable="false">w</td>
+                        <td contenteditable="false">W</td>
                         <td>
                             <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Remove" ></a>
                         </td>
