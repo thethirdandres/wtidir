@@ -4,6 +4,7 @@
 // })
 
 $(document).ready(function() {
+
     $('.delivery-table-documents').children('tbody').find('tr').click(function() {
         var showTable = $('.delivery-table-documents-content');
         // showTable.children('tbody').find('tr').detach();
@@ -97,15 +98,34 @@ $(document).ready(function() {
     })
 
 
-    // $('.login-button').click(function() {
-    //     $(this).parents('.login-div').addClass('d-none');
-    //     $(this).parents('.login-div').siblings('.main').removeClass('d-none');
-    // });
+    // *** NOTE TO ARCHIE: if na lock ang sheet, if mag change page ang user, ma unlock liwat. for current page lang gid ga lock ang ini nga function, kung mag change page, gadula ang state sang ISLOCKEDSHEETS.
+    // try to find a way nga ma save ang state nga ISLOCKEDSHEETS biskan mag change ang page
+    $(".sheets-lock").click(function() {
+        if (localStorage.getItem('isLockedSheets') == "true") {
+            localStorage.setItem('isLockedSheets', "false");
+            $(".sheets-lock").parents('.sheets-navpills-header').next().find("button, select").prop('disabled', false);
+            alert("notLocked");
+        } else {
+            localStorage.setItem('isLockedSheets', "true");
+            $(".sheets-lock").parents('.sheets-navpills-header').next().find("button, select").prop('disabled', true);
+            alert("Locked");
+        }
+    })
 
-
+    // ini nga function same lang sa babaw nga event. Difference lang is: sa babaw if ma click ang lock button, manually i change niya ang state. 
+    // diri ya sa function nga toggleSheetLock, na check ya lang ano ang isLockedSheets nga status, then gina disable/enable ang buttons accordingly (supposedly amo ni dapat gatabo pero refer to ***NOTE TO ARCHIE sa babaw)
+    function toggleSheetLock() {
+        if (localStorage.getItem('isLockedSheets') == "true") {
+            $(".sheets-lock").parents('.sheets-navpills-header').next().find("button, select").prop('disabled', false);
+            alert("notLocked");
+        } else {
+            $(".sheets-lock").parents('.sheets-navpills-header').next().find("button, select").prop('disabled', true);
+            alert("Locked");
+        }
+    }
 });
 
-function changeDiv() {
-    $('.login-div').removeClass('d-none');
-    $('.main').addClass('d-none');
-}
+// function changeDiv() {
+//     $('.login-div').removeClass('d-none');
+//     $('.main').addClass('d-none');
+// }

@@ -34,6 +34,10 @@
     color: white;
 }
 
+.sidebar-area-dropdown {
+    background-color: #333333;
+}
+
 .sidebar-file>div:not(div:first-child):hover,
 .sidebar-edit>div:not(div:first-child):hover,
 .sidebar-file a:hover,

@@ -1,0 +1,113 @@
+<div class="modal-content">
+    <div class="modal-header bg-white">
+        <h5 class="modal-title roboto-16 font-weight-bold mx-auto" id="modal_createusertitle">[AMERICAN HOTDOG 12S] END PRODUCTS</h5>
+    </div>
+    <div class="modal-body d-flex">
+        <form id="repo-add-conversion-form">
+            <div class="form-group">
+                <label for="item">Item</label>
+                <input type="text" class="form-control form-control-sm" name="item" id="item" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="unit">Unit</label>
+                <select class="form-control form-control-sm" name="unit" id="unit">
+                <option selected disabled>Choose</option>
+                <option>Test</option>
+                <option>Test</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cost">Cost</label>
+                <input type="text" class="form-control form-control-sm" name="cost" id="cost" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="text" class="form-control form-control-sm" name="quantity" id="quantity" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control form-control-sm" name="amount" id="amount" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="processtype">Process Type</label>
+                <select class="form-control form-control-sm" name="processtype" id="processtype">
+                <option selected disabled>Choose</option>
+                <option>Sales</option>
+                <option>Production</option>
+                <option>Shared Usage</option>
+                <option>End Product</option>
+                </select>
+            </div>
+            <input type="button" id="repo-conversion-table-submit" class="button-red roboto mx-auto" value="+ ADD ITEM TO LIST" >
+        </form>
+        <div class="ml-4 repo-modal-updateconversion-table w-100">
+            <table id="repo-conversion-table" class="table table-border  table-sm  mt-3">
+                <thead class="table-active">
+                    <tr>
+                        <th>ITEM</th>
+                        <th>UNIT</th>
+                        <th>COST</th>
+                        <th>QTY</th>
+                        <th>AMT</th>
+                        <th>PROCESS TYPE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row" contenteditable="false">QWERT</td>
+                        <td contenteditable="false">pcs</td>
+                        <td contenteditable="false">125.00</td>
+                        <td contenteditable="false">10.00</td>
+                        <td contenteditable="false">1250.00</td>
+                        <td contenteditable="false">Sales</td>
+                        <td>
+                            <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Remove" ></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <button type="button" class="btn button-red mr-2 confirm-all-modal">SAVE</button>
+        <button type="button" class="btn button-white confirm-all-modal" >CANCEL</button>
+    </div>
+</div>
+
+
+{% comment %} <script id="addConversionTmp" type="text/x-jquery-tmpl">
+    <tr>
+        <th>${Unit}</th>
+        <th>${Ratio}</th>
+        <th>${Set}</th>
+        <th></th>
+    </tr>
+</script> {% endcomment %}
+
+{% comment %} <script>
+    $(function() {
+        $('#repo-conversion-table-submit').click(function(e) {
+            var model = new Object();
+
+            // Here you need to get the values using $('#id').val() and fill the model
+            model.Unit = $(unit).value();
+            model.Ratio = $(ratio).value();
+            model.Set = $(set).value();
+
+            $("#addConversionTmp").tmpl(model).appendTo("#repo-conversion-table");
+        });
+    });
+</script> {% endcomment %}
+
+{% comment %} <script>
+    document.getElementById("#repo-add-conversion-form").submit(function() {
+        var fields = document.getElementById( "input" );
+        console.log(fields);
+        jQuery.each( fields, function( i, field ) {             
+            document.getElementById("repo-conversion-table")
+                .find('tbody tr:last') //this appends the data you want   to the table
+                .append("<td>" + field.value + "</td>");
+        });
+    });
+</script> {% endcomment %}
