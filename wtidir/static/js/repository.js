@@ -20,16 +20,16 @@ $(document).ready(function() {
     //     }
     // })
 
-    // var checkBoxes = $('.selectarea-checkbox-list').find('input[type=checkbox]');
-    // checkBoxes.change(function() {
-    //     $('.selectarea-select-button').prop('disabled', checkBoxes.filter(':checked').length < 1);
-    //     if (checkBoxes.filter(':checked').length > 0) {
-    //         $('.selectarea-select-button').removeClass('button-disable');
-    //     } else {
-    //         $('.selectarea-select-button').addClass('button-disable');
-    //     }
-    // });
-    // checkBoxes.change(); // or add disabled="true" in the HTML
+    var checkBoxes = $('.selectarea-checkbox-list').find('input[type=checkbox]');
+    checkBoxes.change(function() {
+         $('.selectarea-select-button').prop('disabled', checkBoxes.filter(':checked').length < 1);
+         if (checkBoxes.filter(':checked').length > 0) {
+             $('.selectarea-select-button').removeClass('button-disable');
+         } else {
+             $('.selectarea-select-button').addClass('button-disable');
+         }
+     });
+     checkBoxes.change(); // or add disabled="true" in the HTML
 
 });
 
