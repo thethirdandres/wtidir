@@ -49,8 +49,22 @@ button {
     background-color: #AF0700;
 }
 
+.h1-heading{
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.h3-heading{
+    font: 24px bolder Roboto, sans-serif;
+    font-weight: 700;
+}
+
+.text-accent {
+    color: #828282;
+}
+
 .text-gray {
-    color: #4F4F4F
+    color: #4F4F4F;
 }
 
 .text-white {

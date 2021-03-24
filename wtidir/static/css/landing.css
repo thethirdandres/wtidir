@@ -121,11 +121,6 @@
     line-height: 3rem;
 }
 
-.splash-left-text {
-    color: white;
-    font-size: 3rem;
-}
-
 .splash-right {
     overflow-y: scroll;
     /* hide scrollbar */
@@ -155,6 +150,9 @@
 
 
 /* login */
+.login-card {
+    border-radius: 5px;
+}
 
 .login-select {
     position: relative;
