@@ -63,13 +63,13 @@
 
                     {% if useraccount.Status %}
                     <td class="d-flex td-au-actions">
-                        <a class="mr-2" data-toggle="modal" data-target="#modal_selectarea"><img src="../../static/img/repository-icons/selectarea.png" data-toggle="tooltip" data-placement="top" title="Select Area" class="btn-user-select-area"></a>
+                        <a class="mr-2" data-toggle="modal" data-target="#modal_selectarea"><img src="../../static/img/repository-icons/selectarea.png" data-toggle="tooltip" data-placement="top" title="Select Area" class="btn-select-area"></a>
                         <div class="modal fade close-all-modal" id="modal_selectarea" tabindex="-1" role="dialog" aria-labelledby="modal_selectarealabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">    
                                 {% include '../modals/modal_selectarea.html' %}
                             </div>
                         </div>
-                        <a class="mr-2" data-toggle="modal" data-target="#modal_changepassword"><img src="../../static/img/repository-icons/changepassword.png" data-toggle="tooltip" data-placement="top" title="Change Password" class="btn-user-change-pass-init"></a>
+                        <a class="mr-2" data-toggle="modal" data-target="#modal_changepassword"><img src="../../static/img/repository-icons/changepassword.png" data-toggle="tooltip" data-placement="top" title="Change Password" class="btn-change-pass-init"></a>
                         <div class="modal fade close-all-modal" id="modal_changepassword" tabindex="-1" role="dialog" aria-labelledby="modal_changepasswordlabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">    
                                 {% include '../modals/modal_changepassword.html' %}

@@ -3,18 +3,25 @@
 {% block repository-content %}
     <div class="repo-title roboto-24 text-gray">Device</div> 
     <hr/>
-    <form>
-        <div class="form-row mb-4">
-            <input type="text" class="form-control col ml-2" name="devicename"  placeholder="Device Name">
-            <input type="text" class="form-control col ml-2" name="branch"  placeholder="Branch">
-            <input type="text" class="form-control col ml-2" name="area"  placeholder="Area">
-            <input type="text" class="form-control col ml-2" name="serialnumber"  placeholder="Serial Number">
-            <input type="text" class="form-control col ml-2" name="macaddress"  placeholder="Mac Address">
-            <button type="submit" class="btn"><img src="../../static/img/repository-icons/add.png"/></button>
-        </div>
-    </form>
+    <div class="form-row mb-4" id="form-device">
+        <input type="text" class="form-control col ml-2" name="devicename"  placeholder="Device Name" id="txtDeviceName">
+        <select class="form-control col ml-2 td-branch-area" id="select-branches">
+            {% for branch in branches %}
+                <option id="{{ branch.idBranch }}">{{ branch.BName }}</option>
+            {% endfor %}
+        </select>
+        <select class="form-control col ml-2 td-branch-area" id="select-areas">
+            {% for area in areas %}
+                <option id="{{ area.idArea }}">{{ area.AName }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" class="form-control col ml-2" name="serialnumber"  placeholder="Serial Number" id="txtSerialNumber">
+        <input type="text" class="form-control col ml-2" name="macaddress"  placeholder="Mac Address" id="txtMacAddress">
+        <button type="submit" class="btn" id="btn-add-device"><img src="../../static/img/repository-icons/add.png"/></button>
+    </div>
 
-    <table class="table table-border  table-sm">
+
+    <table class="table table-border  table-sm" id="tbl-devices">
         <thead class="table-active">
             <tr>
                 <th>DEVICE NAME</th>
@@ -26,24 +33,49 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-                <td><input type="text" class="form-control" value="{{ areadata.ASAPDataSource }}" readonly /></td>
-                <td class="d-flex">
-                    <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button in-branch"></a>
-                    <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneeditdevice" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3">
-                    <div class="modal fade close-all-modal" id="prompt_doneeditdevice" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditdevicelabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">    
-                            {% include '../prompts/prompt_doneeditdevice.html' %}
+            {% for device in devices %}
+                <tr id="{{ device.idDevice }}">
+                    <td><input type="text" class="form-control td-device-name" value="{{ device.DName }}" readonly /></td>
+                    <td>
+                        <select class="form-control td-device-branch" disabled>
+                            <option id="{{ device.idBranch }}">{{ device.BName }}</option>
+                            {% for branch in branches %}
+                                {% if device.idBranch != branch.idBranch %}
+                                    <option id="{{ branch.idBranch }}">{{ branch.BName }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control td-device-area" disabled>
+                            <option id="{{ device.idArea }}">{{ device.AName }}</option>
+                            {% for area in areas %}
+                                {% if device.idArea != area.idArea %}
+                                    <option id="{{ area.idArea }}">{{ area.AName }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control td-device-DSerialNumber" value="{{ device.DSerialNumber }}" readonly /></td>
+                    <td><input type="text" class="form-control td-device-DMacAddress" value="{{ device.DMacAddress }}" readonly /></td>
+                    <td class="d-flex">
+                        <a class="mr-2"><img src="../../static/img/repository-icons/edit.png" data-toggle="tooltip" data-placement="top" title="Edit" class="repository-edit-button in-branch"></a>
+                        <input type="image" src="../../static/img/repository-icons/edit-gray.png" data-toggle="modal" data-target="#prompt_doneeditdevice" class="repository-edit-gray-button in-branch d-none mr-2 ml-n3 btn-device-update">
+                        <div class="modal fade close-all-modal" id="prompt_doneeditdevice" tabindex="-1" role="dialog" aria-labelledby="prompt_doneeditdevicelabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">    
+                                {% include '../prompts/prompt_doneeditdevice.html' %}
+                            </div>
                         </div>
-                    </div>
-                    <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" ></a>
-                    <a class="mr-2"><img src="../../static/img/repository-icons/delete.png" data-toggle="tooltip" data-placement="top" title="Delete"></a>
-                </td>
-            </tr>
+                        <a><img src="../../static/img/repository-icons/deactivate.png"data-toggle="tooltip" data-placement="top" title="Deactivate" class="btn-deactivate-device"></a>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
+
+    <div class="modal fade" id="prompt_confirmdeactivate" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmdeactivatelabel" aria-hidden="true">
+        <div class="modal-dialog modal-xs modal-dialog-centered" role="document">    
+            {% include '../prompts/prompt_confirmdeactivate.html' %}
+        </div>
+    </div>
 {% endblock repository-content %}

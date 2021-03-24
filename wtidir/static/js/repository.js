@@ -70,8 +70,6 @@ $(document).on("click", ".repository-edit-gray-button", function() {
     }
 });
 
-
-
 $('.confirm-all-modal').click(function() {
     if ($(this).hasClass('prompt_confirmcreateuser')) {
         $('.close-all-modal').modal('hide');
@@ -115,6 +113,18 @@ $('.repository-user-tab').click(function() {
 })
 
     ///////////////////////// end of Andres' JQueries //////////////////////////////
+
+function ClearAllInputBox() {
+    // $(this).find('#form-device').find('input').each(function(){
+    //     $(this).val('')
+    // })
+    var inputElements = document.getElementsByTagName('input')
+    for (var i=0; i < inputElements.length; i++) {
+        if (inputElements[i].find('.') == 'text') {
+            inputElements[i].value = ''
+        }
+    }
+}
 
     // ~ ~ ~ ~ ~ User Page Eventlistener ~ ~ ~ ~ ~
 
@@ -192,16 +202,27 @@ $(document).on("click", ".btn-user-account-update", function(){
     })
 })
 
-$(document).on("click", ".btn-user-select-area", function(){
+$(document).on("click", ".btn-select-area", function(){
     var id = $(this).closest('tr').attr('id')
+    var repoTable = $(this).closest('table').attr('id')
+    var _url = ''
+
     $('#user-hidden-id').text(id)
+
+    if (repoTable == 'table-employee-account') {
+        _url = 'employee_area_access_init'
+        $('#user-hidden-url').text('employee_area_access')
+    } else {
+        _url = 'user_account_area_access_init'
+        $('#user-hidden-url').text('user_account_area')
+    }
 
     $('#area-list').empty()
 
     $.ajax({
-        url:"user_account_area_access_init",
+        url: _url,
         type:"POST",
-        data:{iduser:id}
+        data:{ id: id }
     }).done(function(response){
         response['areas'].forEach(function(area){
             var html_data="<li><label for='cb"+area['AName']+"'><input type='checkbox' class='form-check-input "+area['idArea']+"' id='"+area['idArea']+"' name='cb' value='"+area['AName']+"'>"+area['AName']+"</label></li>"
@@ -209,16 +230,16 @@ $(document).on("click", ".btn-user-select-area", function(){
         })
 
         $("input[type=checkbox]").each(function(){
-            user_area_access($(this).attr('id'))           
+            account_area_access($(this).attr('id'))           
         })
 
-        function user_area_access(idArea){
-            response['useraccounts'].forEach(function(useraccess){
+        function account_area_access(idArea){
+            response['accounts'].forEach(function(account){
 
-                if (idArea ==  useraccess['idArea']) {
+                if (idArea ==  account['idArea']) {
                     // console.log('area id: '+useraccess['Status'])
-                    if (useraccess['Status']) {
-                        $("." + useraccess['idArea']).prop('checked', true)
+                    if (account['Status']) {
+                        $("." + account['idArea']).prop('checked', true)
                     }
                 }
             })
@@ -229,14 +250,17 @@ $(document).on("click", ".btn-user-select-area", function(){
 
 $('#btn-user-account-area-submit').click(function(){
     var id = $('#user-hidden-id').text()
+    var _url = $('#user-hidden-url').text()
+
+    console.log(_url)
 
     $("input[type=checkbox]").each(function(){
 
         if ($('.' + $(this).attr('id')).is(":checked")) {
             $.ajax({
-                url: "user_account_area",
+                url: _url,
                 type: "POST",
-                data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val(), status:1}
+                data: {id: id, idarea:$(this).attr('id'), namearea:$(this).val(), status:1}
             }).done(function(response) {
                 if (response["error"] == false) {
                     console.log(response["Message"])
@@ -247,9 +271,9 @@ $('#btn-user-account-area-submit').click(function(){
             })
         }else{
             $.ajax({
-                url: "user_account_area",
+                url: _url,
                 type: "POST",
-                data: {iduser:id, idarea:$(this).attr('id'), namearea:$(this).val(), status:0}
+                data: {id: id, idarea:$(this).attr('id'), namearea:$(this).val(), status:0}
             }).done(function(response) {
                 if (response["error"] == false) {
                     console.log(response["Message"])
@@ -291,20 +315,29 @@ $('#btn-change-pass-auth').click(function(){
     }
 })
 
-$('.btn-user-change-pass-init').click(function(){
+$('.btn-change-pass-init').click(function(){
     var id = $(this).closest('tr').attr('id')
+    var repoTable = $(this).closest('table').attr('id')
     // console.log(id)
     $('#user-hidden-id').text(id)
+
+    if (repoTable == 'table-employee-account') {
+        $('#user-hidden-url').text('user_employee_change_password')
+    } else {
+        $('#user-hidden-url').text('user_account_change_password')
+    }
+
 })
 
 $('#btn-change-pass').click(function(){
     var id = $('#user-hidden-id').text()
-    var newpassword = $("#new-password").val()
+    var newpassword = $('#new-password').val()
+    var _url = $('#user-hidden-url').text()
 
     $.ajax({
-        url: "user_account_change_password",
+        url: _url,
         type: "POST",
-        data: {id:id, newpassword:newpassword}
+        data: {id: id, newpassword: newpassword}
     }).done(function(response) {
         if (response["error"] == false) {
             console.log(response["Message"])
@@ -735,70 +768,51 @@ $(document).on("click", ".btn-deactivate-branch", function() {
     $(".modal-backdrop").remove()
 })
     // * * * * * Branch Page Eventlistener * * * * *
-    // ~ ~ ~ ~ ~ Employee Page Eventlistener ~ ~ ~ ~ ~
-$("#btn-create-emplo-group").click(function() {
-    var emploGroupName = $('#emplo-group-name').val()
-    var emploGroupCredential = $("#credential-level").find('option:selected').text()
+    // ~ ~ ~ ~ ~ UOM Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-new-uom").click(function() {
+    var PUOMName = $('#txt-puom-name').val()
     
-    if (emploGroupName == '') {
-        alert("Employee Group Name is needed.")
+    if (PUOMName == '') {
+        alert("Product UOM Name is needed.")
         return;
     }
 
     $.ajax({
-        url: "employee_group_add",
+        url: "ProductUOM_add",
         type: "POST",
-        data: { emploGroupName: emploGroupName, emploGroupCredential: emploGroupCredential }
+        data: { PUOMName: PUOMName }
     }).done(function(response) {
         if (response["error"] == false) {
             console.log(response["Message"])
 
-            var html_data = "<tr id='"+response['idEmployeeGroup']+"'><td><input type='text' class='form-control td-emplo-group-name' value='"+response['EGName']+"' readonly /></td><td> <select class='form-control td-emplo-group-credential' disabled><option selected disabled>"+response['EGLevel']+"</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td><td class='w-25'><a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png' class='repository-edit-gray-button d-none mr-2 ml-n3 btn-emplo-group-update'><a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-emplo-group-deactive'></a></td></tr>"
-            $(html_data).prependTo("#table-emplo-group > tbody")
+            var html_data = "<tr id='"+response['idProductUOM']+"'><td class='unit-input'><input type='text' class='form-control td-product-uom-name' value='"+response['PUOMName']+"' readonly /></td><td><a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a><input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='modal' data-target='#prompt_doneedituom' class='repository-edit-gray-button d-none btn-product-uom-update'><a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-product-uom-deactivate'></a></td></tr>"
+            $(html_data).prependTo("#tbl-product-uom > tbody")
         } else {
             console.log(response["Message"])
         }
     })
 })
 
-$(document).on("click", ".btn-emplo-group-deactive", function(){
-    var idEmploGroup = $(this).closest('tr').attr('id')
-    var emploGroupName = $(this).closest('tr').find('.td-emplo-group-name').val()
+$(document).on("click", ".btn-product-uom-deactivate", function(){
+    var idPUOM = $(this).closest('tr').attr('id')
+    var PUOMName = $(this).closest('tr').find('.td-product-uom-name').val()
 
     $('#prompt_confirmdeactivate').modal('show')
 
-    $('#dialog-hidden-id').text(idEmploGroup)
-    $('#dialog-deactivation-title').text('Deactivate Employee Group?')
-    $('#dialog-deactivation-description').text('You are about to deactivate Employee Group Name ' + emploGroupName + '. This action cannot be undone afterwards. Continue?')
+    $('#dialog-hidden-id').text(idPUOM)
+    $('#dialog-deactivation-title').text('Deactivate Product UOM?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Product UOM Name ' + PUOMName + '. This action cannot be undone afterwards. Continue?')
 
-    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-emplo-group')
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-product-uom')
 })
 
-$(document).on("click", ".btn-emplo-group-update", function(){
-    var idEmploGroup = $(this).closest('tr').attr('id')
-    var emploGroupName = $(this).closest('tr').find('.td-emplo-group-name').val()
-    var emploGroupCredential = $(this).closest('tr').find('.td-emplo-group-credential').find('option:selected').text()
-  
-    $.ajax({
-        url: "employee_group_update",
-        type: "POST",
-        data: {idEmploGroup: idEmploGroup, emploGroupName: emploGroupName, emploGroupCredential: emploGroupCredential}
-    }).done(function(response) {
-        if (response["error"] == false) {
-            console.log(response["Message"])
-        } else {
-            console.log(response["Message"])
-        }
-    })
-})
-
-$(document).on("click", ".deactivate-emplo-group", function(){
-    var idEmploGroup = $('#dialog-hidden-id').text()
+$(document).on("click", ".deactivate-product-uom", function(){
+    var idPUOM = $('#dialog-hidden-id').text()
 
     $.ajax({
-        url: "employee_group_deactivate",
+        url: "ProductUOM_deactivate",
         type: "POST",
-        data: { idEmploGroup: idEmploGroup }
+        data: { idPUOM: idPUOM }
     }).done(function(response) {
         if (response["error"] == false) {
             console.log(response["Message"])
@@ -807,8 +821,367 @@ $(document).on("click", ".deactivate-emplo-group", function(){
         }
     })
 
-    $('table#table-emplo-group tr#' + idEmploGroup).closest('tr').remove()
+    $('table#tbl-product-uom tr#' + idPUOM).closest('tr').remove()
     $(".modal-fade").modal("hide")
     $(".modal-backdrop").remove()
 })
-    // * * * * * Employee Page Eventlistener * * * * *
+
+$(document).on("click", ".btn-product-uom-update", function(){
+    var idPUOM = $(this).closest('tr').attr('id')
+    var PUOMName = $(this).closest('tr').find('.td-product-uom-name').val()
+
+    $.ajax({
+        url: "ProductUOM_update",
+        type: "POST",
+        data: { idPUOM: idPUOM, PUOMName: PUOMName }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+    // * * * * * UOM Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Discount Type Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-add-discount-type").click(function() {
+    var DTName = $('#txt-discount-type').val()
+    var DTPercent = $('#txt-discount-percent').val() + ".00"
+    var DTAmount = $('#txt-discount-amount').val() + ".00"
+    var DTVatExempt = 0
+
+    if (DTName == "") {
+        alert("Discount Type Name is needed.")
+        return;
+    }
+
+    if (DTPercent == 0) {
+        DTPercent = "0.00"
+    }
+
+    if (DTAmount == 0) {
+        DTAmount = "0.00"
+    }
+
+    if (document.getElementById('chkbox-vat-exempt').checked) {
+        DTVatExempt = 1
+    }
+
+    $.ajax({
+        url: "DiscountTpye_add",
+        type: "POST",
+        data: { DTName: DTName, DTPercent: DTPercent, DTAmount: DTAmount, DTVatExempt: DTVatExempt }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+            var html_data = "<tr id='"+response['idDiscountType']+"'><td class='unit-input'><input type='text' class='form-control td-discount-type-DTName' value='"+response['DTName']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTPercent' value='"+response['DTPercent']+"' readonly /></td><td class='unit-input'><input type='text' class='form-control td-discount-type-DTAmount' value='"+response['DTAmount']+"' readonly /></td>"
+                            + "<td class='unit-input ml-3 pt-2 td-discount-type-vatExempt'></td>"
+                            + "<td>"
+                            + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
+                            + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-discount-type'>"
+                            + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-discount-type'></a>"
+                            + "</td>"
+                            + "</tr>"
+            $(html_data).prependTo("#tbl-discount-type > tbody")
+
+            if (response['DTVatExempt']) {
+                var vatExempt = "<input type='checkbox' class='ml-2' name='vatexempt' class='chkbox-vat-exempt' checked disabled><label for='vatexempt'>VAT Exempt</label>"
+            }else{               
+                var vatExempt = "<input type='checkbox' class='ml-2' name='vatexempt' class='chkbox-vat-exempt' disabled></input><label for='vatexempt'>VAT Exempt</label>"
+            }
+
+            $('.td-discount-type-vatExempt').append(vatExempt)
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-enable-update-dt", function(){
+    $(this).parents('tr').find('td:not(:last-child)').children('input').attr('disabled', false)
+})
+
+$(document).on("click", ".btn-deactivate-discount-type", function(){
+    var idDiscountType = $(this).closest('tr').attr('id')
+    var DTName = $(this).closest('tr').find('.td-discount-type-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idDiscountType)
+    $('#dialog-deactivation-title').text('Deactivate Discount Type?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Discount Type Name ' + DTName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-discount-type')
+})
+
+$(document).on("click", ".deactivate-discount-type", function(){
+    var idDiscountType = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "DiscountType_deactivate",
+        type: "POST",
+        data: { idDiscountType: idDiscountType }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-discount-type tr#' + idDiscountType).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+
+$(document).on("click", ".btn-update-discount-type", function(){
+    var idDiscountType = $(this).closest('tr').attr('id')
+    var DTName = $(this).closest('tr').find('.td-discount-type-DTName').val()
+    var DTPercent = $(this).closest('tr').find('.td-discount-type-DTPercent').val()
+    var DTAmount = $(this).closest('tr').find('.td-discount-type-DTAmount').val()
+    var DTVatExempt = $(this).closest('tr').find('input[type=checkbox]').is(":checked")
+
+    $.ajax({
+        url: "DiscountType_update",
+        type: "POST",
+        data: { idDiscountType: idDiscountType, DTName: DTName, DTPercent: DTPercent, DTAmount: DTAmount, DTVatExempt: DTVatExempt }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $(this).parents('tr').find('td:not(:last-child)').children('input').attr('disabled', true)
+})
+    // * * * * * Discount Type Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Payment Type Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-add-payment-type").click(function() {
+    var PTName = $('#txt-payment-type-unit').val()
+    var PTFixedAmount = $('#txt-payment-type-fixed-amount').val() + ".00"
+
+    if (PTFixedAmount == 0) {
+        PTFixedAmount = "0.00"
+    }
+
+    $.ajax({
+        url: "PaymentType_add",
+        type: "POST",
+        data: { PTName: PTName, PTFixedAmount: PTFixedAmount }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+
+            var html_data = "<tr id='"+response['idPaymentType']+"'>"
+                                + "<td class='unit-input'><input type='text' class='form-control td-payment-type-name' value='"+response['PTName']+"' readonly /></td>"
+                                + "<td class='unit-input'><input type='text' class='form-control td-payment-type-fixed-amount' value='"+response['PTFixedAmount']+"' readonly /></td>"
+                                + "<td>"
+                                    + "<a><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button'></a>"
+                                    + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-gray-button d-none btn-update-payment-type'>"
+                                    + "<a class='mr-2'><img src='../../static/img/repository-icons/delete.png' data-toggle='tooltip' data-placement='top' title='Delete' class='btn-deactivate-payment-type'></a>"
+                                + "</td>"
+                            + "</tr>"
+            $(html_data).prependTo("#tbl-payment-type > tbody")
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-deactivate-payment-type", function(){
+    var idPaymentType = $(this).closest('tr').attr('id')
+    var PTName = $(this).closest('tr').find('.td-payment-type-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idPaymentType)
+    $('#dialog-deactivation-title').text('Deactivate Payment Type?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Payment Type Named ' + PTName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-payment-type')
+})
+
+$(document).on("click", ".deactivate-payment-type", function(){
+    var idPaymentType = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "PaymentType_deactivate",
+        type: "POST",
+        data: { idPaymentType: idPaymentType }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-payment-type tr#' + idPaymentType).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+
+$(document).on("click", ".btn-update-payment-type", function(){
+    var idPaymentType = $(this).closest('tr').attr('id')
+    var PTName = $(this).closest('tr').find('.td-payment-type-name').val()
+    var DTPercent = $(this).closest('tr').find('.td-payment-type-fixed-amount').val()
+
+    $.ajax({
+        url: "PaymentType_Update",
+        type: "POST",
+        data: { idPaymentType: idPaymentType, PTName: PTName, DTPercent: DTPercent }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+    // * * * * * Payment Type Page Eventlistener * * * * *
+    // ~ ~ ~ ~ ~ Device Type Page Eventlistener ~ ~ ~ ~ ~
+$("#btn-add-device").click(function() {
+    var DName = $('#txtDeviceName').val()
+    var idBranch = $('#select-branches').children(':selected').attr('id')
+    var BName = $('#select-branches').find('option:selected').text()
+    var idArea = $('#select-areas').children(':selected').attr('id')
+    var AName = $('#select-areas').find('option:selected').text()
+    var DSerialNumber = $('#txtSerialNumber').val()
+    var DMacAddress = $('#txtMacAddress').val()   
+    
+    if (DName == "") {
+        alert('Device Name is needed.')
+        return
+    } else if (DSerialNumber == "") {
+        alert('Serial Number is needed.')
+        return
+    } else if (DMacAddress == "") {
+        alert('Mac Address is needed.')
+        return
+    }
+
+    $.ajax({
+        url: "Device_add",
+        type: "POST",
+        data: {DName: DName, idBranch: idBranch, BName: BName, idArea: idArea, AName: AName, DSerialNumber: DSerialNumber, DMacAddress: DMacAddress}
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])           
+
+            var html_data = "<tr id='"+response['idDevice']+"'>"
+                            + "<td><input type='text' class='form-control td-device-name' value='"+response['DName']+"' readonly /></td>"
+                            + "<td>"
+                                + "<select class='form-control td-device-branch td-device-new' disabled>"
+                                    + "<option id='"+response['idBranch']+"'>"+response['BName']+"</option>"                                    
+                                + "</select>"
+                            + "</td>"
+                            + "<td>"
+                                + "<select class='form-control td-device-area' disabled>"
+                                    + "<option id='"+response['idArea']+"'>"+response['AName']+"</option>"
+                                + "</select>"
+                            + "</td>"
+                            + "<td><input type='text' class='form-control td-device-DSerialNumber' value='"+response['DSerialNumber']+"' readonly /></td>"
+                            + "<td><input type='text' class='form-control td-device-DMacAddress' value='"+response['DMacAddress']+"' readonly /></td>"
+                            + "<td class='d-flex'>"
+                                + "<a class='mr-2'><img src='../../static/img/repository-icons/edit.png' data-toggle='tooltip' data-placement='top' title='Edit' class='repository-edit-button in-branch btn-init-new-device'></a>"
+                                + "<input type='image' src='../../static/img/repository-icons/edit-gray.png' data-toggle='modal' data-target='#prompt_doneeditdevice' class='repository-edit-gray-button in-branch d-none mr-2 ml-n3 btn-device-update'>"
+                                + "<a><img src='../../static/img/repository-icons/deactivate.png'data-toggle='tooltip' data-placement='top' title='Deactivate' class='btn-deactivate-device'></a>"
+                            + "</td>"
+                            + "</tr>"
+            $(html_data).prependTo("#tbl-devices > tbody")
+
+            // ClearAllInputBox()
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-deactivate-device", function(){
+    var idDevice = $(this).closest('tr').attr('id')
+    var DName = $(this).closest('tr').find('.td-device-name').val()
+
+    $('#prompt_confirmdeactivate').modal('show')
+
+    $('#dialog-hidden-id').text(idDevice)
+    $('#dialog-deactivation-title').text('Deactivate Device?')
+    $('#dialog-deactivation-description').text('You are about to deactivate Device Named ' + DName + '. This action cannot be undone afterwards. Continue?')
+
+    $('#btn-deactivate').removeClass('btn-deactivate').addClass('deactivate-device')
+})
+
+$(document).on("click", ".deactivate-device", function(){
+    var idDevice = $('#dialog-hidden-id').text()
+
+    $.ajax({
+        url: "Device_deactivate",
+        type: "POST",
+        data: { idDevice: idDevice }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+
+    $('table#tbl-devices tr#' + idDevice).closest('tr').remove()
+    $(".modal-fade").modal("hide")
+    $(".modal-backdrop").remove()
+})
+
+$(document).on("click", ".btn-device-update", function(){
+    var idDevice = $(this).closest('tr').attr('id')
+    var DName = $(this).closest('tr').find('.td-device-name').val()
+    var idBranch =  $(this).closest('tr').find(".td-device-branch").find('option:selected').attr('id')
+    var BName = $(this).closest('tr').find(".td-device-branch").find('option:selected').text()
+    var idArea = $(this).closest('tr').find(".td-device-area").find('option:selected').attr('id')
+    var AName = $(this).closest('tr').find(".td-device-area").find('option:selected').text()
+    var DSerialNumber = $(this).closest('tr').find('.td-device-DSerialNumber').val()
+    var DMacAddress = $(this).closest('tr').find('.td-device-DMacAddress').val()
+
+    $.ajax({
+        url: "Device_update",
+        type: "POST",
+        data: { idDevice: idDevice, DName: DName, idBranch: idBranch, BName: BName,
+                idArea: idArea, AName: AName, DSerialNumber: DSerialNumber, DMacAddress: DMacAddress }
+    }).done(function(response) {
+        if (response["error"] == false) {
+            console.log(response["Message"])
+        } else {
+            console.log(response["Message"])
+        }
+    })
+})
+
+$(document).on("click", ".btn-init-new-device", function(){
+    var idBranch =  $(this).closest('tr').find(".td-device-branch").find('option:selected').attr('id')
+    var idArea = $(this).closest('tr').find(".td-device-area").find('option:selected').attr('id')
+
+    $.ajax({
+        url: "Device_branch_and_area_list",
+        type: "GET"
+    }).done(function(response) {
+        lstBranches = response['branches']
+        lstAreas = response['areas']
+
+        lstBranches.forEach(listBranches)
+        function listBranches(branch){           
+            if (idBranch != branch.idBranch) {
+                html_branch = "<option id='"+branch.idBranch+"'>"+branch.BName+"</option>"
+                $('tbody tr').closest('tr').find(".td-device-branch").append(html_branch)
+            }         
+        }
+
+        lstAreas.forEach(listAreas)
+        function listAreas(area){           
+            if (idArea != area.idArea) {
+                html_area = "<option id='"+area.idArea+"'>"+area.AName+"</option>"
+                $('tbody tr').closest('tr').find(".td-device-area").append(html_area)
+            }         
+        }
+    })
+})
+     // * * * * * Device Type Page Eventlistener * * * * *

@@ -69,9 +69,105 @@ class AccountUserArea(models.Model):
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
 
+class Employee(models.Model):
+    idEmployee = models.AutoField(primary_key=True, serialize=False)
+    idEmployeeGroup = models.IntegerField(default=0, null=True, blank=True)
+    unEmployee = models.CharField(default='', max_length=25, null=True, blank=True)
+    ELastName = models.CharField(default='', max_length=50, null=True, blank=True)
+    EFirstName = models.CharField(default='', max_length=50, null=True, blank=True)
+    EMiddleName = models.CharField(default='', max_length=50, null=True, blank=True)
+    EAlias = models.CharField(default='', max_length=50, null=True, blank=True)
+    ENumber = models.CharField(default='', max_length=50, null=True, blank=True)
+    EUsername = models.CharField(default='', max_length=50, null=True, blank=True)
+    EPassword = models.CharField(default='', max_length=50, null=True, blank=True)
+    EGroup = models.CharField(default='', max_length=25, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
 class EmployeeGroup(models.Model):
     idEmployeeGroup = models.AutoField(primary_key=True, serialize=False)
     EGName = models.CharField(default='', max_length=50, null=True, blank=True)
     EGLevel = models.IntegerField(default=0, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class EmployeeAccountArea(models.Model):
+    idEmployeeAccountArea = models.AutoField(primary_key=True, serialize=False)
+    idEmployee = models.IntegerField(default=0, null=True, blank=True)
+    idArea = models.IntegerField(default=0, null=True, blank=True)
+    AName = models.CharField(default='', max_length=30, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class ProductUOM (models.Model):
+    idProductUOM = models.AutoField(primary_key=True, serialize=False)
+    PUOMName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class ProductItem (models.Model):
+    idProductItem = models.AutoField(primary_key=True, serialize=False)
+    idProductUOM = models.IntegerField(default=0)
+    idProductGroup = models.IntegerField(default=0)
+    PIName = models.CharField(default='', max_length=255, null=True, blank=True)
+    PISAPCode = models.CharField(default='', max_length=20, null=True, blank=True)
+    PIPack = models.DecimalField(default=0.00, decimal_places=2, max_digits=8)
+    PIBulkDiscount = models.IntegerField(default=0)
+    PUOMName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PGName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class DiscountType (models.Model):
+    idDiscountType = models.AutoField(primary_key=True, serialize=False)
+    DTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    DTPercent = models.DecimalField(default=0.00, decimal_places=2, max_digits=6)
+    DTAmount = models.DecimalField(default=0.00, decimal_places=2, max_digits=6)
+    DTVatExempt = models.BooleanField(default=False)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class PaymentType (models.Model):
+    idPaymentType = models.AutoField(primary_key=True, serialize=False)
+    PTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PTFixedAmount = models.DecimalField(default=0.00, decimal_places=2, max_digits=6)
+    PTReference = models.IntegerField(default=0)
+    PTPriority = models.IntegerField(default=0)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class Device (models.Model):
+    idDevice = models.AutoField(primary_key=True, serialize=False)
+    idBranch = models.IntegerField(default=0)
+    idArea = models.IntegerField(default=0)
+    unDevice = models.CharField(default='', max_length=10, null=True, blank=True)
+    BName = models.CharField(default='', max_length=50, null=True, blank=True)
+    AName = models.CharField(default='', max_length=50, null=True, blank=True)
+    DSerialNumber = models.CharField(default='', max_length=50, null=True, blank=True)
+    DMacAddress = models.CharField(default='', max_length=50, null=True, blank=True)
+    DName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class ProductGroup(models.Model):
+    idProductGroup = models.AutoField(primary_key=True, serialize=False)
+    idProductType = models.IntegerField(default=0)
+    idShortageType = models.IntegerField(default=0)
+    PTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    STName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PGName = models.CharField(default='', max_length=50, null=True, blank=True)
+    PGPriority = models.IntegerField(default=0)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class ProductType(models.Model):
+    idProductType = models.AutoField(primary_key=True, serialize=False)
+    PTName = models.CharField(default='', max_length=50, null=True, blank=True)
+    TimeStamp = models.DateTimeField(auto_now_add=True) 
+    Status = models.BooleanField(default=True)
+
+class ShortageType(models.Model):
+    idShortageType = models.AutoField(primary_key=True, serialize=False)
+    STName = models.CharField(default='', max_length=50, null=True, blank=True)
     TimeStamp = models.DateTimeField(auto_now_add=True) 
     Status = models.BooleanField(default=True)
