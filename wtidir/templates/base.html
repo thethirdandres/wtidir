@@ -25,8 +25,9 @@
 </head>
 
 <body>
-    {% include "components/_navbar.html" %}
-    <div class="main   container-fluid">
+{% comment %} TO ARCHIE: gina hide (d-none) ang main as default para ang login-div (kung diin ang splash kag login page) mauna kita kada mag start ang app, dapat if nakaenter na login credentials and gin press ang login button, i hide na man ang login-div and ang main naman ang i-show, para ang landing page ang ma bulos {% endcomment %}
+    <div id="main" class="main container-fluid">
+        {% include "components/_navbar.html" %}
         <div class="sidebar-collpased-menu">
             <button class="openbtn" onclick="openNav()">☰</button> 
             {% include "components/_sidebar.html" %}
@@ -34,6 +35,9 @@
         <div class="content container-fluid">
             {% block content %}{% endblock %}
         </div>
+    </div>
+    <div id="login-div" class="login-div container-fluid h-100 d-none">
+        {% block login %}{% endblock %}
     </div>
     
 

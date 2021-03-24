@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="template-section p-4">
+        <div class="ts-head">
+            <label class="roboto-24 font-weight-bold text-gray"> 
+                <a class="my-auto mr-3" href="{% url 'landing:landing_view' %}"><img src="../../static/img/sheets-icons/back.png" ></a>
+                Production
+            </label>
+        </div>
+        <div class="ts-add-template w-100 d-flex align-items-center mt-3 pl-4">
+            <input class="roboto" placeholder="Production Name">
+            <select class=" ml-2 sheets-select h-50" >
+                <option  selected disabled>Template</option>
+                <option >Test</option>
+                <option >Test</option>
+                <option >Test</option>
+            </select>
+            <button type="submit" class="btn ">
+                    <img src="../../static/img/sheets-icons/add.png" />
+            </button>        
+        </div>
+        <table class="table table-border  table-sm  mt-3">
+            <thead class="table-active">
+                <tr>
+                    <th>PRODUCTION NAME</th>
+                    <th>TEMPLATE</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="w-25"><input type="text" class="form-control" value="Regular" readonly /></td>
+                    <td class="w-25"><input type="text" class="form-control" value="Airport" readonly /></td>
+                    <td>
+                        <a class="mr-2 pointer-cursor-on-hover" data-toggle="modal" data-target="#modal_editproductionitems"><img src="../../static/img/sheets-icons/edititems.png" data-toggle="tooltip" data-placement="top" title="Edit Items" ></a>
+                        <div class="modal fade h-100" id="modal_editproductionitems" tabindex="-1" role="dialog" aria-labelledby="modal_editproductionitemslabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">    
+                                {% include '../modals/modal_editproductionitems.html' %}
+                            </div>
+                        </div>
+                        <a class="pointer-cursor-on-hover"><img src="../../static/img/sheets-icons/delete.png"data-toggle="tooltip" data-placement="top" title="Delete" ></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

@@ -34,9 +34,14 @@
     color: white;
 }
 
-.sidebar-file>div:hover,
-.sidebar-edit>div:hover,
-.sidebar-edit>div a:hover {
+.sidebar-area-dropdown {
+    background-color: #333333;
+}
+
+.sidebar-file>div:not(div:first-child):hover,
+.sidebar-edit>div:not(div:first-child):hover,
+.sidebar-file a:hover,
+.sidebar-edit a:hover {
     color: #AF0700;
 }
 
@@ -47,6 +52,7 @@
 .sidebar-dropdown-container {
     /* display: none; */
     padding-left: 2rem;
+    list-style-type: none;
 }
 
 .openbtn {

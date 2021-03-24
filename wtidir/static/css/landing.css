@@ -99,35 +99,83 @@
 }
 
 
-/* LOGIN PAGE */
-.login-page {
+/* splash PAGE */
+
+.login-page,
+.splash-page {
     height: 100%;
     width: 100%;
     background-color: #333333;
 }
 
-
-
-.login-left-logo {
+.splash-left-logo {
     bottom: 12rem;
     left: 7rem;
-    position:absolute;
+    position: absolute;
 }
 
-.login-left-text {
+.splash-left-text {
     bottom: 4rem;
     left: 7rem;
-    position:absolute;
+    position: absolute;
     line-height: 3rem;
 }
 
-
-.login-left-text {
+.splash-left-text {
     color: white;
     font-size: 3rem;
 }
 
-.login-right-manager {
-    background-image: url(../../static/img/login-img/manager-white.png);
-    background-size: cover;
+.splash-right {
+    overflow-y: scroll;
+    /* hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.splash-right::-webkit-scrollbar {
+    display: none;
+}
+
+.splash-right-button {
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    padding: 1rem;
+    text-align: left;
+    border-radius: 0.30rem;
+    text-decoration: none !important;
+    color: black;
+    vertical-align: center;
+}
+
+.splash-right-button:hover {
+    background-color: #AF0700;
+    color: white;
+}
+
+
+/* login */
+
+.login-select {
+    position: relative;
+    float: right;
+    right: 3rem;
+}
+
+.login-select>select {
+    background-color: #333333;
+}
+
+.login-select>select:focus {
+    background-color: #333333;
+}
+
+.login-content {
+    width: 20%;
+    height: 55%;
+    transform: translateX(5rem);
+}
+
+.login-card>img {
+    width: 100%;
 }

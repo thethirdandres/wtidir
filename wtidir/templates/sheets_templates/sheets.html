@@ -2,9 +2,7 @@
 
 {% block content %}
     <ul class="nav nav-pills mb-2 sheets-navpills-header" id="pills-tab" role="tablist">
-        <li class="nav-item mx-3 pt-2" role="presentation">
-            <img src="../../static/img/sheets-icons/unlock.png"/>
-        </li>
+        <input type="image" class="sheets-lock p-3" src="../../static/img/sheets-icons/unlock.png" onload="toggleSheetLock()"/>
         <li class="nav-item sheets-nav-item" role="presentation">
             <a class="nav-link sheets-nav-link" id="pills-inventory-tab" href="{% url 'sheets:inventory_view' %}" role="tab" aria-controls="pills-inventory" aria-selected="false">Inventory</a>
         </li>
@@ -31,8 +29,8 @@
                 Reports 
             </a>
             <div class="sheets-dropdown-container dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="sheets-dropdown-item dropdown-item roboto-12" href="{% url 'sheets:reports_productmix' %}">Product Mix</a>
-                <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">Sales Report</a>
+                <a class="sheets-dropdown-item dropdown-item roboto-12" href="{% url 'sheets:reports_productmix_view' %}">Product Mix</a>
+                <a class="sheets-dropdown-item dropdown-item roboto-12" href="{% url 'sheets:reports_sales_view' %}">Sales Report</a>
                 <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">Crew Shortages</a>
                 <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">Crew Incentives</a>
                 <a class="sheets-dropdown-item dropdown-item roboto-12" href="#">FOM Incentives</a>

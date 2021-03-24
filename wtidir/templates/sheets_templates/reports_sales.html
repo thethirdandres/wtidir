@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+  
+{% block content %}
+    <div class="reports-sales">
+        <div class="d-flex pt-4 px-5"> 
+            <div class="flex-grow-1 roboto-24"><span class="font-weight-bold">Atrium</span> [SALES REPORT] </div>
+            <button class="button-pale-red mr-2"><img src="../../static/img/sheets-icons/print.png" class="mr-1">  PRINT</button>
+            <button class="button-pale-red mr-5"><img src="../../static/img/sheets-icons/exportreport.png" class="mr-1 mb-1">  EXPORT REPORT</button>
+        </div>
+        <div class="rs-filter d-flex px-5 mt-3 roboto-12">
+            <label for="rs-filter-from" class="my-auto mr-2">From</label>
+            <input name="rs-filter-from" class="sheets-select h-50 my-auto" type="date">
+            
+            <label for="rs-filter-to" class="my-auto mr-2 ml-3">To</label>
+            <input name="rs-filter-to" class="sheets-select h-50 my-auto" type="date">
+            
+            <button class="btn">
+                <img src="../../static/img/sheets-icons/rpmfiltersubmit.png" role="button">
+            </button>
+        </div>
+        <div class="rs-table-div mt-3">
+            <table class="pl-5 rs-table">
+                <thead class="mb-3 text-secondary rs-thead ">
+                    <th></th>
+                    <th>VALERIA</th>
+                    <th>ATRIUM</th>
+                    <th>VILLA</th>
+                    <th>ROB 1</th>
+                    <th>ROB 2</th>
+                    <th>JARO IS</th>
+                    <th>GAISANO 2</th>
+                    <th>MANDURRIAO</th>
+                    <th>OTON</th>
+                    <th>LEGANES</th>
+                    <th>USA</th>
+                    <th>SOCIETY</th>
+                    <th>IDC</th>
+                    <th>1688</th>
+                    <th>OTON</th>
+                    <th>OTON</th>
+                    <th>OTON</th>
+                </thead>
+                <tbody class="rs-tbody mt-2">
+                    <tr class="font-weight-bold">
+                        <td>OCTOBER</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>5,512.00</td>
+                        <td>6,123.00</td>
+                        <td>10.00</td>
+                        <td>50.0000</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                    </tr>
+                    <tr class="font-weight-bold">
+                        <td></td>
+                        <td>5,512.00</td>
+                        <td>6,123.00</td>
+                        <td>10.00</td>
+                        <td>50.0000</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                        <td>0.98</td>
+                    </tr>
+                </tbody>
+                <tfoot class="rs-tfoot ">
+                    <tr class="align-top font-weight-bold">
+                        <td ></td> 
+                        <td >Grand Total</td> 
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="ml-auto">100.00</td> 
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+    </div>
+{% endblock content %}

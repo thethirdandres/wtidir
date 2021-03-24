@@ -18,6 +18,9 @@ urlpatterns = [
     path('_invoice', views._invoice_view, name='_invoice_view'),
     path('_pettycash', views._pettycash_view, name='_pettycash_view'),
 
-    path('reports_productmix', views.reports_productmix_view, name='reports_productmix'),
+    path('reports_productmix', views.reports_productmix_view, name='reports_productmix_view'),
+    path('reports_sales', views.reports_sales_view, name='reports_sales_view'),
 
+    path('template', views.template_view, name='template_view'),
+    path('bom', views.bom_view, name='bom_view'),
 ]

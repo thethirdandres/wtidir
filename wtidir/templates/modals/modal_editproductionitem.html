@@ -1,0 +1,29 @@
+<div class="modal-content reset-fields-here">
+    <div class="modal-header bg-white">
+        <h5 class="modal-title roboto-16 mx-auto font-weight-bold text-center" id="modal_createusertitle">[AMERICAN HOTDOG 12S]<br>PRODUCTION DATA</h5>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex justify-content-center">
+            <div class="form-group mx-1">
+                <label for="yield">Yield</label>
+                <input type="number"
+                    class="form-control form-control-sm" name="yield" id="yield">
+            </div>
+            <div class="form-group mx-1 ml-3">
+                <label for="cost">Cost</label>
+                <input type="number"
+                    class="form-control form-control-sm" name="cost" id="cost">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <button type="button" class="btn button-red mr-2 confirm-all-modal" data-toggle="modal" data-target="#prompt_confirmeditquota">SAVE</button>
+        <button type="button" class="btn button-white confirm-all-modal" >CANCEL</button>
+
+        {% comment %} <div class="modal fade close-all-modal" id="prompt_confirmeditquota" tabindex="-1" role="dialog" aria-labelledby="prompt_confirmeditquotalabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">    
+                {% include '../prompts/prompt_confirmeditquota.html' %}
+            </div>
+        </div> {% endcomment %}
+    </div>
+</div>

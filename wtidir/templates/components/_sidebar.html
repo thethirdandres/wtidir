@@ -1,6 +1,11 @@
 <div id="mySidebar" class="sidebar">
     <div class="sidebar-area">
-        <div class="sidebar-area-dropdown  roboto-14">AREA: Iloilo</div>
+        <label for="dropdown"> AREA: </label>
+        <select class="sidebar-area-dropdown text-white roboto-14">
+            <option selected>Iloilo</option>
+            <option>Pavia</option>
+            <option>Airport</option>
+        </select>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <hr/>
     </div>
@@ -11,24 +16,21 @@
             >
             Create New ▼
         </div>
-        <div class="sidebar-dropdown-container d-none">
-            <div class="roboto-12" href="#">Inventory Sheet</div>
-            <div class="roboto-12" href="#">Delivery</div>
-            <div class="roboto-12" href="#">Damage Return</div>
-            <div class="roboto-12" href="#">Invoice</div>
-            <div class="roboto-12" href="#">Petty Cash</div>
-            <div class="roboto-12" href="#">Sales</div>
-        </div>
+        <ul class="sidebar-dropdown-container d-none">
+            <li><a class="roboto-12" href="{% url 'sheets:inventory_view' %}">Inventory Sheet</a></li>
+            <li><a class="roboto-12" href="{% url 'sheets:_delivery_view' %}">Delivery</a></li>
+            <li><a class="roboto-12" href="{% url 'sheets:_damagereturn_view' %}">Damage Return</a></li>
+            {% comment %} <a class="roboto-12" href="#">Invoice</a> {% endcomment %}
+            <li><a class="roboto-12" href="{% url 'sheets:_pettycash_view' %}">Petty Cash</a></li>
+            {% comment %} <a class="roboto-12" href="#">Sales</a> {% endcomment %}
+        </ul>
         <div class="sidebar-dropdown-button    roboto-16">
             <img src="../../static/img/sidebar-icons/open.png" class="mr-2"
             >
             Open ▼
         </div>
         <div class="sidebar-dropdown-container d-none">
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
+            <a class="roboto-12" href="#">Test</a>
         </div>
         <div class="roboto-16">
             <img src="../../static/img/sidebar-icons/import.png" class="mr-2"
@@ -45,27 +47,27 @@
                 Respository
             </a>
         </div>
-        <div class="sidebar-dropdown-button    roboto-16">
+        <div class="sidebar-dropdown-button roboto-16">
             <img src="../../static/img/sidebar-icons/Template.png" class="mr-2">
             Template ▼
         </div>
-        <div class="sidebar-dropdown-container d-none">
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-        </div>
+        <ul class="sidebar-dropdown-container d-none">
+            <li><a class="roboto-12" href="#">2019 Airport</a></li>
+            <li><a class="roboto-12" href="#">2019 Regular</a></li>
+            <li><a class="roboto-12" href="#">Airport</a></li>
+            <li><a class="roboto-12" href="#">Regular</a></li>
+        </ul>
         <div class="sidebar-dropdown-button    roboto-16">
             <img src="../../static/img/sidebar-icons/bom.png" class="mr-2"
             >
             BOM ▼
         </div>
-        <div class="sidebar-dropdown-container d-none">
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-            <div class="roboto-12" href="#">Test</div>
-        </div>
+        <ul class="sidebar-dropdown-container d-none">
+            <li><a class="roboto-12" href="#">2019 Airport</a></li>
+            <li><a class="roboto-12" href="#">2019 Regular</a></li>
+            <li><a class="roboto-12" href="#">Airport</a></li>
+            <li><a class="roboto-12" href="#">Regular</a></li>
+        </ul>
     </div>
     <div class="sidebar-footer">
         <div class="roboto-16   mt-2">

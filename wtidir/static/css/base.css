@@ -16,6 +16,11 @@ body {
     font-family: Roboto, sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 
 /* OVERRIDES */
 
@@ -54,6 +59,10 @@ button {
 
 .text-red {
     color: #890F00;
+}
+
+.text-gold {
+    color: #CE9300;
 }
 
 .roboto {
@@ -140,7 +149,8 @@ button {
 
 .content {
     padding-left: 50px !important;
-    height: 100%;
+    /* height: 100%; */
+    overflow: hidden;
 }
 
 .content+div:first-child {

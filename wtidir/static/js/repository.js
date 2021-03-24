@@ -33,16 +33,6 @@ $(document).ready(function() {
 
 });
 
-$(document).on("click", ".selectarea-checkbox-list", function(){
-    var checkBoxes = $(this).find('input[type=checkbox]')
-
-    $('.selectarea-select-button').prop('disabled', checkBoxes.filter(':checked').length < 1)
-    if (checkBoxes.filter(':checked').length > 0) {
-        $('.selectarea-select-button').removeClass('button-disable')
-    } else {
-        $('.selectarea-select-button').addClass('button-disable')
-    }
-})
 
 $(document).on("click", ".repository-edit-button", function() {
     var currentTD = $(this).parents('tr').find('td:not(:last-child)');
@@ -88,11 +78,13 @@ $('.confirm-all-modal').click(function() {
         var alert = $(this).parents(".content").find(".alert_confirmcreateuser");
         alert.removeClass("d-none");
 
-            if($(this)) {}; //remove if not used;
+        if ($(this)) {}; //remove if not used;
         setTimeout(function() {
             alert.addClass("d-none");
         }, 3000);
-    } else if ($(this).hasClass("button-red")) {
+    } else if ($(this).hasClass("button-red") && $(this).hasClass("no-delay")) {
+        $('.close-all-modal').modal('hide');
+    } else if ($(this).hasClass("button-red") && !$(this).hasClass("no-delay")) {
         setTimeout(function() {
             $('.close-all-modal').modal('hide');
         }, 3000);

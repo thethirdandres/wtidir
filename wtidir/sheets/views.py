@@ -39,5 +39,17 @@ def _pettycash_view(request):
     return render(request, 'sheets_templates/_pettycash_.html')
 
     
+    
 def reports_productmix_view(request):
     return render(request, 'sheets_templates/reports_productmix.html')
+    
+def reports_sales_view(request):
+    return render(request, 'sheets_templates/reports_sales.html')
+
+
+
+def template_view(request):
+    return render(request, 'sheets_templates/template.html')
+    
+def bom_view(request):
+    return render(request, 'sheets_templates/bom.html')
