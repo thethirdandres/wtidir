@@ -6,19 +6,19 @@
         <form id="repo-add-conversion-form">
             <div class="form-group">
                 <label for="unit">Unit</label>
-                <select class="form-control form-control-sm" name="unit" id="unit">
+                <select class="form-control form-control-sm" name="unit" id="conversion-unit">
                     {% for PUOM in PUOMS %}
-                        <option>{{ PUOM.PUOMName }}</option>
+                        <option id="{{ PUOM.idProductUOM }}">{{ PUOM.PUOMName }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
                 <label for="ratio">Ratio</label>
-                <input type="text" class="form-control form-control-sm" name="ratio" id="ratio" placeholder="">
+                <input type="text" class="form-control form-control-sm" name="ratio" id="conversion-ratio" placeholder="">
             </div>
             <div class="form-group">
                 <label for="set">Set</label>
-                <select class="form-control form-control-sm" name="set" id="set">
+                <select class="form-control form-control-sm" name="set" id="conversion-set">
                 <option selected>F</option>
                 <option>W</option>
                 </select>
@@ -36,14 +36,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row" contenteditable="false">pc</td>
-                        <td contenteditable="false">1.000000</td>
-                        <td contenteditable="false">W</td>
-                        <td>
-                            <a><img src="../../static/img/repository-icons/deactivate.png" data-toggle="tooltip" data-placement="top" title="Remove" ></a>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>

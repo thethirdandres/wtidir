@@ -250,3 +250,37 @@ $(document).on("click", ".update-item", function(){
         }
     })
 })
+
+var converstion12 = []
+
+$(document).on("click", "#repo-conversion-table-submit", function(){
+    var ratio = $('#conversion-ratio').val()
+    var idUnit = $('#conversion-unit').find('option:selected').attr('id')
+    var unitName = $('#conversion-unit').find('option:selected').text()
+    var set = $('#conversion-set').find('option:selected').text()
+    
+    class cConvertion{
+        converstion(ratio, idUnit, unitName, set){
+            this.ratio = ratio
+            this.idUnit = idUnit
+            this.unitName = unitName
+            this.set = set
+        }
+    }
+
+    conv = new cConvertion()
+    conv.ratio = ratio
+    conv.idUnit = idUnit
+    conv.unitName = unitName
+    conv.set = set
+
+    converstion12.push(conv)
+
+    var html_data = "<tr>"
+                        + "<td scope='row' contenteditable='false'>"+ unitName +"</td>"
+                        + "<td contenteditable='false'>"+ratio+"</td>"
+                        + "<td contenteditable='false'>"+set+"</td>"
+                        + "<td> <a><img src='../../static/img/repository-icons/deactivate.png' data-toggle='tooltip' data-placement='top' title='Remove' ></a> </td>" 
+                    + "</tr>"
+    $(html_data).prependTo("#repo-conversion-table > tbody")
+})
